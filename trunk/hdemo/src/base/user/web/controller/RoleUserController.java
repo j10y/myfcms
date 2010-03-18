@@ -38,7 +38,6 @@ public class RoleUserController extends BaseFormController {
 			throws Exception {
 		// request.getParameterValues("orgTreeId");
 		String[] userIds = request.getParameterValues("userId");
-		
 
 		// 创建一个空的Command对象
 		RoleUserForm form = new RoleUserForm();
