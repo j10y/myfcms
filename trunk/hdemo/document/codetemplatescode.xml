@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates><template id="org.eclipse.jdt.ui.text.codetemplates.getterbody" name="getterbody" description="Code in created getters" context="getterbody_context" enabled="true" deleted="false" autoinsert="true">return ${field};</template><template id="org.eclipse.jdt.ui.text.codetemplates.catchblock" name="catchblock" description="Code in new catch blocks" context="catchblock_context" enabled="true" deleted="false" autoinsert="true">// ${todo} Auto-generated catch block
+${exception_var}.printStackTrace();</template><template id="org.eclipse.jdt.ui.text.codetemplates.annotationbody" name="annotationbody" description="Code in new annotation type bodies" context="annotationbody_context" enabled="true" deleted="false" autoinsert="true">
+</template><template id="org.eclipse.jdt.ui.text.codetemplates.newtype" name="newtype" description="Newly created files" context="newtype_context" enabled="true" deleted="false" autoinsert="false">/**
+ * &lt;p&gt;项目名称：湖北省公安厅治安总队网站系统&lt;/p&gt;
+ * &lt;p&gt;版权所有 (c) 2005 湖北全达信息科技有限公司&lt;/p&gt;
+ * &lt;p&gt;作者：&lt;/p&gt;
+ * &lt;p&gt;版本：1.0&lt;/p&gt;
+ * &lt;p&gt;日期：${date}&lt;/p&gt;
+ * &lt;p&gt;更新：&lt;/p&gt;
+ */
+${package_declaration}
+
+${typecomment}
+${type_declaration}</template><template id="org.eclipse.jdt.ui.text.codetemplates.methodbody" name="methodbody" description="Code in created method stubs" context="methodbody_context" enabled="true" deleted="false" autoinsert="true">// ${todo} Auto-generated method stub
+${body_statement}</template><template id="org.eclipse.jdt.ui.text.codetemplates.interfacebody" name="interfacebody" description="Code in new interface type bodies" context="interfacebody_context" enabled="true" deleted="false" autoinsert="true">
+</template><template id="org.eclipse.jdt.ui.text.codetemplates.setterbody" name="setterbody" description="Code in created setters" context="setterbody_context" enabled="true" deleted="false" autoinsert="true">${field} = ${param};</template><template id="org.eclipse.jdt.ui.text.codetemplates.enumbody" name="enumbody" description="Code in new enum type bodies" context="enumbody_context" enabled="true" deleted="false" autoinsert="true">
+</template><template id="org.eclipse.jdt.ui.text.codetemplates.constructorbody" name="constructorbody" description="Code in created constructor stubs" context="constructorbody_context" enabled="true" deleted="false" autoinsert="true">${body_statement}
+// ${todo} Auto-generated constructor stub</template><template id="org.eclipse.jdt.ui.text.codetemplates.classbody" name="classbody" description="Code in new class type bodies" context="classbody_context" enabled="true" deleted="false" autoinsert="true">
+</template></templates>
