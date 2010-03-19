@@ -10,31 +10,31 @@
 		</property>
 		<property name="exceptionMappings">
 			<props>
-				<prop key="base.exception.ApplicationException">applicationException</prop>
+				<prop key="com.hxzy.base.exception.ApplicationException">applicationException</prop>
 				<prop key="java.lang.Exception">exceptionMessage</prop>
 			</props>
 		</property>
 	</bean>
 	<!-- ============================= Interceptors ====================================== -->
 	<bean id="authenticateInterceptor"
-		class="base.web.interceptor.AuthenticateInterceptor">
+		class="com.hxzy.base.web.interceptor.AuthenticateInterceptor">
 		<property name="loginUrl">
 			<value>/login.do</value>
 		</property>
 	</bean>
 	
 	<bean id="characterEncodingInterceptor"
-		class="base.web.interceptor.CharacterEncodingInterceptor">
+		class="com.hxzy.base.web.interceptor.CharacterEncodingInterceptor">
 		<property name="encodingSchema">
 			<value>GBK</value>
 		</property>
 	</bean>
 	
 	<bean id="authorizeInterceptor"
-		class="base.web.interceptor.AuthorizeInterceptor" />
+		class="com.hxzy.base.web.interceptor.AuthorizeInterceptor" />
 		
 	<bean id="requestUrlInterceptor"
-		class="base.web.interceptor.RequestUrlInterceptor" />
+		class="com.hxzy.base.web.interceptor.RequestUrlInterceptor" />
 
 	<!-- Load WEB-INF/classes/ApplicationResources.properties for i18n messages using JSTL's fmt tag -->
 	<bean id="messageSource"
@@ -46,7 +46,7 @@
 	
 	<!-- ============================== Application Context Listener ===================== -->
 	<bean id="webApplictionContextListener"
-		class="base.web.listener.ApplicationContextListener" />
+		class="com.hxzy.base.web.listener.ApplicationContextListener" />
 
 	<!-- ============================== UploadFile ===================== -->
 	<bean id="multipartResolver"
@@ -157,7 +157,7 @@
 	
 	<!-- =============================== Application Controller =========================== -->
 	<bean id="mainFrameController"
-		class="base.web.controller.MainFrameController"
+		class="com.hxzy.base.web.controller.MainFrameController"
 		parent="baseControllerTemplate">
 		<property name="needAuthentication">
 			<value>true</value>
@@ -168,7 +168,7 @@
 	</bean>
 
 	<bean id="headController"
-		class="base.web.controller.HeadController"
+		class="com.hxzy.base.web.controller.HeadController"
 		parent="baseControllerTemplate">
 		<property name="needAuthentication">
 			<value>true</value>
@@ -179,7 +179,7 @@
 	</bean>
 
 	<bean id="leftController"
-		class="base.web.controller.LeftController"
+		class="com.hxzy.base.web.controller.LeftController"
 		parent="baseControllerTemplate">
 		<property name="needAuthentication">
 			<value>true</value>
@@ -190,7 +190,7 @@
 	</bean>
 
 	<bean id="welcomController"
-		class="base.web.controller.WelcomController"
+		class="com.hxzy.base.web.controller.WelcomController"
 		parent="baseControllerTemplate">
 		<property name="needAuthentication">
 			<value>true</value>
@@ -203,7 +203,7 @@
 
 	<!-- ================ Reika ==================== -->
 	<bean id="loginController"
-		class="base.web.controller.login.LoginController"
+		class="com.hxzy.base.web.controller.login.LoginController"
 		parent="baseFormControllerTemplate">
 		<property name="formView">
 			<value>common/login/login</value>
@@ -213,7 +213,7 @@
 		</property>
 		<property name="commandClass">
 			<value>
-				base.web.controller.login.LoginForm
+				com.hxzy.base.web.controller.login.LoginForm
 			</value>
 		</property>
 		<property name="validator">
@@ -225,13 +225,13 @@
 		<property name="needAuthorization">
 			<value>false</value>
 		</property>
-		<property name="baseUserService">
-			<ref bean="baseUserService" />
+		<property name="userService">
+			<ref bean="userService" />
 		</property>
 	</bean>
 
 	<bean id="logoutController"
-		class="base.web.controller.login.LogoutController"
+		class="com.hxzy.base.web.controller.login.LogoutController"
 		parent="baseControllerTemplate">
 		<property name="needAuthentication">
 			<value>false</value>
@@ -242,7 +242,7 @@
 	</bean>
 	
 	<bean id="passwordModifyController"
-		class="base.user.web.controller.PasswordModifyController"
+		class="com.hxzy.common.user.web.controller.PasswordModifyController"
 		parent="baseFormControllerTemplate">
 		<property name="formView">
 			<value>common/person/passwordModify</value>
@@ -252,7 +252,7 @@
 		</property>
 		<property name="commandClass">
 			<value>
-				base.user.web.controller.PasswordModifyForm
+				com.hxzy.common.user.web.controller.PasswordModifyForm
 			</value>
 		</property>
 		<property name="validator">
@@ -264,17 +264,17 @@
 		<property name="needAuthorization">
 			<value>false</value>
 		</property>
-		<property name="baseUserService">
-			<ref bean="baseUserService" />
+		<property name="userService">
+			<ref bean="userService" />
 		</property>
 	</bean>
 	
 	<bean id="personQueryController"
-		class="base.user.web.controller.PersonQueryController"
+		class="com.hxzy.common.user.web.controller.PersonQueryController"
 		parent="baseCommandControllerTemplate">
 		<property name="commandClass">
 			<value>
-				base.user.web.controller.PersonQueryForm
+				com.hxzy.common.user.web.controller.PersonQueryForm
 			</value>
 		</property>
 		<property name="functionCode">
@@ -286,13 +286,13 @@
 		<property name="needAuthorization">
 			<value>false</value>
 		</property>
-		<property name="baseUserService">
-			<ref bean="baseUserService" />
+		<property name="userService">
+			<ref bean="userService" />
 		</property>
 	</bean>
 	
 	<bean id="personEditController"
-		class="base.user.web.controller.PersonEditController"
+		class="com.hxzy.common.user.web.controller.PersonEditController"
 		parent="baseFormControllerTemplate">
 		<property name="formView">
 			<value>common/person/personEdit</value>
@@ -308,24 +308,24 @@
 		</property>
 		<property name="commandClass">
 			<value>
-				base.user.web.controller.PersonEditForm
+				com.hxzy.common.user.web.controller.PersonEditForm
 			</value>
 		</property>
 		<property name="validator">
 			<ref bean="beanValidator" />
 		</property>
-		<property name="baseUserService">
-			<ref bean="baseUserService" />
+		<property name="userService">
+			<ref bean="userService" />
 		</property>
 	</bean>
 	
 	
 	<bean id="roleQueryController"
-		class="base.user.web.controller.RoleQueryController"
+		class="com.hxzy.common.user.web.controller.RoleQueryController"
 		parent="baseCommandControllerTemplate">
 		<property name="commandClass">
 			<value>
-				base.user.web.controller.RoleQueryForm
+				com.hxzy.common.user.web.controller.RoleQueryForm
 			</value>
 		</property>
 		<property name="functionCode">
@@ -343,14 +343,14 @@
 	</bean>
 	
 	<bean id="roleEditController"
-		class="base.user.web.controller.RoleEditController"
+		class="com.hxzy.common.user.web.controller.RoleEditController"
 		parent="baseFormControllerTemplate">
 		<property name="formView">
 			<value>common/role/roleEdit</value>
 		</property>
 		<property name="commandClass">
 			<value>
-				base.user.web.controller.RoleEditForm
+				com.hxzy.common.user.web.controller.RoleEditForm
 			</value>
 		</property>
 		<property name="functionCode">
@@ -371,7 +371,7 @@
 	</bean>
 	
 	<bean id="roleDeleteController"
-		class="base.user.web.controller.RoleDeleteController"
+		class="com.hxzy.common.user.web.controller.RoleDeleteController"
 		parent="baseControllerTemplate">
 		<property name="functionCode">
 			<value>role</value>
@@ -388,14 +388,14 @@
 	</bean>
 	
 	<bean id="personRoleEditController"
-		class="base.user.web.controller.PersonRoleEditController"
+		class="com.hxzy.common.user.web.controller.PersonRoleEditController"
 		parent="baseFormControllerTemplate">
 		<property name="formView">
 			<value>common/person/personRoleEdit</value>
 		</property>
 		<property name="commandClass">
 			<value>
-				base.user.web.controller.PersonRoleEditForm
+				com.hxzy.common.user.web.controller.PersonRoleEditForm
 			</value>
 		</property>
 		<property name="functionCode">
@@ -410,20 +410,20 @@
 		<property name="roleService">
 			<ref bean="roleService" />
 		</property>
-		<property name="baseUserService">
-			<ref bean="baseUserService" />
+		<property name="userService">
+			<ref bean="userService" />
 		</property>
 	</bean>
 	
 	<bean id="rolePrivilegeEditController"
-		class="base.user.web.controller.RolePrivilegeEditController"
+		class="com.hxzy.common.user.web.controller.RolePrivilegeEditController"
 		parent="baseFormControllerTemplate">
 		<property name="formView">
 			<value>common/role/rolePrivilegeEdit</value>
 		</property>
 		<property name="commandClass">
 			<value>
-				base.user.web.controller.RolePrivilegeEditForm
+				com.hxzy.common.user.web.controller.RolePrivilegeEditForm
 			</value>
 		</property>
 		<property name="functionCode">
@@ -444,13 +444,13 @@
 	</bean>
 	
 	<bean id="roleUserController"
-		class="base.user.web.controller.RoleUserController"
+		class="com.hxzy.common.user.web.controller.RoleUserController"
 		parent="baseFormControllerTemplate">
 		<property name="formView">
 			<value>common/role/roleUser</value>
 		</property>
 		<property name="commandClass">
-			<value>base.user.web.controller.RoleUserForm</value>
+			<value>com.hxzy.common.user.web.controller.RoleUserForm</value>
 		</property>
 		<property name="needAuthentication">
 			<value>false</value>
@@ -458,8 +458,8 @@
 		<property name="needAuthorization">
 			<value>false</value>
 		</property>
-		<property name="baseUserService">
-			<ref bean="baseUserService" />
+		<property name="userService">
+			<ref bean="userService" />
 		</property>
 		<property name="roleService">
 			<ref bean="roleService" />

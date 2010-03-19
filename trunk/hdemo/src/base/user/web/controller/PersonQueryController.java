@@ -6,7 +6,7 @@
  * <p>日期：2007-9-3</p>
  * <p>更新：2007-9-4:增加查询条件的字符串格式化（去空格，判断百分号）</p>
  */
-package base.user.web.controller;
+package com.hxzy.common.user.web.controller;
 
 import java.util.HashMap;
 
@@ -18,11 +18,11 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 
-import base.user.model.BaseUser;
-import base.user.service.BaseUserService;
-import base.util.Pagination;
-import base.util.StringUtil;
-import base.web.controller.BaseCommandController;
+import com.hxzy.base.util.Pagination;
+import com.hxzy.base.util.StringUtil;
+import com.hxzy.base.web.controller.BaseCommandController;
+import com.hxzy.common.user.model.User;
+import com.hxzy.common.user.service.UserService;
 
 /**
  * <p>
@@ -37,7 +37,7 @@ public class PersonQueryController extends BaseCommandController {
 	/**
 	 * 描述: 人员Manager
 	 */
-	private BaseUserService baseUserService;
+	private UserService userService;
 
 	/**
 	 * 描述: 数据字典Manager
@@ -57,7 +57,7 @@ public class PersonQueryController extends BaseCommandController {
 		// 形成查询条件数据，以便在窗口重新显示
 		map.put("formInfo", form);
 		// 形成查询条件数据，以传给Service对象进行查询处理，并将结果放入Map以便在页面显示
-		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BaseUser.class);
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(User.class);
 		
 		if (form.getName() != null && !"".equals(form.getName().trim())) {
 			String name = StringUtil.formatQueryStr(form.getName());
@@ -71,7 +71,7 @@ public class PersonQueryController extends BaseCommandController {
 		int pageNo = StringUtil.String2Int(form.getPageNo());
 		int pageSize = StringUtil.String2Int(form.getRecPerPage());
 		
-		Pagination pagination = baseUserService.findPageByCriteria(detachedCriteria, pageSize, pageNo);
+		Pagination pagination = userService.findPageByCriteria(detachedCriteria, pageSize, pageNo);
 
 		// 进行查询处理并将结果放入Map以便在页面显示
 		map.put("pagination", pagination);
@@ -80,18 +80,20 @@ public class PersonQueryController extends BaseCommandController {
 	}
 
 	/**
-	 * 返回 baseUserService
+	 * 返回 userService
 	 */
-	public BaseUserService getBaseUserService() {
-		return baseUserService;
+	public UserService getUserService() {
+		return userService;
 	}
 
 	/**
-	 * 设置 baseUserService
+	 * 设置 userService
 	 */
-	public void setBaseUserService(BaseUserService baseUserService) {
-		this.baseUserService = baseUserService;
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
+
+	
 
 
 	

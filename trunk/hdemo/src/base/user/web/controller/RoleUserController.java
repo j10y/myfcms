@@ -1,4 +1,4 @@
-package base.user.web.controller;
+package com.hxzy.common.user.web.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,27 +9,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.RequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import base.exception.ApplicationException;
-import base.log.model.Log;
-import base.user.model.BaseUser;
-import base.user.model.Role;
-import base.user.service.BaseUserService;
-import base.user.service.RoleService;
-import base.util.StringUtil;
-import base.web.controller.BaseFormController;
+import com.hxzy.base.exception.ApplicationException;
+import com.hxzy.base.util.StringUtil;
+import com.hxzy.base.web.controller.BaseFormController;
+import com.hxzy.common.user.model.Role;
+import com.hxzy.common.user.model.User;
+import com.hxzy.common.user.service.RoleService;
+import com.hxzy.common.user.service.UserService;
 
 public class RoleUserController extends BaseFormController {
 	
 	private RoleService roleService;
 	
-	private BaseUserService baseUserService;
+	private UserService userService;
 	
 	/*
 	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(javax.servlet.http.HttpServletRequest)
@@ -63,14 +61,14 @@ public class RoleUserController extends BaseFormController {
 		}		
 		
 		//已有此角色的用户
-		DetachedCriteria detachedCriteria2 = DetachedCriteria.forClass(BaseUser.class);		
+		DetachedCriteria detachedCriteria2 = DetachedCriteria.forClass(User.class);		
 		detachedCriteria2.createAlias("roles", "r").add(Restrictions.eq("r.id", roleId));		
-		List<BaseUser> roleUserList =  baseUserService.findByCriteria(detachedCriteria2);
+		List<User> roleUserList =  userService.findByCriteria(detachedCriteria2);
 		
 		
-		List userList = baseUserService.loadAll();
+		List userList = userService.loadAll();
 		
-		for(BaseUser user:roleUserList){
+		for(User user:roleUserList){
 			userList.remove(user);
 		}
 		
@@ -107,7 +105,7 @@ public class RoleUserController extends BaseFormController {
 		
 		if (userIds != null) {
 			for (int i = 0; i < userIds.length; i++) {
-				BaseUser user = baseUserService.findById(new Long(userIds[i]));
+				User user = userService.findById(new Long(userIds[i]));
 				role.getBaseUsers().add(user);
 			}
 		}
@@ -139,19 +137,19 @@ public class RoleUserController extends BaseFormController {
 	}
 
 	/**
-	 * 返回 baseUserService
+	 * 返回 userService
 	 */
-	public BaseUserService getBaseUserService() {
-		return baseUserService;
+	public UserService getUserService() {
+		return userService;
 	}
 
 	/**
-	 * 设置 baseUserService
+	 * 设置 userService
 	 */
-	public void setBaseUserService(BaseUserService baseUserService) {
-		this.baseUserService = baseUserService;
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
-	
+
 	
 
 

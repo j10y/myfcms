@@ -42,7 +42,7 @@
 				<prop key="hibernate.show_sql">true</prop>
 			</props>
 		</property>
-		<property name="packagesToScan" value="base.*.model"></property>
+		<property name="packagesToScan" value="com.hxzy.common.*.model"></property>
 	</bean>
 
   <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
@@ -57,11 +57,11 @@
 		</property>
   </bean>
   
-  <bean id="logDao" class="base.log.dao.impl.LogDaoImpl" parent="daoTemplate" />
+  <bean id="logDao" class="com.hxzy.common.log.dao.impl.LogDaoImpl" parent="daoTemplate" />
   
-  <bean id="baseUserDao" class="base.user.dao.impl.UserDaoImpl" parent="daoTemplate" />
+  <bean id="userDao" class="com.hxzy.common.user.dao.impl.UserDaoImpl" parent="daoTemplate" />
   
-  <bean id="privilegeDao" class="base.user.dao.impl.PrivilegeDaoImpl" parent="daoTemplate" />
+  <bean id="privilegeDao" class="com.hxzy.common.user.dao.impl.PrivilegeDaoImpl" parent="daoTemplate" />
   
-  <bean id="roleDao" class="base.user.dao.impl.RoleDaoImpl" parent="daoTemplate" />
+  <bean id="roleDao" class="com.hxzy.common.user.dao.impl.RoleDaoImpl" parent="daoTemplate" />
 </beans>

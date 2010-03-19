@@ -6,7 +6,7 @@
  * <p>日期：2007-9-3</p>
  * <p>更新：2007-9-4：增加用户口令格式判断</p>
  */
-package base.user.web.controller;
+package com.hxzy.common.user.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,12 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 
-import base.constant.Constant;
-import base.log.model.Log;
-import base.user.model.BaseUser;
-import base.user.service.BaseUserService;
-import base.util.StringUtil;
-import base.web.controller.BaseFormController;
+import com.hxzy.base.constant.Constant;
+import com.hxzy.base.util.StringUtil;
+import com.hxzy.base.web.controller.BaseFormController;
+import com.hxzy.common.log.model.Log;
+import com.hxzy.common.user.model.User;
+import com.hxzy.common.user.service.UserService;
 
 /**
  * <p>
@@ -34,7 +34,7 @@ public class PasswordModifyController extends BaseFormController {
 	/**
 	 * 描述: 人员Manager
 	 */
-	private BaseUserService baseUserService;
+	private UserService userService;
 
 	/*
 	 * @see org.springframework.web.servlet.mvc.BaseCommandController#onBind(javax.servlet.http.HttpServletRequest,
@@ -68,7 +68,7 @@ public class PasswordModifyController extends BaseFormController {
 			throws Exception {
 		PasswordModifyForm form = (PasswordModifyForm) o;
 		// 获取用户信息
-		BaseUser person = baseUserService.findById(this.getCurrentUserInfo(request).getUser().getId());
+		User person = userService.findById(this.getCurrentUserInfo(request).getUser().getId());
 		// 如用户信息不存在则转入提示页面
 		if (person == null) {
 			return new ModelAndView("systemMessage",
@@ -85,7 +85,7 @@ public class PasswordModifyController extends BaseFormController {
 		// 更改口令
 		person.setPassword(form.getNewPassword().trim());
 		// person.setPassword(form.getNewPassword().trim());
-		baseUserService.update(person);
+		userService.update(person);
 
 		// 写操作日志
 		Log log = new Log();
@@ -99,17 +99,19 @@ public class PasswordModifyController extends BaseFormController {
 	}
 
 	/**
-	 * 返回 baseUserService
+	 * 返回 userService
 	 */
-	public BaseUserService getBaseUserService() {
-		return baseUserService;
+	public UserService getUserService() {
+		return userService;
 	}
 
 	/**
-	 * 设置 baseUserService
+	 * 设置 userService
 	 */
-	public void setBaseUserService(BaseUserService baseUserService) {
-		this.baseUserService = baseUserService;
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
+
+	
 	
 }

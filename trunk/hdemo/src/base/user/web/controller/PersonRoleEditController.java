@@ -6,7 +6,7 @@
  * <p>日期：2007-9-3</p>
  * <p>更新：</p>
  */
-package base.user.web.controller;
+package com.hxzy.common.user.web.controller;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -22,14 +22,13 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.RequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import base.exception.ApplicationException;
-import base.log.model.Log;
-import base.user.model.BaseUser;
-import base.user.model.Role;
-import base.user.service.BaseUserService;
-import base.user.service.RoleService;
-import base.util.StringUtil;
-import base.web.controller.BaseFormController;
+import com.hxzy.base.exception.ApplicationException;
+import com.hxzy.base.util.StringUtil;
+import com.hxzy.base.web.controller.BaseFormController;
+import com.hxzy.common.user.model.Role;
+import com.hxzy.common.user.model.User;
+import com.hxzy.common.user.service.RoleService;
+import com.hxzy.common.user.service.UserService;
 
 /**
  * <p>
@@ -44,7 +43,7 @@ public class PersonRoleEditController extends BaseFormController {
 	/**
 	 * 描述: 人员Manager
 	 */
-	private BaseUserService baseUserService;
+	private UserService userService;
 
 	/**
 	 * 描述: 角色Manager
@@ -74,7 +73,7 @@ public class PersonRoleEditController extends BaseFormController {
 		Long userId = StringUtil.stringToLong(RequestUtils.getStringParameter(
 				request, "userId", "0"));
 		// 判断要授权的用户是否存在，如不存在则转入提示页面
-		BaseUser user = baseUserService.findById(userId);
+		User user = userService.findById(userId);
 		if (user == null) {
 			throw new ApplicationException("exception.msg.dataDoesNotExist");
 		}
@@ -120,7 +119,7 @@ public class PersonRoleEditController extends BaseFormController {
 			HttpServletResponse response, Object o, BindException errors)
 			throws Exception {
 		PersonRoleEditForm form = (PersonRoleEditForm) o;
-		BaseUser user = (BaseUser) request.getAttribute("user");
+		User user = (User) request.getAttribute("user");
 		// 设置相关数据
 		Set roles = new HashSet();
 		Iterator it = form.getRole().keySet().iterator();
@@ -137,7 +136,7 @@ public class PersonRoleEditController extends BaseFormController {
 		user.setRoles(roles);
 		
 		// 保存数据
-		baseUserService.update(user);
+		userService.update(user);
 
 		// 写操作日志
 //		Log log = new Log();
@@ -150,18 +149,21 @@ public class PersonRoleEditController extends BaseFormController {
 		return new ModelAndView("redirect:" + form.getReturnUrl());
 	}
 
+
+	
+	
 	/**
-	 * 返回 baseUserService
+	 * 返回 userService
 	 */
-	public BaseUserService getBaseUserService() {
-		return baseUserService;
+	public UserService getUserService() {
+		return userService;
 	}
 
 	/**
-	 * 设置 baseUserService
+	 * 设置 userService
 	 */
-	public void setBaseUserService(BaseUserService baseUserService) {
-		this.baseUserService = baseUserService;
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 
 	/**

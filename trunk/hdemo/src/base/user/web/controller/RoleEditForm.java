@@ -6,9 +6,9 @@
  * <p>日期：2007-9-3</p>
  * <p>更新：</p>
  */
-package base.user.web.controller;
+package com.hxzy.common.user.web.controller;
 
-import base.web.controller.BaseEditForm;
+import com.hxzy.base.web.controller.BaseEditForm;
 
 /**
  * <p>

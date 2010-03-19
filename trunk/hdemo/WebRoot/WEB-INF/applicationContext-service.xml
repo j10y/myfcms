@@ -12,28 +12,28 @@
 
 	<!-- Application Service -->
 	<bean id="logService"
-		class="base.log.service.impl.LogServiceImpl">
+		class="com.hxzy.common.log.service.impl.LogServiceImpl">
 		<property name="logDao">
 			<ref bean="logDao" />
 		</property>
 	</bean>
   
-	<bean id="baseUserService"
-		class="base.user.service.impl.BaseUserServiceImpl">
-		<property name="baseUserDao">
-			<ref bean="baseUserDao" />
+	<bean id="userService"
+		class="com.hxzy.common.user.service.impl.UserServiceImpl">
+		<property name="userDao">
+			<ref bean="userDao" />
 		</property>
 	</bean>
 	
 	<bean id="privilegeService"
-		class="base.user.service.impl.PrivilegeServiceImpl">
+		class="com.hxzy.common.user.service.impl.PrivilegeServiceImpl">
 		<property name="privilegeDao">
 			<ref bean="privilegeDao" />
 		</property>
 	</bean>
 	
 	<bean id="roleService"
-		class="base.user.service.impl.RoleServiceImpl">
+		class="com.hxzy.common.user.service.impl.RoleServiceImpl">
 		<property name="roleDao">
 			<ref bean="roleDao" />
 		</property>

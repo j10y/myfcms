@@ -6,10 +6,9 @@
  * <p>日期：2007-9-3</p>
  * <p>更新：</p>
  */
-package base.user.web.controller;
+package com.hxzy.common.user.web.controller;
 
 import java.util.HashMap;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,11 +18,11 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 
-import base.user.model.Role;
-import base.user.service.RoleService;
-import base.util.Pagination;
-import base.util.StringUtil;
-import base.web.controller.BaseCommandController;
+import com.hxzy.base.util.Pagination;
+import com.hxzy.base.util.StringUtil;
+import com.hxzy.base.web.controller.BaseCommandController;
+import com.hxzy.common.user.model.Role;
+import com.hxzy.common.user.service.RoleService;
 
 /**
  * <p>

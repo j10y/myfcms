@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app id="WebApp_ID">
+	<display-name>hdemo</display-name>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/applicationContext*.xml</param-value>
 	</context-param>
 	<listener>
 		<listener-class>
-			base.web.listener.ApplicationServletContextListener
+			com.hxzy.base.web.listener.ApplicationServletContextListener
 		</listener-class>
 	</listener>
 	<listener>
 		<listener-class>
-			base.web.listener.ApplicationHttpSessionListener
+			com.hxzy.base.web.listener.ApplicationHttpSessionListener
 		</listener-class>
 	</listener>
 	<servlet>
 		<servlet-name>applicationInitializationServlet</servlet-name>
 		<servlet-class>
-			base.web.servlet.ApplicationInitializationServlet
+			com.hxzy.base.web.servlet.ApplicationInitializationServlet
 		</servlet-class>
 		<load-on-startup>3</load-on-startup>
 	</servlet>

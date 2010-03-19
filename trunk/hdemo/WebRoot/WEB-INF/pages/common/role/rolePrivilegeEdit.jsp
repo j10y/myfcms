@@ -79,10 +79,10 @@
 						<table width="400" align="center">
 							<tr>
 								<td><script type="text/javascript">
-					              var tree = new appTree("<fmt:message key="role.label.privilege"/>","*");
+					              var tree = new appTree("<fmt:message key="role.label.privilege"/>","");
 					              var treeItems = new Array;
 					              <c:forEach items="${privilegeList}" var="privilege" varStatus="status">
-					                 treeItems[<c:out value="${status.count - 1}"/>] = new appStaticPrivilegeCheckBoxTreeItem("<c:out value="${privilege.privName}"/>", "privileges", "<c:out value="${privilege.itemId}"/>", "<c:out value="${privilege.parentId}"/>", "<c:if test="${formInfo.privilege[privilege.itemId] == null}">0</c:if><c:if test="${formInfo.privilege[privilege.itemId] != null}">1</c:if>");
+					                 treeItems[<c:out value="${status.count - 1}"/>] = new appStaticPrivilegeCheckBoxTreeItem("<c:out value="${privilege.privName}"/>", "privileges", "<c:out value="${privilege.id}"/>", "<c:out value="${privilege.parent.id}"/>", "<c:if test="${formInfo.privilege[privilege.id] == null}">0</c:if><c:if test="${formInfo.privilege[privilege.id] != null}">1</c:if>");
 					              </c:forEach>
 					               genTree(tree, treeItems);
 					               document.write(tree);

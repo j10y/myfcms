@@ -6,7 +6,7 @@
  * <p>日期：2007-9-3</p>
  * <p>更新：</p>
  */
-package base.user.web.controller;
+package com.hxzy.common.user.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,12 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.RequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import base.constant.Constant;
-import base.log.model.Log;
-import base.user.model.Role;
-import base.user.service.RoleService;
-import base.util.StringUtil;
-import base.web.controller.BaseController;
+import com.hxzy.base.constant.Constant;
+import com.hxzy.base.util.StringUtil;
+import com.hxzy.base.web.controller.BaseController;
+import com.hxzy.common.log.model.Log;
+import com.hxzy.common.user.model.Role;
+import com.hxzy.common.user.service.RoleService;
 
 /**
  * <p>

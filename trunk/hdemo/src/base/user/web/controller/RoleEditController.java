@@ -6,7 +6,7 @@
  * <p>日期：2007-9-3</p>
  * <p>更新：</p>
  */
-package base.user.web.controller;
+package com.hxzy.common.user.web.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -18,12 +18,11 @@ import org.springframework.validation.BindException;
 import org.springframework.web.bind.RequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import base.constant.Constant;
-import base.log.model.Log;
-import base.user.model.Role;
-import base.user.service.RoleService;
-import base.util.StringUtil;
-import base.web.controller.BaseFormController;
+import com.hxzy.base.constant.Constant;
+import com.hxzy.base.util.StringUtil;
+import com.hxzy.base.web.controller.BaseFormController;
+import com.hxzy.common.user.model.Role;
+import com.hxzy.common.user.service.RoleService;
 
 /**
  * <p>

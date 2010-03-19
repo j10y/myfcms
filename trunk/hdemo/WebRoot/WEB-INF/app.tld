@@ -13,7 +13,7 @@
     <description></description>    
     <tag>
         <name>toPage</name>
-        <tag-class>base.web.tag.ToPage</tag-class>
+        <tag-class>com.hxzy.base.web.tag.ToPage</tag-class>
         <body-content>JSP</body-content>
         <display-name>toPage</display-name>
         <description></description>
@@ -62,7 +62,7 @@
     </tag>
     <tag>
         <name>out</name>
-        <tag-class>base.web.tag.Out</tag-class>
+        <tag-class>com.hxzy.base.web.tag.Out</tag-class>
         <body-content>JSP</body-content>
         <display-name>Out</display-name>
         <description></description>
@@ -75,7 +75,7 @@
     </tag>
     <tag>
         <name>toIp</name>
-        <tag-class>base.web.tag.ToIp</tag-class>
+        <tag-class>com.hxzy.base.web.tag.ToIp</tag-class>
         <body-content>JSP</body-content>
         <display-name>Out</display-name>
         <description></description>

@@ -5,7 +5,7 @@
 
 	<!-- =============================== Application Parameters ========================== -->
 	<bean id="applicationParameter"
-		class="base.util.ApplicationParameter">
+		class="com.hxzy.base.util.ApplicationParameter">
 		<property name="parameters">
 			<map>
 				<!-- 每页信息条数 -->

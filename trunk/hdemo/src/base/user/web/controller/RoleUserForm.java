@@ -1,6 +1,6 @@
-package base.user.web.controller;
+package com.hxzy.common.user.web.controller;
 
-import base.web.controller.BaseForm;
+import com.hxzy.base.web.controller.BaseForm;
 
 public class RoleUserForm extends BaseForm {
 	/**

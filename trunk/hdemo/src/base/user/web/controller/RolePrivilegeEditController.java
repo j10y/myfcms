@@ -6,7 +6,7 @@
  * <p>日期：2007-9-3</p>
  * <p>更新：</p>
  */
-package base.user.web.controller;
+package com.hxzy.common.user.web.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,14 +22,13 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.RequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import base.exception.ApplicationException;
-import base.log.model.Log;
-import base.user.model.Privilege;
-import base.user.model.Role;
-import base.user.service.PrivilegeService;
-import base.user.service.RoleService;
-import base.util.StringUtil;
-import base.web.controller.BaseFormController;
+import com.hxzy.base.exception.ApplicationException;
+import com.hxzy.base.util.StringUtil;
+import com.hxzy.base.web.controller.BaseFormController;
+import com.hxzy.common.user.model.Privilege;
+import com.hxzy.common.user.model.Role;
+import com.hxzy.common.user.service.PrivilegeService;
+import com.hxzy.common.user.service.RoleService;
 
 /**
  * <p>

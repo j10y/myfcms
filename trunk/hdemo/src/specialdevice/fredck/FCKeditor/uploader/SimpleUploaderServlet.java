@@ -38,7 +38,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.DiskFileUpload;
 import org.apache.commons.fileupload.FileItem;
 
-import base.util.StringUtil;
+import com.hxzy.base.util.StringUtil;
 
 
 /**

@@ -6,7 +6,7 @@
  * <p>日期：2007-9-3</p>
  * <p>更新：</p>
  */
-package base.user.web.controller;
+package com.hxzy.common.user.web.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,16 +22,15 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.RequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.quanda.common.constant.Constant;
-import com.quanda.common.exception.ApplicationException;
-import com.quanda.common.log.model.Log;
-import com.quanda.common.person.model.Role;
-import com.quanda.common.person.service.PrivilegeManager;
-import com.quanda.common.person.service.RoleManager;
-import com.quanda.common.tree.model.Tree;
-import com.quanda.common.tree.service.TreeManager;
-import com.quanda.common.util.StringUtil;
-import com.quanda.common.web.controller.BaseFormController;
+import sun.reflect.generics.tree.Tree;
+
+import com.hxzy.base.constant.Constant;
+import com.hxzy.base.exception.ApplicationException;
+import com.hxzy.base.util.StringUtil;
+import com.hxzy.base.web.controller.BaseFormController;
+import com.hxzy.common.user.model.Role;
+import com.hxzy.common.user.service.PrivilegeService;
+import com.hxzy.common.user.service.RoleService;
 
 /**
  * <p>
@@ -46,12 +45,12 @@ public class TreePrivilegeEditController extends BaseFormController {
 	/**
 	 * 描述: 角色Manager
 	 */
-	private RoleManager roleManager;
+	private RoleService roleService;
 
 	/**
 	 * 描述: 权限Manager
 	 */
-	private PrivilegeManager privilegeManager;
+	private PrivilegeService privilegeService;
 
 	/**
 	 * 描述: 栏目Manager
@@ -207,57 +206,58 @@ public class TreePrivilegeEditController extends BaseFormController {
 		privilegeManager.grantPrivilegeToRole(role.getRoleId(), privileges,
 				new Long(1));
 		// 写操作日志
-		Log log = new Log();
-		log.setUser(this.getCurrentUserInfo(request).getUser());
-		log.setChildsiteId(this.getCurrentUserInfo(request).getUser()
-				.getChildsiteId());
-		log.setLogObject("角色管理");
-		log.setLogAction("角色栏目权限授予");
-		log.setDetail("被授予栏目权限的角色:" + role.getRoleName());
-		logManager.insertLog(log);
+//		Log log = new Log();
+//		log.setUser(this.getCurrentUserInfo(request).getUser());
+//		log.setLogObject("角色管理");
+//		log.setLogAction("角色栏目权限授予");
+//		log.setDetail("被授予栏目权限的角色:" + role.getRoleName());
+//		logService.insertLog(log);
 
 		return new ModelAndView("redirect:" + form.getReturnUrl());
 	}
 
 	/**
-	 * 描述: 设置 privilegeManager
+	 * 返回 roleService
 	 */
-	public void setPrivilegeManager(PrivilegeManager privilegeManager) {
-		this.privilegeManager = privilegeManager;
+	public RoleService getRoleService() {
+		return roleService;
 	}
 
 	/**
-	 * 描述: 返回 roleManager
+	 * 设置 roleService
 	 */
-	public RoleManager getRoleManager() {
-		return roleManager;
+	public void setRoleService(RoleService roleService) {
+		this.roleService = roleService;
 	}
 
 	/**
-	 * 描述: 设置 roleManager
+	 * 返回 privilegeService
 	 */
-	public void setRoleManager(RoleManager roleManager) {
-		this.roleManager = roleManager;
+	public PrivilegeService getPrivilegeService() {
+		return privilegeService;
 	}
 
 	/**
-	 * 描述: 返回 treeManager
+	 * 设置 privilegeService
+	 */
+	public void setPrivilegeService(PrivilegeService privilegeService) {
+		this.privilegeService = privilegeService;
+	}
+
+	/**
+	 * 返回 treeManager
 	 */
 	public TreeManager getTreeManager() {
 		return treeManager;
 	}
 
 	/**
-	 * 描述: 设置 treeManager
+	 * 设置 treeManager
 	 */
 	public void setTreeManager(TreeManager treeManager) {
 		this.treeManager = treeManager;
 	}
+	
+	
 
-	/**
-	 * 描述: 返回 privilegeManager
-	 */
-	public PrivilegeManager getPrivilegeManager() {
-		return privilegeManager;
-	}
 }

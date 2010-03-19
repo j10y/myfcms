@@ -6,7 +6,7 @@
  * <p>日期：2007-9-3</p>
  * <p>更新：2007-9-4:增加人员口令格式判断，人员代码检测</p>
  */
-package base.user.web.controller;
+package com.hxzy.common.user.web.controller;
 
 import java.util.List;
 
@@ -17,14 +17,13 @@ import org.springframework.validation.BindException;
 import org.springframework.web.bind.RequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import base.constant.Constant;
-import base.exception.ApplicationException;
-import base.log.model.Log;
-import base.user.model.BaseUser;
-import base.user.model.UserInfo;
-import base.user.service.BaseUserService;
-import base.util.StringUtil;
-import base.web.controller.BaseFormController;
+import com.hxzy.base.constant.Constant;
+import com.hxzy.base.exception.ApplicationException;
+import com.hxzy.base.util.StringUtil;
+import com.hxzy.base.web.controller.BaseFormController;
+import com.hxzy.common.user.model.User;
+import com.hxzy.common.user.model.UserInfo;
+import com.hxzy.common.user.service.UserService;
 
 /**
  * <p>
@@ -39,7 +38,7 @@ public class PersonEditController extends BaseFormController {
     /**
      * 描述: 用户Manager
      */
-    private BaseUserService baseUserService;
+    private UserService userService;
     
     
     /*
@@ -58,7 +57,7 @@ public class PersonEditController extends BaseFormController {
             // 修改时的处理,获取角色记录
             Long id = StringUtil.stringToLong(RequestUtils.getStringParameter(
                     request, "id", "0"));
-            BaseUser person = baseUserService.findById(id);
+            User person = userService.findById(id);
             if (person == null)
                 throw new ApplicationException("exception.msg.dataDoesNotExist");
             // 将数据放入request以便使用
@@ -82,7 +81,7 @@ public class PersonEditController extends BaseFormController {
             form.setPassword("");
         // 判断用户是否已经存在
         if (Constant.FLAG_EDIT_ADD.equals(form.getEditFlag())) {
-            List valiPersons = baseUserService.findByProperty("code",form.getCode().trim());
+            List valiPersons = userService.findByProperty("code",form.getCode().trim());
             if (valiPersons != null && !valiPersons.isEmpty()) {
                 String[] valiCode = new String[1];
                 valiCode[0] = form.getCode().trim();
@@ -114,11 +113,11 @@ public class PersonEditController extends BaseFormController {
         UserInfo user = (UserInfo) request.getSession().getAttribute(
                 Constant.ATTRIBUTE_USER_INFO);
         PersonEditForm form = (PersonEditForm) o;
-        BaseUser person = null;
+        User person = null;
         // 新增时的处理
         if (Constant.FLAG_EDIT_ADD.equals(form.getEditFlag())) {
 
-        	person = new BaseUser();
+        	person = new User();
             person.setCode(form.getCode().trim());
             person.setName(form.getName().trim());
             // String password = MD5.md5(form.getPassword().trim());
@@ -130,18 +129,18 @@ public class PersonEditController extends BaseFormController {
             person.setIsLocked(new Long(0));
             person.setLockedTime(null);
             // 写入数据库
-            baseUserService.save(person);
+            userService.save(person);
         }
         // 修改时的处理
         if (Constant.FLAG_EDIT_MODIFY.equals(form.getEditFlag())) {
-            person = (BaseUser) request.getAttribute(Constant.ATTRIBUTE_MODEL_DATA);
+            person = (User) request.getAttribute(Constant.ATTRIBUTE_MODEL_DATA);
             person.setName(form.getName().trim());
             // 判断口令是否有输入，如无则不做修改
             if (!form.getPassword().equals(""))
                 person.setPassword(form.getPassword().trim());
             // person.setPassword(MD5.md5(form.getPassword().trim()));
             person.setUserFlag(StringUtil.stringToLong(form.getUserFlag()));
-            baseUserService.update(person);
+            userService.update(person);
         }
 
         // 写操作日志
@@ -164,19 +163,22 @@ public class PersonEditController extends BaseFormController {
     }
 
 	/**
-	 * 返回 baseUserService
+	 * 返回 userService
 	 */
-	public BaseUserService getBaseUserService() {
-		return baseUserService;
+	public UserService getUserService() {
+		return userService;
 	}
 
 	/**
-	 * 设置 baseUserService
+	 * 设置 userService
 	 */
-	public void setBaseUserService(BaseUserService baseUserService) {
-		this.baseUserService = baseUserService;
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 
+
+    
+    
     
     
 }

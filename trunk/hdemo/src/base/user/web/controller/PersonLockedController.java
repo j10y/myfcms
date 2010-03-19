@@ -6,7 +6,7 @@
  * <p>日期：2007-8-17</p>
  * <p>更新：</p>
  */
-package base.user.web.controller;
+package com.hxzy.common.user.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.RequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import base.constant.Constant;
-import base.user.model.BaseUser;
-import base.user.service.BaseUserService;
-import base.web.controller.BaseController;
+import com.hxzy.base.constant.Constant;
+import com.hxzy.base.web.controller.BaseController;
+import com.hxzy.common.user.model.User;
+import com.hxzy.common.user.service.UserService;
 
 /**
  * <p>
@@ -31,7 +31,7 @@ public class PersonLockedController extends BaseController {
     /**
      * 描述: 人员Manager
      */
-    private BaseUserService baseUserService;
+    private UserService userService;
 
     /*
      * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest,
@@ -41,7 +41,7 @@ public class PersonLockedController extends BaseController {
             HttpServletResponse response) throws Exception {
         //获取角色ID
         Long id = RequestUtils.getLongParameter(request, "id", 0);
-        BaseUser person = baseUserService.findById(id);
+        User person = userService.findById(id);
         //判断要删除的记录是否存在，如不存在则转入提示页面
         if (person == null) {
             return new ModelAndView("systemMessage",
@@ -56,7 +56,7 @@ public class PersonLockedController extends BaseController {
         //角色锁定
         else
             person.setIsLocked(new Long(1));
-        baseUserService.update(person);
+        userService.update(person);
 
         return new ModelAndView("redirect:"
                 + RequestUtils.getStringParameter(request,
@@ -64,19 +64,21 @@ public class PersonLockedController extends BaseController {
     }
 
 	/**
-	 * 返回 baseUserService
+	 * 返回 userService
 	 */
-	public BaseUserService getBaseUserService() {
-		return baseUserService;
+	public UserService getUserService() {
+		return userService;
 	}
 
 	/**
-	 * 设置 baseUserService
+	 * 设置 userService
 	 */
-	public void setBaseUserService(BaseUserService baseUserService) {
-		this.baseUserService = baseUserService;
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 
+
+    
     
   
 }
