@@ -104,14 +104,13 @@ public class RolePrivilegeEditController extends BaseFormController {
 		// 对权限进行绑定
 		RolePrivilegeEditForm form = (RolePrivilegeEditForm) o;
 		// 获取权限
-		String[] privileges = RequestUtils.getStringParameters(request,
-				"privileges");
+		String[] privileges = RequestUtils.getStringParameters(request,"privileges");
 		HashMap map = new HashMap();
 		String privilegeId = null;
 		for (int i = 0; i < privileges.length; i++) {
 			privilegeId = privileges[i];
 			if (privilegeId != null)
-				map.put(privilegeId, privilegeId);
+				map.put(privilegeId, privilegeService.findById(new Long(privilegeId)));
 		}
 		form.setPrivilege(map);
 	}
@@ -129,25 +128,25 @@ public class RolePrivilegeEditController extends BaseFormController {
 		Role role = (Role) request.getAttribute("role");
 		// 设置相关数据
 		ArrayList privileges = new ArrayList();
-		Iterator it = form.getPrivilege().keySet().iterator();
-		String privilegeId = null;
+		Iterator it = form.getPrivilege().values().iterator();
+		Privilege privilege = null;
 		while (it.hasNext()) {
-			privilegeId = (String) it.next();
-			privileges.add(privilegeId);
+			privilege = (Privilege) it.next();
+			privileges.add(privilege);
 		}
 		// 保存数据
-		
+		role.getPrivileges().clear();
 		role.getPrivileges().addAll(form.getPrivilege().values());
 		
 		roleService.update(role);
 
 		// 写操作日志
-		Log log = new Log();
-		log.setUser(this.getCurrentUserInfo(request).getUser());
-		log.setLogObject("角色管理");
-		log.setLogAction("角色功能权限授予");
-		log.setDetail("被授予功能权限的角色:" + role.getRoleName());
-		logService.save(log);
+//		Log log = new Log();
+//		log.setUser(this.getCurrentUserInfo(request).getUser());
+//		log.setLogObject("角色管理");
+//		log.setLogAction("角色功能权限授予");
+//		log.setDetail("被授予功能权限的角色:" + role.getRoleName());
+//		logService.save(log);
 
 		return new ModelAndView("redirect:" + form.getReturnUrl());
 	}
