@@ -5,11 +5,11 @@
  * <p>日期：2009-12-15</p>
  * <p>更新：</p>
  */
-package base.user.dao.impl;
+package com.hxzy.common.user.dao.impl;
 
-import base.dao.impl.BaseDaoImpl;
-import base.user.dao.RoleDao;
-import base.user.model.Role;
+import com.hxzy.base.dao.impl.BaseDaoImpl;
+import com.hxzy.common.user.dao.RoleDao;
+import com.hxzy.common.user.model.Role;
 
 
 /**

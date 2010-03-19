@@ -5,14 +5,14 @@
  * <p>日期：2009-12-15</p>
  * <p>更新：</p>
  */
-package base.user.dao;
+package com.hxzy.common.user.dao;
 
-import base.dao.BaseDao;
-import base.user.model.Role;
+import com.hxzy.base.dao.BaseDao;
+import com.hxzy.common.user.model.Role;
 
 /**
- * 类名：UserDao
- * 描述：角色Dao接口
+ * 类名：UserDao 描述：角色Dao接口
+ * 
  * @author xiacc
  */
 public interface RoleDao extends BaseDao<Role> {

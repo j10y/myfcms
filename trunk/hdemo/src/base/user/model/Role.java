@@ -1,4 +1,4 @@
-package base.user.model;
+package com.hxzy.common.user.model;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -50,7 +50,7 @@ public class Role implements Serializable {
 	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.EAGER)   
 	@JoinTable(name="user_role",joinColumns={@JoinColumn(name="role_id")},
 			inverseJoinColumns={@JoinColumn(name="user_id")})
-	private Set<BaseUser> baseUsers;
+	private Set<User> baseUsers;
 	
 	/**
 	 * 描述：公开标志，表面该角色是否公开
@@ -109,14 +109,14 @@ public class Role implements Serializable {
 	/**
 	 * 返回 baseUsers
 	 */
-	public Set<BaseUser> getBaseUsers() {
+	public Set<User> getBaseUsers() {
 		return baseUsers;
 	}
 
 	/**
 	 * 设置 baseUsers
 	 */
-	public void setBaseUsers(Set<BaseUser> baseUsers) {
+	public void setBaseUsers(Set<User> baseUsers) {
 		this.baseUsers = baseUsers;
 	}
 

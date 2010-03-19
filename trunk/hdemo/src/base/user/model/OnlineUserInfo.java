@@ -1,4 +1,4 @@
-package base.user.model;
+package com.hxzy.common.user.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -21,7 +21,7 @@ public class OnlineUserInfo implements Serializable {
 	/**
 	 * 描述: 用户信息
 	 */
-	private BaseUser user;
+	private User user;
 
 	/**
 	 * 描述: 用户Session
@@ -45,7 +45,7 @@ public class OnlineUserInfo implements Serializable {
 	/**
 	 * @return the user
 	 */
-	public BaseUser getUser() {
+	public User getUser() {
 		return user;
 	}
 
@@ -53,7 +53,7 @@ public class OnlineUserInfo implements Serializable {
 	 * @param user
 	 *            the user to set
 	 */
-	public void setUser(BaseUser user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

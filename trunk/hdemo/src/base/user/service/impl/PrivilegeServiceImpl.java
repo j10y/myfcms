@@ -5,12 +5,12 @@
  * <p>日期：Mar 9, 2010</p>
  * <p>更新：</p>
  */
-package base.user.service.impl;
+package com.hxzy.common.user.service.impl;
 
-import base.service.impl.BaseServiceImpl;
-import base.user.dao.PrivilegeDao;
-import base.user.model.Privilege;
-import base.user.service.PrivilegeService;
+import com.hxzy.base.service.impl.BaseServiceImpl;
+import com.hxzy.common.user.dao.PrivilegeDao;
+import com.hxzy.common.user.model.Privilege;
+import com.hxzy.common.user.service.PrivilegeService;
 
 /**
  * @author xiacc

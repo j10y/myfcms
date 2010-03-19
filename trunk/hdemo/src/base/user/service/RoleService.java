@@ -5,11 +5,11 @@
  * <p>日期：Mar 9, 2010</p>
  * <p>更新：</p>
  */
-package base.user.service;
+package com.hxzy.common.user.service;
 
-import base.service.BaseService;
-import base.user.dao.RoleDao;
-import base.user.model.Role;
+import com.hxzy.base.service.BaseService;
+import com.hxzy.common.user.dao.RoleDao;
+import com.hxzy.common.user.model.Role;
 
 /**
  * @author xiacc

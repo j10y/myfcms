@@ -1,4 +1,4 @@
-package base.user.model;
+package com.hxzy.common.user.model;
 
 import java.io.Serializable;
 

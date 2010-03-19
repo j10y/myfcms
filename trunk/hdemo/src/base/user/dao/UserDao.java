@@ -5,16 +5,16 @@
  * <p>日期：2009-12-15</p>
  * <p>更新：</p>
  */
-package base.user.dao;
+package com.hxzy.common.user.dao;
 
-import base.dao.BaseDao;
-import base.user.model.BaseUser;
+import com.hxzy.base.dao.BaseDao;
+import com.hxzy.common.user.model.User;
 
 /**
  * 类名：UserDao
  * 描述：用户Dao接口
  * @author xiacc
  */
-public interface BaseUserDao extends BaseDao<BaseUser> {
+public interface UserDao extends BaseDao<User> {
 
 }

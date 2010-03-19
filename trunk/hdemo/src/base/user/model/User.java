@@ -1,4 +1,4 @@
-package base.user.model;
+package com.hxzy.common.user.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -25,7 +25,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "base_user")
-public class BaseUser implements Serializable {
+public class User implements Serializable {
 
 	/**
 	 * √Ë ˆ: »À‘±ID
@@ -83,7 +83,7 @@ public class BaseUser implements Serializable {
 	private Set<Role> roles;
 	
 
-	public BaseUser() {
+	public User() {
 	}
 
 	/**
@@ -248,7 +248,7 @@ public class BaseUser implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final BaseUser other = (BaseUser) obj;
+		final User other = (User) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

@@ -5,18 +5,18 @@
  * <p>日期：2009-12-15</p>
  * <p>更新：</p>
  */
-package base.user.dao.impl;
+package com.hxzy.common.user.dao.impl;
 
-import base.dao.impl.BaseDaoImpl;
-import base.user.dao.BaseUserDao;
-import base.user.model.BaseUser;
+import com.hxzy.base.dao.impl.BaseDaoImpl;
+import com.hxzy.common.user.dao.UserDao;
+import com.hxzy.common.user.model.User;
 
 /**
  * 类名：UserDaoImpl
  * 描述：用户Dao实现
  * @author xiacc
  */
-public class UserDaoImpl extends BaseDaoImpl<BaseUser> implements BaseUserDao {
+public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
 
 }
