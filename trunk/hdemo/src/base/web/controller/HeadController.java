@@ -6,7 +6,7 @@
  * <p>日期：2007-1-12</p>
  * <p>更新：</p>
  */
-package base.web.controller;
+package com.hxzy.base.web.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

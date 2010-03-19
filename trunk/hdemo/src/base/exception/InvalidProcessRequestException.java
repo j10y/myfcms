@@ -6,7 +6,7 @@
  * <p>日期：2005-11-9</p>
  * <p>更新：</p>
  */
-package base.exception;
+package com.hxzy.base.exception;
 
 
 /**

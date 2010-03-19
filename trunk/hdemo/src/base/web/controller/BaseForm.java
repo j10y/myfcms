@@ -6,7 +6,7 @@
  * <p>日期：2005-10-18</p>
  * <p>更新：</p>
  */
-package base.web.controller;
+package com.hxzy.base.web.controller;
 
 import java.io.Serializable;
 

@@ -6,7 +6,7 @@
  * <p>日期：2005-10-22</p>
  * <p>更新：</p>
  */
-package base.web.tag;
+package com.hxzy.base.web.tag;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
@@ -14,7 +14,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.taglibs.standard.lang.support.ExpressionEvaluatorManager;
 
-import base.util.StringUtil;
+import com.hxzy.base.util.StringUtil;
 
 
 /**

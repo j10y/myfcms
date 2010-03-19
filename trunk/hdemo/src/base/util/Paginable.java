@@ -1,4 +1,4 @@
-package base.util;
+package com.hxzy.base.util;
 
 /**
  * 可分页接口

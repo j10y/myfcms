@@ -1,4 +1,4 @@
-package base.util;
+package com.hxzy.base.util;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;

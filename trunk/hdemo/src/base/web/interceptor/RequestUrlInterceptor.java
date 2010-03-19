@@ -1,4 +1,4 @@
-package base.web.interceptor;
+package com.hxzy.base.web.interceptor;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import base.util.Util;
-import base.util.WebAppUtil;
+import com.hxzy.base.util.Util;
+import com.hxzy.base.util.WebAppUtil;
 
 
 /**

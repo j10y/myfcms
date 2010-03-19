@@ -1,7 +1,7 @@
 /**
  * 
  */
-package base.service.impl;
+package com.hxzy.base.service.impl;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import base.dao.BaseDao;
-import base.service.BaseService;
-import base.util.Pagination;
+import com.hxzy.base.dao.BaseDao;
+import com.hxzy.base.service.BaseService;
+import com.hxzy.base.util.Pagination;
 
 
 

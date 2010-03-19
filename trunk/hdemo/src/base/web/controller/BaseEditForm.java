@@ -6,12 +6,12 @@
  * <p>日期：2008-11-19</p>
  * <p>更新：</p>
  */
-package base.web.controller;
+package com.hxzy.base.web.controller;
 
 import java.util.Calendar;
 import java.util.Date;
 
-import base.util.DateUtil;
+import com.hxzy.base.util.DateUtil;
 
 public class BaseEditForm extends BaseForm {
 

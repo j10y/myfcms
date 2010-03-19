@@ -6,7 +6,7 @@
  * <p>日期：2008-8-30</p>
  * <p>更新：</p>
  */
-package base.util;
+package com.hxzy.base.util;
 
 import java.util.ArrayList;
 import java.util.List;

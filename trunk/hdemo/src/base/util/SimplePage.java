@@ -1,4 +1,4 @@
-package base.util;
+package com.hxzy.base.util;
 
 public class SimplePage implements Paginable {
 	private static final long serialVersionUID = 1L;

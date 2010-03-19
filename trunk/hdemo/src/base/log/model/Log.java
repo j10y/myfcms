@@ -6,7 +6,7 @@
  * <p>日期：2005-12-3</p>
  * <p>更新：</p>
  */
-package base.log.model;
+package com.hxzy.common.log.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -20,7 +20,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import base.user.model.BaseUser;
+import com.hxzy.common.user.model.User;
 
 /**
  * <p>
@@ -46,7 +46,7 @@ public class Log implements Serializable {
      */
 	@OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	@PrimaryKeyJoinColumn
-    private BaseUser user;
+    private User user;
 
     /**
      * 描述: 操作时间
@@ -141,14 +141,14 @@ public class Log implements Serializable {
     /**
 	 * 返回 user
 	 */
-	public BaseUser getUser() {
+	public User getUser() {
 		return user;
 	}
 
 	/**
 	 * 设置 user
 	 */
-	public void setUser(BaseUser user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

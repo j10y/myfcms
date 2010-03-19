@@ -5,7 +5,7 @@
  * <p>日期：Mar 16, 2010</p>
  * <p>更新：</p>
  */
-package base.web.controller;
+package com.hxzy.base.web.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;

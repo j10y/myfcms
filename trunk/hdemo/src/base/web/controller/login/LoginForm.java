@@ -6,7 +6,7 @@
  * <p>日期：2007-9-4</p>
  * <p>更新：</p>
  */
-package base.web.controller.login;
+package com.hxzy.base.web.controller.login;
 
 /**
  * <p>

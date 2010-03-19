@@ -6,10 +6,10 @@
  * <p>日期：2005-12-3</p>
  * <p>更新：</p>
  */
-package base.log.dao;
+package com.hxzy.common.log.dao;
 
-import base.dao.BaseDao;
-import base.log.model.Log;
+import com.hxzy.base.dao.BaseDao;
+import com.hxzy.common.log.model.Log;
 
 /**
  * <p>

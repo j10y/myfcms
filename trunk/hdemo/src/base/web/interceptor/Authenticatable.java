@@ -1,4 +1,4 @@
-package base.web.interceptor;
+package com.hxzy.base.web.interceptor;
 
 
 public interface Authenticatable {

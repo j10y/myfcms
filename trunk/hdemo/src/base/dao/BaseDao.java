@@ -1,4 +1,4 @@
-package base.dao;
+package com.hxzy.base.dao;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.DetachedCriteria;
 
-import base.util.Pagination;
+import com.hxzy.base.util.Pagination;
 
 public interface BaseDao<T> {
 

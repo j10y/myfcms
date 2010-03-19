@@ -1,4 +1,4 @@
-package base.web.listener;
+package com.hxzy.base.web.listener;
 
 
 /**
@@ -19,10 +19,10 @@ import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import base.constant.Constant;
-import base.user.model.OnlineUserInfo;
-import base.user.model.UserInfo;
-import base.util.WebAppUtil;
+import com.hxzy.base.constant.Constant;
+import com.hxzy.base.util.WebAppUtil;
+import com.hxzy.common.user.model.OnlineUserInfo;
+import com.hxzy.common.user.model.UserInfo;
 
 
 /**

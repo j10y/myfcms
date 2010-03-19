@@ -1,4 +1,4 @@
-package base.web.controller;
+package com.hxzy.base.web.controller;
 
 /**
  * <p>项目名称：公共模块</p>
@@ -19,15 +19,15 @@ import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractCommandController;
 
-import base.log.service.LogService;
-import base.user.model.UserInfo;
-import base.util.ApplicationParameter;
-import base.util.DateUtil;
-import base.util.StringUtil;
-import base.util.WebAppUtil;
-import base.web.interceptor.Authenticatable;
-import base.web.interceptor.Authorizable;
-import base.web.interceptor.RequestUrlPreparable;
+import com.hxzy.base.util.ApplicationParameter;
+import com.hxzy.base.util.DateUtil;
+import com.hxzy.base.util.StringUtil;
+import com.hxzy.base.util.WebAppUtil;
+import com.hxzy.base.web.interceptor.Authenticatable;
+import com.hxzy.base.web.interceptor.Authorizable;
+import com.hxzy.base.web.interceptor.RequestUrlPreparable;
+import com.hxzy.common.log.service.LogService;
+import com.hxzy.common.user.model.UserInfo;
 
 
 /**

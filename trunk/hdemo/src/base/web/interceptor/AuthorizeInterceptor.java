@@ -1,4 +1,4 @@
-package base.web.interceptor;
+package com.hxzy.base.web.interceptor;
 
 import java.util.Map;
 
@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import base.constant.Constant;
-import base.exception.ApplicationException;
-import base.user.model.UserInfo;
+import com.hxzy.base.constant.Constant;
+import com.hxzy.base.exception.ApplicationException;
+import com.hxzy.common.user.model.UserInfo;
 
 public class AuthorizeInterceptor implements HandlerInterceptor {
 

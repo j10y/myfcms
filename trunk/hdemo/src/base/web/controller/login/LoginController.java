@@ -6,13 +6,11 @@
  * <p>日期：2007-9-4</p>
  * <p>更新：</p>
  */
-package base.web.controller.login;
+package com.hxzy.base.web.controller.login;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,30 +18,28 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 
-import base.constant.Constant;
-import base.user.model.BaseUser;
-import base.user.model.Privilege;
-import base.user.model.Role;
-import base.user.model.UserInfo;
-import base.user.service.BaseUserService;
-import base.user.service.PrivilegeService;
-import base.user.service.RoleService;
-import base.util.DateUtil;
-import base.util.WebAppUtil;
-import base.web.controller.BaseFormController;
+import com.hxzy.base.constant.Constant;
+import com.hxzy.base.util.DateUtil;
+import com.hxzy.base.util.WebAppUtil;
+import com.hxzy.base.web.controller.BaseFormController;
+import com.hxzy.common.user.model.User;
+import com.hxzy.common.user.model.Privilege;
+import com.hxzy.common.user.model.Role;
+import com.hxzy.common.user.model.UserInfo;
+import com.hxzy.common.user.service.UserService;
 
 public class LoginController extends BaseFormController {
 
 	/**
 	 * 描述: 人员Manager
 	 */
-	private BaseUserService baseUserService;
+	private UserService userService;
 
 	protected ModelAndView onSubmit(HttpServletRequest request,
 			HttpServletResponse response, Object o, BindException errors)
 			throws Exception {
 		LoginForm formInfo = (LoginForm) o;
-		BaseUser user = baseUserService.findByProperty("code", formInfo.getCode().trim()).get(0);
+		User user = userService.findByProperty("code", formInfo.getCode().trim()).get(0);
 		String password = formInfo.getPassword().trim();
 		// 没有该用户的时候
 		if (user == null) {
@@ -55,7 +51,7 @@ public class LoginController extends BaseFormController {
 			if (compareLockTime(user.getLockedTime())) {
 				user.setIsLocked(new Long(0));
 				user.setLockedTime(null);
-				baseUserService.update(user);
+				userService.update(user);
 			} else {
 				errors.reject("login.msg.userIsLocked");
 				return showForm(request, response, errors);
@@ -82,7 +78,7 @@ public class LoginController extends BaseFormController {
 			if (loginFrequency >= 5) {
 				user.setIsLocked(new Long(1));
 				user.setLockedTime(DateUtil.getNowPreciseToMin());
-				baseUserService.update(user);
+				userService.update(user);
 				loginMap.put(user.getCode(), null);
 				request.getSession().setAttribute("loginMap", loginMap);
 				errors.reject("login.msg.userLocking");
@@ -101,7 +97,7 @@ public class LoginController extends BaseFormController {
 		// 更新用户最后上线时间与上线次数
 		user.setLoginFrequency(new Long(user.getLoginFrequency().intValue() + 1));
 		user.setLastTime(DateUtil.getNowPreciseToMin());
-		baseUserService.update(user);
+		userService.update(user);
 		
 		
 		
@@ -149,16 +145,16 @@ public class LoginController extends BaseFormController {
 	}
 
 	/**
-	 * 返回 baseUserService
+	 * 返回 UserService
 	 */
-	public BaseUserService getBaseUserService() {
-		return baseUserService;
+	public UserService getUserService() {
+		return userService;
 	}
 
 	/**
-	 * 设置 baseUserService
+	 * 设置 UserService
 	 */
-	public void setBaseUserService(BaseUserService baseUserService) {
-		this.baseUserService = baseUserService;
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 }

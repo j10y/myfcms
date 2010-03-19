@@ -5,7 +5,7 @@
  * <p>日期：2009-12-16</p>
  * <p>更新：</p>
  */
-package base.util;
+package com.hxzy.base.util;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

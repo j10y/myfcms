@@ -1,4 +1,4 @@
-package base.web.listener;
+package com.hxzy.base.web.listener;
 
 
 /*
@@ -11,7 +11,7 @@ package base.web.listener;
 import java.util.ArrayList;
 import java.util.List;
 
-import base.user.model.BaseUser;
+import com.hxzy.common.user.model.User;
 
 
 public class SessionCount {
@@ -62,7 +62,7 @@ public class SessionCount {
     /**
      * 增加登陆会员
      */
-    public void addLogonUser(BaseUser user) throws Exception {
+    public void addLogonUser(User user) throws Exception {
         //将登陆会员加入到已登陆会员列表
     	if (existUserVO(user.getId().toString()) == -1) {
     		logonUserList.add(user);
@@ -74,7 +74,7 @@ public class SessionCount {
      */
     public void delLogonUser(String userId) {
         for (int i = 0; i < logonUserList.size(); i++) {
-        	BaseUser user = (BaseUser) logonUserList.get(i);
+        	User user = (User) logonUserList.get(i);
         	if (user.getId().toString().equals(userId)) {
         		logonUserList.remove(i);
         		return;
@@ -91,7 +91,7 @@ public class SessionCount {
      */
     public static int existUserVO(String userId){
         for (int i = 0; i < logonUserList.size(); i++) {
-        	BaseUser user = (BaseUser) logonUserList.get(i);
+        	User user = (User) logonUserList.get(i);
         	if (user.getId().toString().equals(userId)) {
         		return 1;
         	}

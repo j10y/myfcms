@@ -1,4 +1,4 @@
-package base.util;
+package com.hxzy.base.util;
 
 import java.util.List;
 

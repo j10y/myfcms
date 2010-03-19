@@ -5,7 +5,7 @@
  * <p>日期：Mar 18, 2010</p>
  * <p>更新：</p>
  */
-package base.dao.impl;
+package com.hxzy.base.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +25,9 @@ import org.hibernate.criterion.Projections;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import base.dao.BaseDao;
-import base.util.GenericsUtils;
-import base.util.Pagination;
+import com.hxzy.base.dao.BaseDao;
+import com.hxzy.base.util.GenericsUtils;
+import com.hxzy.base.util.Pagination;
 
 /**
  * @author xiacc

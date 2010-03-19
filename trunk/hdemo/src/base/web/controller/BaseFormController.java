@@ -6,19 +6,19 @@
  * <p>日期：2005-10-20</p>
  * <p>更新：</p>
  */
-package base.web.controller;
+package com.hxzy.base.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
-import base.log.service.LogService;
-import base.user.model.UserInfo;
-import base.util.ApplicationParameter;
-import base.util.WebAppUtil;
-import base.web.interceptor.Authenticatable;
-import base.web.interceptor.Authorizable;
-import base.web.interceptor.RequestUrlPreparable;
+import com.hxzy.base.util.ApplicationParameter;
+import com.hxzy.base.util.WebAppUtil;
+import com.hxzy.base.web.interceptor.Authenticatable;
+import com.hxzy.base.web.interceptor.Authorizable;
+import com.hxzy.base.web.interceptor.RequestUrlPreparable;
+import com.hxzy.common.log.service.LogService;
+import com.hxzy.common.user.model.UserInfo;
 
 /**
  * <p>

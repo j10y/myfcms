@@ -5,7 +5,7 @@
  * <p>日期：Mar 16, 2010</p>
  * <p>更新：</p>
  */
-package base.util;
+package com.hxzy.base.util;
 
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -17,8 +17,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import base.user.model.BaseUser;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -729,22 +727,6 @@ public class JsonUtils {
 
 		return doubleArray;
 
-	}
-	
-	public static void main(String[] args) {
-		
-		ArrayList list = new ArrayList();
-		
-		for(int i=0;i<10;i++){
-			BaseUser user = new BaseUser();
-			user.setId(new Long(i));
-			user.setCode("admin"+i);
-			user.setPassword("admin"+i);
-			
-			list.add(user);
-		}
-		
-		System.out.println(JsonUtils.listToJson(list));
 	}
 
 }

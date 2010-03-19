@@ -6,7 +6,7 @@
  * <p>日期：2006-7-24</p>
  * <p>更新：</p>
  */
-package base.util;
+package com.hxzy.base.util;
 
 import java.util.Map;
 

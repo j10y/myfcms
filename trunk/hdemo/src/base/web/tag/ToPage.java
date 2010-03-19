@@ -6,7 +6,7 @@
  * <p>日期：2005-10-22</p>
  * <p>更新：</p>
  */
-package base.web.tag;
+package com.hxzy.base.web.tag;
 
 import java.util.Locale;
 
@@ -18,9 +18,9 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.taglibs.standard.lang.support.ExpressionEvaluatorManager;
 import org.springframework.web.context.WebApplicationContext;
 
-import base.util.ApplicationParameter;
-import base.util.StringUtil;
-import base.util.WebAppUtil;
+import com.hxzy.base.util.ApplicationParameter;
+import com.hxzy.base.util.StringUtil;
+import com.hxzy.base.util.WebAppUtil;
 
 
 /**

@@ -5,12 +5,12 @@
  * <p>日期：Mar 9, 2010</p>
  * <p>更新：</p>
  */
-package base.log.service.impl;
+package com.hxzy.common.log.service.impl;
 
-import base.log.dao.LogDao;
-import base.log.model.Log;
-import base.log.service.LogService;
-import base.service.impl.BaseServiceImpl;
+import com.hxzy.base.service.impl.BaseServiceImpl;
+import com.hxzy.common.log.dao.LogDao;
+import com.hxzy.common.log.model.Log;
+import com.hxzy.common.log.service.LogService;
 
 /**
  * @author xiacc

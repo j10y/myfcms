@@ -6,7 +6,7 @@
  * <p>日期：2006-5-26</p>
  * <p>更新：</p>
  */
-package base.util;
+package com.hxzy.base.util;
 
 import java.io.File;
 import java.io.FileInputStream;

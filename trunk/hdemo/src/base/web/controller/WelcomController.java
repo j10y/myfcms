@@ -1,4 +1,4 @@
-package base.web.controller;
+package com.hxzy.base.web.controller;
 
 /**
  * <p>项目名称：公共模块</p>

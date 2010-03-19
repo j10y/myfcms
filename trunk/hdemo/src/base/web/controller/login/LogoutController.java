@@ -6,7 +6,7 @@
  * <p>日期：2007-9-4</p>
  * <p>更新：</p>
  */
-package base.web.controller.login;
+package com.hxzy.base.web.controller.login;
 
 import java.util.TreeMap;
 
@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import base.constant.Constant;
-import base.log.model.Log;
-import base.user.model.UserInfo;
-import base.web.controller.BaseController;
+import com.hxzy.base.constant.Constant;
+import com.hxzy.base.web.controller.BaseController;
+import com.hxzy.common.log.model.Log;
+import com.hxzy.common.user.model.UserInfo;
 
 /**
  * <p>

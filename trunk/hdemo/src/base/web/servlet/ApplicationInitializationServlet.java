@@ -1,4 +1,4 @@
-package base.web.servlet;
+package com.hxzy.base.web.servlet;
 
 
 import java.util.TreeMap;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 
 import org.springframework.web.context.WebApplicationContext;
 
-import base.constant.Constant;
+import com.hxzy.base.constant.Constant;
 
 
 /**
