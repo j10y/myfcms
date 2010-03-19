@@ -44,6 +44,17 @@ public class Role implements Serializable {
 			inverseJoinColumns={@JoinColumn(name="privilege_id")})
 	private Set<Privilege> privileges;
 	
+	/**
+	 * 描述：拥有该角色的所有的用户
+	 */
+	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.EAGER)   
+	@JoinTable(name="user_role",joinColumns={@JoinColumn(name="role_id")},
+			inverseJoinColumns={@JoinColumn(name="user_id")})
+	private Set<BaseUser> baseUsers;
+	
+	/**
+	 * 描述：公开标志，表面该角色是否公开
+	 */
 	private Long publicFlag;
 
 	/**
@@ -93,6 +104,20 @@ public class Role implements Serializable {
 	 */
 	public void setPrivileges(Set<Privilege> privileges) {
 		this.privileges = privileges;
+	}
+
+	/**
+	 * 返回 baseUsers
+	 */
+	public Set<BaseUser> getBaseUsers() {
+		return baseUsers;
+	}
+
+	/**
+	 * 设置 baseUsers
+	 */
+	public void setBaseUsers(Set<BaseUser> baseUsers) {
+		this.baseUsers = baseUsers;
 	}
 
 	/**
