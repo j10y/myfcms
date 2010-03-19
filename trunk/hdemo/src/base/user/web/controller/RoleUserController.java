@@ -62,22 +62,17 @@ public class RoleUserController extends BaseFormController {
 			roleId = Long.valueOf(request.getParameter("roleId"));
 		}		
 		
-		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BaseUser.class);
-		detachedCriteria
-		.setResultTransformer(DetachedCriteria.DISTINCT_ROOT_ENTITY)
-		.createAlias("roles", "r")
-		.add(Restrictions.ne("r.id", roleId));	
-//		
-		List userList = baseUserService.findByCriteria(detachedCriteria);
-//		
-//		List userList = baseUserService.find("from BaseUser u inner join u.roles r where u.id=r.id and r.id <> ?", new Object[]{roleId});
-		
 		//已有此角色的用户
 		DetachedCriteria detachedCriteria2 = DetachedCriteria.forClass(BaseUser.class);		
 		detachedCriteria2.createAlias("roles", "r").add(Restrictions.eq("r.id", roleId));		
-		List roleUserList =  baseUserService.findByCriteria(detachedCriteria2);
+		List<BaseUser> roleUserList =  baseUserService.findByCriteria(detachedCriteria2);
 		
 		
+		List userList = baseUserService.loadAll();
+		
+		for(BaseUser user:roleUserList){
+			userList.remove(user);
+		}
 		
 		
 		Map map = new HashMap();
@@ -107,14 +102,16 @@ public class RoleUserController extends BaseFormController {
 		// 设置相关数据
 		List roleUsers = new ArrayList();
 		String[] userIds = form.getUserId();
+		
+		role.getBaseUsers().clear();
+		
 		if (userIds != null) {
 			for (int i = 0; i < userIds.length; i++) {
 				BaseUser user = baseUserService.findById(new Long(userIds[i]));
-				user.getRoles().add(role);
-
-				baseUserService.update(user);
+				role.getBaseUsers().add(user);
 			}
 		}
+		roleService.update(role);
 		
 		// 写操作日志
 //		Log log = new Log();
