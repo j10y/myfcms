@@ -63,7 +63,10 @@ public class RoleUserController extends BaseFormController {
 		}		
 		
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BaseUser.class);
-		detachedCriteria.setResultTransformer(DetachedCriteria.DISTINCT_ROOT_ENTITY).createAlias("roles", "r").add(Restrictions.ne("r.id", roleId));	
+		detachedCriteria
+		.setResultTransformer(DetachedCriteria.DISTINCT_ROOT_ENTITY)
+		.createAlias("roles", "r")
+		.add(Restrictions.ne("r.id", roleId));	
 //		
 		List userList = baseUserService.findByCriteria(detachedCriteria);
 //		
