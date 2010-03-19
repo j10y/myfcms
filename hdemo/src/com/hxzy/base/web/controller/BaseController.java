@@ -78,6 +78,7 @@ public class BaseController extends AbstractController implements
 		return null;
 	}
 
+	
 	/**
 	 * 描述: 获取字符串资源
 	 * 
