@@ -95,6 +95,8 @@
 				<prop key="/rolePrivilegeEdit.do">rolePrivilegeEditController</prop>
 				<prop key="/roleUser.do">roleUserController</prop>
 				
+				<prop key="/privilegeTree.do">privilegeTreeController</prop>
+				
 			</props>
 		</property>
 	</bean>
@@ -463,6 +465,23 @@
 		</property>
 		<property name="roleService">
 			<ref bean="roleService" />
+		</property>
+	</bean>
+	
+	<bean id="privilegeTreeController"
+		class="com.hxzy.common.user.web.controller.PrivilegeTreeController"
+		parent="baseControllerTemplate">
+		<property name="functionCode">
+			<value>privilege</value>
+		</property>
+		<property name="needAuthentication">
+			<value>false</value>
+		</property>
+		<property name="needAuthorization">
+			<value>false</value>
+		</property>
+		<property name="privilegeService">
+			<ref bean="privilegeService" />
 		</property>
 	</bean>
 
