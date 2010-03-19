@@ -1,0 +1,671 @@
+html {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+body,td {
+	margin: 0px;
+	font-family: "宋体";
+	font-size: 12px;
+	table-layout: fixed;
+	word-break: break-all;
+}
+
+.img_soft {
+	border: 3px solid #FFFFFF;
+}
+
+TEXTAREA {
+	FONT-SIZE: 12px;
+}
+
+a {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #000000;
+	text-decoration: none;
+}
+
+a:hover {
+	font-family: "宋体";
+	color: #FF6600;
+	text-decoration: none;
+}
+
+form,input {
+	font-family: "宋体";
+	font-size: 12px
+}
+
+select {
+	font-family: "宋体";
+	FONT-SIZE: 12px;
+}
+
+.login_font {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.a_left:hover {
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+	color: #FF6633;
+	text-decoration: none;
+}
+
+.a_left {
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+	color: #4348AF;
+	text-decoration: none;
+}
+
+TEXTAREA {
+	background-color: ffffff;;
+	border: 1px #3A0000 solid;
+}
+
+INPUT.guestbookName {
+	BORDER-RIGHT: #6e6855 1px solid;
+	BORDER-TOP: #6e6855 1px solid;
+	FONT: 11px arial;
+	MARGIN-LEFT: 20px;
+	BORDER-LEFT: #6e6855 1px solid;
+	WIDTH: 60px;
+	COLOR: #000;
+	MARGIN-RIGHT: 10px;
+	BORDER-BOTTOM: #6e6855 1px solid;
+	HEIGHT: 15px;
+	BACKGROUND-COLOR: #eeeeee
+}
+
+INPUT.inputStyle {
+	BORDER-RIGHT: #3C4D82 1px solid;
+	BORDER-TOP: #3C4D82 1px solid;
+	FONT: 12px arial;
+	MARGIN-LEFT: 5px;
+	BORDER-LEFT: #3C4D82 1px solid;
+	WIDTH: 120px;
+	COLOR: #000;
+	MARGIN-RIGHT: 10px;
+	BORDER-BOTTOM: #3C4D82 1px solid;
+	HEIGHT: 22px;
+	BACKGROUND-COLOR: #E5F0F7
+}
+
+INPUT.inputStyle2 {
+	BORDER-RIGHT: #5f5f5f 1px solid;
+	BORDER-TOP: #5f5f5f 1px solid;
+	FONT: 12px arial;
+	MARGIN-LEFT: 5px;
+	BORDER-LEFT: #5f5f5f 1px solid;
+	WIDTH: 120px;
+	COLOR: #000;
+	MARGIN-RIGHT: 10px;
+	BORDER-BOTTOM: #5f5f5f 1px solid;
+	HEIGHT: 20px;
+	BACKGROUND-COLOR: #ffffff
+}
+
+INPUT.buttonStyle {
+	BORDER-RIGHT: #6e6855 1px solid;
+	BORDER-TOP: #6e6855 1px solid;
+	FONT: 11px arial;
+	BORDER-LEFT: #6e6855 1px solid;
+	COLOR: #000;
+	MARGIN-RIGHT: 5px;
+	BORDER-BOTTOM: #6e6855 1px solid;
+	BACKGROUND-COLOR: #eeeeee
+}
+
+.topCell {
+	background-color: #EFF2F4;
+	text-align: center;
+}
+
+.centerCell {
+	background-color: #D9E0EF;
+	text-align: center;
+	height:415px;
+	vertical-align: top;
+}
+
+.queryBody {
+	margin: 0px;
+	font-family: "宋体";
+	font-size: 12px;
+	color: #233C85;
+	text-decoration: none;
+	margin-top: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+.queryConditionTable {
+	background-color: #BDCBE3;
+}
+
+.queryConditionTitleRow {
+	background-image: url('../../images/eis_p_b2.png');
+}
+
+.queryConditionTitleCell {
+	font-family: "宋体";
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.queryConditionRow {
+	
+}
+
+.queryConditionLabelCell {
+	background-color: #E4EAF3;
+	height: 20px;
+	text-align: right;
+}
+
+.queryConditionDataCell {
+	background-color: #E4EAF3;
+	height: 20px;
+	text-align: left;
+}
+
+.queryConditionBottomRow {
+	background-color: #E4EAF3;
+	text-align: center;
+	height: 20px;
+}
+
+.queryListTable {
+	background-color: #BDCBE3;
+}
+
+.queryListTitleRow {
+	
+}
+
+.queryListTitleCell {
+	text-align: center;
+	background-color: #FFFA9B
+}
+.queryListTitleCell1 {
+	text-align: center;
+	background-color: #EFEFEF
+}
+.queryListRow {
+	
+}
+
+.queryListCell {
+	text-align: center;
+	background-color: #F8FBFE;
+}
+
+.queryListCell_two {
+	text-align: center;
+	background-color: #E4EAF3;
+}
+
+.td_queryListCell {
+	text-align: center;
+	background-color: #F8FBFE;
+}
+
+.td_queryListCell_two {
+	text-align: center;
+	background-color: #E4EAF3;
+}
+
+.td_queryListCell a {
+	width: auto;
+	height: 45px;
+	margin: 0px;
+	display: block;
+}
+
+.td_queryListCell_two a {
+	width: auto;
+	height: 45px;
+	margin: 0px;
+	display: block;
+}
+
+.queryMiddleTable {
+	
+}
+
+.queryMiddleRow {
+	
+}
+
+.queryMiddleCell {
+	text-align: right;
+	height: 25px;
+}
+
+.billMsgTable {
+	
+}
+
+.billMsgRow {
+	
+}
+
+.billMsgCell {
+	FONT-FAMILY: "宋体";
+	font-size: 12px;
+	color: #FF0000;
+	text-align: center;
+}
+
+.billMsgCellLogin {
+	FONT-FAMILY: "宋体";
+	font-size: 12px;
+	color: #000000;
+	text-align: center;
+}
+
+.bellBody {
+	margin: 0px;
+	font-family: "宋体";
+	font-size: 12px;
+	color: #233C85;
+	text-decoration: none;
+	margin-top: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+.bellTable {
+	background-color: #BDCBE3;
+}
+
+.bellTitleRow {
+	background-image: url('../../images/eis_p_b2.png');
+}
+
+.bellTitleCell {
+	font-family: "宋体";
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.bellContentTable {
+	background-color: #BDCBE3;
+}
+
+.bellContentRow {
+	
+}
+
+.bellContentLabelCell {
+	text-align: right;
+	background-color: #E4EAF3;
+}
+
+.bellContentDataCell {
+	text-align: left;
+	background-color: #F8FBFE;
+}
+
+.bellBottomRow {
+	
+}
+
+.bellBottomCell {
+	background-color: #E4EAF3;
+	text-align: center;
+	height: 20px;
+}
+
+.exceptionMsgTable {
+	
+}
+
+.exceptionMsgRow {
+	
+}
+
+.exceptionMsgLabelCell {
+	FONT-FAMILY: "宋体";
+	font-size: 12px;
+	color: #FF0000;
+	text-align: center;
+}
+
+.exceptionMsgDataCell {
+	FONT-FAMILY: "宋体";
+	font-size: 12px;
+	color: #FF0000;
+	text-align: left;
+}
+
+.button_query {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background:url('../../images/common/button_query.png') no-repeat;
+}
+
+.button_add {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_add.png') no-repeat;
+}
+.button_add_ {
+	width: 87px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_addAnswer_.png') no-repeat;
+}
+.button_submit {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_submit.png') no-repeat;
+}
+
+.button_save {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_save.png') no-repeat;
+}
+
+.button_return {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_return.png') no-repeat;
+}
+
+.button_delete {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_delete.png') no-repeat;
+}
+
+.button_addChildNode {
+	width: 87px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_addChildNode.png') no-repeat;
+}
+
+.button_addBrotherNode {
+	width: 87px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_addBrotherNode.png') no-repeat;
+}
+
+.button_deleteNode {
+	width: 87px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_deleteNode.png') no-repeat;
+}
+
+.button_editNode {
+	width: 87px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_editNode.png') no-repeat;
+}
+
+.button_selectAll {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_selectAll.png') no-repeat;
+}
+
+.button_clearAll {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_clearAll.png') no-repeat;
+}
+
+.button_add1 {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_add1.png') no-repeat;
+}
+.button_delete1 {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_delete1.png') no-repeat;
+}
+
+.button_nosel {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_nosel.png') no-repeat;
+}
+.button_selall {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_selall.png') no-repeat;
+}
+.button_hidden {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_hidden.png') no-repeat;
+}
+
+.button_open {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_open.png') no-repeat;
+}
+
+.button_clear {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_clear.png') no-repeat;
+}
+
+.button_sort {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_sort.png') no-repeat;
+}
+
+.button_sort {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_sort.png');
+}
+
+.button_up {
+	width: 26px;
+	height: 31px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_up.png') no-repeat;
+}
+
+.button_down {
+	width: 26px;
+	height: 31px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_down.png') no-repeat;
+}
+
+.button_pass {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_pass.png') no-repeat;
+}
+
+.button_noPass {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_noPass.png') no-repeat;
+}
+
+.button_issued {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_issued.png') no-repeat;
+}
+
+.button_noIssued {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_noIssued.png') no-repeat;
+}
+.button_export {
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_export.png') no-repeat;
+}
+.button_addAnswer {
+	width: 87px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_addAnswer.png') no-repeat;
+}
+.button_orgPriviSel{
+	width: 87px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_orgPriviSel.png') no-repeat;
+}
+.button_resume{
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_resume.png') no-repeat;
+}
+.button_clear1{
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_clear1.png') no-repeat;
+}
+.button_restore{
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_restore.png') no-repeat;
+}
+.button_clearAll1{
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_clearAll1.png') no-repeat;
+}
+.button_modify{
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_modify.png') no-repeat;
+}
+.button_isTopline{
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_isTopline.png') no-repeat;
+}
+.button_unsetTopline{
+	width: 62px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_unsetTopline.png') no-repeat;
+}
+.button_saveAndSubmit{
+	width: 87px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_saveAndSubmit.png') no-repeat;
+}
+.button_edit {
+	width: 87px;
+	height: 21px;
+	border: none;
+	cursor: hand;
+	background: url('../../images/common/button_edit.png') no-repeat;
+}
+.a_holiday {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #FF0000;
+	text-decoration: none;
+}
+.td_today {
+	text-align: center;
+	background-color: #FFFA9B;
+}
+
+.td_today a {
+	width: auto;
+	height: 45px;
+	margin: 0px;
+	display: block;
+}
