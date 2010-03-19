@@ -1,4 +1,4 @@
-package base.constant;
+package com.hxzy.base.constant;
 
 /**
  * <p>项目名称：公共模块</p>
