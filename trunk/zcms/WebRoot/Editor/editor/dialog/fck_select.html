@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<!--
+ * FCKeditor - The text editor for Internet - http://www.fckeditor.net
+ * Copyright (C) 2003-2009 Frederico Caldeira Knabben
+ *
+ * == BEGIN LICENSE ==
+ *
+ * Licensed under the terms of any of the following licenses at your
+ * choice:
+ *
+ *  - GNU General Public License Version 2 or later (the "GPL")
+ *    http://www.gnu.org/licenses/gpl.html
+ *
+ *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+ *    http://www.gnu.org/licenses/lgpl.html
+ *
+ *  - Mozilla Public License Version 1.1 or later (the "MPL")
+ *    http://www.mozilla.org/MPL/MPL-1.1.html
+ *
+ * == END LICENSE ==
+ *
+ * Select dialog window.
+-->
+<html>
+<head>
+<title>Select Properties</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta content="noindex, nofollow" name="robots">
+<script src="common/fck_dialog_common.js" type="text/javascript"></script>
+<script type="text/javascript" src="fck_select/fck_select.js"></script>
+<script type="text/javascript">
+
+var dialog	= window.parent ;
+var oEditor = dialog.InnerDialogLoaded() ;
+
+// Gets the document DOM
+var oDOM = oEditor.FCK.EditorDocument ;
+
+var oActiveEl = dialog.Selection.GetSelectedElement() ;
+
+var oListText ;
+var oListValue ;
+
+window.onload = function()
+{
+	// First of all, translate the dialog box texts
+	oEditor.FCKLanguageManager.TranslatePage(document) ;
+
+	oListText	= document.getElementById( 'cmbText' ) ;
+	oListValue	= document.getElementById( 'cmbValue' ) ;
+
+	// Fix the lists widths. (Bug #970)
+	oListText.style.width = oListText.offsetWidth ;
+	oListValue.style.width = oListValue.offsetWidth ;
+
+	if ( oActiveEl && oActiveEl.tagName == 'SELECT' )
+	{
+		GetE('txtID').value		= oActiveEl.id ;
+		GetE('txtName').value		= oActiveEl.name ;
+		GetE('txtSelValue').value	= oActiveEl.value ;
+		GetE('txtLines').value		= GetAttribute( oActiveEl, 'size' ) ;
+		GetE('chkMultiple').checked	= oActiveEl.multiple ;
+		GetE('txtDataType').value	= GetAttribute( oActiveEl, 'datatype' ) ;
+		GetE('filedname').value	= GetAttribute( oActiveEl, 'filedname' ) ;		
+		GetE('IsMandatory').value	= GetAttribute( oActiveEl, 'ismandatory' ) ;		
+		GetE('verifyType').value	= GetAttribute( oActiveEl, 'verifytype' ) ;
+		// Load the actual options
+		for ( var i = 0 ; i < oActiveEl.options.length ; i++ )
+		{
+			var sText	= HTMLDecode( oActiveEl.options[i].innerHTML ) ;
+			var sValue	= oActiveEl.options[i].value ;
+
+			AddComboOption( oListText, sText, sText ) ;
+			AddComboOption( oListValue, sValue, sValue ) ;
+		}
+	}
+	else
+		oActiveEl = null ;
+
+	dialog.SetOkButton( true ) ;
+	dialog.SetAutoSize( true ) ;
+	SelectField( 'txtID' ) ;
+}
+
+function Ok()
+{
+	if(GetE('txtID').value.Trim() == ""){
+		alert("控件ID不能为空");
+		GetE('txtID').focus() ;
+		return false;
+	}
+	if(GetE('txtName').value.Trim() == ""){
+		alert("控件名称不能为空");
+		GetE('txtName').focus() ;
+		return false;
+	}
+	if(GetE('filedname').value.Trim() == ""){
+		alert("字段名称不能为空");
+		GetE('filedname').focus() ;
+		return false;
+	}	
+	oEditor.FCKUndo.SaveUndoStep() ;
+
+	var sSize = GetE('txtLines').value ;
+	if ( sSize == null || isNaN( sSize ) || sSize <= 1 )
+		sSize = '' ;
+
+	oActiveEl = CreateNamedElement( oEditor, oActiveEl, 'SELECT', {name: GetE('txtName').value} ) ;
+
+  SetAttribute( oActiveEl, 'id'	, GetE('txtID').value ) ;
+   SetAttribute( oActiveEl, 'title'	, GetE('txtName').value ) ;
+	SetAttribute( oActiveEl, 'size'	, sSize ) ;
+	oActiveEl.multiple = ( sSize.length > 0 && GetE('chkMultiple').checked ) ;
+	SetAttribute( oActiveEl, 'datatype', GetE('txtDataType').value) ;
+	SetAttribute( oActiveEl, 'filedname', GetE('filedname').value) ;
+	SetAttribute( oActiveEl, 'IsMandatory', GetE('IsMandatory').value) ;
+	SetAttribute( oActiveEl, 'verifyType', GetE('verifyType').value) ;
+	// Remove all options.
+	while ( oActiveEl.options.length > 0 )
+		oActiveEl.remove(0) ;
+
+	// Add all available options.
+	for ( var i = 0 ; i < oListText.options.length ; i++ )
+	{
+		var sText	= oListText.options[i].value ;
+		var sValue	= oListValue.options[i].value ;
+		if ( sValue.length == 0 ) sValue = sText ;
+
+		var oOption = AddComboOption( oActiveEl, sText, sValue, oDOM ) ;
+
+		if ( sValue == GetE('txtSelValue').value )
+		{
+			SetAttribute( oOption, 'selected', 'selected' ) ;
+			oOption.selected = true ;
+		}
+	}
+
+	return true ;
+}
+
+		</script>
+</head>
+<body style="overflow: hidden">
+<table width="100%" height="100%">
+	<tr>
+		<td>
+		<table width="100%">
+			<tr>
+				<td nowrap><span fckLang="DlgSelectID">ID</span>&nbsp;</td>
+				<td width="100%" colSpan="2"><input id="txtID"
+					style="WIDTH: 100%" type="text"></td>
+			</tr>
+			<tr>
+				<td nowrap><span fckLang="DlgSelectName">Name</span>&nbsp;</td>
+				<td width="100%" colSpan="2"><input id="txtName"
+					style="WIDTH: 100%" type="text"></td>
+			</tr>
+			<tr>
+			<td nowrap><span>字段名称</span></td>
+			<td width="100%" colSpan="2"><input type="text" size="20" id="filedname" style="WIDTH: 100%"/></td>
+			</tr>
+			<tr>
+				<td nowrap><span fckLang="DlgSelectValue">Value</span>&nbsp;</td>
+				<td width="100%" colSpan="2"><input id="txtSelValue"
+					style="WIDTH: 100%; BACKGROUND-COLOR: buttonface" type="text"
+					readonly></td>
+			</tr>
+			<tr>
+				<td>数据类型
+				<select id="txtDataType">
+					<option value="string" selected>文本型</option>
+					<option value="int" >整型</option>
+					<option value="long" >长整型</option>
+					<option value="float" >浮点型</option>
+					<option value="double" >双精度</option>
+					<option value="datetime" >日期</option>
+					<option value="clob" >长文本</option>
+				</select>
+				</td>
+				<td>是否允许为空<br/>
+				<select id="IsMandatory">
+					<option value="Y" selected="selected">是</option>
+					<option value="N" >否</option>										
+				</select>
+				</td>
+				<td>校验类型<br/>
+					<select id="verifyType">
+						<option value="" selected></option>
+						<option value="Number" >数值</option>
+						<option value="DigitChar" >数字</option>
+						<option value="Date" >日期</option>
+						<option value="Time" >时间</option>
+						<option value="DateTime" >日期时间</option>
+						<option value="NotNull" >不能为空</option>
+						<option value="Email" >邮箱</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td nowrap><span fckLang="DlgSelectSize">Size</span>&nbsp;</td>
+				<td nowrap><input id="txtLines" type="text" size="2" value="">&nbsp;<span
+					fckLang="DlgSelectLines">lines</span></td>
+				<td nowrap align="right"><input id="chkMultiple"
+					type="checkbox"><label for="chkMultiple"
+					fckLang="DlgSelectChkMulti">Allow multiple selections</label></td>
+			</tr>
+						
+		</table>
+		<br>
+		<hr style="POSITION: absolute">
+		<span style="LEFT: 10px; POSITION: relative; TOP: -7px"
+			class="BackColor">&nbsp;<span fckLang="DlgSelectOpAvail">Available
+		Options</span>&nbsp;</span>
+		<table width="100%">
+			<tr>
+				<td width="50%"><span fckLang="DlgSelectOpText">Text</span><br>
+				<input id="txtText" style="WIDTH: 100%" type="text"></td>
+				<td width="50%"><span fckLang="DlgSelectOpValue">Value</span><br>
+				<input id="txtValue" style="WIDTH: 100%" type="text"></td>
+				<td vAlign="bottom"><input onclick="Add();" type="button"
+					fckLang="DlgSelectBtnAdd" value="Add"></td>
+				<td vAlign="bottom"><input onclick="Modify();" type="button"
+					fckLang="DlgSelectBtnModify" value="Modify"></td>
+			</tr>
+			<tr>
+				<td rowSpan="2"><select id="cmbText" style="WIDTH: 100%"
+					onchange="GetE('cmbValue').selectedIndex = this.selectedIndex;Select(this);"
+					size="5"></select></td>
+				<td rowSpan="2"><select id="cmbValue" style="WIDTH: 100%"
+					onchange="GetE('cmbText').selectedIndex = this.selectedIndex;Select(this);"
+					size="5"></select></td>
+				<td vAlign="top" colSpan="2"></td>
+			</tr>
+			<tr>
+				<td vAlign="bottom" colSpan="2"><input style="WIDTH: 100%"
+					onclick="Move(-1);" type="button" fckLang="DlgSelectBtnUp"
+					value="Up"> <br>
+				<input style="WIDTH: 100%" onclick="Move(1);" type="button"
+					fckLang="DlgSelectBtnDown" value="Down"></td>
+			</tr>
+			<TR>
+				<TD vAlign="bottom" colSpan="4"><INPUT
+					onclick="SetSelectedValue();" type="button"
+					fckLang="DlgSelectBtnSetValue" value="Set as selected value">&nbsp;&nbsp;
+				<input onclick="Delete();" type="button"
+					fckLang="DlgSelectBtnDelete" value="Delete"></TD>
+			</TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

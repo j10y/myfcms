@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!--
+ * FCKeditor - The text editor for Internet - http://www.fckeditor.net
+ * Copyright (C) 2003-2007 Frederico Caldeira Knabben
+ *
+ * == BEGIN LICENSE ==
+ *
+ * Licensed under the terms of any of the following licenses at your
+ * choice:
+ *
+ *  - GNU General Public License Version 2 or later (the "GPL")
+ *    http://www.gnu.org/licenses/gpl.html
+ *
+ *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+ *    http://www.gnu.org/licenses/lgpl.html
+ *
+ *  - Mozilla Public License Version 1.1 or later (the "MPL")
+ *    http://www.mozilla.org/MPL/MPL-1.1.html
+ *
+ * == END LICENSE ==
+ *
+ * This dialog is shown when, for some reason (usually security settings),
+ * the user is not able to paste data from the clipboard to the editor using
+ * the toolbar buttons or the context menu.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="robots" content="noindex, nofollow" />
+
+	<script type="text/javascript">
+var oEditor = window.parent.InnerDialogLoaded() ;
+var FCK = oEditor.FCK;
+var FCKTools	= oEditor.FCKTools ;
+var FCKConfig	= oEditor.FCKConfig ;
+var clipHtml;
+var filePath;
+
+window.onload = function ()
+{
+	// First of all, translate the dialog box texts
+	oEditor.FCKLanguageManager.TranslatePage(document) ;
+
+	window.parent.SetOkButton( true ) ;
+	window.parent.SetAutoSize( true ) ;
+}
+
+function Ok()
+{
+	// Before doing anything, save undo snapshot.
+	oEditor.FCKUndo.SaveUndoStep() ;
+
+	
+	clipHtml = FCK._CheckIsPastingEnabled( true ) ;
+	uploadLocalImage(clipHtml);
+	clipHtml = CleanWord(clipHtml);
+
+	oEditor.FCK.InsertHtml( clipHtml ) ;
+	
+
+	return true ;
+}
+
+function uploadLocalImage(html){
+  var re = new RegExp(/<v:imagedata(.+?)>/gi);
+  var res = html.match(re);
+  if (res!=null){
+	  for (i=0;i<res.length;i++){
+	    var re2 = new RegExp(/file:\/\/\/.+?["| |>]/gi);
+	    var asrc = res[i].match(re2);
+	    if (asrc!=null){
+	      for (var j=0;j<asrc.length;j++){
+	         var imgfile = asrc[j];
+	         imgfile = imgfile.replace(/"/,"");
+	         imgfile = imgfile.replace(/>/,"");
+		       var imgfile2 = imgfile.replace(/file:\/\/\//gi,"");
+		       imgfile2 = imgfile2.replace(/\//gi,"\\");
+		       filePath = imgfile;
+		       uploadFile(imgfile2);
+	      }
+	    }
+	  }
+  }
+  return html;
+}
+
+function uploadFile(localFile){
+		var ele = document.getElementById("uploader");
+		var httpAction = FCKConfig.ImageUploadURL;
+		ele.Action = httpAction;
+		ele.ClearParams();
+    ele.AddParam("FileType","Image","");
+    ele.AddParam("FromObject","Activex","");
+    
+		ele.AddParam("FileName",localFile,"FILE");
+		ele.JSFunction = "replaceImg";
+		ele.Upload();
+}
+ 
+function replaceImg(status,str){
+	  //alert(filePath);
+		//var reg2 = eval("/<v:shape.+?src=\""+filePath+"\">.+?shape>/ig");
+		var img = "<p style='text-align: center;'><img src='"+str+"'></p>";
+	  clipHtml = clipHtml.replace(filePath+"\">",img);
+}
+
+function CleanUpBox()
+{
+	var oFrame = document.getElementById('frmData') ;
+
+	if ( oFrame.contentDocument )
+		oFrame.contentDocument.body.innerHTML = '' ;
+	else
+		oFrame.contentWindow.document.body.innerHTML = '' ;
+}
+
+
+// This function will be called from the PasteFromWord dialog (fck_paste.html)
+// Input: oNode a DOM node that contains the raw paste from the clipboard
+// bIgnoreFont, bRemoveStyles booleans according to the values set in the dialog
+// Output: the cleaned string
+function CleanWord( html, bIgnoreFont, bRemoveStyles )
+{
+
+	html = html.replace(/<o:p>\s*<\/o:p>/g, '') ;
+	html = html.replace(/<o:p>.*?<\/o:p>/g, '&nbsp;') ;
+
+	// Remove mso-xxx styles.
+	html = html.replace( /\s*mso-[^:]+:[^;"]+;?/gi, '' ) ;
+
+	// Remove margin styles.
+	html = html.replace( /\s*MARGIN: 0cm 0cm 0pt\s*;/gi, '' ) ;
+	html = html.replace( /\s*MARGIN: 0cm 0cm 0pt\s*"/gi, "\"" ) ;
+
+	html = html.replace( /\s*TEXT-INDENT: 0cm\s*;/gi, '' ) ;
+	html = html.replace( /\s*TEXT-INDENT: 0cm\s*"/gi, "\"" ) ;
+
+	html = html.replace( /\s*TEXT-ALIGN: [^\s;]+;?"/gi, "\"" ) ;
+
+	html = html.replace( /\s*PAGE-BREAK-BEFORE: [^\s;]+;?"/gi, "\"" ) ;
+
+	html = html.replace( /\s*FONT-VARIANT: [^\s;]+;?"/gi, "\"" ) ;
+
+	html = html.replace( /\s*tab-stops:[^;"]*;?/gi, '' ) ;
+	html = html.replace( /\s*tab-stops:[^"]*/gi, '' ) ;
+
+	// Remove FONT face attributes.
+	if ( bIgnoreFont )
+	{
+		html = html.replace( /\s*face="[^"]*"/gi, '' ) ;
+		html = html.replace( /\s*face=[^ >]*/gi, '' ) ;
+
+		html = html.replace( /\s*FONT-FAMILY:[^;"]*;?/gi, '' ) ;
+	}
+
+	// Remove Class attributes
+	html = html.replace(/<(\w[^>]*) class=([^ |>]*)([^>]*)/gi, "<$1$3") ;
+
+	// Remove styles.
+	if ( bRemoveStyles )
+		html = html.replace( /<(\w[^>]*) style="([^\"]*)"([^>]*)/gi, "<$1$3" ) ;
+
+	// Remove empty styles.
+	html =  html.replace( /\s*style="\s*"/gi, '' ) ;
+
+	html = html.replace( /<SPAN\s*[^>]*>\s*&nbsp;\s*<\/SPAN>/gi, '&nbsp;' ) ;
+
+	html = html.replace( /<SPAN\s*[^>]*><\/SPAN>/gi, '' ) ;
+
+	// Remove Lang attributes
+	html = html.replace(/<(\w[^>]*) lang=([^ |>]*)([^>]*)/gi, "<$1$3") ;
+
+	html = html.replace( /<SPAN\s*>(.*?)<\/SPAN>/gi, '$1' ) ;
+
+	html = html.replace( /<FONT\s*>(.*?)<\/FONT>/gi, '$1' ) ;
+
+	// Remove XML elements and declarations
+	html = html.replace(/<\\?\?xml[^>]*>/gi, '' ) ;
+
+	// Remove Tags with XML namespace declarations: <o:p><\/o:p>
+	html = html.replace(/<\/?\w+:[^>]*>/gi, '' ) ;
+
+	// Remove comments [SF BUG-1481861].
+	html = html.replace(/<\!--.*?-->/g, '' ) ;
+
+	html = html.replace( /<(U|I|STRIKE)>&nbsp;<\/\1>/g, '&nbsp;' ) ;
+
+	html = html.replace( /<H\d>\s*<\/H\d>/gi, '' ) ;
+
+	// Remove "display:none" tags.
+	html = html.replace( /<(\w+)[^>]*\sstyle="[^"]*DISPLAY\s?:\s?none(.*?)<\/\1>/ig, '' ) ;
+
+	// Remove language tags
+	html = html.replace( /<(\w[^>]*) language=([^ |>]*)([^>]*)/gi, "<$1$3") ;
+
+	// Remove onmouseover and onmouseout events (from MS Word comments effect)
+	html = html.replace( /<(\w[^>]*) onmouseover="([^\"]*)"([^>]*)/gi, "<$1$3") ;
+	html = html.replace( /<(\w[^>]*) onmouseout="([^\"]*)"([^>]*)/gi, "<$1$3") ;
+
+	if ( FCKConfig.CleanWordKeepsStructure )
+	{
+		// The original <Hn> tag send from Word is something like this: <Hn style="margin-top:0px;margin-bottom:0px">
+		html = html.replace( /<H(\d)([^>]*)>/gi, '<h$1>' ) ;
+
+		// Word likes to insert extra <font> tags, when using MSIE. (Wierd).
+		html = html.replace( /<(H\d)><FONT[^>]*>(.*?)<\/FONT><\/\1>/gi, '<$1>$2<\/$1>' );
+		html = html.replace( /<(H\d)><EM>(.*?)<\/EM><\/\1>/gi, '<$1>$2<\/$1>' );
+	}
+	else
+	{
+		html = html.replace( /<H1([^>]*)>/gi, '<div$1><b><font size="6">' ) ;
+		html = html.replace( /<H2([^>]*)>/gi, '<div$1><b><font size="5">' ) ;
+		html = html.replace( /<H3([^>]*)>/gi, '<div$1><b><font size="4">' ) ;
+		html = html.replace( /<H4([^>]*)>/gi, '<div$1><b><font size="3">' ) ;
+		html = html.replace( /<H5([^>]*)>/gi, '<div$1><b><font size="2">' ) ;
+		html = html.replace( /<H6([^>]*)>/gi, '<div$1><b><font size="1">' ) ;
+
+		html = html.replace( /<\/H\d>/gi, '<\/font><\/b><\/div>' ) ;
+
+		// Transform <P> to <DIV>
+		var re = new RegExp( '(<P)([^>]*>.*?)(<\/P>)', 'gi' ) ;	// Different because of a IE 5.0 error
+		html = html.replace( re, '<div$2<\/div>' ) ;
+
+		// Remove empty tags (three times, just to be sure).
+		// This also removes any empty anchor
+		html = html.replace( /<([^\s>]+)(\s[^>]*)?>\s*<\/\1>/g, '' ) ;
+		html = html.replace( /<([^\s>]+)(\s[^>]*)?>\s*<\/\1>/g, '' ) ;
+		html = html.replace( /<([^\s>]+)(\s[^>]*)?>\s*<\/\1>/g, '' ) ;
+	}
+
+	return html ;
+}
+
+	</script>
+
+</head>
+<body style="overflow: hidden">
+	<table cellspacing="0" cellpadding="0" width="100%" border="0" style="height: 98%">
+		<tr>
+			<td>
+				<div>
+					<span >word上传<br />
+					&nbsp;
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				系统检测到您粘贴的内容含有word格式，如含有图片系统将自动上传图片到服务器。此功能需要安装插件，如未安装，<a href="ZCMSTools.zip">点击下载</a>。
+			</td>
+		</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<object classid="clsid:92C1FAF0-BCF9-4A12-AEC6-68A097DCD8ED" id="uploader" codebase="ZCMSTools.cab#version=1,0,0,0" width=0 height=0>
+</body>
+</html>

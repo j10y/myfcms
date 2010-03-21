@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<!--
+ * FCKeditor - The text editor for Internet - http://www.fckeditor.net
+ * Copyright (C) 2003-2009 Frederico Caldeira Knabben
+ *
+ * == BEGIN LICENSE ==
+ *
+ * Licensed under the terms of any of the following licenses at your
+ * choice:
+ *
+ *  - GNU General Public License Version 2 or later (the "GPL")
+ *    http://www.gnu.org/licenses/gpl.html
+ *
+ *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+ *    http://www.gnu.org/licenses/lgpl.html
+ *
+ *  - Mozilla Public License Version 1.1 or later (the "MPL")
+ *    http://www.mozilla.org/MPL/MPL-1.1.html
+ *
+ * == END LICENSE ==
+ *
+ * Checkbox dialog window.
+-->
+<html>
+<head>
+<title>Checkbox Properties</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta content="noindex, nofollow" name="robots">
+<script src="common/fck_dialog_common.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+var dialog	= window.parent ;
+var oEditor	= dialog.InnerDialogLoaded() ;
+
+// Gets the document DOM
+var oDOM = oEditor.FCK.EditorDocument ;
+
+var oActiveEl = dialog.Selection.GetSelectedElement() ;
+
+window.onload = function()
+{
+	// First of all, translate the dialog box texts
+	oEditor.FCKLanguageManager.TranslatePage(document) ;
+
+	if ( oActiveEl && oActiveEl.tagName == 'INPUT' && oActiveEl.type == 'checkbox' )
+	{
+		GetE('txtName').value		= oActiveEl.name ;
+		GetE('txtID').value		= oActiveEl.id ;
+		GetE('txtValue').value		= oEditor.FCKBrowserInfo.IsIE ? oActiveEl.value : GetAttribute( oActiveEl, 'value' ) ;
+		GetE('txtSelected').checked	= oActiveEl.checked ;
+		GetE('txtDataType').value	= GetAttribute( oActiveEl, 'datatype' ) ;
+		GetE('displayname').value	= GetAttribute( oActiveEl, 'displayname' ) ;
+		GetE('filedname').value	= GetAttribute( oActiveEl, 'filedname' ) ;
+		GetE('IsMandatory').value	= GetAttribute( oActiveEl, 'ismandatory' ) ;
+		GetE('verifyType').value	= GetAttribute( oActiveEl, 'verifytype' ) ;
+	}
+	else
+		oActiveEl = null ;
+
+	dialog.SetOkButton( true ) ;
+	dialog.SetAutoSize( true ) ;
+	SelectField( 'txtID' ) ;
+}
+
+function Ok()
+{
+	if(GetE('txtID').value.Trim() == ""){
+		alert("控件ID不能为空");
+		GetE('txtID').focus() ;
+		return false;
+	}
+	if(GetE('txtName').value.Trim() == ""){
+		alert("控件名称不能为空");
+		GetE('txtName').focus() ;
+		return false;
+	}	
+	if(GetE('displayName').value.Trim() == ""){
+		alert("显示名称不能为空");
+		GetE('displayname').focus() ;
+		return false;
+	}	
+	if(GetE('filedname').value.Trim() == ""){
+		alert("字段名称不能为空");
+		GetE('filedname').focus() ;
+		return false;
+	}	
+	oEditor.FCKUndo.SaveUndoStep() ;
+	oActiveEl = CreateNamedElement( oEditor, oActiveEl, 'INPUT', {name: GetE('txtName').value, type: 'checkbox'} ) ;
+
+	if ( oEditor.FCKBrowserInfo.IsIE )
+		oActiveEl.value = GetE('txtValue').value ;
+	else
+		SetAttribute( oActiveEl, 'value', GetE('txtValue').value ) ;
+	
+	oActiveEl.id = GetE('txtID').value ;
+
+	var bIsChecked = GetE('txtSelected').checked ;
+	SetAttribute( oActiveEl, 'checked', bIsChecked ? 'checked' : null ) ;	// For Firefox
+	oActiveEl.checked = bIsChecked ;
+	
+	SetAttribute( oActiveEl, 'datatype', GetE('txtDataType').value) ;
+	SetAttribute( oActiveEl, 'title', GetE('txtName').value) ;
+	SetAttribute( oActiveEl, 'displayname', GetE('displayname').value) ;
+	SetAttribute( oActiveEl, 'filedname', GetE('filedname').value) ;
+	SetAttribute( oActiveEl, 'IsMandatory', GetE('IsMandatory').value) ;
+	SetAttribute( oActiveEl, 'verifyType', GetE('verifyType').value) ;
+	return true ;
+}
+
+		</script>
+</head>
+<body style="OVERFLOW: auto" scroll="no">
+<table height="100%" width="100%">
+	<tr>
+		<td align="center">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td colspan="2"><span fckLang="DlgCheckboxID">ID</span>
+				<input type="text" size="20" id="txtID" style="WIDTH: 100%" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><span fckLang="DlgCheckboxName">Name</span>
+				<input type="text" size="20" id="txtName" style="WIDTH: 100%"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><span fckLang="DlgCheckboxValue">Value</span>
+				<input type="text" size="20" id="txtValue" style="WIDTH: 100%"/>
+				</td>
+			</tr>
+			<tr>
+				<td ><span>显示名称</span>
+					<input type="text" size="20" id="displayname" style="WIDTH: 100%"/>
+				</td>
+				<td><span>字段名称</span>
+					<input type="text" size="20" id="filedname" style="WIDTH: 100%"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" id="txtSelected"/><label for="txtSelected" fckLang="DlgCheckboxSelected">Checked</label>
+				</td>
+				<td>校验类型
+					<select id="verifyType">
+						<option value="" selected></option>
+						<option value="Number" >数值</option>
+						<option value="DigitChar" >数字</option>
+						<option value="Date" >日期</option>
+						<option value="Time" >时间</option>
+						<option value="DateTime" >日期时间</option>
+						<option value="NotNull" >不能为空</option>
+						<option value="Email" >邮箱</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>数据类型
+				<select id="txtDataType">
+					<option value="string" selected>文本型</option>
+					<option value="int" >整型</option>
+					<option value="long" >长整型</option>
+					<option value="float" >浮点型</option>
+					<option value="double" >双精度</option>
+					<option value="datetime" >日期</option>
+					<option value="clob" >长文本</option>
+				</select>
+				</td>
+				<td>是否允许为空
+					<select id="IsMandatory">
+						<option value="Y" selected="selected">是</option>
+						<option value="N" >否</option>										
+					</select>
+				</td>
+			</tr>
+			
+		</table>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

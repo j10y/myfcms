@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+ BODY   {border: 0; margin: 0; cursor: default;font-family:宋体; font-size:9pt;}
+ BUTTON {width:5em}
+ TABLE  {font-family:宋体; font-size:9pt}
+ P      {text-align:center}
+input   { font-size: 9pt; font-family: 宋体}
+select  { font-size: 9pt; font-family: 宋体}
+button  { font-size: 9pt; font-family: 宋体}
+</style>
+<script language="javascript">
+var oEditor = window.parent.InnerDialogLoaded() ;
+var FCK			= oEditor.FCK ;
+var FCKLang = oEditor.FCKLang ;
+var FCKConfig	= oEditor.FCKConfig ;
+
+
+window.onload = function ()
+{
+		window.parent.SetOkButton(true) ;	
+		
+		//取得页面参数
+		try{
+			var parentWin;
+			parentWin = oEditor.parent;
+			document.getElementById('ID').value= parentWin.document.getElementById('ID').value;
+			document.getElementById('TempID').value= parentWin.document.getElementById('TempID').value;
+			document.getElementById('System').value= parentWin.document.getElementById('System').value;
+	  }catch(ex){
+	  }
+}
+
+function Ok()
+{
+	if(checkinput()){
+		var upLoadForm = document.getElementById("uploadForm");
+		upLoadForm.action = FCKConfig.ImageUploadURL
+		upLoadForm.submit();
+	}else{
+		return false;
+	}
+	//return true ;
+}
+
+
+function OnUploadCompleted( errorNumber, fileUrl, fileName, customMsg )
+{
+	switch ( errorNumber )
+	{
+		case 0 :	// No errors
+			//alert( 'Your file has been successfully uploaded' ) ;
+			break ;
+		case 1 :	// Custom error
+			alert( customMsg ) ;
+			return ;
+		case 101 :	// Custom warning
+			alert( customMsg ) ;
+			break ;
+		case 201 :
+			alert( 'A file with the same name is already available. The uploaded file has been renamed to "' + fileName + '"' ) ;
+			break ;
+		case 202 :
+			alert( '无效的文件类型' ) ;
+			return ;
+		case 203 :
+			alert( "Security error. You probably don't have enough permissions to upload. Please check your server." ) ;
+			return ;
+		default :
+			alert( 'Error on file upload. Error number: ' + errorNumber ) ;
+			return ;
+	}
+	oEditor.FCK.InsertHtml( fileUrl || "" ) ;
+	top.close();
+}
+
+function checkinput(){
+  if (document.form1.file1.value=="" && document.form1.file2.value=="" && document.form1.file3.value=="" && document.form1.file4.value=="" && document.form1.file5.value=="" && document.form1.file6.value==""){
+  	alert("至少上传一个文件！");
+  	document.form1.file1.focus();
+        document.body.style.cursor="default";
+  	return false;
+  }
+  //document.form1.upload.disabled=true;
+  return true;
+}
+function getExtname(filename){
+	var pos = filename.lastIndexOf("\\");
+	return (filename.substr(pos+1));
+}
+function getFileSize(filename){
+	var oi = new Image();
+	oi.src = filename;
+	return(oi.width + "x" + oi.height);
+}
+function doPreview(){
+	  if(document.form1.Rate.value=-1){
+			var ihtml="";
+			var objfile;
+			for(var i=1;i<7;i++){
+				objfile = eval("document.form1.file" + i);
+				if (objfile.value!=""){
+				  var imgWidth = document.form1.thumbnailwidth.value;
+				  var imgHeight = document.form1.thumbnailheight.value;
+				  if(imgWidth>140){
+				  	imgWidth = 140;
+				  }
+				  if(imgHeight>100){
+				  	imgHeight = 100;
+				  }
+					ihtml = ihtml + "<a href=\"" + objfile.value;
+					ihtml = ihtml + "\" target=\"" + document.form1.thumbnailtarget.value;
+					ihtml = ihtml + "\" alt=\"" + document.form1.thumbnailalt.value;
+					ihtml = ihtml + "\"><img border=0 width=\"" + imgWidth;
+					ihtml = ihtml + "\" height=\"" + imgHeight;
+					ihtml = ihtml + "\" src=\"" + objfile.value + "\"></a><br>" + getExtname(objfile.value) + "(" + getFileSize(objfile.value) + ")<br><br>";
+					if (document.form1.title.value==""){
+						document.form1.title.value=getExtname(objfile.value);
+					}
+					
+				}
+			}
+			Preview.innerHTML = "<center>" + ihtml + "</center>";
+	  }else{
+			var Rate = document.form1.Rate.options[document.form1.Rate.selectedIndex].value;
+			var ihtml="";
+			var objfile;
+			for(var i=1;i<7;i++){
+				objfile = eval("document.form1.file" + i);
+				var tmpimg = new Image();
+				tmpimg.src = objfile.value;
+				if (objfile.value!=""){
+					ihtml = ihtml + "<a href=\"" + objfile.value;
+					ihtml = ihtml + "\" target=\"" + document.form1.thumbnailtarget.value;
+					ihtml = ihtml + "\" alt=\"" + document.form1.thumbnailalt.value;
+					ihtml = ihtml + "\"><img border=0 width=\"" + tmpimg.width*Rate/100;
+					ihtml = ihtml + "\" height=\"" + tmpimg.height*Rate/100;
+					ihtml = ihtml + "\" src=\"" + objfile.value + "\"></a><br>" + getExtname(objfile.value) + "(" + getFileSize(objfile.value) + ")<br><br>";
+					if (document.form1.title.value==""){
+						document.form1.title.value=getExtname(objfile.value);
+					}
+				}
+			}
+			Preview.innerHTML = "<center>" + ihtml + "</center>";
+	 }
+}
+function ToggleThumb(){
+	if (document.form1.thumbnail.checked){
+		thumbnailproperty.style.display="block";
+	}
+	else{
+		thumbnailproperty.style.display="none";
+	}
+	doPreview();
+}
+function ToggleMore(){
+	if (document.form1.moreupload.checked){
+		MoreFile.style.display="block";
+	}
+	else{
+		MoreFile.style.display="none";
+	}
+}
+function ToggleWM(){
+	if (document.form1.watermark.checked){
+		WM.style.display="block";
+	}
+	else{
+		WM.style.display="none";
+	}
+}
+function togglelibrary(){
+  if (document.all("imagelibrary")[1].checked){
+    document.form2.submit();
+  }
+}
+
+</script>
+<title>图片上传</title>
+</head>
+
+<body topmargin="0" leftmargin="0">
+<div style="display:none"><iframe name="formTarget"
+	src="javascript:void(0)"></iframe></div>
+<FORM ACTION="" ENCTYPE="multipart/form-data" METHOD="POST" name="form1"
+	id="uploadForm" target="formTarget"><input type="hidden"
+	name="System" id="System" value=""> <input type="hidden"
+	name="ID" id="ID" value=""> <input type="hidden" name="TempID"
+	id="TempID" value="">
+<table width="500" border=0 align="center">
+	<tr>
+		<td width="60%" valign="top"><input type="radio"
+			name="imagelibrary" checked onclick="togglelibrary()" id="local"><label
+			for="local">本地上传</label> <input type="radio" name="imagelibrary"
+			onclick="togglelibrary()" id="lib"><label for="lib">图片库</label><br>
+		请选择文件：<br>
+		<INPUT TYPE=FILE NAME="file1" size="30" onchange="doPreview();"><br>
+		<div id="MoreFile" style="display:none"><INPUT TYPE=FILE
+			NAME="file2" size="30" onchange="doPreview();"><br>
+		<INPUT TYPE=FILE NAME="file3" size="30" onchange="doPreview();"><br>
+		<INPUT TYPE=FILE NAME="file4" size="30" onchange="doPreview();"><br>
+		<INPUT TYPE=FILE NAME="file5" size="30" onchange="doPreview();"><br>
+		<INPUT TYPE=FILE NAME="file6" size="30" onchange="doPreview();"><br>
+		</div>
+		<input type=checkbox name="thumbnail" onclick="ToggleThumb();"
+			value="1" id="suo" checked><label for="suo">生成缩略图</label> <input
+			type=checkbox name="moreupload" onclick="ToggleMore();" value="1"
+			id="duo"><label for="duo">多图上传</label> <input type=checkbox
+			name="watermark" onclick="ToggleWM();" value="1" id="shui"><label
+			for="shui">加水印</label> <br>
+		<div id=thumbnailproperty style="display:'';">比例：<select
+			name="Rate" onchange="doPreview();">
+			<option value="-1">指定尺寸
+			<option value="0.8">80%
+			<option value="0.7">70%
+			<option value="0.6">60%
+			<option value="0.5">50%
+			<option value="0.4">40%
+			<option value="0.3">30%
+			<option value="0.25">25%
+			<option value="0.2">20%
+			<option value="0.1">10%
+		</select><br>
+		宽度：<input type=text name=thumbnailwidth value="450"
+			onchange="doPreview();" size=10><br>
+		高度：<input type=text name=thumbnailheight value="450"
+			onchange="doPreview();" size=10><br>
+		文本：<input type=text name=thumbnailalt value="点击看大图"><br>
+		目标：<input type=text name=thumbnailtarget value="_blank"></div>
+		<div id=WM style="display:none;">水印文字：<input type=text
+			name=wmtext value=""><br>
+		文字大小：<select name=wmsize>
+			<option value="42">初号
+			<option value="36">小初
+			<option value="26">一号
+			<option value="24">小一
+			<option value="22">二号
+			<option value="18">小二
+			<option value="16">三号
+			<option value="15">小三
+			<option value="14" selected>四号
+			<option value="12">小四
+			<option value="10">五号
+			<option value="9">小五
+		</select><br>
+		文字颜色：<select name=wmcolor>
+			<option value="-65536">红
+			<option value="-16776961">蓝
+			<option value="-256">黄
+			<option value="-16711936">绿
+			<option value="-16777216">黑
+			<option value="-1">白
+			<option value="-8355712">灰
+		</select><br>
+		水印位置：<input type=radio name=wmposition value="1" id="zs"><label
+			for="zs">左上</label><input type=radio name=wmposition value="2"
+			id="ys"><label for="ys">右上</label><input type=radio
+			name=wmposition value="3" id="jz"><label for="jz">居中</label><input
+			type=radio name=wmposition value="4" id="zx"><label for="zx">左下</label><input
+			type=radio name=wmposition value="5" id="yx" checked><label
+			for="yx">右下</label><br>
+		</div>
+		图片说明：<INPUT TYPE=text NAME="title" size="30"><br>
+		</td>
+		<td valign="top" width="40%"
+			style="border-left:1 solid buttonshadow;border-top:1 solid buttonshadow;border-right:1 solid buttonhilight;border-bottom:1 solid buttonhilight;height:300px">
+		预览:<br>
+		<div style="width:100%;overflow: auto;height:300">
+		<div id=Preview style="overflow: visible;"></div>
+		</div>
+		</td>
+	</tr>
+</table>
+</FORM>
+<form action="ImageLib.jsp" name="form2"><input type="hidden"
+	name="siteid" value=""> <input type="hidden" name="contentid"
+	value=""> <input type="hidden" name="uploaddir" value="">
+</form>
+</body>
+</html>
