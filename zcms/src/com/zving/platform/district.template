@@ -1,0 +1,84 @@
+Page.onLoad(initProvince);
+
+function initProvince(province,city,district,pdv,cdv,ddv){
+	province = province? province:$("Province");
+	if(!province)return;
+	pdv = pdv? pdv:$(province).$A("initValue");
+	setProv(province,pdv);
+	initCity(province,city,district,cdv,ddv);
+}
+
+function initCity(province,city,district,cdv,ddv){
+	city = city? city:$("City");
+	cdv = cdv? cdv:city.$A("initValue");
+	setCity(province,city,cdv);
+	initDistrict(city,district,ddv);
+}
+
+function initDistrict(city,district,ddv){
+	district = district? district:$("District");
+	ddv = ddv? ddv:district.$A("initValue");
+	setDistrict(city,district,ddv);
+}
+
+function setProv(province,pdv){
+	var l = provinceMap.length;
+	var s =[];
+	var sel = "";
+	s.push("<span value=''>«Î—°‘Ò</span>");
+	for(var i = 0; i < l; i++,i++){
+		sel = pdv==provinceMap[i]? " selected='true' ":"";
+		s.push("<span value='"+provinceMap[i]+"'"+sel+">"+provinceMap[i+1]+"</span>");
+	}
+	province.innerHTML = s.join();
+	Selector.initCtrl(province);
+}
+
+function setCity(province,city,cdv){
+	if(!province||!$V(province)){
+		city.innerHTML = "";
+		Selector.initCtrl(city);
+		return;
+	}
+	var cityArray = cityMap[$V(province)];
+	var l = cityArray.length;
+	var s =[];
+	var sel = "";
+	for(var i = 0; i < l; i++,i++){
+		sel = cdv==cityArray[i]? " selected='true' ":"";
+		s.push("<span value='"+cityArray[i]+"'"+sel+">"+cityArray[i+1]+"</span>");
+	}
+	city.innerHTML = s.join();
+	Selector.initCtrl(city);
+}
+
+function setDistrict(city,district,ddv){
+	if(!city||!$V(city)){
+		district.innerHTML = "";
+		Selector.initCtrl(district);
+		return;
+	}
+	var districtArray = districtMap[$V(city)];
+	var l = districtArray.length;
+	var s =[];
+	var sel = "";
+	for(var i = 0; i < l; i++,i++){
+		sel = ddv==districtArray[i]? " selected='true' ":"";
+		s.push("<span value='"+districtArray[i]+"'"+sel+">"+districtArray[i+1]+"</span>");
+	}
+	district.innerHTML = s.join();
+	Selector.initCtrl(district);
+}
+
+function changeProvince(province,city,district){
+	province = province? province:$("Province");
+	city = city? city:$("City");
+	setCity(province,city);
+	changeCity(city,district);
+}
+
+function changeCity(city,district){
+	city = city? city:$("City");
+	district = district? district:$("District");
+	setDistrict(city,district);
+}
