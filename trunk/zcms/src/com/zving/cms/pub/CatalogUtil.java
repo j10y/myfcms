@@ -286,7 +286,7 @@ public class CatalogUtil {
 	}
 
 	public static String getPath(long catalogID) {
-		return getPath(catalogID);
+		return getPath(String.valueOf(catalogID));
 	}
 
 	public static String getPath(String catalogID) {

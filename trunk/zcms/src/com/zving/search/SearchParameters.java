@@ -3,6 +3,7 @@
  import java.io.IOException;
  import org.apache.lucene.index.Term;
  import org.apache.lucene.search.BooleanClause.Occur;
+import org.apache.lucene.search.BooleanClause;
  import org.apache.lucene.search.BooleanQuery;
  import org.apache.lucene.search.PrefixQuery;
  import org.apache.lucene.search.Query;
@@ -12,7 +13,7 @@
  import org.apache.lucene.search.TermRangeFilter;
  import org.apache.lucene.search.TermRangeQuery;
  import org.apache.lucene.search.WildcardQuery;
- import org.wltea.analyzer.lucene.IKQueryParser;
+import org.wltea.analyzer.lucene.IKQueryParser;
  
  public class SearchParameters
  {

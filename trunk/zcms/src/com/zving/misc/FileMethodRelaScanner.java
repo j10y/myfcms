@@ -5,6 +5,7 @@
  import com.zving.framework.utility.FileUtil;
  import com.zving.framework.utility.Mapx;
  import java.io.File;
+import java.io.FilenameFilter;
  import java.io.IOException;
  import java.io.PrintStream;
  import java.io.StringWriter;
@@ -17,7 +18,7 @@
  import org.dom4j.DocumentHelper;
  import org.dom4j.Element;
  import org.dom4j.io.OutputFormat;
- import org.dom4j.io.XMLWriter;
+import org.dom4j.io.XMLWriter;
  
  public class FileMethodRelaScanner
  {
@@ -67,7 +68,7 @@
      NameFileFilter nff = 
        new NameFileFilter(new String[] { ".svn", "Editor", "UserFiles", "WEB-INF", "Preview", "Template", "Test", 
        "Upload", "Template" });
-     File[] fs = parent.listFiles(new NotFileFilter(nff));
+     File[] fs = parent.listFiles((FilenameFilter)new NotFileFilter(nff));
      for (int i = 0; i < fs.length; ++i) {
        File f = fs[i];
        if (f.isFile())

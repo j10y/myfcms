@@ -13,6 +13,7 @@ import com.zving.platform.Application;
 import com.zving.schema.ZCDeployJobSet;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -277,7 +278,7 @@ public class FileList extends Page {
 		IOFileFilter dirFilter = FileFilterUtils.directoryFileFilter();
 		IOFileFilter suffixFilter = FileFilterUtils.notFileFilter(new SuffixFileFilter("db"));
 		IOFileFilter allFilter = FileFilterUtils.orFileFilter(dirFilter, suffixFilter);
-		File files[] = file.listFiles(FileFilterUtils.makeSVNAware(allFilter));
+		File files[] = file.listFiles((FilenameFilter)FileFilterUtils.makeSVNAware(allFilter));
 		if (files != null) {
 			for (int i = 0; i < files.length; i++)
 				if (files[i].isDirectory()) {

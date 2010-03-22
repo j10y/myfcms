@@ -16,6 +16,7 @@
  import com.zving.platform.Application;
  import java.io.File;
  import java.io.FileFilter;
+import java.io.FilenameFilter;
  import java.io.PrintStream;
  import java.util.ArrayList;
  import java.util.HashMap;
@@ -23,7 +24,7 @@
  import java.util.regex.Matcher;
  import java.util.regex.Pattern;
  import org.apache.commons.io.filefilter.FileFilterUtils;
- import org.apache.commons.logging.Log;
+import org.apache.commons.logging.Log;
  
  public class Template extends Page
  {
@@ -51,7 +52,7 @@
  
    public static void treeDataBind(TreeAction ta) {
      Object obj = ta.getParams().get("SiteID");
-     String siteID = Application.getCurrentSiteID();
+     String siteID = String.valueOf(Application.getCurrentSiteID());
      DataTable dt = new QueryBuilder("select ID,ParentID,Level,Name from ZCCatalog Where SiteID=?", siteID).executeDataTable();
      String siteName = new QueryBuilder("select name from ZCSite where id=?", siteID).executeString();
      ta.setRootText(siteName);
@@ -259,7 +260,7 @@
      boolean flag = true;
      if (file.exists()) {
        PreParser p = new PreParser();
-       File[] templates = file.listFiles(FileFilterUtils.makeSVNAware(FileFilterUtils.trueFileFilter()));
+       File[] templates = file.listFiles((FilenameFilter)FileFilterUtils.makeSVNAware(FileFilterUtils.trueFileFilter()));
        for (int i = 0; i < templates.length; ++i) {
          p.setTemplateFileName(templates[i].getPath());
          if (!(p.parse()))
