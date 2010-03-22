@@ -36,7 +36,7 @@ public class SiteUtil {
 	}
 
 	public static String getAbsolutePath(long siteID) {
-		return getAbsolutePath(siteID);
+		return getAbsolutePath(String.valueOf(siteID));
 	}
 
 	public static String getAbsolutePath(String siteID) {

@@ -378,11 +378,11 @@ public class Advertise extends Page {
 		ZCAdvertisementSchema ad = new ZCAdvertisementSchema();
 		adp.setID(PositionID);
 		adp.fill();
-		String AdID = (String) new QueryBuilder(new StringBuffer(
+		String AdID = String.valueOf(new QueryBuilder(new StringBuffer(
 				"select ID from ZCAdvertisement where PositionID = ").append(PositionID).append(
 				" and StartTime < '").append(DateUtil.getCurrentDateTime()).append(
 				"' and EndTime > '").append(DateUtil.getCurrentDateTime()).append(
-				"' order by AddTime desc").toString()).executeOneValue();
+				"' order by AddTime desc").toString()).executeOneValue());
 		if ((StringUtil.isEmpty(AdID)) || (AdID.equalsIgnoreCase("null"))) {
 			File f = new File(Config.getContextRealPath() + Config.getValue("UploadDir") + "/"
 					+ SiteUtil.getAlias(adp.getSiteID()) + "/" + adp.getJsName());
