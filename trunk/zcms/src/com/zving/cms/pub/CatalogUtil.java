@@ -1,67 +1,24 @@
+/*jadclipse*/// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+
 package com.zving.cms.pub;
 
 import com.zving.cms.dataservice.ColumnUtil;
-import com.zving.framework.data.DataRow;
-import com.zving.framework.data.DataTable;
-import com.zving.framework.data.QueryBuilder;
+import com.zving.framework.data.*;
 import com.zving.framework.utility.Mapx;
 import com.zving.framework.utility.StringUtil;
 import com.zving.platform.Application;
 import com.zving.platform.pub.NoUtil;
-import com.zving.schema.ZCCatalogConfigSchema;
-import com.zving.schema.ZCCatalogConfigSet;
-import com.zving.schema.ZCCatalogSchema;
+import com.zving.schema.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// Referenced classes of package com.zving.cms.pub:
+//            SiteUtil, PubFun
+
 public class CatalogUtil {
-	private static int CACHESIZE = 1000;
 
-	private static Mapx ID_NameMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_AliasMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_ParentMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_SiteIDMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_InnerCodeMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_CatalogTypeMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_GoodsTypeIDMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_ChildCountMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_TreeLevelMap = new Mapx(CACHESIZE);
-
-	private static Mapx InnerCode_NameMap = new Mapx(CACHESIZE);
-
-	private static Mapx InnerCode_IDMap = new Mapx(CACHESIZE);
-
-	private static Mapx InnerCode_SiteIDMap = new Mapx(CACHESIZE);
-
-	private static Mapx Alias_IDMap = new Mapx(CACHESIZE);
-
-	private static Mapx Names_IDMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_TemplateRuleMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_SingleFlagMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_WorkflowMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_PathMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_IDPathMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_AllowStatusMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_ArchiveTimeMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_HotWordFlagMap = new Mapx(CACHESIZE);
-
-	private static Mapx ID_AttachDownFlagMap = new Mapx(CACHESIZE);
+	public CatalogUtil() {
+	}
 
 	public static String getName(String catalogID) {
 		String name = ID_NameMap.getString(catalogID);
@@ -73,14 +30,14 @@ public class CatalogUtil {
 	}
 
 	public static String getName(long catalogID) {
-		return getName(catalogID);
+		return getName((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getNameByInnerCode(String catalogInnerCode) {
 		String name = InnerCode_NameMap.getString(catalogInnerCode);
 		if (name == null) {
-			String catalogID = new QueryBuilder("select id from zccatalog where innercode=?",
-					catalogInnerCode).executeString();
+			String catalogID = (new QueryBuilder("select id from zccatalog where innercode=?",
+					catalogInnerCode)).executeString();
 			update(catalogID);
 			name = InnerCode_NameMap.getString(catalogInnerCode);
 		}
@@ -92,61 +49,51 @@ public class CatalogUtil {
 	}
 
 	public static String getIDByNames(long siteID, String names) {
-		return getIDByNames(siteID, names);
+		return getIDByNames((new StringBuffer(String.valueOf(siteID))).toString(), names);
 	}
 
 	public static String getIDByNames(String siteID, String names) {
-		if (StringUtil.isEmpty(names)) {
+		if (StringUtil.isEmpty(names))
 			return null;
-		}
-		if (names.startsWith("/")) {
+		if (names.startsWith("/"))
 			names = names.substring(1);
-		}
-		if (names.endsWith("/")) {
+		if (names.endsWith("/"))
 			names = names.substring(0, names.length() - 1);
-		}
-		String[] catalogNames = names.split("/");
+		String catalogNames[] = names.split("/");
 		int catalogLenth = catalogNames.length;
 		String id = "";
-		if (catalogLenth > 0) {
-			if (StringUtil.isDigit(catalogNames[(catalogLenth - 1)])) {
-				id = catalogNames[(catalogLenth - 1)];
-			} else if (catalogLenth > 1) {
+		if (catalogLenth > 0)
+			if (StringUtil.isDigit(catalogNames[catalogLenth - 1]))
+				id = catalogNames[catalogLenth - 1];
+			else if (catalogLenth > 1) {
 				String catalogStr = StringUtil.join(catalogNames, "_");
 				id = getCatalogIDByNames(siteID, catalogStr);
 			} else {
 				id = getCatalogIDByNames(siteID, catalogNames[0]);
 			}
-		}
 		return id;
 	}
 
 	private static String getCatalogIDByNames(String siteID, String names) {
-		if (StringUtil.isEmpty(names)) {
+		if (StringUtil.isEmpty(names))
 			return null;
-		}
-
-		if (names.startsWith("_")) {
+		if (names.startsWith("_"))
 			names = names.substring(1);
-		}
-
-		if (names.endsWith("_")) {
+		if (names.endsWith("_"))
 			names = names.substring(0, names.length() - 1);
-		}
-
-		String[] catalogNames = names.split("_");
+		String catalogNames[] = names.split("_");
 		String catalogID = "";
 		if (catalogNames.length <= 0)
 			return null;
-		if (catalogNames.length == 1)
+		if (catalogNames.length == 1) {
 			if (StringUtil.isDigit(catalogNames[0])) {
 				catalogID = catalogNames[0];
 			} else {
 				String catalogStr = siteID + "_" + catalogNames[0];
 				catalogID = Names_IDMap.getString(catalogStr);
 			}
-		else if (catalogNames.length > 1) {
-			for (int i = 0; i < catalogNames.length; ++i) {
+		} else if (catalogNames.length > 1) {
+			for (int i = 0; i < catalogNames.length; i++) {
 				String catalogStr = "";
 				if (i == 0) {
 					if (StringUtil.isDigit(catalogNames[i])) {
@@ -160,8 +107,8 @@ public class CatalogUtil {
 					catalogID = Names_IDMap.getString(catalogStr);
 				}
 			}
-		}
 
+		}
 		return catalogID;
 	}
 
@@ -170,44 +117,38 @@ public class CatalogUtil {
 	}
 
 	public static String getIDsByName(long siteID, String names) {
-		return getIDsByName(siteID, names);
+		return getIDsByName((new StringBuffer(String.valueOf(siteID))).toString(), names);
 	}
 
 	public static String getIDsByName(String siteID, String names) {
-		if (StringUtil.isEmpty(names)) {
+		if (StringUtil.isEmpty(names))
 			return null;
-		}
-		if (names.startsWith(",")) {
+		if (names.startsWith(","))
 			names = names.substring(1);
-		}
-		if (names.endsWith(",")) {
+		if (names.endsWith(","))
 			names = names.substring(0, names.length() - 1);
-		}
-		String[] catalogNames = names.split(",");
+		String catalogNames[] = names.split(",");
 		int catalogLenth = catalogNames.length;
 		String id = "";
 		if (catalogLenth > 0) {
-			for (int i = 0; i < catalogLenth; ++i) {
+			for (int i = 0; i < catalogLenth; i++)
 				if (StringUtil.isDigit(catalogNames[i])) {
 					id = id + catalogNames[i] + ",";
 				} else {
 					String catalogStr = siteID + "_" + catalogNames[i];
 					String catalogid = Names_IDMap.getString(catalogStr);
 					if (StringUtil.isEmpty(catalogid)) {
-						catalogid = new QueryBuilder("select id from zccatalog where name='"
-								+ catalogNames[i] + "' and siteID=?", siteID).executeString();
+						catalogid = (new QueryBuilder("select id from zccatalog where name='"
+								+ catalogNames[i] + "' and siteID=?", siteID)).executeString();
 						update(catalogid);
 						catalogid = Names_IDMap.getString(catalogStr);
 					}
 					id = id + catalogid + ",";
 				}
-			}
-		}
 
-		if (StringUtil.isNotEmpty(id)) {
+		}
+		if (StringUtil.isNotEmpty(id))
 			id = id.substring(0, id.length() - 1);
-		}
-
 		return id;
 	}
 
@@ -216,7 +157,7 @@ public class CatalogUtil {
 	}
 
 	public static String getIDByName(long siteID, String catalogName) {
-		return getIDByName(String.valueOf(siteID), catalogName);
+		return getIDByName((new StringBuffer(String.valueOf(siteID))).toString(), catalogName);
 	}
 
 	public static String getIDByName(String siteID, String catalogName) {
@@ -226,12 +167,11 @@ public class CatalogUtil {
 		} else {
 			ID = Names_IDMap.getString(siteID + "_" + catalogName);
 			if (ID == null) {
-				String catalogID = new QueryBuilder(
-						"select id from zccatalog where name=? and siteID=?", catalogName, siteID)
+				String catalogID = (new QueryBuilder(
+						"select id from zccatalog where name=? and siteID=?", catalogName, siteID))
 						.executeString();
-				if (StringUtil.isEmpty(catalogID)) {
+				if (StringUtil.isEmpty(catalogID))
 					return null;
-				}
 				update(catalogID);
 				ID = catalogID;
 			}
@@ -240,15 +180,18 @@ public class CatalogUtil {
 	}
 
 	public static String getIDByName(long siteID, long parentID, String catalogName) {
-		return getIDByName(siteID, parentID, catalogName);
+		return getIDByName((new StringBuffer(String.valueOf(siteID))).toString(),
+				(new StringBuffer(String.valueOf(parentID))).toString(), catalogName);
 	}
 
 	public static String getIDByName(long siteID, String parentID, String catalogName) {
-		return getIDByName(siteID, parentID, catalogName);
+		return getIDByName((new StringBuffer(String.valueOf(siteID))).toString(), parentID,
+				catalogName);
 	}
 
 	public static String getIDByName(String siteID, long parentID, String catalogName) {
-		return getIDByName(siteID, parentID, catalogName);
+		return getIDByName(siteID, (new StringBuffer(String.valueOf(parentID))).toString(),
+				catalogName);
 	}
 
 	public static String getIDByName(String siteID, String parentID, String catalogName) {
@@ -258,12 +201,11 @@ public class CatalogUtil {
 		} else {
 			ID = Names_IDMap.getString(siteID + "_" + parentID + catalogName);
 			if (ID == null) {
-				String catalogID = new QueryBuilder(
+				String catalogID = (new QueryBuilder(
 						"select id from zccatalog where name=? and siteID=? and parentID='"
-								+ parentID + "'", catalogName, siteID).executeString();
-				if (StringUtil.isEmpty(catalogID)) {
+								+ parentID + "'", catalogName, siteID)).executeString();
+				if (StringUtil.isEmpty(catalogID))
 					return null;
-				}
 				update(catalogID);
 				ID = catalogID;
 			}
@@ -274,11 +216,10 @@ public class CatalogUtil {
 	public static String getIDByInnerCode(String catalogInnerCode) {
 		String ID = InnerCode_IDMap.getString(catalogInnerCode);
 		if (ID == null) {
-			String catalogID = new QueryBuilder("select id from zccatalog where innercode=?",
-					catalogInnerCode).executeString();
-			if (StringUtil.isEmpty(catalogID)) {
+			String catalogID = (new QueryBuilder("select id from zccatalog where innercode=?",
+					catalogInnerCode)).executeString();
+			if (StringUtil.isEmpty(catalogID))
 				return null;
-			}
 			update(catalogID);
 			ID = catalogID;
 		}
@@ -286,14 +227,15 @@ public class CatalogUtil {
 	}
 
 	public static String getPath(long catalogID) {
-		return getPath(String.valueOf(catalogID));
+		return getPath((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getPath(String catalogID) {
-		String path = ID_PathMap.getString(catalogID);
+		String path = ID_PathMap
+				.getString((new StringBuffer(String.valueOf(catalogID))).toString());
 		if (path == null) {
 			update(catalogID);
-			path = ID_PathMap.getString(catalogID);
+			path = ID_PathMap.getString((new StringBuffer(String.valueOf(catalogID))).toString());
 		}
 		return path;
 	}
@@ -312,13 +254,12 @@ public class CatalogUtil {
 	}
 
 	public static String getInnerCode(long catalogID) {
-		return getInnerCode(catalogID);
+		return getInnerCode((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getInnerCode(String catalogID) {
-		if (StringUtil.isEmpty(catalogID)) {
+		if (StringUtil.isEmpty(catalogID))
 			return null;
-		}
 		String innerCode = ID_InnerCodeMap.getString(catalogID);
 		if (innerCode == null) {
 			update(catalogID);
@@ -328,15 +269,14 @@ public class CatalogUtil {
 	}
 
 	public static long getCatalogType(long catalogID) {
-		return getCatalogType(catalogID);
+		return getCatalogType((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static long getCatalogType(String catalogID) {
-		if (StringUtil.isEmpty(catalogID)) {
+		if (StringUtil.isEmpty(catalogID))
 			return 0L;
-		}
 		long catalogType = ID_CatalogTypeMap.getLong(catalogID);
-		if (StringUtil.isEmpty(String.valueOf(catalogType))) {
+		if (StringUtil.isEmpty((new StringBuffer(String.valueOf(catalogType))).toString())) {
 			update(catalogID);
 			catalogType = ID_CatalogTypeMap.getLong(catalogID);
 		}
@@ -344,13 +284,12 @@ public class CatalogUtil {
 	}
 
 	public static String getSiteID(long catalogID) {
-		return getSiteID(catalogID);
+		return getSiteID((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getSiteID(String catalogID) {
-		if (StringUtil.isEmpty(catalogID)) {
+		if (StringUtil.isEmpty(catalogID))
 			return null;
-		}
 		String siteID = ID_SiteIDMap.getString(catalogID);
 		if (siteID == null) {
 			update(catalogID);
@@ -362,8 +301,8 @@ public class CatalogUtil {
 	public static String getSiteIDByInnerCode(String catalogInnerCode) {
 		String siteID = InnerCode_SiteIDMap.getString(catalogInnerCode);
 		if (siteID == null) {
-			String catalogID = new QueryBuilder("select id from zccatalog where innercode=?",
-					catalogInnerCode).executeString();
+			String catalogID = (new QueryBuilder("select id from zccatalog where innercode=?",
+					catalogInnerCode)).executeString();
 			update(catalogID);
 			siteID = InnerCode_SiteIDMap.getString(catalogInnerCode);
 		}
@@ -377,7 +316,7 @@ public class CatalogUtil {
 	}
 
 	public static String getAbsolutePath(long catalogID) {
-		return getAbsolutePath(catalogID);
+		return getAbsolutePath((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getAbsolutePath(String catalogID) {
@@ -390,7 +329,7 @@ public class CatalogUtil {
 	}
 
 	public static String getAbsoluteIDPath(long catalogID) {
-		return getAbsoluteIDPath(catalogID);
+		return getAbsoluteIDPath((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getAbsoluteIDPath(String catalogID) {
@@ -403,7 +342,7 @@ public class CatalogUtil {
 	}
 
 	public static String getAlias(long catalogID) {
-		return getAlias(catalogID);
+		return getAlias((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getAlias(String catalogID) {
@@ -418,7 +357,7 @@ public class CatalogUtil {
 	public static String getIDByAlias(String alias) {
 		String ID = Alias_IDMap.getString(alias);
 		if (ID == null) {
-			String catalogID = new QueryBuilder("select ID from zccatalog where alias=?", alias)
+			String catalogID = (new QueryBuilder("select ID from zccatalog where alias=?", alias))
 					.executeString();
 			update(catalogID);
 			ID = Alias_IDMap.getString(alias);
@@ -427,7 +366,7 @@ public class CatalogUtil {
 	}
 
 	public static String getGoodsTypeID(long catalogID) {
-		return getGoodsTypeID(catalogID);
+		return getGoodsTypeID((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getGoodsTypeID(String catalogID) {
@@ -440,7 +379,7 @@ public class CatalogUtil {
 	}
 
 	public static String getParentID(long catalogID) {
-		return getParentID(catalogID);
+		return getParentID((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getParentID(String catalogID) {
@@ -453,7 +392,7 @@ public class CatalogUtil {
 	}
 
 	public static String getChildCount(long catalogID) {
-		return getChildCount(catalogID);
+		return getChildCount((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getChildCount(String catalogID) {
@@ -466,9 +405,9 @@ public class CatalogUtil {
 	}
 
 	public static DataTable getCatalogOptions(long type) {
-		DataTable dt = new QueryBuilder(
+		DataTable dt = (new QueryBuilder(
 				"select Name,ID,TreeLevel,ParentID from ZCCatalog where SiteID = ? and Type = ? order by ID",
-				Application.getCurrentSiteID(), type).executeDataTable();
+				Application.getCurrentSiteID(), type)).executeDataTable();
 		PubFun.indentDataTable(dt, 0, 2, 0);
 		return dt;
 	}
@@ -479,14 +418,14 @@ public class CatalogUtil {
 
 	public static DataTable getList(int type, int firstLevel) {
 		String sql = "select Name,ID ,Level from ZCCatalog where Type=? and siteID =? order by InnerCode";
-		DataTable dt = new QueryBuilder(sql, type, Application.getCurrentSiteID())
+		DataTable dt = (new QueryBuilder(sql, type, Application.getCurrentSiteID()))
 				.executeDataTable();
 		PubFun.indentDataTable(dt, 0, 2, firstLevel);
 		return dt;
 	}
 
 	public static String getWorkflow(long catalogID) {
-		return getWorkflow(catalogID);
+		return getWorkflow((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getWorkflow(String catalogID) {
@@ -499,7 +438,7 @@ public class CatalogUtil {
 	}
 
 	public static String getAllowStatus(long catalogID) {
-		return getAllowStatus(String.valueOf(catalogID));
+		return getAllowStatus((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getAllowStatus(String catalogID) {
@@ -512,7 +451,7 @@ public class CatalogUtil {
 	}
 
 	public static String getAttachDownFlag(long catalogID) {
-		return getAttachDownFlag(catalogID);
+		return getAttachDownFlag((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getAttachDownFlag(String catalogID) {
@@ -525,7 +464,7 @@ public class CatalogUtil {
 	}
 
 	public static String getArchiveTime(long catalogID) {
-		return getArchiveTime(catalogID);
+		return getArchiveTime((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getArchiveTime(String catalogID) {
@@ -538,7 +477,7 @@ public class CatalogUtil {
 	}
 
 	public static String getTemplateRule(long catalogID) {
-		return getTemplateRule(catalogID);
+		return getTemplateRule((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getTemplateRule(String catalogID) {
@@ -551,7 +490,7 @@ public class CatalogUtil {
 	}
 
 	public static String getSingleFlag(long catalogID) {
-		return getSingleFlag(String.valueOf(catalogID));
+		return getSingleFlag((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getSingleFlag(String catalogID) {
@@ -564,15 +503,13 @@ public class CatalogUtil {
 	}
 
 	public static String getParentCatalogCode(String innerCode) {
-		if (innerCode == null) {
+		if (innerCode == null)
 			return "";
-		}
-		String[] arr = new String[innerCode.length() / 6];
+		String arr[] = new String[innerCode.length() / 6];
 		int i = 0;
-		while (innerCode.length() >= 6) {
-			arr[(i++)] = innerCode;
-			innerCode = innerCode.substring(0, innerCode.length() - 6);
-		}
+		for (; innerCode.length() >= 6; innerCode = innerCode.substring(0, innerCode.length() - 6))
+			arr[i++] = innerCode;
+
 		return "'" + StringUtil.join(arr, "','") + "'";
 	}
 
@@ -590,18 +527,17 @@ public class CatalogUtil {
 	}
 
 	public static int getLevel(String innerCode) {
-		if (innerCode == null) {
+		if (innerCode == null)
 			return 0;
-		}
 		int codeLength = innerCode.length();
-		if (codeLength < 1) {
+		if (codeLength < 1)
 			return 0;
-		}
-		return (codeLength / 6);
+		else
+			return codeLength / 6;
 	}
 
 	public static String getLevelStr(long catalogID) {
-		return getLevelStr(catalogID);
+		return getLevelStr((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static String getLevelStr(String catalogID) {
@@ -611,83 +547,66 @@ public class CatalogUtil {
 			Pattern p = Pattern.compile("\\$\\{CatalogPath\\}", 2);
 			Matcher matcher = p.matcher(detailTemplateNameRule);
 			int level = 0;
-			if (matcher.find()) {
+			if (matcher.find())
 				level = getTreeLevel(catalogID);
-			}
-
 			detailTemplateNameRule = matcher.replaceAll("");
 			detailTemplateNameRule = detailTemplateNameRule.replaceAll("///", "/");
 			detailTemplateNameRule = detailTemplateNameRule.replaceAll("//", "/");
-			if (detailTemplateNameRule.startsWith("/")) {
+			if (detailTemplateNameRule.startsWith("/"))
 				detailTemplateNameRule = detailTemplateNameRule.substring(1);
-			}
-
 			level += StringUtil.count(detailTemplateNameRule, "/");
-
-			for (int i = 0; i < level; ++i) {
+			for (int i = 0; i < level; i++)
 				levelString = levelString + "../";
-			}
+
 		}
 		return levelString;
 	}
 
 	public static String getLevelStr(int level) {
 		String levelString = "";
-		for (int i = 0; i < level; ++i) {
+		for (int i = 0; i < level; i++)
 			levelString = levelString + "../";
-		}
+
 		return levelString;
 	}
 
 	public static int getPathLevel(String fullPath, int startLevel) {
 		int level = 0;
-		if (StringUtil.isEmpty(fullPath)) {
+		if (StringUtil.isEmpty(fullPath))
 			return level;
-		}
-
 		Pattern p = Pattern.compile("\\$\\{CatalogPath\\}", 2);
 		Matcher matcher = p.matcher(fullPath);
-		if (!(matcher.find())) {
+		if (!matcher.find())
 			startLevel = 0;
-		}
 		fullPath = matcher.replaceAll("");
-
 		fullPath = fullPath.replaceAll("///", "/");
 		fullPath = fullPath.replaceAll("//", "/");
-		if (fullPath.startsWith("/")) {
+		if (fullPath.startsWith("/"))
 			fullPath = fullPath.substring(1);
-		}
-
 		level = StringUtil.count(fullPath, "/");
-
-		return (level + startLevel);
+		return level + startLevel;
 	}
 
 	private static String updatePath(String catalogID) {
 		String path = "";
 		String parentID = getParentID(catalogID);
-		if (StringUtil.isEmpty(parentID)) {
+		if (StringUtil.isEmpty(parentID))
 			return "";
-		}
-		path = getAlias(new StringBuffer(String.valueOf(catalogID)).toString()).toLowerCase() + "/";
-		if (!("0".equals(parentID))) {
+		path = getAlias((new StringBuffer(String.valueOf(catalogID))).toString()).toLowerCase()
+				+ "/";
+		if (!"0".equals(parentID))
 			path = updatePath(parentID) + path;
-		}
-
 		return path;
 	}
 
 	private static String getIDPath(String catalogID) {
 		String path = "";
 		String parentID = getParentID(catalogID);
-		if (StringUtil.isEmpty(parentID)) {
+		if (StringUtil.isEmpty(parentID))
 			return "";
-		}
 		path = catalogID + "/";
-		if (!("0".equals(parentID))) {
+		if (!"0".equals(parentID))
 			path = getIDPath(parentID) + path;
-		}
-
 		return path;
 	}
 
@@ -698,8 +617,9 @@ public class CatalogUtil {
 			DataRow dr = catalog.toDataRow();
 			ColumnUtil.extendCatalogColumnData(dr, catalog.getSiteID(), "");
 			return dr;
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 	public static String getHotWordFlag(String catalogID) {
@@ -712,13 +632,12 @@ public class CatalogUtil {
 	}
 
 	public static void update(long catalogID) {
-		update(catalogID);
+		update((new StringBuffer(String.valueOf(catalogID))).toString());
 	}
 
 	public static void update(String catalogID) {
-		if (StringUtil.isEmpty(catalogID)) {
+		if (StringUtil.isEmpty(catalogID))
 			return;
-		}
 		ID_NameMap.remove(catalogID);
 		ID_AliasMap.remove(catalogID);
 		ID_ParentMap.remove(catalogID);
@@ -742,10 +661,8 @@ public class CatalogUtil {
 		ID_ArchiveTimeMap.remove(catalogID);
 		ID_HotWordFlagMap.remove(catalogID);
 		ID_AttachDownFlagMap.remove(catalogID);
-
 		ZCCatalogSchema catalog = new ZCCatalogSchema();
 		catalog.setID(catalogID);
-
 		if (catalog.fill()) {
 			ID_NameMap.put(catalogID, catalog.getName());
 			ID_AliasMap.put(catalogID, catalog.getAlias());
@@ -765,26 +682,24 @@ public class CatalogUtil {
 			ID_SingleFlagMap.put(catalogID, catalog.getSingleFlag());
 			ID_TemplateRuleMap.put(catalogID, catalog.getDetailNameRule());
 			ID_WorkflowMap.put(catalogID, catalog.getWorkflow());
-
-			if (StringUtil.isEmpty(Names_IDMap.getString(catalogID))) {
-				Names_IDMap.put(catalog.getSiteID() + "_" + catalog.getName(), catalog.getID());
-			}
-
-			if ((StringUtil.isNotEmpty(ID_NameMap.getString(catalog.getParentID())))
-					&& (!("0".equalsIgnoreCase(String.valueOf(catalog.getParentID()))))) {
+			if (StringUtil.isEmpty(Names_IDMap.getString(catalogID)))
+				Names_IDMap.put(catalog.getSiteID() + "_" + catalog.getName(), (new StringBuffer(
+						String.valueOf(catalog.getID()))).toString());
+			if (StringUtil.isNotEmpty(ID_NameMap.getString((new StringBuffer(String.valueOf(catalog
+					.getParentID()))).toString()))
+					&& !"0".equalsIgnoreCase((new StringBuffer(String
+							.valueOf(catalog.getParentID()))).toString())) {
 				Names_IDMap.put(catalog.getSiteID()
 						+ "_"
-						+ ID_NameMap.getString(new StringBuffer(String.valueOf(catalog
-								.getParentID())).toString()) + "_" + catalog.getName(), catalogID);
+						+ ID_NameMap.getString((new StringBuffer(String.valueOf(catalog
+								.getParentID()))).toString()) + "_" + catalog.getName(), catalogID);
 				Names_IDMap.put(catalog.getSiteID() + "_" + catalog.getParentID() + "_"
 						+ catalog.getName(), catalogID);
 			}
-
 			ZCCatalogConfigSchema config = new ZCCatalogConfigSchema();
 			ZCCatalogConfigSet configSet = config.query(new QueryBuilder(" where CatalogID=?",
 					catalog.getID()));
-
-			if ((configSet != null) && (configSet.size() > 0)) {
+			if (configSet != null && configSet.size() > 0) {
 				config = configSet.get(0);
 				ID_AllowStatusMap.put(catalogID, config.getAllowStatus());
 				ID_ArchiveTimeMap.put(catalogID, config.getArchiveTime());
@@ -821,14 +736,72 @@ public class CatalogUtil {
 	}
 
 	public static String createCatalogInnerCode(String parentCode) {
-		if (StringUtil.isNotEmpty(parentCode)) {
+		if (StringUtil.isNotEmpty(parentCode))
 			return NoUtil.getMaxNo("CatalogInnerCode", parentCode, 6);
-		}
-		return NoUtil.getMaxNo("CatalogInnerCode", 6);
+		else
+			return NoUtil.getMaxNo("CatalogInnerCode", 6);
+	}
+
+	private static int CACHESIZE;
+	private static Mapx ID_NameMap;
+	private static Mapx ID_AliasMap;
+	private static Mapx ID_ParentMap;
+	private static Mapx ID_SiteIDMap;
+	private static Mapx ID_InnerCodeMap;
+	private static Mapx ID_CatalogTypeMap;
+	private static Mapx ID_GoodsTypeIDMap;
+	private static Mapx ID_ChildCountMap;
+	private static Mapx ID_TreeLevelMap;
+	private static Mapx InnerCode_NameMap;
+	private static Mapx InnerCode_IDMap;
+	private static Mapx InnerCode_SiteIDMap;
+	private static Mapx Alias_IDMap;
+	private static Mapx Names_IDMap;
+	private static Mapx ID_TemplateRuleMap;
+	private static Mapx ID_SingleFlagMap;
+	private static Mapx ID_WorkflowMap;
+	private static Mapx ID_PathMap;
+	private static Mapx ID_IDPathMap;
+	private static Mapx ID_AllowStatusMap;
+	private static Mapx ID_ArchiveTimeMap;
+	private static Mapx ID_HotWordFlagMap;
+	private static Mapx ID_AttachDownFlagMap;
+
+	static {
+		CACHESIZE = 1000;
+		ID_NameMap = new Mapx(CACHESIZE);
+		ID_AliasMap = new Mapx(CACHESIZE);
+		ID_ParentMap = new Mapx(CACHESIZE);
+		ID_SiteIDMap = new Mapx(CACHESIZE);
+		ID_InnerCodeMap = new Mapx(CACHESIZE);
+		ID_CatalogTypeMap = new Mapx(CACHESIZE);
+		ID_GoodsTypeIDMap = new Mapx(CACHESIZE);
+		ID_ChildCountMap = new Mapx(CACHESIZE);
+		ID_TreeLevelMap = new Mapx(CACHESIZE);
+		InnerCode_NameMap = new Mapx(CACHESIZE);
+		InnerCode_IDMap = new Mapx(CACHESIZE);
+		InnerCode_SiteIDMap = new Mapx(CACHESIZE);
+		Alias_IDMap = new Mapx(CACHESIZE);
+		Names_IDMap = new Mapx(CACHESIZE);
+		ID_TemplateRuleMap = new Mapx(CACHESIZE);
+		ID_SingleFlagMap = new Mapx(CACHESIZE);
+		ID_WorkflowMap = new Mapx(CACHESIZE);
+		ID_PathMap = new Mapx(CACHESIZE);
+		ID_IDPathMap = new Mapx(CACHESIZE);
+		ID_AllowStatusMap = new Mapx(CACHESIZE);
+		ID_ArchiveTimeMap = new Mapx(CACHESIZE);
+		ID_HotWordFlagMap = new Mapx(CACHESIZE);
+		ID_AttachDownFlagMap = new Mapx(CACHESIZE);
 	}
 }
 
+
 /*
- * Location: F:\JAVA\Tomcat5.5\webapps\zcms\WEB-INF\classes\ Qualified Name:
- * com.zving.cms.pub.CatalogUtil JD-Core Version: 0.5.3
- */
+	DECOMPILATION REPORT
+
+	Decompiled from: E:\xiacc\workspace\zcms\WebRoot\WEB-INF\lib\com.jar
+	Total time: 109 ms
+	Jad reported messages/errors:
+	Exit status: 0
+	Caught exceptions:
+*/
