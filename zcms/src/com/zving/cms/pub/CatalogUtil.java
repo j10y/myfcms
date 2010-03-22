@@ -216,7 +216,7 @@ public class CatalogUtil {
 	}
 
 	public static String getIDByName(long siteID, String catalogName) {
-		return getIDByName(siteID, catalogName);
+		return getIDByName(String.valueOf(siteID), catalogName);
 	}
 
 	public static String getIDByName(String siteID, String catalogName) {
@@ -499,7 +499,7 @@ public class CatalogUtil {
 	}
 
 	public static String getAllowStatus(long catalogID) {
-		return getAllowStatus(catalogID);
+		return getAllowStatus(String.valueOf(catalogID));
 	}
 
 	public static String getAllowStatus(String catalogID) {
@@ -551,7 +551,7 @@ public class CatalogUtil {
 	}
 
 	public static String getSingleFlag(long catalogID) {
-		return getSingleFlag(catalogID);
+		return getSingleFlag(String.valueOf(catalogID));
 	}
 
 	public static String getSingleFlag(String catalogID) {
