@@ -132,7 +132,7 @@ public class ColumnUtil {
 	}
 
 	public static void extendDocColumnData(DataTable dt, long catalogID) {
-		extendDocColumnData(dt, catalogID);
+		extendDocColumnData(dt, String.valueOf(catalogID));
 	}
 
 	public static void extendDocColumnData(DataTable dt, String catalogID) {
