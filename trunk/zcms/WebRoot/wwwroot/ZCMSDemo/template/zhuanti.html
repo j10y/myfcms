@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../images/style.css" rel="stylesheet" type="text/css" />
+<title>${Catalog.Name}</title>
+</head>
+<body>
+<div id="box">
+<div id="head">
+<img src="../images/logo.gif" class="logo" />
+<ul>
+<li><cms:link type="HomeURL">返回首页</cms:link></li>
+</ul>
+
+</div><!--end head-->
+<div id="top">
+<img src="../images/tu1.gif" class="tu1" />
+<div id="topright">
+<ul>
+  <cms:list item="Article" type="Recent" count="5" name="留学动态">
+    <li><a href="${Article.Link}" target="_blank">${Article.Title|CharWidth=11}</a></li>
+  </cms:list>
+</ul>
+</div><!--end topright-->
+</div><!--end top-->
+<div id="left">
+<div id="zuo">
+
+<cms:imageplayer code="ztIndex" type="0" width="242" height="206" count="5">{ZCMS:图片播放器}</cms:imageplayer>
+
+</div><!--end zuo-->
+<div id="you">
+<cms:list item="Article" type="Recent" count="6" begin=5 name="留学动态">
+<h2><a href="${Article.Link}" target="_blank">${Article.Title|CharWidth=20}</a></h2>
+<p class="p1">${Article.Summary}<a href="${Article.Link}" target="_blank">[详细]</a></p>
+</cms:list>
+<cms:list item="Article" type="Recent" count="7" begin=6 name="留学动态">
+<h2><a href="${Article.Link}" target="_blank">${Article.Title|CharWidth=20}</a></h2>
+<p class="p4">${Article.Summary}<a href="${Article.Link}" target="_blank">[详细]</a></p>
+</cms:list>
+</div><!--end you-->
+<div id="leftbottom">
+<img src="../images/tu3.gif"  class="tu3"/>
+<p class="p2">
+<cms:list item="Article" type="Recent" count="8" begin=7 name="留学动态">
+<a href="${Article.Link}" target="_blank">${Article.Summary}</a>
+</cms:list>
+</p>
+<cms:list item="Article" type="Recent" count="11" begin=8 name="留学动态">
+<p class="p3">
+<a href="${Article.Link}" target="_blank">${Article.Title|CharWidth=40}</a>
+</p>
+</cms:list>
+<div class="clear"></div>
+</div>
+<!--end leftbottom-->
+</div><!--end left-->
+<div id="right">
+<h4>欢迎参与调查</h4>
+
+<cms:vote name="你如何看待猪流感疫情在全球暴发？">{ZCMS:调查}</cms:vote>
+
+</div><!--end right-->
+<br style="clear:both" />
+<div id="search">
+<h3 class="title">海外移民</h3>
+<div class="more"><a href="<cms:link type="Catalog" name="海外移民"/>">>>更多</a></div>
+<p>
+<cms:list item="Article" type="Recent" count="1" name="海外移民">
+<a href="${Article.Link}" target="_blank">${Article.Summary}</a>
+</cms:list>
+</p>
+<div id="tu">
+<cms:list item="Article" type="Recent" count="2" begin="1" name="海外移民">
+<a href="${Article.Link}" target="_blank">
+	<img src="${Level}${Article.ImagePath}" width="137" height="122" style="padding-top:15px;padding-left:15px;"/></a>
+</cms:list>
+<cms:list item="Article" type="Recent" count="6" begin="2" name="海外移民">
+<a href="${Article.Link}" target="_blank">
+<img src="${Level}${Article.ImagePath}" width="137" height="122"/></a>
+</cms:list>
+</div><!--end tu-->
+</div><!--end search-->
+<div id="photo">
+<h3 class="title">留学考试</h3>
+<div class="more"><a href="<cms:link type="Catalog" name="留学考试"/>">>>更多</a></div>
+<cms:list item="Article" name="留学考试" count="6">
+<div class="ph">
+<a href="${Article.Link}" target="_blank"><img src="${Level}${Article.ImagePath}" width="122" height="92"/></a>
+<p><a href="${Article.Link}" target="_blank" class="origin" >${Article.ShortTitle}</a></p>
+</div><!--end ph-->
+</cms:list>
+</div><!--end photo-->
+<div id="bottomleft">
+<div id="new">
+<h3 class="title">海归就业</h3>
+<div class="more"><a href="<cms:link type="Catalog" name="海归就业"/>">>>更多</a></div>
+<ul>
+ <cms:list item="Article" type="Recent" count="7" name="海归就业">
+ <li><a href="${Article.Link}" target="_blank">${Article.Title|CharWidth=20}</a>&nbsp;${Article.PublishDate|Format=yyyy-MM-dd}</li>
+ </cms:list>
+</ul>
+</div><!--end new-->
+<div id="gls">
+<h3 class="title">海外趣闻</h3>
+<div class="more"><a href="<cms:link type="Catalog" name="海外趣闻"/>">>>更多</a></div>
+<ul>
+<cms:list item="Article" type="Recent" count="7" name="海外趣闻">
+<li><a href="${Article.Link}" target="_blank">${Article.Title|CharWidth=20}</a>&nbsp;${Article.PublishDate|Format=yyyy-MM-dd}</li>
+</cms:list>
+</ul>
+</div><!--end gls-->
+</div><!--end bittomleft-->
+<div id="data">
+<h3 class="title">出国人生</h3>
+<div class="more"><a href="<cms:link type="Catalog" name="出国人生"/>">>>更多</a></div>
+<ul>
+<cms:list item="Article" type="Recent" count="17" name="出国人生">
+<li><a href="${Article.Link}" target="_blank">${Article.Title|CharWidth=20}</a>&nbsp;${Article.PublishDate|Format=yyyy-MM-dd}</li>
+</cms:list>
+</ul>
+</div><!--end data -->
+<div id="data2">
+<h3 class="title">行业信息</h3>
+<div class="more"><a href="<cms:link type="Catalog" name="行业信息"/>">>>更多</a></div>
+<ul>
+<cms:list item="Article" count="17" name="行业信息">
+<li><a href="${Article.Link}" target="_blank">${Article.Title|CharWidth=10}</a></li>
+</cms:list>
+</ul>
+</div><!--end bottomright-->
+<div class="clear"></div>
+<div id="foot">
+<ul>
+<cms:list item="Catalog" name="科技服务">
+	<li><a href="${Catalog.Link}" target="_blank">${Catalog.Name}</a></li>
+</cms:list>
+</ul>
+</div><!--end foot-->
+<div id="footer">
+<p><a href="http://www.zving.com" target="_blank">泽元软件有限公司版权所     地址 ：北京市海淀区北京科技大学科技园D座311室    电话 ：010－52752668</a></p>
+<p><a href="http://www.zving.com" target="_blank">Copyright   2008 zving.com. All Rights Reserved</a></p>
+
+
+</div><!--end footer-->
+
+
+
+</div><!--end box-->
+</body>
+</html>
