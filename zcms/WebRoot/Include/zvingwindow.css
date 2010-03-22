@@ -1,0 +1,531 @@
+div.zvingwindow {
+	float: left;
+	position: absolute;
+}
+
+div.zvingwindow a {
+	outline: none;
+}
+
+div.zvingwindow table {
+	padding: 0;
+	margin: 0;
+	border: none; /*    width: 100%;
+    height: 100%;*/
+}
+
+div.zvingwindow div.min {
+	display: none;
+}
+
+div.zvingwindow table td {
+	padding: 0;
+	margin: 0;
+	border-collapse: collapse;
+	border: none;
+	vertical-align: top;
+	font-size: 1px;
+}
+
+.zvingwindow .corner,.zvingwindow .footercenter {
+	line-height: 1;
+}
+
+div.zvingwindow table td.titlebar {
+	-moz-user-select: none; /*cursor: move;*/
+}
+
+div.zvingwindow td.titlebar div.topresize {
+	font-size: 1px;
+	height: 4px !important;
+	line-height: 4px !important;
+	width: 100%;
+}
+
+div.zvingwindow td.statusbar input {
+	border: 0px;
+	background: trasparent;
+	background-repeat: no-repeat;
+	width: 100%;
+	cursor: default;
+	-moz-user-select: none;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
+	float: left;
+}
+
+div.zvingwindow td.statusbar div {
+	width: 18px;
+	height: 18px;
+}
+
+div.zvingwindow td.statusbar .loading {
+	padding-left: 30px;
+}
+
+div.zvingwindow td.statusbar span.statustext {
+	cursor: default;
+	-moz-user-select: none;
+}
+
+div.zvingwindow .nostatusbar tr.statusbarrow {
+	display: none;
+}
+
+div.zvingwindow table.titlebarcontrols ul.controlbuttons {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	white-space: nowrap;
+	float: right;
+}
+
+div.zvingwindow table.titlebarcontrols ul.controlbuttons li {
+	float: right;
+}
+
+div.zvingwindow table.titlebarcontrols ul.controlbuttons li a {
+	display: block;
+	text-decoration: none;
+}
+
+div.zvingwindow table.titlebarcontrol ul.controlbuttons li a span {
+	text-indent: -9999px;
+	display: block;
+}
+
+div.zvingwindow table.titlebarcontrols a.windowicon {
+	display: block;
+	margin-right: 3px;
+}
+
+div.zvingwindow table.titlebarcontrols em {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	float: left;
+}
+
+/*div.zvingwindow.minimizedwindow em
+{
+	overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}*/
+div.zvingwindow .minimizedwindow {
+	overflow: hidden;
+}
+
+div.zvingwindow div.iconmenu {
+	float: left;
+	position: absolute;
+	z-index: 56000000;
+}
+
+div.zvingwindow div.iconmenu a {
+	cursor: default;
+}
+
+/* inactive window settings */
+div.zvingwindow .inactivewindow,div.zvingwindow .inactivewindow {
+	filter: progid : DXImageTransform . Microsoft . Alpha(opacity = 70)
+		!important;
+	opacity: .7 !important;
+	-moz-opacity: .7 !important;
+}
+
+/*
+div.zvingwindow.maximizedwindow
+{
+	width: 100% !important; height: 100% !important;	
+}
+*/
+div.zvingwindow .inactivewindow table.titlebarcontrols {
+	position: static;
+}
+
+/* end of inactive window settings */ /* popup windows */
+.zvingwindow .windowpopup .zvingwindowbutton {
+	margin-top: 24px !important;
+}
+
+.zvingwindow .windowpopup .zvingwindowbutton span {
+	margin: 0 2px;
+}
+
+div.zvingwindow table.titlebarcontrols ul.controlbuttons li a {
+	text-indent: -9999px;
+}
+
+/* opera fix */
+html:first-child div.zvingwindow ul {
+	float: right;
+	border: solid 1px transparent;
+}
+
+.zvingwindow .dialogtext {
+	text-align: left;
+}
+
+div.zvingwindow .minimizedwindow .pinbutton,div.zvingwindow
+	.minimizedwindow .reloadbutton,div.zvingwindow .minimizedwindow .maximizebutton
+	{
+	display: none !important;
+}
+
+.zvingwindow .contentrow .windowcontent {
+	font-size: 12px;
+}
+
+/*修改下面的css获得不同的外观*/
+div.zvingwindow_Default table td.corner {
+	width: 12px; /*此处宽度应该与转角图片宽度一致*/
+	font-size: 1px;
+	line-height: 1px;
+}
+
+div.zvingwindow_Default table td.topleft {
+	height: 20px;
+	background: transparent url(../Framework/Images/dialog_topleft.png)
+		no-repeat right bottom;
+}
+
+div.zvingwindow_Default table td.titlebar {
+	background: transparent url(../Framework/Images/dialog_titlebar.png)
+		no-repeat right bottom;
+}
+
+div.zvingwindow_Default table td.topright {
+	height: 20px;
+	background: transparent url(../Framework/Images/dialog_topright.png)
+		no-repeat left bottom;
+}
+
+div.zvingwindow_Default table td.bodyleft {
+	background: transparent url(../Framework/Images/dialog_bodyleft.png)
+		no-repeat right top;
+}
+
+div.zvingwindow_Default .windowcontent {
+	height: 100%;
+	border-bottom: 0;
+	background: #fafafa;
+}
+
+div.zvingwindow_Default table td.bodyright {
+	background: transparent url(../Framework/Images/dialog_bodyright.png)
+		no-repeat left top;
+}
+
+div.zvingwindow_Default table td.footerleft {
+	height: 16px;
+	background: transparent url(../Framework/Images/dialog_footerleft.png)
+		no-repeat right top;
+}
+
+div.zvingwindow_Default table td.footercenter {
+	height: 16px;
+	background: transparent url(../Framework/Images/dialog_footercenter.png)
+		no-repeat left top;
+}
+
+div.zvingwindow_Default table td.footerright {
+	height: 16px;
+	background: transparent url(../Framework/Images/dialog_footerright.png)
+		no-repeat left top;
+}
+
+div.zvingwindow_Default td.statusbar {
+	height: 20px;
+	line-height: 18px;
+	background: #e4e4e4;
+}
+
+div.zvingwindow_Default td.statusbar td {
+	border-top: 1px solid #cecece;
+}
+
+div.zvingwindow_Default td.statusbar input {
+	background: #e4e4e4;
+	font: normal 12px arial, sans-serif;
+	padding-left: 4px;
+}
+
+div.zvingwindow_Default td.statusbar div {
+	background: url(../Framework/Images/statusbar.gif) no-repeat;
+}
+
+div.zvingwindow_Default td.statusbar .loading {
+	background-image: url(../Framework/Images/statusbar_loading.gif);
+}
+
+div.zvingwindow_Default td.statusbar span.statustext {
+	font: normal 11px Verdana, Arial, Sans-serif;
+	color: #000;
+}
+
+div.zvingwindow_Default td.statusbar input {
+	background-repeat: no-repeat;
+}
+
+div.zvingwindow_Default table.titlebarcontrols ul.controlbuttons {
+	padding: 0 2px 0 0 !important;
+}
+
+div.zvingwindow_Default table.titlebarcontrols ul.controlbuttons li a {
+	width: 25px;
+	height: 23px;
+	line-height: 23px;
+	font-size: 1px;
+	cursor: default;
+	margin: 3px 0 0 2px;
+}
+
+/* reload button */
+div.zvingwindow_Default a.reloadbutton {
+	background: transparent url(../Framework/Images/dialog_button.gif)
+		no-repeat -90px 0;
+}
+
+div.zvingwindow_Default a.reloadbutton:hover {
+	background-position: -90px -26px;
+}
+
+/* unpin button */
+div.zvingwindow_Default a.pinbutton {
+	background: transparent url(../Framework/Images/dialog_button.gif)
+		no-repeat -150px 0;
+}
+
+div.zvingwindow_Default a.pinbutton:hover {
+	background-position: -150px -26px;
+}
+
+/* pinbutton */
+div.zvingwindow_Default a.pinbutton .on {
+	background: transparent url(../Framework/Images/dialog_button.gif)
+		no-repeat -120px 0;
+}
+
+div.zvingwindow_Default a.pinbutton .on:hover {
+	background-position: -120px -26px;
+}
+
+/* minimize button */
+div.zvingwindow_Default a.minimizebutton {
+	background: transparent url(../Framework/Images/dialog_button.gif)
+		no-repeat -60px 0;
+}
+
+div.zvingwindow_Default a.minimizebutton:hover {
+	background-position: -60px -26px;
+}
+
+/* maximize button */
+div.zvingwindow_Default a.maximizebutton {
+	background: transparent url(../Framework/Images/dialog_button.gif)
+		no-repeat -30px 0;
+}
+
+div.zvingwindow_Default a.maximizebutton:hover {
+	background-position: -30px -26px;
+}
+
+/* close button */
+div.zvingwindow_Default a.closebutton {
+	background: transparent url(../Framework/Images/dialog_button.gif)
+		no-repeat -180px 0;
+}
+
+div.zvingwindow_Default a.closebutton:hover {
+	background: transparent url(../Framework/Images/dialog_button.gif)
+		no-repeat -180px -26px;
+}
+
+/* restore button */
+div.zvingwindow_Default .maximizedwindow a.maximizebutton,div.zvingwindow_Default
+	.minimizedwindow a.minimizebutton {
+	background: transparent url(../Framework/Images/dialog_button.gif) 0 0
+		!important;
+}
+
+div.zvingwindow_Default .maximizedwindow a.maximizebutton:hover,div.zvingwindow_Default
+	.minimizedwindow a.minimizebutton:hover {
+	background: transparent url(../Framework/Images/dialog_button.gif) 0
+		-26px !important;
+}
+
+div.zvingwindow_Default table.titlebarcontrols a.windowicon {
+	background: transparent url(../Framework/Images/dialog_windowicon.gif)
+		no-repeat;
+	width: 16px;
+	height: 16px;
+	cursor: default;
+	margin: 8px 0 0 3px;
+}
+
+div.zvingwindow_Default table.titlebarcontrols em {
+	font: normal normal 12px Verdana, sans-serif;
+	color: #777;
+	margin: 7px 0 0 2px;
+}
+
+div.zvingwindow_Default .minimizedwindow {
+	width: 160px !important;
+	height: 30px !important;
+	background: #4b4b4b;
+	border: solid 2px #232323;
+}
+
+div.zvingwindow_Default .minimizedwindow td {
+	background: none !important;
+}
+
+div.zvingwindow .zvingwindow_Default .minimizedwindow table.titlebarcontrols
+	{
+	width: 150px !important;
+	height: 40px !important;
+	margin-top: -3px;
+}
+
+div.zvingwindow .zvingwindow_Default .minimizedwindow table.titlebarcontrols ul
+	{
+	position: relative;
+	top: -3px;
+}
+
+div.zvingwindow_Default .minimizedwindow em {
+	color: white !important;
+	width: 75px !important;
+}
+
+div.zvingwindow_Default .minimizedwindow td.corner {
+	cursor: default;
+}
+
+div.zvingwindow_Default .minimizedwindow td.corner .topleft,div.zvingwindow_Default
+	.minimizedwindow td.corner .topright {
+	width: 10px !important;
+}
+
+div.zvingwindow_Default .minimizedwindow td.titlebar {
+	cursor: default;
+	background: #4b4b4b;
+}
+
+div.zvingwindow_Default .windowcontent .windowpopup {
+	margin: 16px;
+	font: normal 12px Verdana, sans-serif;
+	color: #666;
+	padding: 8px 0px 8px 50px;
+	vertical-align: middle;
+}
+
+div.zvingwindow_Default .windowcontent .windowpopup .zvingnormalwindow {
+	background: transparent url(../Framework/Images/dialog_titlebg.png)
+		no-repeat left top;
+	margin: 0;
+	padding: 10px;
+}
+
+div.zvingwindow_Default .windowcontent .windowpopup .zvingalert {
+	background: transparent url(../Framework/Images/icon_alert.gif)
+		no-repeat;
+}
+
+div.zvingwindow_Default .windowcontent .windowpopup .zvingprompt {
+	padding: 0;
+}
+
+div.zvingwindow_Default .windowcontent .windowpopup .zvingconfirm {
+	background: transparent url(../Framework/Images/icon_query.gif)
+		no-repeat 8px center;
+}
+
+div.zvingwindow_Default .windowcontent .dialogtext {
+	text-align: left;
+	color: #555;
+}
+
+div.zvingwindow_Default .windowcontent .windowpopup .zvingnormalwindow .dialogtext
+	{
+	padding: 0 0 0 40px;
+	background: transparent url(../Framework/Images/window.gif) no-repeat
+		left;
+}
+
+div.zvingwindow_Default .windowcontent .zvingwindowbutton {
+	text-align: center;
+	padding: 10px 0;
+}
+
+div.zvingwindow_Default .windowcontent input.dialoginput {
+	padding: 3px 4px 0 4px;
+	height: 17px;
+	width: 100%;
+	font: normal 11px Verdana, Arial, Sans-serif;
+	border: solid 1px black;
+	background: #d6d6d6;
+}
+
+div.zvingwindow_Default .windowcontent a,div.zvingwindow_Default .windowcontent a span
+	{
+	text-decoration: none;
+	color: black;
+	line-height: 14px;
+	cursor: default;
+}
+
+div.zvingwindow_Default .windowcontent .zvingwindowbutton {
+	margin: 0;
+	border: solid 1px #fff;
+	background: #f9f9f9;
+}
+
+div.zvingwindow_Default .windowcontent .zvingwindowbutton span.outerspan
+	{
+	padding: 0 6px 0 0;
+}
+
+div.zvingwindow_Default .windowcontent .zvingwindowbutton span.innerspan
+	{
+	padding: 0 6px;
+}
+
+div.zvingwindow_Default table td.titleshadow table {
+	width: 100%;
+}
+
+div.zvingwindow_Default table td.titleshadowleft,div.zvingwindow_Default table td.titleshadowright
+	{
+	height: 2px;
+	width: 9px;
+	font-size: 1px;
+	line-height: 1px;
+	background: transparent url(../Framework/Images/dialog_bodyleft2.png)
+		no-repeat right top;
+}
+
+div.zvingwindow_Default table td.titleshadowcenter {
+	font-size: 1px;
+	line-height: 1px;
+	background: transparent url(../Framework/Images/polychrome.png)
+		no-repeat left top;
+}
+
+div.zvingwindow_Default table td.titleshadowright {
+	background: transparent url(../Framework/Images/dialog_bodyright2.png)
+		no-repeat left top;
+}
+
+div.modaldialogbacgkround {
+	background: black;
+}
+
+/* set window transparency */
+div.zvingwindow .zvingwindow_Default .normalwindow .transparentwindow td.corner,div.zvingwindow
+	.zvingwindow_Default .normalwindow .transparentwindow td.titlebar,div.zvingwindow
+	.zvingwindow_Default .transparentwindow td.footercenter {
+	filter: progid : DXImageTransform . Microsoft . Alpha(opacity = 90);
+	opacity: 0.9;
+	-moz-opacity: 0.9;
+}

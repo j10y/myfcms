@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zas>
+  <params>
+    <var name="ServiceID">ZCMS</var>
+    <var name="Description">泽元内容管理系统</var>
+    <var name="Type">B/S</var>
+    <var name="TechType">J2EE</var>
+    <var name="Mode">Trust</var>
+    <var name="EncryptType">RSA</var>
+    <var name="WebServiceURL">http://localhost:8080/ZCMS/Services/wsdl/CmsService?wsdl</var>
+    <var name="EntranceURL">http://localhost:8080/ZCMS/Login.jsp</var>
+    <var name="ExitURL">http://localhost:8080/ZCMS/Logout.jsp</var>
+    <var name="Password">MIICETCCAXqgAwIBAgIGASVXv8LdMA0GCSqGSIb3DQEBBQUAMEwxDTALBgNVBAMMBFpDTVMxDDAK BgNVBAsMA1pBUzEOMAwGA1UECgwFWlZJTkcxEDAOBgNVBAcMB0JlaUppbmcxCzAJBgNVBAYTAkNO MB4XDTA5MTIwNDAzMzMyMloXDTE5MTIwMjAzMzMyMlowTDENMAsGA1UEAwwEWkNNUzEMMAoGA1UE CwwDWkFTMQ4wDAYDVQQKDAVaVklORzEQMA4GA1UEBwwHQmVpSmluZzELMAkGA1UEBhMCQ04wgZ8w DQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAI5p0Psv2YMn84Aqpqo10N+Yj/2n5vgaiyLLI/HbFFH8 DRaJM66KDefuYFJpkE/LBpidG3mCfjlcSdirbkbXZxy3kLq8sVjJ9XSP/2T1632HNyCJUHZEWwDK wzfRAJ4lqDKoQ0fjRHBZvGDEVchyCvJK8B6TkJNfSrzGCIzkz0ibAgMBAAEwDQYJKoZIhvcNAQEF BQADgYEAZmUWitGazM/FOFQ0bY6KuObXDk7U3B+hyO9hCTuG9RPyVCSO6rsCnuo7rPpSDwsaouQX 8FwLjlDreF69mZjEL3MVrP/5k57NqxjRlRohKeAXnZD2T3Wq/DdgD6t1b+LxFdmwzHzs0yPkgQKa m6swQYvEQyg4RLABssLvMbNVljY=</var>
+    <var name="ZASServerURL">http://localhost:8080/ZAS/</var>
+  </params>
+</zas>

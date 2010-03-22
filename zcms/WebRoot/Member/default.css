@@ -1,0 +1,84 @@
+/*reset: 重设外观 */
+body {background: #ffffff;color: #444;}
+a { color: #08c; text-decoration: none; border: 0; background-color: transparent; }
+a:hover { color: #f90; text-decoration: underline; }
+a:active{ color: #f70; outline:0;}
+body,div,q,iframe,form,
+ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,p{ margin: 0; padding: 0;}
+ul,dl,li{list-style: none;}
+img,fieldset{border: none 0;}
+body,td,textarea{word-break: break-all;word-wrap: break-word; line-height:1.5;}
+body,input,textarea,select,button{margin: 0; font-size: 12px;font-family: Tahoma, SimSun, sans-serif;}
+div,p,table,th,td{ font-size:1em; font-family:inherit; line-height:inherit;}
+em,i,u,q,s,dl,caption,abbr,dfn,var,cite,s,del,ins{ font-style: normal; font-weight: normal; text-decoration: none; }
+em,i{color:#669900}
+h1,h2,h3,h4,h5,h6{color:#FF8800}
+hr{ clear:both; margin:7px 0; +margin: 0;  border:0 none;font-size: 1px; line-height:1px;color: #ddd; background-color:#ddd; height: 1px;}
+
+q:before,q:after{content: ""; content: none;}
+q { quotes: "" ""; }
+h1 { font-size: 24px; font-family:"Microsoft YaHei", SIMHEI, sans-serif; font-weight: normal;}
+h2 { font-size: 20px; font-family:"Microsoft YaHei", SIMHEI, sans-serif; font-weight: normal;}
+h3 { font-size: 16px; font-family:"Microsoft YaHei", Arial, sans-serif; font-weight: bold;}
+h4 { font-size: 14px; font-family:"Microsoft YaHei", Arial, sans-serif; font-weight: bold;}
+h5 { font-size: 13px; font-family:"Microsoft YaHei", SIMSUN, sans-serif; font-weight: bold;}
+h6 { font-size: 12px; font-family:"Microsoft YaHei", SIMSUN, sans-serif;font-weight: bold;}
+option { padding-left:0.5em}
+caption {text-align:left;}
+
+p{margin-bottom:1.5em; text-indent:2em;text-align: justify; text-justify: inter-ideograph;}
+pre, code { font-family: monospace; word-wrap:break-word;}
+pre{background:#f6f6f6; border:#eee solid 1px; margin:1em 0.5em; padding:0.5em 1em;}
+textarea {padding: 0 0 0 2px; line-height:1.4;}
+
+/*end reset*/
+/*Bugfix: 一些bug的修正 */
+* html textarea,*+html textarea {overflow:auto; overflow-x: hidden; }/*使多行文本框不显示默认的竖向滚动条*/
+* html iframe, * html frame {overflow:auto; }/*使浮动窗口不显示默认的竖向滚动条*/
+* html input {overflow: hidden; }/*修正 按钮文字溢出 bug*/
+body ol li { display:list-item; } /*解决 浮动列表序号错误 bug*/
+/*end Bugfix*/
+
+/*Global:常用样式*/
+.clearfix{display: block; *display: inline-block; _height: 1%;}
+.clearfix:after { content: ".";  display: block; height: 0;  clear: both;  visibility: hidden; }
+.clearself{ overflow:hidden; _height:1%;}
+.clearself2{ display: table; *display: inline-block; _height: 1%; }
+
+.inline-block{
+    display:inline-block;/*ff2- ie7- 不支持 ie7-触发hasLayout*/
+    *zoom: 1;  
+    *display: inline;/*拥有hasLayout的inline效果与 display:inline-block 相似*/ 
+    vertical-align:middle; 
+    overflow:hidden;
+}
+
+.fl{ float:left; _display:inline;}
+.fr{ float:right; _display:inline;}
+
+.justify{ text-align: justify; text-justify: inter-ideograph;}
+table.collapse {border-collapse: collapse;border-spacing: 0;}
+
+table.dataTable { border-spacing: 0; border-collapse: collapse; border-width:1px; clear:both; margin:10px 0;}
+table.dataTable td,table.dataTable th {
+	padding: 2px 7px 2px 6px;
+	_padding: 1px 7px 0px 6px;
+}
+/*注意：因为盒模型不同，如果td加上高度的话，在ie下与ff下的显示高度会不一样*/
+
+/*end Global*/
+
+.loginForm{ border:5px solid #ddd; -moz-border-radius: 5px; -webkit-border-radius: 5px; height:255px; padding:15px;}
+.loginForm h4{ border-bottom:1px solid #ddd; padding-bottom:5px; margin-bottom:5px;}
+i{ color:#F60; font-family:'宋体'}
+form .btn{
+	background:url(./submit.gif) no-repeat left top;
+	border:none;
+	padding:4px 0;
+	width:69px;
+}
+.paraphrastic{ color:#999;}
+.tabs li{ text-indent:24px;}
+.tabs a{ display:block; line-height:24px; height:24px; overflow:hidden; border:1px solid #f9f9f9; border-width:1px 0; background-color:#f9f9f9}
+.tabs a:hover,.tabs li.current a{ background-color:#999; color:#fff; text-decoration:none; border-top-color:#666; border-bottom-color:#fff;}
+.shadowline{ background-color:#f9f9f9; border-top:1px dotted #ccc;}

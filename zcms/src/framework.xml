@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<framework>
+	<application>
+		<config name="DebugMode">false</config>
+		<config name="LogLevel">Debug</config>
+		<config name="LoginClass">com.zving.platform.Login</config>
+		<config name="LoginPage">Login.jsp</config>
+		<config name="MinimalMemory">true</config>
+		<config name="CodeSource">com.zving.platform.pub.PlatformCodeSource</config>
+		<config name="ExistPlatformDB">true</config>
+		<config name="PDM">Platform,ZCMS,WorkFlow</config>
+	</application>
+	<cron>
+		<config name="RefreshInterval">30000</config>
+		<taskManager class="com.zving.datachannel.WebCrawlTaskManager" />
+		<taskManager class="com.zving.cms.dataservice.FullTextTaskManager" />
+		<taskManager class="com.zving.cms.datachannel.PublishTaskManager" />
+		<task class="com.zving.framework.FrameworkTask" />
+		<task class="com.zving.cms.datachannel.DeployTask" />
+		<task class="com.zving.cms.datachannel.PublishTask" />
+		<task class="com.zving.cms.stat.StatUpdateTask" />
+		<task class="com.zving.cms.dataservice.ADUpdating" />
+		<task class="com.zving.cms.datachannel.ArticleArchiveTask" />
+		<task class="com.zving.cms.datachannel.ArticleCancelTopTask" />
+	</cron>
+	<databases>
+		<database name="Default">
+			<config name="Type">MYSQL</config>
+			<config name="ServerAddress">127.0.0.1</config>
+			<config name="Port">3306</config>
+			<config name="Name">zcms</config>
+			<config name="UserName">root</config>
+			<config name="Password">$KEYcVQezslP7TI=</config>
+			<config name="MaxConnCount">1000</config>
+			<config name="InitConnCount">0</config>
+			<config name="TestTable">ZDMaxNo</config>
+		</database>
+	</databases>
+</framework>
