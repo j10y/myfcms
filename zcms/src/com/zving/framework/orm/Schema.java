@@ -355,58 +355,63 @@ public abstract class Schema implements Serializable, Cloneable {
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		try {
-			DBConn conn = this.mDataAccess.getConnection();
+			DBConn conn = mDataAccess.getConnection();
 			pstmt = conn.prepareStatement(sql, 1003, 1007);
 			int i = 0;
-			for (int j = 0; i < this.Columns.length; ++i) {
-				SchemaColumn sc = this.Columns[i];
+			int j = 0;
+			for (; i < Columns.length; i++) {
+				SchemaColumn sc = Columns[i];
 				if (sc.isPrimaryKey()) {
 					Object v = getV(sc.getColumnOrder());
-					if (v == null) {
+					if (v == null)
 						throw new RuntimeException("不满足fill的条件，" + this.TableCode + "Schema的"
 								+ sc.getColumnName() + "为空");
-					}
-					if (this.Columns[i].getColumnType() == 0)
+					if (Columns[i].getColumnType() == 0)
 						pstmt.setTimestamp(j + 1, new Timestamp(((Date) v).getTime()));
-					else {
+					else
 						pstmt.setObject(j + 1, v);
-					}
-
-					++j;
+					j++;
 				}
 			}
+
 			rs = pstmt.executeQuery();
 			conn.setLastSuccessExecuteTime(System.currentTimeMillis());
 			if (rs.next()) {
-				if (bOperateFlag)
-					for (i = 0; i < operateColumnOrders.length; i++)
-						if (Columns[operateColumnOrders[i]].getColumnType() == 10) {
-							if (conn.getDBType().equals("ORACLE") || conn.getDBType().equals("DB2"))
-								setV(operateColumnOrders[i], LobUtil
-										.clobToString(rs.getClob(i + 1)));
+				if (this.bOperateFlag) {
+					for (i = 0; i < this.operateColumnOrders.length; ++i) {
+						if (this.Columns[this.operateColumnOrders[i]].getColumnType() == 10) {
+							if ((conn.getDBType().equals("ORACLE"))
+									|| (conn.getDBType().equals("DB2")))
+								setV(this.operateColumnOrders[i], LobUtil.clobToString(rs
+										.getClob(i + 1)));
 							else
-								setV(operateColumnOrders[i], rs.getObject(i + 1));
-						} else if (Columns[operateColumnOrders[i]].getColumnType() == 2)
-							setV(operateColumnOrders[i], LobUtil.blobToBytes(rs.getBlob(i + 1)));
+								setV(this.operateColumnOrders[i], rs.getObject(i + 1));
+						} else if (this.Columns[this.operateColumnOrders[i]].getColumnType() == 2)
+							setV(this.operateColumnOrders[i], LobUtil
+									.blobToBytes(rs.getBlob(i + 1)));
 						else
-							setV(operateColumnOrders[i], rs.getObject(i + 1));
-
-				else
-					for (i = 0; i < Columns.length; i++)
-						if (Columns[i].getColumnType() == 10) {
-							if (conn.getDBType().equals("ORACLE") || conn.getDBType().equals("DB2"))
+							setV(this.operateColumnOrders[i], rs.getObject(i + 1));
+					}
+				} else
+					for (i = 0; i < this.Columns.length; ++i)
+						if (this.Columns[i].getColumnType() == 10) {
+							if ((conn.getDBType().equals("ORACLE"))
+									|| (conn.getDBType().equals("DB2")))
 								setV(i, LobUtil.clobToString(rs.getClob(i + 1)));
 							else
 								setV(i, rs.getObject(i + 1));
-						} else if (Columns[i].getColumnType() == 2)
+						} else if (this.Columns[i].getColumnType() == 2)
 							setV(i, LobUtil.blobToBytes(rs.getBlob(i + 1)));
 						else
 							setV(i, rs.getObject(i + 1));
-
+				return true;
 			}
-			return true;
-		} catch (Exception e) {
 			return false;
+		} catch (Exception e) {
+			LogUtil.getLogger().warn(
+					"\u64CD\u4F5C\u8868" + TableCode + "\u65F6\u53D1\u751F\u9519\u8BEF!");
+			throw new RuntimeException(e);
+
 		} finally {
 			if (pstmt != null) {
 				try {
