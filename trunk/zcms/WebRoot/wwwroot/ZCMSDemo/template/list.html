@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${Site.Name}-${Catalog.Name}</title>
+<link href="../images/kj3.css" type="text/css" rel="stylesheet" />
+<link href="../images/kj2.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+<table width="960" border="0" cellspacing="0" cellpadding="0">
+  <cms:include file="include/head.html"></cms:include>
+  <tr>
+    <td>
+    <div id="twoContainer">
+        	<div class="twoContentHeader">
+            	<span class="twoTitle">${catalog.name}</span> <span class="twoPosition">您的位置：<cms:link type="CurrentPosition" spliter=">">{ZCMS:当前位置}</cms:link></span>
+            </div>
+            
+            <div class="twoContent">
+                <table width="948" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="638" valign="top">
+                  	<div class="twoRight" style="border:none;">
+                    	<div class="twoRightContent">
+                        	<ul>
+                            	<cms:list item="Article" type="Recent" pagesize="20" page="true">
+                                	<li><a href="${Article.Link}" target="_blank">${Article.Title|CharWidth=30}</a><span>[${Article.PublishDate|Format=MM年dd日}]</span></li>
+                              </cms:list>
+                            </ul>
+                        </div>
+                        <div class="page">
+                            	${pagebar}
+                        </div>
+                    </div>
+                  </td>
+                  <td valign="top" width="310">
+                  	<div class="threeContentRight" style="margin-top:18px; margin-left:0px; margin-bottom:18px;">
+                	<div class="threeTuijianHeader">
+                    	<h3>魅力科学</h3>
+                        <p style="width:280px;"><a href="<cms:link type='Catalog' name='魅力科学'/>">更多</a>>></p>
+                    </div>
+                    <div class="threeTuijianContent" style="width:269px;">
+                   	  <table width="268" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <cms:list item="Article" type="Recent" name="魅力科学" count="2">
+                                <td class="threeTuijianPic">
+                                    <a href="${Article.Link}" target="_blank"><img src="../${Article.ImagePath}" height="90" width="120"/></a><br />
+                                    <a href="${Article.Link}" target="_blank">${Article.Title|charwidth=10}</a>
+                                </td>
+                            </cms:list>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <ul>
+                                      <cms:list item="Article" type="Recent" count="5" begin=2 name="魅力科学">
+                                        <li><a href="${Article.Link}" target="_blank">${Article.Title|CharWidth=20}</a></li>
+                                      </cms:list>
+                                    </ul>
+            
+                                </td>
+                            </tr>
+                        </table>      	
+                  </div>
+                  
+                  <div class="threeXinzhiHeader" style="margin-top:15px;">
+                    	<h3>今日导读</h3>
+                        <p style="width:280px;"><a href="<cms:link type='Catalog' name='今日导读'/>">更多</a>>></p>
+                    </div>
+                    <div class="threeTuijianContent" style="width:269px;">
+                   	  <table width="268" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <cms:list item="Article"  name="今日导读" count="2">
+                                <td class="threeTuijianPic">
+                                    <a href="${Article.Link}" target="_blank"><img src="../${Article.ImagePath}" height="90" width="120"/></a><br />
+                                    <a href="${Article.Link}" target="_blank">${Article.Title|charwidth=10}</a>
+                                </td>
+                                </cms:list>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <ul>
+                                      <cms:list item="Article"  count="5" begin=2 name="今日导读">
+                                        <li><a href="${Article.Link}" target="_blank">${Article.Title|CharWidth=20}</a></li>
+                                      </cms:list>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>      	
+                  </div>
+                </div>
+                  </td>
+                </tr>
+              </table>
+            	
+        </div>
+        </div>
+    </td>
+  </tr>
+  <cms:include file="include/footer.html"></cms:include>
+</table>
+</body>
+</html>

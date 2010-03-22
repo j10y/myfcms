@@ -1,0 +1,212 @@
+function _isDate(str){
+	if(!str){
+		return false;
+	}
+	var arr = str.split("-");
+	if(arr.length!=3){
+		return false;
+	}
+	if(!_isNumber(arr[0])||!_isNumber(arr[1])||!_isNumber(arr[2])){
+		return false;
+	}
+	var date = new Date();
+	date.setFullYear(arr[0]);
+	date.setMonth(arr[1]);
+	date.setDate(arr[2]);
+	return date.toString().indexOf("Invalid")<0;
+}
+
+function _isTime(str){
+	if(!str){
+		return false;
+	}
+	var arr = str.split(":");
+	if(arr.length!=3){
+		return false;
+	}
+	if(!_isNumber(arr[0])||!_isNumber(arr[1])||!_isNumber(arr[2])){
+		return false;
+	}
+	var date = new Date();
+	date.setHours(arr[0]);
+	date.setMinutes(arr[1]);
+	date.setSeconds(arr[2]);
+	return date.toString().indexOf("Invalid")<0;
+}
+
+function _isDateTime(str){
+	if(!str){
+		return false;
+	}
+	if(str.indexOf(" ")<0){
+		return _isDate(str);
+	}
+	var arr = str.split(" ");
+	if(arr.length<2){
+		return false;
+	}
+	return _isDate(arr[0])&&_isTime(arr[1]);
+}
+
+function _isInt(str){
+	if(!str){
+		return false;
+	}
+	return /^\-?\d+$/.test(str);
+}
+
+function _isNumber(str){
+	if(!str){
+		return false;
+	}
+	for(var i=0;i<str.length;i++){
+		var chr = str.charAt(i);
+		if(chr!="."&&chr!="E"&&isNaN(parseInt(chr))){
+			return false;
+		}
+	}
+	return true;
+}
+
+function _isEmail(str){
+	if(!str){
+		return false;
+	}
+	var pattern = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+	if(str.match(pattern)==null){
+		return false;
+	}
+	return true;
+}
+
+var _VerifyRules = [];
+function _addVerifyRule(id,name,rule){
+	_VerifyRules.push([id,name,rule]);
+}
+
+function _verify(evt,ele){
+	if(!ele){
+		evt = evt?evt:window.event;
+		if(!evt.srcElement){
+			var node = evt.target;
+	    while(node&&node.nodeType!=1)node=node.parentNode;
+	    ele =  node;	
+		}else{
+			ele = evt.srcElement;
+		}		
+	}
+	var id = ele.id;
+	var v = ele.value;
+	var flag = true;
+	for(var i=0;i<_VerifyRules.length;i++){
+		var arr = _VerifyRules[i];
+		if(id==arr[0]){
+			var rule = arr[2];
+			var name=  arr[1];
+			var rs = rule.split("\&\&");
+			var eleFlag = true;
+			for(var j=0;j<rs.length;j++){
+				if(rs[j]=='NotNull'&&!v){
+					eleFlag  = false;
+					_setTip(ele,name+'不能为空!');
+				}
+				if(v&&rs[j]=='Number'&&!_isNumber(v)){
+					eleFlag  = false;
+					_setTip(ele,name+'不是正确的数字!');
+				}
+				if(v&&rs[j]=='Int'&&!_isInt(v)){
+					eleFlag  = false;
+					_setTip(ele,name+'不是正确的整数!');
+				}
+				if(v&&rs[j]=='Email'&&!_isEmail(v)){
+					eleFlag  = false;
+					_setTip(ele,name+'不是正确的邮箱!');
+				}
+				if(v&&rs[j]=='Date'&&!_isDate(v)){
+					eleFlag  = false;
+					_setTip(ele,name+'不是正确的日期!');
+				}
+				if(v&&rs[j]=='DateTime'&&!_isDateTime(v)){
+					eleFlag  = false;
+					_setTip(ele,name+'不是正确的日期时间!');
+				}
+				if(v&&rs[j]=='Time'&&!_isTime(v)){
+					eleFlag  = false;
+					_setTip(ele,name+'不是正确的时间!');
+				}
+			}			
+			if(!eleFlag){
+				flag = false;
+			}else{
+				_setTip(ele,'');
+			}
+		}
+	}
+	return flag;
+}
+
+function _setTip(ele,message){
+	var id = ele.id+"_Tip";
+	var tip = document.getElementById(id);
+	if(tip){
+		tip.innerHTML = message;
+	}else{
+		message = " <span id='"+id+"' class='formTip'>"+message+"</span>";
+		if(ele.insertAdjacentHTML){
+			ele.insertAdjacentHTML("afterEnd",message);
+		}else{
+			var r = ele.ownerDocument.createRange();
+			r.setStartBefore(ele);
+			var node = r.createContextualFragment(message);
+			 if(ele.nextSibling){
+		      ele.parentNode.insertBefore(node,ele.nextSibling);
+		    }else{
+		      ele.parentNode.appendChild(node);
+		    }
+		}
+	}
+}
+
+function _onFormSubmit(f){
+	var eles = f.elements;
+	var flag = true;
+	for(var i=0;i<eles.length;i++){
+		if(!_verify(null,eles[i])){
+			flag = false;
+		}
+	}
+	if(!flag){
+		alert("填写有错误，请根据提示检查!");
+		return false;
+	}
+	return true;
+}
+
+function _onWindowLoad(){
+	for(var i=0;i<_VerifyRules.length;i++){
+		var arr = _VerifyRules[i];
+		var id = arr[0];
+		var ele = document.getElementById(id);
+		var rule = arr[2];
+		if(ele.attachEvent){
+			ele.attachEvent("onfocus",_verify);
+			ele.attachEvent("onkeyup",_verify);
+			ele.attachEvent("onchange",_verify);
+			ele.attachEvent("onblur",_verify);
+		}else{
+			ele.addEventListener('focus',_verify,false);
+			ele.addEventListener('keyup',_verify,false);
+			ele.addEventListener('change',_verify,false);
+			ele.addEventListener('blur',_verify,false);
+		}
+		if(rule.indexOf('NotNull')>=0){
+			_setTip(ele,"<font color='red'>*</font>");
+		}
+	}
+}
+
+if(document.attachEvent){
+	window.attachEvent('onload',_onWindowLoad);
+}else{
+	window.addEventListener('load',_onWindowLoad,false);
+}

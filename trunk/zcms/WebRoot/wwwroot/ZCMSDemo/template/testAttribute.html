@@ -1,0 +1,3 @@
+ <cms:list item="Article" type="Recent" hasAttribute=" hot,image " count="5" name="科学在线">
+ 	<a href="${Article.Link}" target="_blank">${Article.Title}<% if(article.getString("attribute").indexOf("image")!=-1){ write(" 图");}%></a> <br>
+</cms:list>

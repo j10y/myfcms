@@ -1,0 +1,9 @@
+<cms:list item="Catalog" parent="9098">
+    	<div class="item"><a href="javascript:void(0)" class="title" name="${Catalog.ID}"></a>
+      			<ul id="opt_${Catalog.ID}" class="optiton">
+	  	  		<cms:sublist item="Article" count=5>
+			  		<li><a href="${Article.Link}" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${Article.Title|CharWidth=20}</a></li>
+		  		</cms:sublist>
+			  	</ul>
+			</div>
+</cms:list>

@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>HTML CleanUp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta content="noindex, nofollow" name="robots">
+<script type="text/javascript">
+var oEditor = window.parent.InnerDialogLoaded() ;
+
+window.onload = function ()
+{
+	window.parent.SetOkButton(true) ;	
+}
+
+function Ok()
+{
+	 cleanHTML();
+	 return true ;
+}
+
+function cleanHTML()
+{
+	oEditor.FCKUndo.SaveUndoStep() ;
+	var arr_info = new Array();
+	arr_info["cleanWord"]=document.form1.cleanWord.checked;
+	arr_info["cleanSpanTags"]=document.form1.cleanSpanTags.checked;
+	arr_info["cleanClassAttributes"]=document.form1.cleanClassAttributes.checked;
+	arr_info["cleanStyleAttributes"]=document.form1.cleanStyleAttributes.checked;
+	arr_info["cleanDivs"]=document.form1.cleanDivs.checked;
+	arr_info["cleanFontTags"]=document.form1.cleanFontTags.checked;
+	arr_info["cleanFaceAttributes"]=document.form1.cleanFaceAttributes.checked;
+	arr_info["cleanAnchors"]=document.form1.cleanAnchors.checked;
+
+	if(arr_info!=null)
+	{
+		var cleanWord = arr_info["cleanWord"];
+		var cleanSpanTags = arr_info["cleanSpanTags"];
+		var cleanClassAttributes = arr_info["cleanClassAttributes"];
+		var cleanStyleAttributes = arr_info["cleanStyleAttributes"];
+		var cleanDivs = arr_info["cleanDivs"];
+		var cleanFontTags = arr_info["cleanFontTags"];
+		var cleanFaceAttributes = arr_info["cleanFaceAttributes"];
+		var cleanAnchors = arr_info["cleanAnchors"];
+
+
+		var eles = oEditor.FCK.EditorDocument.body.getElementsByTagName( '*' )
+     
+		for (var index = 0; index < eles.length; index++)
+		{
+			tag =  eles[index];
+			if (cleanClassAttributes)
+				{
+				tag.removeAttribute("className","",0);
+				tag.removeAttribute("class","",0);
+				}
+			if (cleanStyleAttributes)
+				{
+				tag.removeAttribute("style","",0);
+				}
+			if (cleanFaceAttributes)
+				{
+				tag.removeAttribute("face","",0);
+				}
+		}
+		
+		var allHTML = oEditor.FCK.GetXHTML(false).replace(/\s/g, "  ");
+
+		if(cleanWord)
+		{
+			allHTML = allHTML.replace(/<o:p>&nbsp;<\/o:p>/gi, "");
+			allHTML = allHTML.replace(/<o:.*?>/gi, "");
+			allHTML = allHTML.replace(/<v:.*?>/gi, "");
+			allHTML = allHTML.replace(/<w:.*?>/gi, "");
+			allHTML = allHTML.replace(/<st1:.*?>/g, "");
+		}
+
+		if(cleanSpanTags)
+		{
+			allHTML = allHTML.replace(/<span.*?>/gi, "");
+			allHTML = allHTML.replace(/<\/span>/gi, "");
+		}
+
+		if(cleanDivs)
+		{
+			allHTML = allHTML.replace(/<div.*?>/gi, "");
+			allHTML = allHTML.replace(/<\/div>/gi, "");
+		}
+
+		if(cleanFontTags)
+		{
+			allHTML = allHTML.replace(/<font.*?>/gi, "");
+			allHTML = allHTML.replace(/<\/font>/gi, "");
+		}
+
+		if(cleanAnchors)
+		{
+			allHTML = allHTML.replace(/<a.*?>/gi, "");
+			allHTML = allHTML.replace(/<\/a>/gi, "");
+		}
+ 
+    oEditor.FCK.EditorDocument.body.innerHTML= allHTML;
+	}
+	oEditor.FCKUndo.SaveUndoStep() ;
+}
+		</script>
+</head>
+<body>
+
+<fieldset style="margin-left:5;margin-top:5;height:145pt">
+<form name="form1">
+<table border="0" cellpadding="0" width="182" height="35">
+	<tr>
+		<td class="coolButton" align="right" valign="middle" width="20">
+		<input type="checkbox" name="cleanWord" checked></td>
+		<td class="coolButton" align="left" valign="middle" width="160">
+		清除所有Word标记</td>
+	</tr>
+	<tr>
+		<td class="coolButton" align="right" valign="middle" width="20">
+		<input type="checkbox" name="cleanSpanTags" checked></td>
+		<td class="coolButton" align="left" valign="middle" width="160">
+		清除所有SPAN标记</td>
+	</tr>
+	<tr>
+		<td class="coolButton" align="right" valign="middle" width="20">
+		<input type="checkbox" name="cleanClassAttributes" checked></td>
+		<td class="coolButton" align="left" valign="middle" width="160">
+		清除class=属性</td>
+	</tr>
+	<tr>
+		<td class="coolButton" align="right" valign="middle" width="20">
+		<input type="checkbox" name="cleanStyleAttributes" checked></td>
+		<td class="coolButton" align="left" valign="middle" width="160">
+		清除STYLE=属性</td>
+	</tr>
+	<tr>
+		<td class="coolButton" align="right" valign="middle" width="20">
+		<input type="checkbox" name="cleanDivs" checked></td>
+		<td class="coolButton" align="left" valign="middle" width="160">
+		清除DIV标记，包括定位属性</td>
+	</tr>
+	<tr>
+		<td class="coolButton" align="right" valign="middle" width="20">
+		<input type="checkbox" name="cleanFontTags" checked></td>
+		<td class="coolButton" align="left" valign="middle" width="160">
+		清除所有FONT标记</td>
+	</tr>
+	<tr>
+		<td class="coolButton" align="right" valign="middle" width="20">
+		<input type="checkbox" name="cleanFaceAttributes" checked></td>
+		<td class="coolButton" align="left" valign="middle" width="160">
+		清除FACE=属性</td>
+	</tr>
+	<tr>
+		<td class="coolButton" align="right" valign="middle" width="20">
+		<input type="checkbox" name="cleanAnchors"></td>
+		<td class="coolButton" align="left" valign="middle" width="160">
+		清除所有连接及命名锚点</td>
+	</tr>
+</table>
+</form>
+</fieldset>
+</body>
+
+</html>

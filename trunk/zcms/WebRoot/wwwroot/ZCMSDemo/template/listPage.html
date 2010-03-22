@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${catalog.name}</title>
+<link href="../images/kj2.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+<table width="960" border="0" cellspacing="0" cellpadding="0">
+
+  <cms:include file="include/head.html"></cms:include>
+
+  <tr>
+    <td>
+    <div id="twoContainer">
+        	<div class="twoContentHeader">
+            	<span class="twoTitle">${catalog.name}</span> <span class="twoPosition">您的位置&nbsp;&nbsp;&nbsp;&nbsp;
+            		<cms:link type="CurrentPosition" spliter=">">{ZCMS:当前位置}</cms:link>
+</span>
+            </div>
+            
+            <div class="twoContent">
+                <table width="948" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="474" valign="top">
+                  	<div class="twoLeft">
+                    	<cms:list item="Article" type="Recent" count="8">
+                        <div class="twoLeftContent">
+                            <a href="${Article.Link}" target="_blank"><img src="${Level}${Article.ImagePath}" height="90" width="120"/></a>
+                            <h3><a href="${Article.Link}" target="_blank">
+                            ${Article.Title|charwidth=17}
+                            </a></h3>
+                         <p><a href="${Article.Link}" target="_blank">${Article.Summary}</a></p>
+                        </div>
+                        </cms:list>
+                    </div>
+                  </td>
+                  <td valign="top" width="474">
+                  	<div class="twoRight">
+                    	<div class="twoRightContent">
+                        	<ul>
+                              <cms:list item="Article" type="Recent" count="16" begin="8">
+                                <li><a href="${Article.Link}" target="_blank">${Article.Title|CharWidth=20}</a><span>[${Article.PublishDate|Format=MM年dd日}]</span></li>
+                              </cms:list>
+                            </ul>
+
+                        </div>
+                        
+                        <div class="twoRightContent">
+                        	<ul>
+                            	<cms:list item="Article" type="Recent" count="24" begin="16">
+                                <li><a href="${Article.Link}" target="_blank">${Article.Title|CharWidth=20}</a><span>[${Article.PublishDate|Format=MM年dd日}]</span></li>
+                              </cms:list>
+                            </ul>
+                        </div>
+                        
+                        <div class="twoRightContent">
+                        	<ul>
+                            	<cms:list item="Article" type="Recent" count="32" begin="24">
+                                <li><a href="${Article.Link}" target="_blank">${Article.Title|CharWidth=20}</a><span>[${Article.PublishDate|Format=MM年dd日}]</span></li>
+                              </cms:list>
+                            </ul>
+                        </div>
+                        
+                        <div class="twoRightContent" id="rightlast">
+                        	<ul>
+                            	<cms:list item="Article" type="Recent" count="40" begin="32">
+                                <li><a href="${Article.Link}" target="_blank">${Article.Title|CharWidth=20}</a><span>[${Article.PublishDate|Format=MM年dd日}]</span></li>
+                              </cms:list>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            	
+        </div>
+        </div>
+    </td>
+  </tr>
+  
+  <cms:include file="include/footer.html"></cms:include>
+
+</table>
+</body>
+</html>
