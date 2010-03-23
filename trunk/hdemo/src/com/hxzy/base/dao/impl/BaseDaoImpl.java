@@ -139,7 +139,8 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 	public List<T> findByCriteria(final DetachedCriteria detachedCriteria) {
 		return (List<T>) getHibernateTemplate().execute(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException {
-				Criteria criteria = detachedCriteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+				Criteria criteria = detachedCriteria
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 				.getExecutableCriteria(session);
 				List list = criteria.list();
 				return transformResults(list);
@@ -237,7 +238,8 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 		return (Pagination) getHibernateTemplate().execute(new HibernateCallback() {
 			@SuppressWarnings("unchecked")
 			public Object doInHibernate(Session session) throws HibernateException {
-				Criteria criteria = detachedCriteria.getExecutableCriteria(session);
+				Criteria criteria = detachedCriteria				
+				.getExecutableCriteria(session);
 				int totalCount = ((Integer) criteria.setProjection(Projections.rowCount())
 						.uniqueResult()).intValue();
 				criteria.setProjection(null);
@@ -249,8 +251,11 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 					return p;
 				}
 
-				List items = criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).setFirstResult(p.getFirstResult())
-				.setMaxResults(p.getPageSize()).list();
+				List items = criteria
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+				.setFirstResult(p.getFirstResult())
+				.setMaxResults(p.getPageSize())
+				.list();
 				items = transformResults(items);
 
 				p.setList(items);
