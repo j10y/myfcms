@@ -236,7 +236,7 @@
 		class="com.hxzy.base.web.controller.login.LogoutController"
 		parent="baseControllerTemplate">
 		<property name="needAuthentication">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="needAuthorization">
 			<value>false</value>
@@ -283,10 +283,10 @@
 			<value>user</value>
 		</property>
 		<property name="needAuthentication">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="needAuthorization">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="userService">
 			<ref bean="userService" />
@@ -303,10 +303,10 @@
 			<value>user</value>
 		</property>
 		<property name="needAuthentication">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="needAuthorization">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="commandClass">
 			<value>
@@ -334,10 +334,10 @@
 			<value>role</value>
 		</property>
 		<property name="needAuthentication">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="needAuthorization">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="roleService">
 			<ref bean="roleService" />
@@ -362,10 +362,10 @@
 			<ref bean="beanValidator" />
 		</property>
 		<property name="needAuthentication">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="needAuthorization">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="roleService">
 			<ref bean="roleService" />
@@ -379,10 +379,10 @@
 			<value>role</value>
 		</property>
 		<property name="needAuthentication">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="needAuthorization">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="roleService">
 			<ref bean="roleService" />
@@ -404,10 +404,10 @@
 			<value>user</value>
 		</property>
 		<property name="needAuthentication">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="needAuthorization">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="roleService">
 			<ref bean="roleService" />
@@ -432,10 +432,10 @@
 			<value>role</value>
 		</property>
 		<property name="needAuthentication">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="needAuthorization">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="roleService">
 			<ref bean="roleService" />
@@ -455,10 +455,10 @@
 			<value>com.hxzy.common.user.web.controller.RoleUserForm</value>
 		</property>
 		<property name="needAuthentication">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="needAuthorization">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="userService">
 			<ref bean="userService" />
@@ -475,10 +475,10 @@
 			<value>privilege</value>
 		</property>
 		<property name="needAuthentication">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="needAuthorization">
-			<value>false</value>
+			<value>true</value>
 		</property>
 		<property name="privilegeService">
 			<ref bean="privilegeService" />
