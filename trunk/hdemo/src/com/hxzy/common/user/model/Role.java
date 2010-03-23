@@ -39,7 +39,7 @@ public class Role implements Serializable {
 	/**
 	 * 描述：角色所拥有的权限
 	 */
-	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.EAGER)   
+	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.LAZY)   
 	@JoinTable(name="role_privilege",joinColumns={@JoinColumn(name="role_id")},
 			inverseJoinColumns={@JoinColumn(name="privilege_id")})
 	private Set<Privilege> privileges;
@@ -47,7 +47,7 @@ public class Role implements Serializable {
 	/**
 	 * 描述：拥有该角色的所有的用户
 	 */
-	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.EAGER)   
+	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.LAZY)   
 	@JoinTable(name="user_role",joinColumns={@JoinColumn(name="role_id")},
 			inverseJoinColumns={@JoinColumn(name="user_id")})
 	private Set<User> baseUsers;
