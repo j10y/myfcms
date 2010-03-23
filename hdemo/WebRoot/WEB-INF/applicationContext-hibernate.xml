@@ -13,7 +13,14 @@
     </property>
   </bean>
 
-  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+  <bean id="dataSource" class="com.p6spy.engine.spy.P6DataSource" destroy-method="close">             
+        <constructor-arg>             
+            <ref local="dataSourceTarget"/>             
+        </constructor-arg>             
+    </bean>   
+
+
+  <bean id="dataSourceTarget" class="org.apache.commons.dbcp.BasicDataSource">
     <property name="driverClassName">
       <value>com.mysql.jdbc.Driver</value>
     </property>
