@@ -18,7 +18,11 @@
 	</listener>
 	<filter> 
 	<filter-name>hibernateFilter</filter-name> 
-	<filter-class> org.springframework.orm.hibernate3.support.OpenSessionInViewFilter  </filter-class> 
+	<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+		<init-param>
+		<param-name>flushMode</param-name>
+		<param-value>AUTO</param-value>	
+		</init-param>
 	</filter >
 	<filter-mapping> 
 	<filter-name>hibernateFilter</filter-name> 
