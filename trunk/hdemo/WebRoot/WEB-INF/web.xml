@@ -16,6 +16,14 @@
 			com.hxzy.base.web.listener.ApplicationHttpSessionListener
 		</listener-class>
 	</listener>
+	<filter> 
+	<filter-name>hibernateFilter</filter-name> 
+	<filter-class> org.springframework.orm.hibernate3.support.OpenSessionInViewFilter  </filter-class> 
+	</filter >
+	<filter-mapping> 
+	<filter-name>hibernateFilter</filter-name> 
+	<url-pattern>*.do</url-pattern> 
+	</filter-mapping> 
 	<servlet>
 		<servlet-name>applicationInitializationServlet</servlet-name>
 		<servlet-class>
