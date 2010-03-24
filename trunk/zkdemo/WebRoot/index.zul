@@ -1,0 +1,6 @@
+<window title="Fileupload Demo" border="normal">
+  <image id="img"/>
+Upload your hot shot:
+<fileupload value="upload" onUpload="img.setContent(event.media)"/>
+
+</window>
