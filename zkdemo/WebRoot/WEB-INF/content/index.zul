@@ -1,0 +1,20 @@
+<?page title="zkDemo演示" id="indexPage"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"?>
+<!-- 自定义宏 -->
+<?component name="leftmenu" macroURI="/WEB-INF/content/menu.zul"?>
+<borderlayout>
+	<north size="20%">
+	</north>
+	<center>
+		<borderlayout>
+			<west size="18%" id="leftMenu" splittable="true" maxsize="300"
+				collapsible="true" title="菜单">
+					<!-- 使用宏 -->
+					<leftmenu />
+			</west>
+			<center>
+				<include src="welcome.zul" id="centerInclude" progressing="true" />
+			</center>
+		</borderlayout>
+	</center>
+</borderlayout>
