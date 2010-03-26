@@ -10,6 +10,7 @@ package web;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.zkoss.zul.Textbox;
 
@@ -24,6 +25,7 @@ import com.hxzy.common.user.service.UserService;
  */
 public class UserWindow extends BaseWindow {
 	
+	@Autowired
 	private UserService userService;
 	
 	private Textbox search;

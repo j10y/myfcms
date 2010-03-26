@@ -7,6 +7,8 @@
  */
 package com.hxzy.common.user.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.hxzy.base.service.impl.BaseServiceImpl;
 import com.hxzy.common.user.dao.UserDao;
 import com.hxzy.common.user.model.User;
@@ -19,9 +21,8 @@ import com.hxzy.common.user.service.UserService;
  */
 public class UserServiceImpl extends BaseServiceImpl<User,UserDao> implements UserService {
 
+	@Autowired	
 	private UserDao userDao;
-
-
 	
 
 	/**

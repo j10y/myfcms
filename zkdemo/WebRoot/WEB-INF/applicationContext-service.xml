@@ -18,9 +18,6 @@
 	</bean>
   
 	<bean id="userService" class="com.hxzy.common.user.service.impl.UserServiceImpl">
-		<property name="userDao">
-			<ref bean="userDao" />
-		</property>
 	</bean>
 	
 	<bean id="privilegeService" class="com.hxzy.common.user.service.impl.PrivilegeServiceImpl">
