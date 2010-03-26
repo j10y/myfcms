@@ -1,0 +1,229 @@
+BODY {
+	FONT: 12px/1.6em Helvetica, Arial, sans-serif; COLOR: #000; BACKGROUND: #fff; TEXT-ALIGN: center; PADDING: 0px; MARGIN: 0px
+}
+TABLE {
+	BORDER-COLLAPSE: collapse; empty-cells: show
+}
+TH {
+	FONT-WEIGHT: normal; FONT-STYLE: normal
+}
+TD {
+	FONT: 12px/1.6em Helvetica, Arial, sans-serif; COLOR: #000
+}
+UL {
+	PADDING: 0px; MARGIN: 0px
+}
+P {
+	PADDING: 0px; MARGIN: 0px
+}
+H1 {
+	PADDING: 0px; MARGIN: 0px; FONT-SIZE: 1em
+}
+H2 {
+	PADDING: 0px; MARGIN: 0px; FONT-SIZE: 1em
+}
+FORM {
+	PADDING: 0px; MARGIN: 0px; FONT-SIZE: 1em
+}
+INPUT {
+	FONT: 14px Helvetica, Arial, sans-serif; COLOR: #000; PADDING: 2px; BACKGROUND: #fff; border-width:1px; border-style:solid;
+	border-top-color:#777777; border-left-color:#777777; border-bottom-color:#dddddd; border-right-color:#dddddd;
+}
+TEXTAREA {
+	FONT: 14px Helvetica, Arial, sans-serif; COLOR: #000; PADDING: 2px; BACKGROUND: #fff; border-width:1px; border-style:solid; 
+	border-top-color:#777777; border-left-color:#777777; border-bottom-color:#dddddd; border-right-color:#dddddd; 
+}
+SELECT {
+	FONT: 14px Helvetica, Arial, sans-serif; COLOR: #000
+}
+A {
+	COLOR: #000; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+A IMG {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+EM {
+	FONT-WEIGHT: normal; FONT-STYLE: normal
+}
+CITE {
+	FONT-WEIGHT: normal; FONT-STYLE: normal
+}
+SPAN.warning {
+	BACKGROUND: url(../../images/check_error.gif) no-repeat 5px 40%; padding-left:15px; font-size:12px;
+}
+* {
+	WORD-WRAP: break-word
+}
+.wrap {
+	MARGIN: 0px; WIDTH: 100%; TEXT-ALIGN: left; padding-bottom:10px! important; padding-bottom:0px
+}
+.message {
+	MARGIN-TOP: 20px; font-size:13px
+}
+.message H1 {
+	BORDER-RIGHT: #fff 1px solid; BORDER-TOP: #fff 1px solid; PADDING-LEFT: 1em; BACKGROUND-COLOR: #f7f7f7; MARGIN-BOTTOM: 1em; BORDER-LEFT: #fff 1px solid; LINE-HEIGHT: 26px; BORDER-BOTTOM: #ddd 1px solid; font-size:12px
+}
+.message P {
+	MARGIN: 1.5em 1em
+}
+.message A {
+	COLOR: #069
+}
+#footlinks_msg {
+	MARGIN: 0px; TEXT-ALIGN: right; float:right; padding-top:5px; height:15px;
+}
+#footlinks_msg A {
+	font-size:9px; font-weight:bold; font-family:Verdana, Arial, Helvetica, sans-serif; color:#CC9966; background-color:#fff;
+	padding-top:0px; padding-bottom:0px; padding-left:1px; padding-right:1px; line-height:15px; margin:0px
+}
+#footlinks_msg A:hover {
+	color:#CC9966
+}
+DIV.line {
+	border-top:#cccccc 1px dashed; line-height:10px
+}
+DIV.space {
+	line-height:10px
+}
+#nav {
+	MARGIN-TOP: 10px; text-align:right; padding-bottom:5px;
+}
+#nav A {
+	FONT-WEIGHT: bold; COLOR: #069; font-size:13px; font-family:"ËÎÌו"
+}
+#postbtn {
+	BORDER-RIGHT: #fdb939 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #fffdee 1px solid; PADDING-LEFT: 5px; BACKGROUND: #fff8c5; PADDING-BOTTOM: 0px; BORDER-LEFT: #fffdee 1px solid; COLOR: #390; MARGIN-RIGHT: 1em; PADDING-TOP: 2px; BORDER-BOTTOM: #fdb939 1px solid
+}
+#postform {
+	text-align:left; font-size:14px; border-top: #cccccc 1px dashed; padding-top:12px; padding-bottom:4px
+}
+#postform TD {
+	font-size:14px;
+}
+#postform SPAN {
+	font-size:14px; color:#390
+}
+.pages_btns {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 5px; OVERFLOW: hidden; WIDTH: 100%; PADDING-TOP: 5px;
+	font-size:14px
+}
+.pages_btns .pages EM {
+	LINE-HEIGHT: 24px
+}
+.pages {
+	BACKGROUND: #f7f7f7; FLOAT: left; OVERFLOW: hidden; COLOR: #999; LINE-HEIGHT: 24px; HEIGHT: 24px; BORDER: #ddd 1px solid; margin-right:6px
+}
+.pages A {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; FLOAT: left; PADDING-BOTTOM: 0px; LINE-HEIGHT: 24px; PADDING-TOP: 0px; 
+}
+.pages A:hover {
+	BACKGROUND-COLOR: #fff
+}
+.pages A.prev {
+	LINE-HEIGHT: 24px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; PADDING-RIGHT: 10px; PADDING-LEFT: 10px
+}
+.pages A.next {
+	LINE-HEIGHT: 24px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; PADDING-RIGHT: 10px; PADDING-LEFT: 10px
+}
+.pages STRONG {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; FLOAT: left; LINE-HEIGHT: 24px; BACKGROUND: #eee; COLOR: #390
+}
+.pages EM {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; FLOAT: left; LINE-HEIGHT: 24px
+}
+.sortby {
+	FLOAT: right; OVERFLOW: hidden; LINE-HEIGHT: 26px; HEIGHT: 26px; margin-right:0px;
+	padding:0px;
+}
+.sortby A {
+	PADDING-RIGHT: 12px; PADDING-LEFT: 12px; PADDING-BOTTOM: 4px! important; PADDING-BOTTOM:3px; padding-top:4px; 
+	LINE-HEIGHT: 24px; BORDER: #ddd 1px solid; COLOR: #666; BACKGROUND: #f7f7f7;
+}
+.sortby A:hover {
+	BACKGROUND-COLOR: #fff
+}
+.mainbox {
+	BORDER: #ddd 1px solid; PADDING: 1px; BACKGROUND: #fff; MARGIN-BOTTOM: 10px
+}
+.mainbox TABLE {
+	WIDTH: 100%
+}
+.formbox {
+	margin-bottom: 20px
+}
+.formbox THEAD TR {
+	background-color:#f7f7f7;
+}
+.formbox TH {
+	WIDTH: 70px; TEXT-ALIGN: left; PADDING: 5px; BORDER-BOTTOM: #ddd 1px solid
+}
+.formbox TD {
+	PADDING: 5px; BORDER-BOTTOM: #ddd 1px solid
+}
+.viewtopic {
+	PADDING-BOTTOM: 1px
+}
+.viewtopic TABLE {
+	TABLE-LAYOUT: fixed
+}
+.viewtopic TD.postdetail {
+	PADDING: 0px; VERTICAL-ALIGN: top; OVERFLOW: hidden; BORDER-STYLE: none
+}
+.postinfo {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; OVERFLOW: hidden; LINE-HEIGHT: 26px; PADDING-TOP: 0px; HEIGHT: 26px; background-color:#f7f7f7; font-size:13px; font-family:"ËÎÌו"
+}
+.postinfo P {
+	FLOAT: right;
+}
+.postinfo P A {
+	color:#666; BACKGROUND: url(../../images/item.gif) no-repeat 0px 40%; padding-left:8px;
+}
+.postinfo SPAN {
+	color:#666
+}
+.postcontent {
+	PADDING: 10px; OVERFLOW-X: hidden; MIN-HEIGHT: 20px! important; HEIGHT: auto! important; BORDER-TOP: #ddd 1px solid;
+	FONT-SIZE: 14px; LINE-HEIGHT: 20px
+}
+.quoteinfo {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; COLOR: #696; LINE-HEIGHT: 26px; PADDING-TOP: 0px; HEIGHT: 26px; background-color:#F0FCF0; font-size:13px; font-family:"ËÎÌו"; BORDER: #ACA 1px solid; margin-top:10px
+}
+.quoteinfo SPAN {
+	color:#696;
+}
+.quotecontent {
+	PADDING: 10px; BORDER: #ACA 1px solid; LINE-HEIGHT: 20px; border-top:none
+}
+.box {
+	BORDER: #ddd 1px solid; PADDING: 0px; BACKGROUND: #fff; MARGIN-BOTTOM: 20px
+}
+.box TABLE {
+	WIDTH: 100%
+}
+.box TD {
+	BORDER-TOP: #e8e8e8 1px solid
+}
+.btns TH {
+	BORDER-STYLE: none! important
+}
+.btns TD {
+	BORDER-STYLE: none! important
+}
+.notice {
+	PADDING-TOP: 0px; margin-top:2px; margin-bottom:10px; font-size:14px; color:#333
+}
+.notice UL {
+	padding-left:38px; padding-top: 8px; padding-bottom: 2px; line-height:22px; list-style-type:decimal
+}
+.notice P {
+	padding-bottom:10px
+}
+.notice TD{
+	PADDING-LEFT: 20px; PADDING-RIGHT: 0px; PADDING-TOP: 3px; PADDING-BOTTOM: 3px;
+}
+.notice TD A{
+	overflow:hidden; color:#0066CC; font-size:14px; white-space:nowrap
+}

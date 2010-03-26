@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- =========================== Exception Resolver ================================ -->
+	<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionAttribute">
+			<value>applicationException</value>
+		</property>
+		<property name="exceptionMappings">
+			<props>
+				<prop key="com.hxzy.base.exception.ApplicationException">applicationException</prop>
+				<prop key="java.lang.Exception">exceptionMessage</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- ============================= Interceptors ====================================== -->
+	<bean id="authenticateInterceptor"
+		class="com.hxzy.base.web.interceptor.AuthenticateInterceptor">
+		<property name="loginUrl">
+			<value>/login.do</value>
+		</property>
+	</bean>
+	
+	<bean id="characterEncodingInterceptor"
+		class="com.hxzy.base.web.interceptor.CharacterEncodingInterceptor">
+		<property name="encodingSchema">
+			<value>GBK</value>
+		</property>
+	</bean>
+	
+	<bean id="authorizeInterceptor"
+		class="com.hxzy.base.web.interceptor.AuthorizeInterceptor" />
+		
+	<bean id="requestUrlInterceptor"
+		class="com.hxzy.base.web.interceptor.RequestUrlInterceptor" />
+
+	<!-- Load WEB-INF/classes/ApplicationResources.properties for i18n messages using JSTL's fmt tag -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename">
+			<value>applicationResources</value>
+		</property>
+	</bean>
+	
+	<!-- ============================== Application Context Listener ===================== -->
+	<bean id="webApplictionContextListener"
+		class="com.hxzy.base.web.listener.ApplicationContextListener" />
+
+	<!-- ============================== UploadFile ===================== -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- set the max upload size100MB -->
+		<property name="maxUploadSize">
+			<value>104857600</value>
+		</property>
+		<property name="maxInMemorySize">
+			<value>4096</value>
+		</property>
+		<property name="defaultEncoding">
+			<value>GBK</value>
+		</property>
+	</bean>
+
+	<!-- ============================== Url Mapping ====================================== -->
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref local="characterEncodingInterceptor" />
+				<ref local="requestUrlInterceptor" />
+				<ref local="authenticateInterceptor" />
+				<ref local="authorizeInterceptor" />
+			</list>
+		</property>
+		<property name="mappings">
+			<props>
+				<prop key="/mainFrame.do">mainFrameController</prop>
+				<prop key="/head.do">headController</prop>
+				<prop key="/left.do">leftController</prop>
+				<prop key="/welcome.do">welcomController</prop>
+				
+				<prop key="/login.do">loginController</prop>
+				<prop key="/logout.do">logoutController</prop>
+				<prop key="/passwordModify.do">passwordModifyController</prop>
+				
+				<prop key="/personQuery.do">personQueryController</prop>
+				<prop key="/personEdit.do">personEditController</prop>
+				<prop key="/personRoleEdit.do">personRoleEditController</prop>
+				
+				<prop key="/roleQuery.do">roleQueryController</prop>
+				<prop key="/roleEdit.do">roleEditController</prop>
+				<prop key="/roleDelete.do">roleDeleteController</prop>
+				<prop key="/rolePrivilegeEdit.do">rolePrivilegeEditController</prop>
+				<prop key="/roleUser.do">roleUserController</prop>
+				
+				<prop key="/privilegeTree.do">privilegeTreeController</prop>
+				
+			</props>
+		</property>
+	</bean>
+
+	<!-- =============================== View Resolver for JSPs ========================== -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass">
+			<value>org.springframework.web.servlet.view.JstlView</value>
+		</property>
+		<property name="prefix">
+			<value>/WEB-INF/pages/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	
+	<!-- =============================== Application Contrller template ================== -->
+	<bean id="baseControllerTemplate" abstract="true">
+		<property name="applicationParameter">
+			<ref bean="applicationParameter" />
+		</property>
+		<property name="needAuthentication">
+			<value>false</value>
+		</property>
+		<property name="needAuthorization">
+			<value>false</value>
+		</property>
+		<property name="needRequestUrl">
+			<value>true</value>
+		</property>
+		<property name="logService">
+			<ref bean="logService" />
+		</property>
+	</bean>
+	
+	<bean id="baseCommandControllerTemplate" abstract="true"
+		parent="baseControllerTemplate">
+		<property name="commandName">
+			<value>formInfo</value>
+		</property>
+		<property name="needProcessConduct">
+			<value>false</value>
+		</property>
+		<property name="needRequestUrl">
+			<value>true</value>
+		</property>
+	</bean>
+	
+	<bean id="baseFormControllerTemplate" abstract="true"
+		parent="baseCommandControllerTemplate">
+		<property name="bindOnNewForm">
+			<value>true</value>
+		</property>
+		<property name="needRequestUrl">
+			<value>true</value>
+		</property>
+	</bean>
+	
+	<!-- =============================== Application Controller =========================== -->
+	<bean id="mainFrameController"
+		class="com.hxzy.base.web.controller.MainFrameController"
+		parent="baseControllerTemplate">
+		<property name="needAuthentication">
+			<value>true</value>
+		</property>
+		<property name="needAuthorization">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<bean id="headController"
+		class="com.hxzy.base.web.controller.HeadController"
+		parent="baseControllerTemplate">
+		<property name="needAuthentication">
+			<value>true</value>
+		</property>
+		<property name="needAuthorization">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<bean id="leftController"
+		class="com.hxzy.base.web.controller.LeftController"
+		parent="baseControllerTemplate">
+		<property name="needAuthentication">
+			<value>true</value>
+		</property>
+		<property name="needAuthorization">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<bean id="welcomController"
+		class="com.hxzy.base.web.controller.WelcomController"
+		parent="baseControllerTemplate">
+		<property name="needAuthentication">
+			<value>true</value>
+		</property>
+		<property name="needAuthorization">
+			<value>false</value>
+		</property>
+	</bean>
+
+
+	<!-- ================ Reika ==================== -->
+	<bean id="loginController"
+		class="com.hxzy.base.web.controller.login.LoginController"
+		parent="baseFormControllerTemplate">
+		<property name="formView">
+			<value>common/login/login</value>
+		</property>
+		<property name="successView">
+			<value>common/login/loginSuccess</value>
+		</property>
+		<property name="commandClass">
+			<value>
+				com.hxzy.base.web.controller.login.LoginForm
+			</value>
+		</property>
+		<property name="validator">
+			<ref bean="beanValidator" />
+		</property>
+		<property name="needAuthentication">
+			<value>false</value>
+		</property>
+		<property name="needAuthorization">
+			<value>false</value>
+		</property>
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+	</bean>
+
+	<bean id="logoutController"
+		class="com.hxzy.base.web.controller.login.LogoutController"
+		parent="baseControllerTemplate">
+		<property name="needAuthentication">
+			<value>true</value>
+		</property>
+		<property name="needAuthorization">
+			<value>false</value>
+		</property>
+	</bean>
+	
+	<bean id="passwordModifyController"
+		class="com.hxzy.common.user.web.controller.PasswordModifyController"
+		parent="baseFormControllerTemplate">
+		<property name="formView">
+			<value>common/person/passwordModify</value>
+		</property>
+		<property name="successView">
+			<value>common/person/passwordModifySucceed</value>
+		</property>
+		<property name="commandClass">
+			<value>
+				com.hxzy.common.user.web.controller.PasswordModifyForm
+			</value>
+		</property>
+		<property name="validator">
+			<ref bean="beanValidator" />
+		</property>
+		<property name="needAuthentication">
+			<value>true</value>
+		</property>
+		<property name="needAuthorization">
+			<value>false</value>
+		</property>
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+	</bean>
+	
+	<bean id="personQueryController"
+		class="com.hxzy.common.user.web.controller.PersonQueryController"
+		parent="baseCommandControllerTemplate">
+		<property name="commandClass">
+			<value>
+				com.hxzy.common.user.web.controller.PersonQueryForm
+			</value>
+		</property>
+		<property name="functionCode">
+			<value>user</value>
+		</property>
+		<property name="needAuthentication">
+			<value>true</value>
+		</property>
+		<property name="needAuthorization">
+			<value>true</value>
+		</property>
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+	</bean>
+	
+	<bean id="personEditController"
+		class="com.hxzy.common.user.web.controller.PersonEditController"
+		parent="baseFormControllerTemplate">
+		<property name="formView">
+			<value>common/person/personEdit</value>
+		</property>
+		<property name="functionCode">
+			<value>user</value>
+		</property>
+		<property name="needAuthentication">
+			<value>true</value>
+		</property>
+		<property name="needAuthorization">
+			<value>true</value>
+		</property>
+		<property name="commandClass">
+			<value>
+				com.hxzy.common.user.web.controller.PersonEditForm
+			</value>
+		</property>
+		<property name="validator">
+			<ref bean="beanValidator" />
+		</property>
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+	</bean>
+	
+	
+	<bean id="roleQueryController"
+		class="com.hxzy.common.user.web.controller.RoleQueryController"
+		parent="baseCommandControllerTemplate">
+		<property name="commandClass">
+			<value>
+				com.hxzy.common.user.web.controller.RoleQueryForm
+			</value>
+		</property>
+		<property name="functionCode">
+			<value>role</value>
+		</property>
+		<property name="needAuthentication">
+			<value>true</value>
+		</property>
+		<property name="needAuthorization">
+			<value>true</value>
+		</property>
+		<property name="roleService">
+			<ref bean="roleService" />
+		</property>
+	</bean>
+	
+	<bean id="roleEditController"
+		class="com.hxzy.common.user.web.controller.RoleEditController"
+		parent="baseFormControllerTemplate">
+		<property name="formView">
+			<value>common/role/roleEdit</value>
+		</property>
+		<property name="commandClass">
+			<value>
+				com.hxzy.common.user.web.controller.RoleEditForm
+			</value>
+		</property>
+		<property name="functionCode">
+			<value>role</value>
+		</property>
+		<property name="validator">
+			<ref bean="beanValidator" />
+		</property>
+		<property name="needAuthentication">
+			<value>true</value>
+		</property>
+		<property name="needAuthorization">
+			<value>true</value>
+		</property>
+		<property name="roleService">
+			<ref bean="roleService" />
+		</property>
+	</bean>
+	
+	<bean id="roleDeleteController"
+		class="com.hxzy.common.user.web.controller.RoleDeleteController"
+		parent="baseControllerTemplate">
+		<property name="functionCode">
+			<value>role</value>
+		</property>
+		<property name="needAuthentication">
+			<value>true</value>
+		</property>
+		<property name="needAuthorization">
+			<value>true</value>
+		</property>
+		<property name="roleService">
+			<ref bean="roleService" />
+		</property>
+	</bean>
+	
+	<bean id="personRoleEditController"
+		class="com.hxzy.common.user.web.controller.PersonRoleEditController"
+		parent="baseFormControllerTemplate">
+		<property name="formView">
+			<value>common/person/personRoleEdit</value>
+		</property>
+		<property name="commandClass">
+			<value>
+				com.hxzy.common.user.web.controller.PersonRoleEditForm
+			</value>
+		</property>
+		<property name="functionCode">
+			<value>user</value>
+		</property>
+		<property name="needAuthentication">
+			<value>true</value>
+		</property>
+		<property name="needAuthorization">
+			<value>true</value>
+		</property>
+		<property name="roleService">
+			<ref bean="roleService" />
+		</property>
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+	</bean>
+	
+	<bean id="rolePrivilegeEditController"
+		class="com.hxzy.common.user.web.controller.RolePrivilegeEditController"
+		parent="baseFormControllerTemplate">
+		<property name="formView">
+			<value>common/role/rolePrivilegeEdit</value>
+		</property>
+		<property name="commandClass">
+			<value>
+				com.hxzy.common.user.web.controller.RolePrivilegeEditForm
+			</value>
+		</property>
+		<property name="functionCode">
+			<value>role</value>
+		</property>
+		<property name="needAuthentication">
+			<value>true</value>
+		</property>
+		<property name="needAuthorization">
+			<value>true</value>
+		</property>
+		<property name="roleService">
+			<ref bean="roleService" />
+		</property>
+		<property name="privilegeService">
+			<ref bean="privilegeService" />
+		</property>
+	</bean>
+	
+	<bean id="roleUserController"
+		class="com.hxzy.common.user.web.controller.RoleUserController"
+		parent="baseFormControllerTemplate">
+		<property name="formView">
+			<value>common/role/roleUser</value>
+		</property>
+		<property name="commandClass">
+			<value>com.hxzy.common.user.web.controller.RoleUserForm</value>
+		</property>
+		<property name="needAuthentication">
+			<value>true</value>
+		</property>
+		<property name="needAuthorization">
+			<value>true</value>
+		</property>
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+		<property name="roleService">
+			<ref bean="roleService" />
+		</property>
+	</bean>
+	
+	<bean id="privilegeTreeController"
+		class="com.hxzy.common.user.web.controller.PrivilegeTreeController"
+		parent="baseControllerTemplate">
+		<property name="functionCode">
+			<value>privilege</value>
+		</property>
+		<property name="needAuthentication">
+			<value>true</value>
+		</property>
+		<property name="needAuthorization">
+			<value>true</value>
+		</property>
+		<property name="privilegeService">
+			<ref bean="privilegeService" />
+		</property>
+	</bean>
+
+</beans>
