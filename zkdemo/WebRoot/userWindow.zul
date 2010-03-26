@@ -1,0 +1,45 @@
+<?page title="测试过户" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="userWindow"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<style src="/css/userguide.css"></style>
+	<window id="userWindow"	use="web.UserWindow" height="100%">
+	<borderlayout>
+	<north height="25px">
+	<borderlayout>
+	<east border="none"><div align="right">
+		<textbox id="search" sclass="demo-search-inp"/><separator orient="vertical"/>
+		<button label="查询" forward="onFind"></button></div></east>
+		<center border="none"></center>
+	
+	<west border="none"><button label="新建"/>
+	
+	</west>
+	
+	</borderlayout>
+	
+	
+		
+	</north>
+	<center border="none">
+	<listbox id="listbox" model="@{userWindow.list}" mold="paging" paginal="${pg}" checkmark="true" multiple="true">
+		<listhead>
+			<listheader label="用户名" />
+			<listheader label="姓名" />
+		</listhead>
+		<listitem self="@{each=user}" value="@{user.id}">
+			<listcell label="@{user.code}"/>
+			<listcell label="@{user.name}"/>
+		</listitem>		
+		</listbox>
+	</center>
+	<south height="25px">
+	<paging id="pg" pageSize="2"  />
+	</south>
+	</borderlayout>
+		
+	</window>
+</zk>
