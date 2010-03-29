@@ -11,14 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.zkoss.zk.ui.Session;
-import org.zkoss.zk.ui.util.RequestInterceptor;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.util.EventInterceptor;
 
 /**
  * @author xiacc
  * 
  * √Ë ˆ£∫
  */
-public class ApplicationContextInterceptor implements RequestInterceptor {
+public class ApplicationContextInterceptor implements EventInterceptor {
 
 	public void handle(Session session, HttpServletRequest request, HttpServletResponse response) {
 		
@@ -34,6 +35,38 @@ public class ApplicationContextInterceptor implements RequestInterceptor {
 	 */
 	public void request(Session session, Object request, Object response) {
 		this.handle(session, (HttpServletRequest) request, (HttpServletResponse) response);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.zkoss.zk.ui.util.EventInterceptor#afterProcessEvent(org.zkoss.zk.ui.event.Event)
+	 */
+	public void afterProcessEvent(Event event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see org.zkoss.zk.ui.util.EventInterceptor#beforePostEvent(org.zkoss.zk.ui.event.Event)
+	 */
+	public Event beforePostEvent(Event event) {
+		// TODO Auto-generated method stub
+		return event;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.zkoss.zk.ui.util.EventInterceptor#beforeProcessEvent(org.zkoss.zk.ui.event.Event)
+	 */
+	public Event beforeProcessEvent(Event event) {
+		System.out.println(event.getName());
+		return event;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.zkoss.zk.ui.util.EventInterceptor#beforeSendEvent(org.zkoss.zk.ui.event.Event)
+	 */
+	public Event beforeSendEvent(Event event) {
+		// TODO Auto-generated method stub
+		return event;
 	}
 
 }
