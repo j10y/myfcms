@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.zkoss.zk.ui.Session;
-import org.zkoss.zk.ui.util.RequestInterceptor;
 
 import com.hxzy.base.util.WebAppUtil;
 
@@ -16,7 +15,7 @@ import com.hxzy.base.util.WebAppUtil;
  * √Ë ˆ: ”√ªßµ«¬ººÏ≤ÈInterceptor
  * </p>
  */
-public class AuthenticateInterceptor implements RequestInterceptor {
+public class AuthenticateInterceptor extends HandlerInterceptor {
 
 	/**
 	 * √Ë ˆ: µ«¬º“≥√ÊUrl
@@ -38,14 +37,13 @@ public class AuthenticateInterceptor implements RequestInterceptor {
 	public void setLoginUrl(String loginUrl) {
 		this.loginUrl = loginUrl;
 	}
+	
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.zkoss.zk.ui.util.RequestInterceptor#request(org.zkoss.zk.ui.Session,
-	 *      java.lang.Object, java.lang.Object)
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.intercepter.HandlerInterceptor#handle(org.zkoss.zk.ui.Session, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
-	public void request(Session arg0, Object arg1, Object arg2) {
+	@Override
+	public void handle(Session session, HttpServletRequest request, HttpServletResponse response) {
 		Authenticatable handler = (Authenticatable) o;
 		if (!handler.needAuthentication())
 			return true;
@@ -59,7 +57,7 @@ public class AuthenticateInterceptor implements RequestInterceptor {
 			}
 			return false;
 		}
-
+		
 	}
 
 }
