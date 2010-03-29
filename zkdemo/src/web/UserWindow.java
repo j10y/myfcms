@@ -29,6 +29,8 @@ public class UserWindow extends BaseWindow {
 	private UserService userService;
 	
 	private Textbox search;
+	
+	private String code;
 
 	/**
 	 * ∑µªÿ userService
@@ -71,6 +73,22 @@ public class UserWindow extends BaseWindow {
 		binder.loadComponent(listbox);
 		
 	}
+
+	/**
+	 * ∑µªÿ code
+	 */
+	public String getCode() {
+		return code;
+	}
+
+	/**
+	 * …Ë÷√ code
+	 */
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
+	
 	
 	
 
