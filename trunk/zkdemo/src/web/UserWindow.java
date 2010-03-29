@@ -53,7 +53,17 @@ public class UserWindow extends BaseWindow {
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(User.class);
 
 		if(StringUtils.hasText(search.getValue())){
-			detachedCriteria.add(Restrictions.like("name",search.getValue(),MatchMode.ANYWHERE));
+			detachedCriteria.add(
+					Restrictions.or(
+							Restrictions.like("name",search.getValue(),MatchMode.ANYWHERE),
+							Restrictions.like("code",search.getValue(),MatchMode.ANYWHERE)
+					));
+			
+			detachedCriteria.add(
+					Restrictions.or(
+							Restrictions.like("password",search.getValue(),MatchMode.ANYWHERE),
+							Restrictions.like("code",search.getValue(),MatchMode.ANYWHERE)
+					));
 		}
 		Pagination pagination = userService.findPageByCriteria(detachedCriteria, pg.getPageSize(), pg.getActivePage()+1);
 		pg.setTotalSize(pagination.getTotalCount());
