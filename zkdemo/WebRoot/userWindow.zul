@@ -1,4 +1,4 @@
-<?page title="测试过户" contentType="text/html;charset=UTF-8"?>
+<?page title="测试" contentType="text/html;charset=UTF-8"?>
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="userWindow"?>
 
@@ -10,18 +10,15 @@
 	<borderlayout>
 	<north height="25px">
 	<borderlayout>
-	<east border="none"><div align="right">
-		<textbox id="search" sclass="demo-search-inp"/><separator orient="vertical"/>
-		<button label="查询" forward="onFind"></button></div></east>
-		<center border="none"></center>
-	
-	<west border="none"><button label="新建"/>
-	
-	</west>
-	
+	<west border="none"><button label="新建"/></west>
+	<center border="none"></center>
+	<east border="none">
+	<hbox>
+	<textbox id="search" sclass="demo-search-inp"/>
+		<button label="查询" forward="onFind"></button>
+	</hbox>
+	</east>	
 	</borderlayout>
-	
-	
 		
 	</north>
 	<center border="none">
