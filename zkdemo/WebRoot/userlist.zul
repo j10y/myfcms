@@ -2,12 +2,14 @@
 <zk xmlns="http://www.zkoss.org/2005/zul"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="userList" ?>
+	
 	<window id="userList" border="normal" apply="${userList}">
 	<hbox>
 	<textbox id="search"/>
 		<button label="查询" forward="onFind"></button>
 	</hbox>
-	<listbox id="listbox" model="@{userList.list}" mold="paging" paginal="${pg}" checkmark="true" multiple="true">
+	<listbox id="listbox" model="@{userList$composer.all}" mold="paging" paginal="${pg}" checkmark="true" multiple="true">
 		<listhead>
 			<listheader label="用户名" />
 			<listheader label="姓名" />
