@@ -15,6 +15,7 @@ import org.springframework.util.StringUtils;
 import org.zkoss.zul.Textbox;
 
 import com.hxzy.base.util.Pagination;
+import com.hxzy.base.web.intercepter.Authenticatable;
 import com.hxzy.common.user.model.User;
 import com.hxzy.common.user.service.UserService;
 
@@ -23,7 +24,7 @@ import com.hxzy.common.user.service.UserService;
  *
  * √Ë ˆ£∫
  */
-public class UserWindow extends BaseWindow {
+public class UserWindow extends BaseWindow implements Authenticatable{
 	
 	@Autowired
 	private UserService userService;
@@ -31,6 +32,8 @@ public class UserWindow extends BaseWindow {
 	private Textbox search;
 	
 	private String code;
+	
+	private String needAuthentication;
 
 	/**
 	 * ∑µªÿ userService
@@ -86,6 +89,23 @@ public class UserWindow extends BaseWindow {
 	 */
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.intercepter.Authenticatable#needAuthentication()
+	 */
+	public boolean needAuthentication() {
+		if ("false".equals(needAuthentication))
+			return false;
+		else
+			return true;
+	}
+
+	/**
+	 * …Ë÷√ needAuthentication
+	 */
+	public void setNeedAuthentication(String needAuthentication) {
+		this.needAuthentication = needAuthentication;
 	}
 	
 	
