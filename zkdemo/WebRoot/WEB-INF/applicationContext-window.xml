@@ -8,7 +8,15 @@
 	 <property name="userService">
 	  <ref bean="userService"/>
 	 </property>
-	 <property name="code" value="test"></property>
+	 <property name="needAuthentication">
+	  <value>false</value>
+	 </property>
 	</bean>
+	
+	<bean id="userList" class="web.UserList">
+	
+	</bean>
+
+
 
 </beans>
