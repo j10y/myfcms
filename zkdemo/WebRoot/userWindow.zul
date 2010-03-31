@@ -1,11 +1,15 @@
+<?import src="include.zul"?>
 <?page title="测试" contentType="text/html;charset=UTF-8"?>
-
 <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="userWindow"?>
+
+
+
 
 <zk xmlns="http://www.zkoss.org/2005/zul"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
-	<window id="userWindow"	use="web.UserWindow" height="100%">
+	
+	<myWindow id="userWindow"	height="100%">
 	<borderlayout>
 	<north height="25px">
 	<borderlayout>
@@ -37,5 +41,5 @@
 	</south>
 	</borderlayout>
 		
-	</window>
+	</myWindow>
 </zk>
