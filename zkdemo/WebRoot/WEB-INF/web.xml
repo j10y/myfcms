@@ -13,7 +13,11 @@
 			org.springframework.web.context.ContextLoaderListener
 		</listener-class>
 	</listener>
-
+	<!-- Spring 刷新Introspector防止内存泄露 -->
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+		
 	<!-- ZK -->
 	<listener>
 		<description>
@@ -24,6 +28,7 @@
 			org.zkoss.zk.ui.http.HttpSessionListener
 		</listener-class>
 	</listener>
+	
 	<servlet>
 		<description>ZK loader for ZUML pages</description>
 		<servlet-name>zkLoader</servlet-name>
@@ -34,10 +39,14 @@
 			<param-name>update-uri</param-name>
 			<param-value>/zkau</param-value>
 		</init-param>
-		<init-param>
-			<param-name>compress</param-name>
-			<param-value>true</param-value>
-		</init-param>
+		<!--
+			Optional. Specifies whether to compress the output of the ZK loader. It speeds up the transmission over slow Internet. However, if you configure a filter to post-processing the output, you might
+			have to disable it. Default: true <init-param> <param-name>compress</param-name> <param-value>true</param-value> </init-param>
+		-->
+		<!--
+			Optional. Specifies the default log level: OFF, ERROR, WARNING, INFO, DEBUG and FINER. If not specified, the system default is used. <init-param> <param-name>log-level</param-name>
+			<param-value>OFF</param-value> </init-param>
+		-->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -55,27 +64,94 @@
 			org.zkoss.zk.au.http.DHtmlUpdateServlet
 		</servlet-class>
 	</servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>TestServlet</servlet-name>
-    <servlet-class>web.TestServlet</servlet-class>
-  </servlet>
-
 	<servlet-mapping>
 		<servlet-name>auEngine</servlet-name>
 		<url-pattern>/zkau/*</url-pattern>
 	</servlet-mapping>
-	
-  <servlet-mapping>
-    <servlet-name>TestServlet</servlet-name>
-    <url-pattern>/TestServlet</url-pattern>
-  </servlet-mapping>
 
 	<error-page>
 		<exception-type>java.lang.Throwable</exception-type>
 		<location>/WEB-INF/sys/error.zul</location>
 	</error-page>
+	
+	<!-- Miscellaneous -->
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+	
+	<!-- MIME mapping -->
+	<mime-mapping>
+		<extension>doc</extension>
+		<mime-type>application/vnd.ms-word</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>gif</extension>
+		<mime-type>image/gif</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>htm</extension>
+		<mime-type>text/html</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>html</extension>
+		<mime-type>text/html</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>jnlp</extension>
+		<mime-type>application/x-java-jnlp-file</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>jpeg</extension>
+		<mime-type>image/jpeg</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>jpg</extension>
+		<mime-type>image/jpeg</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>js</extension>
+		<mime-type>application/x-javascript</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>pdf</extension>
+		<mime-type>application/pdf</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>png</extension>
+		<mime-type>image/png</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>rar</extension>
+		<mime-type>application/x-rar-compressed</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>txt</extension>
+		<mime-type>text/plain</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>xls</extension>
+		<mime-type>application/vnd.ms-excel</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>xml</extension>
+		<mime-type>text/xml</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>xul</extension>
+		<mime-type>application/vnd.mozilla.xul-xml</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>zhtml</extension>
+		<mime-type>text/html</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>zip</extension>
+		<mime-type>application/x-zip</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>zul</extension>
+		<mime-type>text/html</mime-type>
+	</mime-mapping>
 
 
 	<welcome-file-list>
