@@ -9,6 +9,6 @@ public interface Authorizable {
     
   public boolean needAuthorization();
 
-  public String getAuthority();
+  public String getFunctionCode();
   
 }

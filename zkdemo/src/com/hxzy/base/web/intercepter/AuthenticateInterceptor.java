@@ -3,7 +3,10 @@ package com.hxzy.base.web.intercepter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Session;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventThreadInit;
 
 import com.hxzy.base.util.WebAppUtil;
 
@@ -15,14 +18,12 @@ import com.hxzy.base.util.WebAppUtil;
  * √Ë ˆ: ”√ªßµ«¬ººÏ≤ÈInterceptor
  * </p>
  */
-public class AuthenticateInterceptor extends HandlerInterceptor {
+public class AuthenticateInterceptor implements EventThreadInit {
 
 	/**
 	 * √Ë ˆ: µ«¬º“≥√ÊUrl
 	 */
 	public String loginUrl = "";
-
-	
 
 	/**
 	 * √Ë ˆ: ∑µªÿ loginUrl
@@ -37,14 +38,23 @@ public class AuthenticateInterceptor extends HandlerInterceptor {
 	public void setLoginUrl(String loginUrl) {
 		this.loginUrl = loginUrl;
 	}
-	
 
-	/* (non-Javadoc)
-	 * @see com.hxzy.base.web.intercepter.HandlerInterceptor#handle(org.zkoss.zk.ui.Session, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.zkoss.zk.ui.event.EventThreadInit#init(org.zkoss.zk.ui.Component,
+	 *      org.zkoss.zk.ui.event.Event)
 	 */
-	@Override
-	public void handle(Session session, HttpServletRequest request, HttpServletResponse response) {
-		Authenticatable handler = (Authenticatable) o;
+	public boolean init(Component comp, Event evt) throws Exception {
+		HttpServletRequest request = (HttpServletRequest) comp.getDesktop().getExecution()
+				.getNativeRequest();
+		HttpServletResponse response = (HttpServletResponse) comp.getDesktop().getExecution()
+				.getNativeResponse();
+
+		if (!(comp instanceof Authorizable))
+			return true;
+
+		Authenticatable handler = (Authenticatable) comp;
 		if (!handler.needAuthentication())
 			return true;
 		if (WebAppUtil.isUserLogined(request)) {
@@ -57,7 +67,17 @@ public class AuthenticateInterceptor extends HandlerInterceptor {
 			}
 			return false;
 		}
-		
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.zkoss.zk.ui.event.EventThreadInit#prepare(org.zkoss.zk.ui.Component,
+	 *      org.zkoss.zk.ui.event.Event)
+	 */
+	public void prepare(Component comp, Event evt) throws Exception {
+
 	}
 
 }

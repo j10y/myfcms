@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * <p>
@@ -24,7 +26,7 @@ import javax.persistence.Table;
  * </p>
  */
 @Entity
-@Table(name = "base_user")
+@Table(name = "user")
 public class User implements Serializable {
 
 	/**
@@ -35,14 +37,15 @@ public class User implements Serializable {
 	private Long id;
 
 	/**
-	 * 描述: 人员代码
-	 */
-	private String code;
+	 * 描述: 人员登录名
+	 */	
+	@Column(unique=true)
+	private String username;
 
 	/**
-	 * 描述: 人员名称
+	 * 描述: 人员姓名
 	 */
-	private String name;
+	private String truename;
 
 	/**
 	 * 描述: 人员口令
@@ -51,8 +54,9 @@ public class User implements Serializable {
 
 	/**
 	 * 描述: 人员类型
-	 */
-	private Long userFlag;
+	 */	
+	@Column(updatable=false)
+	private Long type;
 
 	/**
 	 * 描述: 用户上线次数
@@ -73,143 +77,138 @@ public class User implements Serializable {
 	 * 描述: 锁定时间
 	 */
 	private Date lockedTime;
-	
+
 	/**
 	 * 描述: 用户拥有的角色
 	 */
-	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.LAZY)   
-	@JoinTable(name="user_role",joinColumns={@JoinColumn(name="user_id")},
-			inverseJoinColumns={@JoinColumn(name="role_id")})
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
+	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
 	private Set<Role> roles;
-	
-
-	public User() {
-	}
 
 	/**
-	 * 描述: 返回 code
-	 */
-	public String getCode() {
-		return code;
-	}
-
-	/**
-	 * 描述: 设置 code 
-	 */
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	/**
-	 * 描述: 返回 id
+	 * 返回 id
 	 */
 	public Long getId() {
 		return id;
 	}
 
 	/**
-	 * 描述: 设置 id 
+	 * 设置 id
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 	/**
-	 * 描述: 返回 isLocked
+	 * 返回 username
 	 */
-	public Long getIsLocked() {
-		return isLocked;
+	public String getUsername() {
+		return username;
 	}
 
 	/**
-	 * 描述: 设置 isLocked 
+	 * 设置 username
 	 */
-	public void setIsLocked(Long isLocked) {
-		this.isLocked = isLocked;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	/**
-	 * 描述: 返回 lastTime
+	 * 返回 truename
 	 */
-	public Date getLastTime() {
-		return lastTime;
+	public String getTruename() {
+		return truename;
 	}
 
 	/**
-	 * 描述: 设置 lastTime 
+	 * 设置 truename
 	 */
-	public void setLastTime(Date lastTime) {
-		this.lastTime = lastTime;
+	public void setTruename(String truename) {
+		this.truename = truename;
 	}
 
 	/**
-	 * 描述: 返回 lockedTime
-	 */
-	public Date getLockedTime() {
-		return lockedTime;
-	}
-
-	/**
-	 * 描述: 设置 lockedTime 
-	 */
-	public void setLockedTime(Date lockedTime) {
-		this.lockedTime = lockedTime;
-	}
-
-	/**
-	 * 描述: 返回 loginFrequency
-	 */
-	public Long getLoginFrequency() {
-		return loginFrequency;
-	}
-
-	/**
-	 * 描述: 设置 loginFrequency 
-	 */
-	public void setLoginFrequency(Long loginFrequency) {
-		this.loginFrequency = loginFrequency;
-	}
-
-	/**
-	 * 描述: 返回 name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * 描述: 设置 name 
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * 描述: 返回 password
+	 * 返回 password
 	 */
 	public String getPassword() {
 		return password;
 	}
 
 	/**
-	 * 描述: 设置 password 
+	 * 设置 password
 	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
 	/**
-	 * 描述: 返回 userFlag
+	 * 返回 type
 	 */
-	public Long getUserFlag() {
-		return userFlag;
+	public Long getType() {
+		return type;
 	}
 
 	/**
-	 * 描述: 设置 userFlag 
+	 * 设置 type
 	 */
-	public void setUserFlag(Long userFlag) {
-		this.userFlag = userFlag;
+	public void setType(Long type) {
+		this.type = type;
+	}
+
+	/**
+	 * 返回 loginFrequency
+	 */
+	public Long getLoginFrequency() {
+		return loginFrequency;
+	}
+
+	/**
+	 * 设置 loginFrequency
+	 */
+	public void setLoginFrequency(Long loginFrequency) {
+		this.loginFrequency = loginFrequency;
+	}
+
+	/**
+	 * 返回 lastTime
+	 */
+	public Date getLastTime() {
+		return lastTime;
+	}
+
+	/**
+	 * 设置 lastTime
+	 */
+	public void setLastTime(Date lastTime) {
+		this.lastTime = lastTime;
+	}
+
+	/**
+	 * 返回 isLocked
+	 */
+	public Long getIsLocked() {
+		return isLocked;
+	}
+
+	/**
+	 * 设置 isLocked
+	 */
+	public void setIsLocked(Long isLocked) {
+		this.isLocked = isLocked;
+	}
+
+	/**
+	 * 返回 lockedTime
+	 */
+	public Date getLockedTime() {
+		return lockedTime;
+	}
+
+	/**
+	 * 设置 lockedTime
+	 */
+	public void setLockedTime(Date lockedTime) {
+		this.lockedTime = lockedTime;
 	}
 
 	/**
@@ -225,37 +224,6 @@ public class User implements Serializable {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		final User other = (User) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
 	
-	
+
 }

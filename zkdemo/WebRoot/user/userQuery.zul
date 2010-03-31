@@ -1,16 +1,23 @@
 <?import src="/include.zul"?>
-<?page title="测试" contentType="text/html;charset=UTF-8"?>
-<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="userWindow"?>
+<?page title="用户管理" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="userQuery"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 	
-	<myWindow id="userWindow" height="100%">
+	<userQuery id="userQuery" height="100%">
 	<borderlayout>
 	<north height="25px">
 	<borderlayout>
-	<west border="none"><button label="新建"/></west>
+	<west border="none">
+		<hbox>
+		<button label="新增"/>
+		<button label="修改"/>
+		<button label="删除"/>
+		<button label="锁定/解锁"/>
+		</hbox>
+	</west>
 	<center border="none"></center>
 	<east border="none">
 	<hbox>
@@ -22,14 +29,16 @@
 		
 	</north>
 	<center border="none">
-	<listbox id="listbox" model="@{userWindow.list}" mold="paging" paginal="${pg}" checkmark="true" multiple="true">
+	<listbox id="listbox" model="@{userQuery.list}" mold="paging" paginal="${pg}" checkmark="true" multiple="true">
 		<listhead>
-			<listheader label="用户名" />
+			<listheader label="登录名" />
 			<listheader label="姓名" />
+			<listheader label="用户状态" />
 		</listhead>
 		<listitem self="@{each=user}" value="@{user.id}">
-			<listcell label="@{user.code}"/>
-			<listcell label="@{user.name}"/>
+			<listcell label="@{user.username}"/>
+			<listcell label="@{user.truename}"/>
+			<listcell label="@{user.isLocked}"/>
 		</listitem>		
 		</listbox>
 	</center>
@@ -38,5 +47,5 @@
 	</south>
 	</borderlayout>
 		
-	</myWindow>
+	</userQuery>
 </zk>
