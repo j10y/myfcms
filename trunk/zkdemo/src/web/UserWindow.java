@@ -12,6 +12,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.Textbox;
 
 import com.hxzy.base.util.Pagination;
@@ -47,6 +48,7 @@ public class UserWindow extends BaseWindow implements Authenticatable{
 	 */
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+		
 	}
 	
 
@@ -55,6 +57,8 @@ public class UserWindow extends BaseWindow implements Authenticatable{
 	 */
 	@Override
 	public void onFind() {
+		//Executions.getCurrent().getNativeRequest();
+		
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(User.class);
 
 		if(StringUtils.hasText(search.getValue())){
