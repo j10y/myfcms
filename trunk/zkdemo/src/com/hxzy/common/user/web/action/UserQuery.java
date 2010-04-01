@@ -7,12 +7,19 @@
  */
 package com.hxzy.common.user.web.action;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.SuspendNotAllowedException;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.Window;
 
 import com.hxzy.base.util.Pagination;
 import com.hxzy.base.web.window.ListWindow;
@@ -56,6 +63,27 @@ public class UserQuery extends ListWindow {
 		this.list = pagination;		
 		binder.loadComponent(listbox);
 
+	}
+	
+	public void onDelete(){
+		if(listbox.getSelectedItem() == null){
+			try {
+				Messagebox.show("请至少选择一个数据");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			return;
+		}
+		
+		Map map = new HashMap();
+		map.put("user",listbox.getSelectedItem().getValue());
+		try {
+			((UserDelete)Executions.createComponents("userDelete.zul", UserQuery.this, map)).doModal();
+		} catch (SuspendNotAllowedException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}		
 	}
 
 }

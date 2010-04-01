@@ -1,0 +1,16 @@
+<?page title="删除用户" contentType="text/html;charset=UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<window title="删除用户"
+		use="com.hxzy.common.user.web.action.UserDelete" border="normal"
+		width="300px">
+		<div align="center">
+			确认删除该用户：
+			<label id="username" />
+			<separator></separator>
+			<button id="submit" label="确认" />
+			<button id="cancel" label="取消" />
+		</div>
+	</window>
+</zk>

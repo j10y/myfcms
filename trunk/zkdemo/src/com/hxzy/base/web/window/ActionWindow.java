@@ -35,6 +35,11 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 	 * 描述: 提交按钮
 	 */
 	protected Button submit;
+	
+	/**
+	 * 描述: 取消按钮
+	 */
+	protected Button cancel;
 
 	/**
 	 * 描述: 功能代码
@@ -63,16 +68,27 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 
 	public void onCreate() {
 		binder = (AnnotateDataBinder) this.getVariable("binder", true);
+		
+		this.setClosable(true);
 
 		submit.addEventListener("onClick", new EventListener() {
 			public void onEvent(Event arg0) throws Exception {
 				onSubmit();
 			}
 		});
+		
+		cancel.addEventListener("onClick", new EventListener() {
+			public void onEvent(Event arg0) throws Exception {
+				ActionWindow.this.onClose();
+			}
+			
+		});
 
 		// 绑定数据
-		onBind();
+		onBind();		
 	}
+	
+	
 
 	public abstract void onBind();
 

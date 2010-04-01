@@ -31,11 +31,11 @@ public class Install {
 		
 		//初始化用户
 		User user = new User();		
-		user.setUsername("admin");
-		user.setTruename("超级管理员");
-		user.setPassword("admin");
-		user.setIsLocked(0L);
-		user.setType(1L);		
+		user.setUsername("admin6");
+		user.setTruename("超级管理员2");
+		user.setPassword("admin2");
+		user.setLocked(false);
+		user.setType(0L);		
 		userService.save(user);
 
 
