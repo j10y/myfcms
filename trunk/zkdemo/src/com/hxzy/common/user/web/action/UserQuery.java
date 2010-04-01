@@ -25,13 +25,14 @@ import org.zkoss.zul.Textbox;
 
 import com.hxzy.base.util.Pagination;
 import com.hxzy.base.web.window.ListWindow;
+import com.hxzy.base.web.window.Message;
 import com.hxzy.common.user.model.User;
 import com.hxzy.common.user.service.UserService;
 
 /**
  * @author xiacc
  *
- * 描述：
+ * 描述：用户查询
  */
 public class UserQuery extends ListWindow {
 	
@@ -69,11 +70,7 @@ public class UserQuery extends ListWindow {
 	
 	public void onDelete(){
 		if(listbox.getSelectedItem() == null){
-			try {
-				Messagebox.show("请至少选择一个数据");
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			Message.showInfo("请至少选择一个数据!");
 			return;
 		}
 		
