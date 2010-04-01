@@ -10,26 +10,26 @@
 	<borderlayout>
 	<north height="25px">
 	<borderlayout>
-	<west border="none">
+	<west border="none" width="300px">
 		<hbox>
-		<button label="新增"/>
-		<button label="修改"/>
-		<button label="删除" forward="onDelete"></button>
-		<button label="锁定/解锁"/>
+		<button label="新增" mold="trendy" />
+		<button label="修改" mold="trendy" disabled="true"/>
+		<button label="删除" mold="trendy" forward="onDelete" />
+		<button label="锁定/解锁" mold="trendy"/>
 		</hbox>
 	</west>
 	<center border="none"></center>
 	<east border="none">
 	<hbox>
-		<textbox id="search"/>
-		<button label="查询" forward="onFind"></button>
+		<textbox id="search" />
+		<button label="查询" mold="trendy" forward="onFind"></button>
 	</hbox>
 	</east>	
 	</borderlayout>
 		
 	</north>
 	<center border="none">
-	<listbox id="listbox" model="@{userQuery.list}" mold="paging" paginal="${pg}" checkmark="true" multiple="true">
+	<listbox id="listbox" model="@{userQuery.list}" paginal="${pg}" checkmark="true" multiple="true">
 		<listhead>
 			<listheader label="登录名" />
 			<listheader label="姓名" />
@@ -47,7 +47,7 @@
 		</listbox>
 	</center>
 	<south height="25px">
-	<paging id="pg"/>
+	<paging id="pg" />
 	</south>
 	</borderlayout>
 		
