@@ -8,7 +8,9 @@
 package com.hxzy.common.user.web.action;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
@@ -17,9 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.SuspendNotAllowedException;
+import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
-import org.zkoss.zul.Window;
 
 import com.hxzy.base.util.Pagination;
 import com.hxzy.base.web.window.ListWindow;
@@ -75,8 +77,14 @@ public class UserQuery extends ListWindow {
 			return;
 		}
 		
+		Set<Listitem> items = listbox.getSelectedItems();
+		Set users = new HashSet();
+		for(Listitem item:items){
+			users.add(item.getValue());
+		}
+		
 		Map map = new HashMap();
-		map.put("user",listbox.getSelectedItem().getValue());
+		map.put("users",users);
 		try {
 			((UserDelete)Executions.createComponents("userDelete.zul", UserQuery.this, map)).doModal();
 		} catch (SuspendNotAllowedException e) {

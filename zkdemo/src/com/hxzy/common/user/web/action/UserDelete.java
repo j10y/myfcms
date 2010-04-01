@@ -7,9 +7,10 @@
  */
 package com.hxzy.common.user.web.action;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zul.Label;
 
 import com.hxzy.base.web.window.ActionWindow;
 import com.hxzy.common.user.model.User;
@@ -25,7 +26,7 @@ public class UserDelete extends ActionWindow {
 	@Autowired
 	private UserService userService;
 
-	private User user = (User)Executions.getCurrent().getArg().get("user");    
+	private Set<User> users = (Set<User>)Executions.getCurrent().getArg().get("users");    
 
 	/*
 	 * (non-Javadoc)
@@ -46,7 +47,10 @@ public class UserDelete extends ActionWindow {
 	 */
 	@Override
 	public void onSubmit() {
-		userService.delete(user);
+		for(User user:users){
+			userService.delete(user);
+		}
+		
 		((UserQuery)this.getParent()).onFind();
 		this.onClose();		
 	}
