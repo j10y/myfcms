@@ -19,7 +19,7 @@ import com.hxzy.common.user.service.UserService;
 /**
  * @author xiacc
  * 
- * ÃèÊö£º
+ * ÃèÊö£ºÓÃ»§É¾³ı
  */
 public class UserDelete extends ActionWindow {	
 
