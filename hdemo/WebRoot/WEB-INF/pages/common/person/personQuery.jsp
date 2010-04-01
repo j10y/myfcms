@@ -109,7 +109,7 @@
 						<td class="queryListTitleCell" width="20%" colspan="2">²Ù×÷ </td>
 						<td class="queryListTitleCell" width="10%">ÊÚÓè½ÇÉ«</td>
 					</tr>
-					<c:forEach items="${pagination.list}" var="person" varStatus="status">
+					<c:forEach items="${pagination}" var="person" varStatus="status">
 						<tr class="queryListRow">
 							<td <c:if test="${status.count%2 == 0}">class="queryListCell"</c:if>
 								<c:if test="${status.count%2 != 0}">class="queryListCell_two"</c:if>><c:out
