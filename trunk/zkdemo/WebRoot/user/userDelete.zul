@@ -6,8 +6,7 @@
 		use="com.hxzy.common.user.web.action.UserDelete" border="normal"
 		width="300px">
 		<div align="center">
-			确认删除该用户：
-			<label id="username" />
+			确认删除?			
 			<separator></separator>
 			<button id="submit" label="确认" />
 			<button id="cancel" label="取消" />

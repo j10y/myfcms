@@ -7,16 +7,10 @@
  */
 package com.hxzy.common.user.web.action;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.RequestUtils;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.Label;
 
-import com.hxzy.base.exception.ApplicationException;
 import com.hxzy.base.web.window.ActionWindow;
 import com.hxzy.common.user.model.User;
 import com.hxzy.common.user.service.UserService;
@@ -26,9 +20,7 @@ import com.hxzy.common.user.service.UserService;
  * 
  * 描述：
  */
-public class UserDelete extends ActionWindow {
-
-	private Label username;
+public class UserDelete extends ActionWindow {	
 
 	@Autowired
 	private UserService userService;
@@ -43,14 +35,7 @@ public class UserDelete extends ActionWindow {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void onBind() {		
-		
-		if(user == null){
-			this.onClose();
-			throw new ApplicationException("该数据不存在！");
-		}
-		
-		username.setValue(user.getTruename());
-		
+				
 	}
 
 	
