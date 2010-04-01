@@ -7,5 +7,5 @@
 		extends="window" 
 		class="com.hxzy.common.user.web.action.UserQuery" 
 		needAuthentication="false" 
-		needAuthorization="false"?>
+		needAuthorization="false"?>	
 </zk>

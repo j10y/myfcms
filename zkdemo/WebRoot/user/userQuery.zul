@@ -14,14 +14,14 @@
 		<hbox>
 		<button label="新增"/>
 		<button label="修改"/>
-		<button label="删除"/>
+		<button label="删除" forward="onDelete"></button>
 		<button label="锁定/解锁"/>
 		</hbox>
 	</west>
 	<center border="none"></center>
 	<east border="none">
 	<hbox>
-	<textbox id="search"/>
+		<textbox id="search"/>
 		<button label="查询" forward="onFind"></button>
 	</hbox>
 	</east>	
@@ -34,11 +34,15 @@
 			<listheader label="登录名" />
 			<listheader label="姓名" />
 			<listheader label="用户状态" />
+			<listheader label="登录次数" />
+			<listheader label="上次登录时间" />
 		</listhead>
-		<listitem self="@{each=user}" value="@{user.id}">
+		<listitem self="@{each=user}" value="@{user}">
 			<listcell label="@{user.username}"/>
 			<listcell label="@{user.truename}"/>
-			<listcell label="@{user.isLocked}"/>
+			<listcell label="@{user.locked,converter='com.hxzy.common.user.web.converter.LockConverter'}"/>
+			<listcell label="@{user.loginFrequency}"/>
+			<listcell label="@{user.lastTime}"/>
 		</listitem>		
 		</listbox>
 	</center>

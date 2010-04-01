@@ -15,20 +15,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+
 
 /**
- * <p>
- * 类名: Person
- * </p>
- * <p>
- * 描述: 人员类
- * </p>
+ * @author xiacc
+ *
+ * 描述：用户类
  */
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
 
+	
 	/**
 	 * 描述: 人员ID
 	 */
@@ -38,8 +36,8 @@ public class User implements Serializable {
 
 	/**
 	 * 描述: 人员登录名
-	 */	
-	@Column(unique=true)
+	 */
+	@Column(unique = true)
 	private String username;
 
 	/**
@@ -54,8 +52,8 @@ public class User implements Serializable {
 
 	/**
 	 * 描述: 人员类型
-	 */	
-	@Column(updatable=false)
+	 */
+	@Column(updatable = false)
 	private Long type;
 
 	/**
@@ -70,8 +68,9 @@ public class User implements Serializable {
 
 	/**
 	 * 描述: 是否有效用户 0：有效，1：无效 锁定状态
-	 */
-	private Long isLocked;
+	 */	
+	@Column(columnDefinition="BOOLEAN")
+	private Boolean locked;
 
 	/**
 	 * 描述: 锁定时间
@@ -184,17 +183,17 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * 返回 isLocked
+	 * 返回 locked
 	 */
-	public Long getIsLocked() {
-		return isLocked;
+	public Boolean getLocked() {
+		return locked;
 	}
 
 	/**
-	 * 设置 isLocked
+	 * 设置 locked
 	 */
-	public void setIsLocked(Long isLocked) {
-		this.isLocked = isLocked;
+	public void setLocked(Boolean locked) {
+		this.locked = locked;
 	}
 
 	/**
@@ -224,6 +223,5 @@ public class User implements Serializable {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-	
 
 }
