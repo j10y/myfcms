@@ -31,7 +31,7 @@ public class Install {
 		
 		//初始化用户
 		User user = new User();		
-		user.setUsername("admin6");
+		user.setUsername("admin5");
 		user.setTruename("超级管理员2");
 		user.setPassword("admin2");
 		user.setLocked(false);
