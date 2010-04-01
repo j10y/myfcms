@@ -8,4 +8,10 @@
 		class="com.hxzy.common.user.web.action.UserQuery" 
 		needAuthentication="false" 
 		needAuthorization="false"?>	
+		
+	<?component name="userDelete" 
+		extends="window" 
+		class="com.hxzy.common.user.web.action.UserDelete" 
+		needAuthentication="false" 
+		needAuthorization="false"?>	
 </zk>
