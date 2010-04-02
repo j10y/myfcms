@@ -3,6 +3,9 @@
 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
 	<?component name="myWindow" extends="window" class="web.UserWindow" needAuthentication="true" ?>
+		
+	<?component name="button" extends="button" mold="trendy"?>
+	
 	<?component name="userQuery" 
 		extends="window" 
 		class="com.hxzy.common.user.web.action.UserQuery" 

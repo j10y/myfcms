@@ -49,7 +49,7 @@
 				<prop key="hibernate.show_sql">true</prop>
 			</props>
 		</property>
-		<property name="packagesToScan" value="com.hxzy.common.*.model"></property>
+		<property name="packagesToScan" value="com.hxzy.*.*.model,com.hxzy.*.model"></property>
 	</bean>
 
   <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">

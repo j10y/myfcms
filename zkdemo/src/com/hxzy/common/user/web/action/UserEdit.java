@@ -11,13 +11,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zul.Constraint;
 import org.zkoss.zul.Textbox;
 
 import com.hxzy.base.web.window.ActionWindow;
+import com.hxzy.base.web.window.ListWindow;
 import com.hxzy.common.user.model.User;
 import com.hxzy.common.user.service.UserService;
 
@@ -39,6 +42,8 @@ public class UserEdit extends ActionWindow {
 
 	private Textbox password;
 
+	private Textbox password2;
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -46,23 +51,31 @@ public class UserEdit extends ActionWindow {
 	 */
 	@Override
 	public void onBind() {
-		if(user != null){
+		if (user != null) {
 			username.setValue(user.getUsername());
 			truename.setValue(user.getTruename());
 		}
-		
-		
-		//用户名重复判断
-		username.addEventListener("onBlur", new EventListener() {
-			public void onEvent(Event arg0) throws Exception {
-				List list = userService.find("from User u where u.username=? and u.id<>?",new Object[]{username.getValue(),user.getId()});
-				
-				if(list != null && list.size() != 0){
-					throw new WrongValueException(username, "该用户名已经存在!");
+
+		password2.setConstraint(new Constraint() {
+			public void validate(Component comp, Object value) throws WrongValueException {
+				if (!password.getValue().equals(value)) {
+					throw new WrongValueException(comp, "两次密码不同！");
 				}
 			}
 		});
 
+		// 用户名重复判断
+		username.setConstraint(new Constraint() {
+			public void validate(Component comp, Object value) throws WrongValueException {
+				List list = userService.find("from User u where u.username=? and u.id<>?",
+						new Object[] { username.getValue(), user.getId() });
+
+				if (list != null && list.size() != 0) {
+					throw new WrongValueException(username, "该用户名已经存在!");
+				}
+			}
+		});
+		
 	}
 
 	/*
@@ -74,14 +87,15 @@ public class UserEdit extends ActionWindow {
 	public void onSubmit() {
 		user.setUsername(username.getValue());
 		user.setTruename(truename.getValue());
-		if(StringUtils.hasText(password.getValue().trim())){
+
+		if (StringUtils.hasText(password.getValue().trim())) {
 			user.setPassword(password.getValue());
 		}
-		
+
 		userService.update(user);
-		
-		((UserQuery)this.getParent()).onFind();
-		this.onClose();	
+
+		((ListWindow) this.getParent()).onFind();
+		this.onClose();
 	}
 
 }

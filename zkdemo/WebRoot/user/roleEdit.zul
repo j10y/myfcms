@@ -1,9 +1,9 @@
-<?page title="编辑用户" contentType="text/html;charset=UTF-8"?>
+<?page title="修改角色" contentType="text/html;charset=UTF-8"?>
 <?import src="/include.zul"?>
 <zk xmlns="http://www.zkoss.org/2005/zul"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
-	<window title="编辑用户" use="com.hxzy.common.user.web.action.UserEdit"
+	<window title="修改角色" use="com.hxzy.common.user.web.action.RoleEdit"
 		border="normal" width="400px">
 
 		<grid fixedLayout="true">
@@ -14,21 +14,14 @@
 
 			<rows>
 				<row>
-					登录名：
-					<textbox id="username" constraint="no empty"/>
+					角色名称：
+					<textbox id="roleName" constraint="no empty"/>
 				</row>
 				<row>
-					用户姓名：
-					<textbox id="truename" />
-				</row>
-				<row>
-					密码：
-					<textbox id="password" type="password"/>
-				</row>
-				<row>
-					确认密码：
-					<textbox id="password2" type="password"/>
-				</row>
+					角色描述：
+					
+					<textbox id="remarks" rows="5" cols="40"/>
+				</row>				
 			</rows>
 
 		</grid>

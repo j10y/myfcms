@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,11 +15,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.hxzy.base.model.Revisable;
+
 /**
- * 类名：Role
- * 描述：角色类
+ * 类名：Role 描述：角色类
+ * 
  * @author xiacc
- *
+ * 
  */
 @Entity
 @Table(name = "role")
@@ -34,28 +37,33 @@ public class Role implements Serializable {
 	/**
 	 * 描述: 角色名称
 	 */
+	@Column(unique = true)
 	private String roleName;
-	
+
+	/**
+	 * 描述：说明
+	 */
+	private String remarks;
+
 	/**
 	 * 描述：角色所拥有的权限
 	 */
-	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.LAZY)   
-	@JoinTable(name="role_privilege",joinColumns={@JoinColumn(name="role_id")},
-			inverseJoinColumns={@JoinColumn(name="privilege_id")})
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
+	@JoinTable(name = "role_privilege", joinColumns = { @JoinColumn(name = "role_id") }, inverseJoinColumns = { @JoinColumn(name = "privilege_id") })
 	private Set<Privilege> privileges;
-	
+
 	/**
 	 * 描述：拥有该角色的所有的用户
 	 */
-	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.LAZY)   
-	@JoinTable(name="user_role",joinColumns={@JoinColumn(name="role_id")},
-			inverseJoinColumns={@JoinColumn(name="user_id")})
-	private Set<User> baseUsers;
-	
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
+	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "role_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
+	private Set<User> users;
+
 	/**
 	 * 描述：公开标志，表面该角色是否公开
 	 */
-	private Long publicFlag;
+	@Column(updatable = false, columnDefinition = "BOOLEAN")
+	private Boolean common;
 
 	/**
 	 * 构造函数
@@ -72,7 +80,8 @@ public class Role implements Serializable {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -107,30 +116,45 @@ public class Role implements Serializable {
 	}
 
 	/**
-	 * 返回 baseUsers
+	 * 返回 users
 	 */
-	public Set<User> getBaseUsers() {
-		return baseUsers;
+	public Set<User> getUsers() {
+		return users;
 	}
 
 	/**
-	 * 设置 baseUsers
+	 * 设置 users
 	 */
-	public void setBaseUsers(Set<User> baseUsers) {
-		this.baseUsers = baseUsers;
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 
 	/**
-	 * 返回 publicFlag
+	 * 返回 common
 	 */
-	public Long getPublicFlag() {
-		return publicFlag;
+	public Boolean getCommon() {
+		return common;
 	}
 
 	/**
-	 * 设置 publicFlag
+	 * 设置 common
 	 */
-	public void setPublicFlag(Long publicFlag) {
-		this.publicFlag = publicFlag;
+	public void setCommon(Boolean common) {
+		this.common = common;
 	}
+
+	/**
+	 * 返回 remarks
+	 */
+	public String getRemarks() {
+		return remarks;
+	}
+
+	/**
+	 * 设置 remarks
+	 */
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
 }
