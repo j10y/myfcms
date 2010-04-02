@@ -116,7 +116,7 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 	 * 
 	 * @see base.dao.BaseDao#find(java.lang.String, java.lang.Object)
 	 */
-	public List find(String hql, Object values) {
+	public List find(String hql, Object[] values) {
 		return getHibernateTemplate().find(hql, values);
 	}
 

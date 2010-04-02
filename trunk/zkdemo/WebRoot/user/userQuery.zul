@@ -12,10 +12,10 @@
 	<borderlayout>
 	<west border="none" width="300px">
 		<hbox>
-		<button label="新增" mold="trendy" />
-		<button label="修改" mold="trendy" disabled="true"/>
+		<button label="新增" mold="trendy" forward="onAdd"/>
+		<button label="修改" mold="trendy" forward="onEdit"/>
 		<button label="删除" mold="trendy" forward="onDelete" />
-		<button label="锁定/解锁" mold="trendy"/>
+		<button label="锁定/解锁" mold="trendy" forward="onLock"/>
 		</hbox>
 	</west>
 	<center border="none"></center>

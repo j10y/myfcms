@@ -83,6 +83,18 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 			}
 			
 		});
+		
+		this.addEventListener("onOK", new EventListener() {
+			public void onEvent(Event arg0) throws Exception {
+				onSubmit();
+			}
+		});
+		
+		this.addEventListener("onCancel", new EventListener() {
+			public void onEvent(Event arg0) throws Exception {
+				ActionWindow.this.onClose();
+			}
+		});
 
 		// °ó¶¨Êý¾Ý
 		onBind();		

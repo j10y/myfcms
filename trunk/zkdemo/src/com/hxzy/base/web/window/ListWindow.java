@@ -65,7 +65,7 @@ public abstract class ListWindow extends Window implements AfterCompose, Authent
 	 */
 	public void afterCompose() {
 		Components.wireVariables(this, this);
-		Components.addForwards(this, this);
+		Components.addForwards(this, this);		
 	}
 
 	public void onCreate() {
@@ -77,6 +77,7 @@ public abstract class ListWindow extends Window implements AfterCompose, Authent
 			}
 
 		});
+		onFind();
 	}
 
 	public abstract void onFind();

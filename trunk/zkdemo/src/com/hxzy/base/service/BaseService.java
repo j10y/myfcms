@@ -30,7 +30,7 @@ public abstract interface BaseService <T, V>{
 	 *
 	 * @param values 可变参数
 	 */
-	public List find(String hql, Object values);
+	public List find(String hql, Object[] values);
 
 	/** */
 	/**

@@ -74,7 +74,7 @@ public abstract class BaseServiceImpl<T, V extends BaseDao<T>> implements BaseSe
 	/* (non-Javadoc)
 	 * @see base.service.BaseService#find(java.lang.String, java.lang.Object)
 	 */
-	public List<T> find(String hql, Object values) {
+	public List<T> find(String hql, Object[] values) {
 		return getDao().find(hql, values);
 	}
 
