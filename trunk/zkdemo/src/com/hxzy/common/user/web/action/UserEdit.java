@@ -68,7 +68,7 @@ public class UserEdit extends ActionWindow {
 		username.setConstraint(new Constraint() {
 			public void validate(Component comp, Object value) throws WrongValueException {
 				List list = userService.find("from User u where u.username=? and u.id<>?",
-						new Object[] { username.getValue(), user.getId() });
+						new Object[] { value, user.getId() });
 
 				if (list != null && list.size() != 0) {
 					throw new WrongValueException(username, "该用户名已经存在!");
