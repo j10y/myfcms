@@ -35,7 +35,7 @@ public interface BaseDao<T> {
 	 *
 	 * @param values 可变参数
 	 */
-	public List find(String hql, Object values);
+	public List find(String hql, Object[] values);
 
 	/** */
 	/**

@@ -20,8 +20,8 @@ import org.springframework.util.StringUtils;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.SuspendNotAllowedException;
 import org.zkoss.zul.Listitem;
-import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.Window;
 
 import com.hxzy.base.util.Pagination;
 import com.hxzy.base.web.window.ListWindow;
@@ -83,12 +83,57 @@ public class UserQuery extends ListWindow {
 		Map map = new HashMap();
 		map.put("users",users);
 		try {
-			((UserDelete)Executions.createComponents("userDelete.zul", UserQuery.this, map)).doModal();
+			((Window)Executions.createComponents("userDelete.zul", UserQuery.this, map)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}		
+	}
+	
+	public void onEdit(){
+		if(listbox.getSelectedItem() == null){
+			Message.showInfo("请至少选择一个数据!");
+			return;
+		}
+		
+		Object user = listbox.getSelectedItem().getValue();
+		
+		Map map = new HashMap();
+		map.put("user",user);
+		
+		try {
+			((Window)Executions.createComponents("userEdit.zul", UserQuery.this, map)).doModal();
+		} catch (SuspendNotAllowedException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void onLock(){
+		if(listbox.getSelectedItem() == null){
+			Message.showInfo("请至少选择一个数据!");
+			return;
+		}
+		Set<Listitem> items = listbox.getSelectedItems();
+		for(Listitem item:items){
+			User user = (User) item.getValue();
+			user.setLocked(!user.getLocked());
+			
+			userService.update(user);
+		}
+		this.onFind();
+	}
+	
+	public void onAdd(){
+		try {
+			((Window)Executions.createComponents("userAdd.zul", UserQuery.this, null)).doModal();
+		} catch (SuspendNotAllowedException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
