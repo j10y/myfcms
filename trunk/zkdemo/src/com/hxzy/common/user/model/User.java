@@ -16,6 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.hxzy.base.model.Revisable;
+
 
 /**
  * @author xiacc
@@ -51,7 +53,7 @@ public class User implements Serializable {
 	private String password;
 
 	/**
-	 * 描述: 人员类型
+	 * 描述: 人员类型 0超级管理员 1普通
 	 */
 	@Column(updatable = false)
 	private Long type;
@@ -67,7 +69,7 @@ public class User implements Serializable {
 	private Date lastTime;
 
 	/**
-	 * 描述: 是否有效用户 0：有效，1：无效 锁定状态
+	 * 描述: 是否锁定状态
 	 */	
 	@Column(columnDefinition="BOOLEAN")
 	private Boolean locked;

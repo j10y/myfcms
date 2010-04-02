@@ -7,6 +7,8 @@
  */
 package com.hxzy.common.user.web.converter;
 
+import java.io.Serializable;
+
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zkplus.databind.TypeConverter;
 
@@ -15,7 +17,7 @@ import org.zkoss.zkplus.databind.TypeConverter;
  *
  * √Ë ˆ£∫
  */
-public class LockConverter implements TypeConverter{
+public class LockConverter implements TypeConverter,Serializable{
 
 	/* (non-Javadoc)
 	 * @see org.zkoss.zkplus.databind.TypeConverter#coerceToBean(java.lang.Object, org.zkoss.zk.ui.Component)

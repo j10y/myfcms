@@ -12,10 +12,11 @@
 	<borderlayout>
 	<west border="none" width="300px">
 		<hbox>
-		<button label="新增" mold="trendy" forward="onAdd"/>
-		<button label="修改" mold="trendy" forward="onEdit"/>
-		<button label="删除" mold="trendy" forward="onDelete" />
-		<button label="锁定/解锁" mold="trendy" forward="onLock"/>
+		<space></space>
+		<button label="新增" forward="onAdd"/>
+		<button label="修改" forward="onEdit"/>
+		<button label="删除" forward="onDelete" />
+		<button label="锁定/解锁" forward="onLock"/>
 		</hbox>
 	</west>
 	<center border="none"></center>
@@ -36,6 +37,7 @@
 			<listheader label="用户状态" />
 			<listheader label="登录次数" />
 			<listheader label="上次登录时间" />
+		
 		</listhead>
 		<listitem self="@{each=user}" value="@{user}">
 			<listcell label="@{user.username}"/>

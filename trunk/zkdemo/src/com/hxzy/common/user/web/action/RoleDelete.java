@@ -14,20 +14,20 @@ import org.zkoss.zk.ui.Executions;
 
 import com.hxzy.base.web.window.ActionWindow;
 import com.hxzy.base.web.window.ListWindow;
-import com.hxzy.common.user.model.User;
-import com.hxzy.common.user.service.UserService;
+import com.hxzy.common.user.model.Role;
+import com.hxzy.common.user.service.RoleService;
 
 /**
  * @author xiacc
  * 
  * ÃèÊö£ºÓÃ»§É¾³ý
  */
-public class UserDelete extends ActionWindow {	
+public class RoleDelete extends ActionWindow {	
 
 	@Autowired
-	private UserService userService;
+	private RoleService roleService;
 
-	private Set<User> users = (Set<User>)Executions.getCurrent().getArg().get("users");    
+	private Set<Role> roles = (Set<Role>)Executions.getCurrent().getArg().get("roles");    
 
 	/*
 	 * (non-Javadoc)
@@ -48,8 +48,8 @@ public class UserDelete extends ActionWindow {
 	 */
 	@Override
 	public void onSubmit() {
-		for(User user:users){
-			userService.delete(user);
+		for(Role role:roles){
+			roleService.delete(role);
 		}
 		
 		((ListWindow)this.getParent()).onFind();

@@ -7,10 +7,14 @@
  */
 package install;
 
+import java.util.Date;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.hxzy.common.user.model.Role;
 import com.hxzy.common.user.model.User;
+import com.hxzy.common.user.service.RoleService;
 import com.hxzy.common.user.service.UserService;
 
 /**
@@ -27,16 +31,26 @@ public class Install {
 	public static void main(String[] args) {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
+		//初始化用户		
 		UserService userService = (UserService) ac.getBean("userService");
 		
-		//初始化用户
 		User user = new User();		
-		user.setUsername("admin5");
-		user.setTruename("超级管理员2");
-		user.setPassword("admin2");
+		user.setUsername("admin");
+		user.setTruename("超级管理员");
+		user.setPassword("admin");
 		user.setLocked(false);
 		user.setType(0L);		
-		userService.save(user);
+		userService.save(user);		
+
+		//初始化角色		
+		RoleService roleService = (RoleService) ac.getBean("roleService");
+		
+		Role role = new Role();
+		role.setRoleName("超级管理员");
+		role.setRemarks("拥有所有权限");
+		role.setCommon(false);
+		roleService.save(role);
+		
 
 
 	}

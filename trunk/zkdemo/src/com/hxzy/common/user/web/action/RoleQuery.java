@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -28,18 +27,19 @@ import org.zkoss.zul.Window;
 import com.hxzy.base.util.Pagination;
 import com.hxzy.base.web.window.ListWindow;
 import com.hxzy.base.web.window.Message;
+import com.hxzy.common.user.model.Role;
 import com.hxzy.common.user.model.User;
-import com.hxzy.common.user.service.UserService;
+import com.hxzy.common.user.service.RoleService;
 
 /**
  * @author xiacc
  *
- * 描述：用户查询
+ * 描述：角色查询
  */
-public class UserQuery extends ListWindow {
+public class RoleQuery extends ListWindow {
 	
 	@Autowired
-	private UserService userService;
+	private RoleService roleService;
 	
 	private Textbox search;
 	
@@ -62,26 +62,15 @@ public class UserQuery extends ListWindow {
 	 */
 	@Override
 	public void onFind() {
-		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(User.class);
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Role.class);
 
 		if(StringUtils.hasText(search.getValue())){
-			detachedCriteria.add(
-					Restrictions.or(
-							Restrictions.like("username",search.getValue(),MatchMode.ANYWHERE),
-							Restrictions.like("truename",search.getValue(),MatchMode.ANYWHERE)
-					));
-			
-			detachedCriteria.add(
-					Restrictions.or(
-							Restrictions.like("password",search.getValue(),MatchMode.ANYWHERE),
-							Restrictions.like("username",search.getValue(),MatchMode.ANYWHERE)
-					));
+			detachedCriteria.add(Restrictions.eq("roleName", search.getValue()));
 		}
-		Pagination pagination = userService.findPageByCriteria(detachedCriteria, pg.getPageSize(), pg.getActivePage()+1);
+		Pagination pagination = roleService.findPageByCriteria(detachedCriteria, pg.getPageSize(), pg.getActivePage()+1);
 		pg.setTotalSize(pagination.getTotalCount());
 		this.list = pagination;		
 		binder.loadComponent(listbox);
-
 	}
 	
 	public void onDelete(){
@@ -91,15 +80,15 @@ public class UserQuery extends ListWindow {
 		}
 		
 		Set<Listitem> items = listbox.getSelectedItems();
-		Set users = new HashSet();
+		Set values = new HashSet();
 		for(Listitem item:items){
-			users.add(item.getValue());
+			values.add(item.getValue());
 		}
 		
 		Map map = new HashMap();
-		map.put("users",users);
+		map.put("roles",values);
 		try {
-			((Window)Executions.createComponents("userDelete.zul", UserQuery.this, map)).doModal();
+			((Window)Executions.createComponents("roleDelete.zul", RoleQuery.this, map)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
@@ -113,38 +102,23 @@ public class UserQuery extends ListWindow {
 			return;
 		}
 		
-		Object user = listbox.getSelectedItem().getValue();
+		Object value = listbox.getSelectedItem().getValue();
 		
 		Map map = new HashMap();
-		map.put("user",user);
+		map.put("role",value);
 		
 		try {
-			((Window)Executions.createComponents("userEdit.zul", UserQuery.this, map)).doModal();
+			((Window)Executions.createComponents("roleEdit.zul", RoleQuery.this, map)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void onLock(){
-		if(listbox.getSelectedItem() == null){
-			Message.showInfo("请至少选择一个数据!");
-			return;
-		}
-		Set<Listitem> items = listbox.getSelectedItems();
-		for(Listitem item:items){
-			User user = (User) item.getValue();
-			user.setLocked(!user.getLocked());
-			
-			userService.update(user);
-		}
-		this.onFind();
-	}
+	}	
 	
 	public void onAdd(){
 		try {
-			((Window)Executions.createComponents("userAdd.zul", UserQuery.this, null)).doModal();
+			((Window)Executions.createComponents("roleAdd.zul", RoleQuery.this, null)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {

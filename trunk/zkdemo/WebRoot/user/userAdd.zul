@@ -27,13 +27,7 @@
 				</row>
 				<row>
 					确认密码：
-					<textbox id="password2" type="password">
-						<attribute name="onBlur">
-							if (!self.value.equals(password.getValue())) {						         
-						         throw new WrongValueException(self, "两次密码不同！");
-						    }
-						</attribute>
-					</textbox>
+					<textbox id="password2" type="password"></textbox>
 				</row>
 			</rows>
 
