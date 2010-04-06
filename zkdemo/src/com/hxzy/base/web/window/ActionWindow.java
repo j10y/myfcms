@@ -172,4 +172,47 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 		this.needAuthorization = needAuthorization;
 	}
 
+	/**
+	 * 返回 binder
+	 */
+	public AnnotateDataBinder getBinder() {
+		return binder;
+	}
+
+	/**
+	 * 设置 binder
+	 */
+	public void setBinder(AnnotateDataBinder binder) {
+		this.binder = binder;
+	}
+
+	/**
+	 * 返回 submit
+	 */
+	public Button getSubmit() {
+		return submit;
+	}
+
+	/**
+	 * 设置 submit
+	 */
+	public void setSubmit(Button submit) {
+		this.submit = submit;
+	}
+
+	/**
+	 * 返回 cancel
+	 */
+	public Button getCancel() {
+		return cancel;
+	}
+
+	/**
+	 * 设置 cancel
+	 */
+	public void setCancel(Button cancel) {
+		this.cancel = cancel;
+	}
+
+	
 }

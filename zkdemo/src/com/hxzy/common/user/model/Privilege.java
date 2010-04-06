@@ -1,8 +1,10 @@
 package com.hxzy.common.user.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -33,15 +36,8 @@ public class Privilege implements Serializable {
 
 	/**
 	 * 描述：权限的编码
-	 */
+	 */	
 	private String privCode;
-
-	/**
-	 * 描述: 父节点
-	 */
-	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE },fetch = FetchType.LAZY)
-	@JoinColumn(name = "parent_Id")
-	private Privilege parent;
 
 	/**
 	 * 描述: 权限描述
@@ -49,9 +45,17 @@ public class Privilege implements Serializable {
 	private String privName;
 
 	/**
-	 * 描述: 排序标志
+	 * 描述: 父节点
 	 */
-	private Long itemNo;
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
+	@JoinColumn(name = "parent_Id")
+	private Privilege parent;
+
+	/**
+	 * 描述:所有的子节点
+	 */
+	@OneToMany(mappedBy = "parent", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+	private Set<Privilege> childrens;
 
 	/**
 	 * @return the id
@@ -111,18 +115,17 @@ public class Privilege implements Serializable {
 	}
 
 	/**
-	 * @return the itemNo
+	 * 返回 childrens
 	 */
-	public Long getItemNo() {
-		return itemNo;
+	public Set<Privilege> getChildrens() {
+		return childrens;
 	}
 
 	/**
-	 * @param itemNo
-	 *            the itemNo to set
+	 * 设置 childrens
 	 */
-	public void setItemNo(Long itemNo) {
-		this.itemNo = itemNo;
+	public void setChildrens(Set<Privilege> childrens) {
+		this.childrens = childrens;
 	}
 
 }
