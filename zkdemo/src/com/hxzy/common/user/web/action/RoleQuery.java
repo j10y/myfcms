@@ -41,22 +41,6 @@ public class RoleQuery extends ListWindow {
 	@Autowired
 	private RoleService roleService;
 	
-	private Textbox search;
-	
-	/* (non-Javadoc)
-	 * @see com.hxzy.base.web.window.ListWindow#onCreate()
-	 */
-	@Override
-	public void onCreate() {		
-		super.onCreate();
-		
-		this.addEventListener("onOK", new EventListener(){
-			public void onEvent(Event arg0) throws Exception {
-				onFind();
-			}
-		});
-	}
-
 	/* (non-Javadoc)
 	 * @see com.hxzy.base.web.window.ListWindow#onFind()
 	 */
