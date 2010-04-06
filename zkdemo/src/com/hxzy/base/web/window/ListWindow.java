@@ -9,6 +9,7 @@ import org.zkoss.zk.ui.ext.AfterCompose;
 import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Paging;
+import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
 import com.hxzy.base.util.Pagination;
@@ -31,7 +32,12 @@ public abstract class ListWindow extends Window implements AfterCompose, Authent
 	/**
 	 * 描述：页面显示的列表
 	 */
-	protected Pagination list;
+	protected List list;
+	
+	/**
+	 * 描述：查询条件
+	 */
+	protected Textbox search;
 
 	/**
 	 * 描述：数据绑定器
@@ -65,7 +71,7 @@ public abstract class ListWindow extends Window implements AfterCompose, Authent
 	 */
 	public void afterCompose() {
 		Components.wireVariables(this, this);
-		Components.addForwards(this, this);		
+		Components.addForwards(this, this);
 	}
 
 	public void onCreate() {
@@ -77,6 +83,14 @@ public abstract class ListWindow extends Window implements AfterCompose, Authent
 			}
 
 		});
+		
+		
+		this.addEventListener("onOK", new EventListener(){
+			public void onEvent(Event arg0) throws Exception {
+				onFind();
+			}
+		});
+		
 		onFind();
 	}
 
@@ -182,6 +196,7 @@ public abstract class ListWindow extends Window implements AfterCompose, Authent
 	public void setNeedAuthorization(String needAuthorization) {
 		this.needAuthorization = needAuthorization;
 	}
+
 
 	/**
 	 * 返回 pg
