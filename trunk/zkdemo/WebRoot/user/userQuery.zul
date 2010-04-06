@@ -23,7 +23,7 @@
 	<east border="none">
 	<hbox>
 		<textbox id="search" />
-		<button label="查询" mold="trendy" forward="onFind"></button>
+		<button label="查询" forward="onFind"></button>
 	</hbox>
 	</east>	
 	</borderlayout>
