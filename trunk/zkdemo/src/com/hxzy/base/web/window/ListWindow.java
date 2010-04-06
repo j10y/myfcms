@@ -182,6 +182,27 @@ public abstract class ListWindow extends Window implements AfterCompose, Authent
 	public void setNeedAuthorization(String needAuthorization) {
 		this.needAuthorization = needAuthorization;
 	}
+
+	/**
+	 * ∑µªÿ pg
+	 */
+	public Paging getPg() {
+		return pg;
+	}
+
+	/**
+	 * …Ë÷√ pg
+	 */
+	public void setPg(Paging pg) {
+		this.pg = pg;
+	}
+
+	/**
+	 * ∑µªÿ binder
+	 */
+	public AnnotateDataBinder getBinder() {
+		return binder;
+	}
 	
 	
 }

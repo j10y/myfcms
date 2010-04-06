@@ -1,0 +1,39 @@
+<?import src="/include.zul"?>
+<?page title="权限管理" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="privilegeQuery"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+	<window id="privilegeQuery"
+		use="com.hxzy.common.user.web.action.PrivilegeQuery" height="100%">
+		<borderlayout>
+			<north height="25px">
+				<borderlayout>
+					<west border="none" width="300px">
+						<hbox>
+							<space></space>
+							<button label="新增" forward="onAdd" />
+							<button label="修改" forward="onEdit" />
+							<button label="删除" forward="onDelete" />
+						</hbox>
+					</west>
+					<center border="none"></center>
+					<east border="none">
+
+					</east>
+				</borderlayout>
+
+			</north>
+			<center border="none">
+				<tree id="tree">
+					<treecols sizable="true">
+						<treecol label="权限名称" />
+						<treecol label="权限编码" />
+					</treecols>
+				</tree>
+			</center>
+		</borderlayout>
+	</window>
+</zk>
