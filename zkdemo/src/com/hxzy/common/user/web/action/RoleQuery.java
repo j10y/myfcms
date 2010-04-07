@@ -109,5 +109,25 @@ public class RoleQuery extends ListWindow {
 			e.printStackTrace();
 		}
 	}
+	
+	public void onGrantPriv(){
+		if(listbox.getSelectedItem() == null){
+			Message.showInfo("请至少选择一个数据!");
+			return;
+		}
+		
+		Object value = listbox.getSelectedItem().getValue();
+		
+		Map map = new HashMap();
+		map.put("role",value);
+		
+		try {
+			((Window)Executions.createComponents("grantPriv.zul", RoleQuery.this, map)).doModal();
+		} catch (SuspendNotAllowedException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
