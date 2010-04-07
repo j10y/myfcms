@@ -17,8 +17,8 @@
 			<rows>
 				<row>
 					父节点：					
-					<combobox id="combobox" model="@{privilegeAdd.list}" >								
-					<comboitem self="@{each=privilege}" label="@{privilege.privName}" value="@{privilege}"/>				
+					<combobox id="combobox" model="@{privilegeAdd.list}" readonly="true">								
+					<comboitem self="@{each=privilege}" label="@{privilege.privName}" value="@{privilege}" />				
 					</combobox>			
 				</row>
 				<row>
