@@ -27,15 +27,10 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 		Authorizable {
 
 	/**
-	 * 描述: 数据绑定器
-	 */
-	protected AnnotateDataBinder binder;
-
-	/**
 	 * 描述: 提交按钮
 	 */
 	protected Button submit;
-	
+
 	/**
 	 * 描述: 取消按钮
 	 */
@@ -67,8 +62,7 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 	}
 
 	public void onCreate() {
-		binder = (AnnotateDataBinder) this.getVariable("binder", true);
-		
+
 		this.setClosable(true);
 
 		submit.addEventListener("onClick", new EventListener() {
@@ -76,20 +70,20 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 				onSubmit();
 			}
 		});
-		
+
 		cancel.addEventListener("onClick", new EventListener() {
 			public void onEvent(Event arg0) throws Exception {
 				ActionWindow.this.onClose();
 			}
-			
+
 		});
-		
+
 		this.addEventListener("onOK", new EventListener() {
 			public void onEvent(Event arg0) throws Exception {
 				onSubmit();
 			}
 		});
-		
+
 		this.addEventListener("onCancel", new EventListener() {
 			public void onEvent(Event arg0) throws Exception {
 				ActionWindow.this.onClose();
@@ -97,10 +91,8 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 		});
 
 		// 绑定数据
-		onBind();		
+		onBind();
 	}
-	
-	
 
 	public abstract void onBind();
 
@@ -173,20 +165,6 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 	}
 
 	/**
-	 * 返回 binder
-	 */
-	public AnnotateDataBinder getBinder() {
-		return binder;
-	}
-
-	/**
-	 * 设置 binder
-	 */
-	public void setBinder(AnnotateDataBinder binder) {
-		this.binder = binder;
-	}
-
-	/**
 	 * 返回 submit
 	 */
 	public Button getSubmit() {
@@ -214,5 +192,4 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 		this.cancel = cancel;
 	}
 
-	
 }
