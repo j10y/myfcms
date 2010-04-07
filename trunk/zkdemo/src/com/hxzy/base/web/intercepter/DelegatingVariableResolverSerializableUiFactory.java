@@ -16,11 +16,11 @@ import org.zkoss.zkplus.spring.DelegatingVariableResolver;
 
 /**
  * @author xiacc
- *
- * ÃèÊö£º
+ * 
+ * ÃèÊö£º×Ô¶¯×°ÔØ¼àÌıÆ÷
  */
 public class DelegatingVariableResolverSerializableUiFactory extends SerializableUiFactory {
-	
+
 	@Override
 	public Page newPage(RequestInfo ri, PageDefinition pagedef, String path) {
 		Page newPage = super.newPage(ri, pagedef, path);
