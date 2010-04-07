@@ -27,7 +27,7 @@
 
 			</north>
 			<center border="none">
-				<tree id="tree">
+				<tree id="tree" checkmark="true" multiple="true" width="100%">
 					<treecols sizable="true">
 						<treecol label="权限名称" />
 						<treecol label="权限编码" />

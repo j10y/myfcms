@@ -33,102 +33,101 @@ import com.hxzy.common.user.service.UserService;
 
 /**
  * @author xiacc
- *
+ * 
  * 描述：用户查询
  */
 public class UserQuery extends ListWindow {
-	
+
 	@Autowired
 	private UserService userService;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.hxzy.base.web.window.ListWindow#onFind()
 	 */
 	@Override
 	public void onFind() {
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(User.class);
 
-		if(StringUtils.hasText(search.getValue())){
-			detachedCriteria.add(
-					Restrictions.or(
-							Restrictions.like("username",search.getValue(),MatchMode.ANYWHERE),
-							Restrictions.like("truename",search.getValue(),MatchMode.ANYWHERE)
-					));
-			
-			detachedCriteria.add(
-					Restrictions.or(
-							Restrictions.like("password",search.getValue(),MatchMode.ANYWHERE),
-							Restrictions.like("username",search.getValue(),MatchMode.ANYWHERE)
-					));
+		if (StringUtils.hasText(search.getValue())) {
+			detachedCriteria.add(Restrictions.or(Restrictions.like("username", search.getValue(),
+					MatchMode.ANYWHERE), Restrictions.like("truename", search.getValue(),
+					MatchMode.ANYWHERE)));
+
+			detachedCriteria.add(Restrictions.or(Restrictions.like("password", search.getValue(),
+					MatchMode.ANYWHERE), Restrictions.like("username", search.getValue(),
+					MatchMode.ANYWHERE)));
 		}
-		Pagination pagination = userService.findPageByCriteria(detachedCriteria, pg.getPageSize(), pg.getActivePage()+1);
+		Pagination pagination = userService.findPageByCriteria(detachedCriteria, pg.getPageSize(),
+				pg.getActivePage() + 1);
 		pg.setTotalSize(pagination.getTotalCount());
-		this.list = pagination;		
+		this.list = pagination;
 		binder.loadComponent(listbox);
 
 	}
-	
-	public void onDelete(){
-		if(listbox.getSelectedItem() == null){
+
+	public void onDelete() {
+		if (listbox.getSelectedItem() == null) {
 			Message.showInfo("请至少选择一个数据!");
 			return;
 		}
-		
+
 		Set<Listitem> items = listbox.getSelectedItems();
 		Set users = new HashSet();
-		for(Listitem item:items){
+		for (Listitem item : items) {
 			users.add(item.getValue());
 		}
-		
+
 		Map map = new HashMap();
-		map.put("users",users);
+		map.put("users", users);
 		try {
-			((Window)Executions.createComponents("userDelete.zul", UserQuery.this, map)).doModal();
+			((Window) Executions.createComponents("userDelete.zul", UserQuery.this, map)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}		
+		}
 	}
-	
-	public void onEdit(){
-		if(listbox.getSelectedItem() == null){
+
+	public void onEdit() {
+		if (listbox.getSelectedItem() == null) {
 			Message.showInfo("请至少选择一个数据!");
 			return;
 		}
-		
+
 		Object user = listbox.getSelectedItem().getValue();
-		
+
 		Map map = new HashMap();
-		map.put("user",user);
-		
+		map.put("user", user);
+
 		try {
-			((Window)Executions.createComponents("userEdit.zul", UserQuery.this, map)).doModal();
+			((Window) Executions.createComponents("userEdit.zul", UserQuery.this, map)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void onLock(){
-		if(listbox.getSelectedItem() == null){
+
+	public void onLock() {
+		if (listbox.getSelectedItem() == null) {
 			Message.showInfo("请至少选择一个数据!");
 			return;
 		}
 		Set<Listitem> items = listbox.getSelectedItems();
-		for(Listitem item:items){
+		for (Listitem item : items) {
 			User user = (User) item.getValue();
 			user.setLocked(!user.getLocked());
-			
+
 			userService.update(user);
 		}
 		this.onFind();
 	}
-	
-	public void onAdd(){
+
+	public void onAdd() {
 		try {
-			((Window)Executions.createComponents("userAdd.zul", UserQuery.this, null)).doModal();
+			((Window) Executions.createComponents("userAdd.zul", UserQuery.this, null)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
