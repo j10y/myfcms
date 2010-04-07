@@ -1,10 +1,10 @@
 <?import src="/include.zul"?>
-<?page title="增加权限" contentType="text/html;charset=UTF-8"?>
+<?page title="修改权限" contentType="text/html;charset=UTF-8"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
-	<window id="privilegeEdit" title="增加权限" use="com.hxzy.common.user.web.action.PrivilegeEdit"
+	<window id="privilegeEdit" title="修改权限" use="com.hxzy.common.user.web.action.PrivilegeEdit"
 		border="normal" width="400px">
 
 		<grid fixedLayout="true">
@@ -16,9 +16,11 @@
 			<rows>
 				<row>
 					父节点：	
-					<combobox id="combobox" readonly="true">								
-					<comboitem forEach="${privilegeEdit.privileges}" label="${each.privName}" value="${each}"/>				
-					</combobox>					
+					<combobox id="combobox" readonly="true" >								
+					<comboitem forEach="${privilegeEdit.privileges}" label="${each.privName}" value="${each}">
+										
+					</comboitem>				
+					</combobox>									
 				</row>
 				<row>
 					权限名称：

@@ -82,11 +82,11 @@ public class PrivilegeQuery extends Window implements AfterCompose {
 
 		});
 		init();
+		
 	}
 
 	public void init() {
 		treeModel = new SimpleTreeModel(createTree());
-		tree.setModel(treeModel);
 		binder.loadComponent(tree);
 	}
 

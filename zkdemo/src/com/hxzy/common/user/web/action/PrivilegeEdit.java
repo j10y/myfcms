@@ -51,11 +51,19 @@ public class PrivilegeEdit extends ActionWindow {
 	 */
 	@Override
 	public void onBind() {
-//		Comboitem item = new Comboitem();
-//		item.setValue(privilege.getParent());
-//		combobox.setSelectedItem(item);
+
 		privName.setValue(privilege.getPrivName());
 		privCode.setValue(privilege.getPrivCode());
+		
+		List<Comboitem> items = combobox.getItems();
+		
+		for(Comboitem item:items){
+			Privilege p = (Privilege) item.getValue();
+			if(p.equals(privilege.getParent())){
+				combobox.setSelectedItem(item);
+				break;
+			}
+		}
 
 	}
 
