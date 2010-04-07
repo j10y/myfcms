@@ -10,6 +10,7 @@ package com.hxzy.common.user.web.action;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Textbox;
 
@@ -20,51 +21,55 @@ import com.hxzy.common.user.service.PrivilegeService;
 
 /**
  * @author xiacc
- *
+ * 
  * 描述：
  */
-public class PrivilegeAdd extends ActionWindow{
-	
+public class PrivilegeAdd extends ActionWindow {
+
 	@Autowired
 	private PrivilegeService privilegeService;
-	
+
 	private Combobox combobox;
-	
-	private List<Privilege> list;
-	
+
+	private List<Privilege> privileges = (List<Privilege>) Executions.getCurrent().getArg().get(
+			"privileges");
+
 	private Textbox privName;
-	
+
 	private Textbox privCode;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.hxzy.base.web.window.ActionWindow#onBind()
 	 */
 	@Override
 	public void onBind() {
-		list = privilegeService.loadAll();
-		binder.loadComponent(combobox);		
+
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.hxzy.base.web.window.ActionWindow#onSubmit()
 	 */
 	@Override
 	public void onSubmit() {
 		Privilege parent = null;
-		if(combobox.getSelectedItem() != null){
+		if (combobox.getSelectedItem() != null) {
 			parent = (Privilege) combobox.getSelectedItem().getValue();
 		}
 
-		Privilege privilege = new Privilege();		
+		Privilege privilege = new Privilege();
 		privilege.setPrivName(privName.getValue());
 		privilege.setPrivCode(privCode.getValue());
 		privilege.setParent(parent);
-		
+
 		privilegeService.save(privilege);
-		
-		((ListWindow) this.getParent()).onFind();
+
+		((PrivilegeQuery) this.getParent()).init();
 		this.onClose();
-		
+
 	}
 
 	/**
@@ -96,17 +101,17 @@ public class PrivilegeAdd extends ActionWindow{
 	}
 
 	/**
-	 * 返回 list
+	 * 返回 privileges
 	 */
-	public List<Privilege> getList() {
-		return list;
+	public List<Privilege> getPrivileges() {
+		return privileges;
 	}
 
 	/**
-	 * 设置 list
+	 * 设置 privileges
 	 */
-	public void setList(List<Privilege> list) {
-		this.list = list;
+	public void setPrivileges(List<Privilege> privileges) {
+		this.privileges = privileges;
 	}
 
 	/**
@@ -136,8 +141,5 @@ public class PrivilegeAdd extends ActionWindow{
 	public void setPrivCode(Textbox privCode) {
 		this.privCode = privCode;
 	}
-	
-	
-	
 
 }

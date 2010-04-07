@@ -17,10 +17,11 @@ import java.util.Set;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.zkoss.zk.ui.Components;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.SuspendNotAllowedException;
+import org.zkoss.zk.ui.ext.AfterCompose;
 import org.zkoss.zkplus.databind.AnnotateDataBinder;
-import org.zkoss.zul.Listitem;
 import org.zkoss.zul.SimpleTreeModel;
 import org.zkoss.zul.SimpleTreeNode;
 import org.zkoss.zul.Tree;
@@ -31,7 +32,6 @@ import org.zkoss.zul.TreeitemRenderer;
 import org.zkoss.zul.Treerow;
 import org.zkoss.zul.Window;
 
-import com.hxzy.base.web.window.ActionWindow;
 import com.hxzy.base.web.window.Message;
 import com.hxzy.common.user.model.Privilege;
 import com.hxzy.common.user.service.PrivilegeService;
@@ -41,7 +41,7 @@ import com.hxzy.common.user.service.PrivilegeService;
  * 
  * 描述：
  */
-public class PrivilegeQuery extends ActionWindow {
+public class PrivilegeQuery extends Window implements AfterCompose {
 
 	@Autowired
 	private PrivilegeService privilegeService;
@@ -49,6 +49,16 @@ public class PrivilegeQuery extends ActionWindow {
 	private Tree tree;
 
 	private TreeModel treeModel;
+
+	/**
+	 * 描述：数据绑定器
+	 */
+	protected AnnotateDataBinder binder;
+
+	public void afterCompose() {
+		Components.wireVariables(this, this);
+		Components.addForwards(this, this);
+	}
 
 	public void onCreate() {
 		binder = (AnnotateDataBinder) this.getVariable("binder", true);
@@ -70,11 +80,11 @@ public class PrivilegeQuery extends ActionWindow {
 				tr.appendChild(new Treecell(p.getPrivCode()));
 			}
 
-		});		
+		});
 		init();
 	}
-	
-	public void init(){
+
+	public void init() {
 		treeModel = new SimpleTreeModel(createTree());
 		tree.setModel(treeModel);
 		binder.loadComponent(tree);
@@ -111,8 +121,13 @@ public class PrivilegeQuery extends ActionWindow {
 	}
 
 	public void onAdd() {
+		List privileges = privilegeService.loadAll();
+
+		Map map = new HashMap();
+		map.put("privileges", privileges);
+
 		try {
-			((Window) Executions.createComponents("privilegeAdd.zul", PrivilegeQuery.this, null))
+			((Window) Executions.createComponents("privilegeAdd.zul", PrivilegeQuery.this, map))
 					.doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
@@ -120,13 +135,13 @@ public class PrivilegeQuery extends ActionWindow {
 			e.printStackTrace();
 		}
 	}
-	
-	public void onDelete(){
+
+	public void onDelete() {
 		if (tree.getSelectedItem() == null) {
 			Message.showInfo("请至少选择一个数据!");
 			return;
 		}
-		
+
 		Set<Treeitem> items = tree.getSelectedItems();
 		Set privileges = new HashSet();
 		for (Treeitem item : items) {
@@ -136,7 +151,8 @@ public class PrivilegeQuery extends ActionWindow {
 		Map map = new HashMap();
 		map.put("privileges", privileges);
 		try {
-			((Window) Executions.createComponents("privilegeDelete.zul", PrivilegeQuery.this, map)).doModal();
+			((Window) Executions.createComponents("privilegeDelete.zul", PrivilegeQuery.this, map))
+					.doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
@@ -144,25 +160,84 @@ public class PrivilegeQuery extends ActionWindow {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.hxzy.base.web.window.ActionWindow#onSubmit()
-	 */
-	@Override
-	public void onSubmit() {
+	public void onEdit() {
+		if (tree.getSelectedItem() == null) {
+			Message.showInfo("请至少选择一个数据!");
+			return;
+		}
 
+		Object privilege = tree.getSelectedItem().getValue();
+		List privileges = privilegeService.loadAll();
+		
+		Map map = new HashMap();
+		map.put("privilege", privilege);
+		map.put("privileges", privileges);
+
+
+		try {
+			((Window) Executions.createComponents("privilegeEdit.zul", PrivilegeQuery.this, map))
+					.doModal();
+		} catch (SuspendNotAllowedException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.hxzy.base.web.window.ActionWindow#onBind()
+	/**
+	 * 返回 privilegeService
 	 */
-	@Override
-	public void onBind() {
-		// TODO Auto-generated method stub
+	public PrivilegeService getPrivilegeService() {
+		return privilegeService;
+	}
 
+	/**
+	 * 设置 privilegeService
+	 */
+	public void setPrivilegeService(PrivilegeService privilegeService) {
+		this.privilegeService = privilegeService;
+	}
+
+	/**
+	 * 返回 tree
+	 */
+	public Tree getTree() {
+		return tree;
+	}
+
+	/**
+	 * 设置 tree
+	 */
+	public void setTree(Tree tree) {
+		this.tree = tree;
+	}
+
+	/**
+	 * 返回 treeModel
+	 */
+	public TreeModel getTreeModel() {
+		return treeModel;
+	}
+
+	/**
+	 * 设置 treeModel
+	 */
+	public void setTreeModel(TreeModel treeModel) {
+		this.treeModel = treeModel;
+	}
+
+	/**
+	 * 返回 binder
+	 */
+	public AnnotateDataBinder getBinder() {
+		return binder;
+	}
+
+	/**
+	 * 设置 binder
+	 */
+	public void setBinder(AnnotateDataBinder binder) {
+		this.binder = binder;
 	}
 
 }

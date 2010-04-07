@@ -11,9 +11,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.Combobox;
+import org.zkoss.zul.Comboitem;
+import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Textbox;
 
 import com.hxzy.base.web.window.ActionWindow;
@@ -23,55 +23,63 @@ import com.hxzy.common.user.service.PrivilegeService;
 
 /**
  * @author xiacc
- *
+ * 
  * 描述：
  */
-public class PrivilegeEdit extends ActionWindow{
-	
+public class PrivilegeEdit extends ActionWindow {
+
 	@Autowired
 	private PrivilegeService privilegeService;
-	
+
 	private Combobox combobox;
 	
-	private List<Privilege> list;
-	
-	private Textbox privName;
-	
-	private Textbox privCode;
+	private Listbox listbox;
+
+	private List<Privilege> privileges = (List<Privilege>) Executions.getCurrent().getArg().get(
+			"privileges");
 	
 	private Privilege privilege = (Privilege) Executions.getCurrent().getArg().get("privilege");
 
-	/* (non-Javadoc)
+	private Textbox privName;
+
+	private Textbox privCode;
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.hxzy.base.web.window.ActionWindow#onBind()
 	 */
 	@Override
 	public void onBind() {
-		list = privilegeService.loadAll();
-		binder.loadComponent(combobox);	
-		
+//		Comboitem item = new Comboitem();
+//		item.setValue(privilege.getParent());
+//		combobox.setSelectedItem(item);
 		privName.setValue(privilege.getPrivName());
-		privCode.setValue(privilege.getPrivCode());		
+		privCode.setValue(privilege.getPrivCode());
+
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.hxzy.base.web.window.ActionWindow#onSubmit()
 	 */
 	@Override
 	public void onSubmit() {
 		Privilege parent = null;
-		if(combobox.getSelectedItem() != null){
+		if (combobox.getSelectedItem() != null) {
 			parent = (Privilege) combobox.getSelectedItem().getValue();
 		}
-		
+
 		privilege.setPrivName(privName.getValue());
 		privilege.setPrivCode(privCode.getValue());
 		privilege.setParent(parent);
-		
+
 		privilegeService.update(privilege);
-		
-		((ListWindow) this.getParent()).onFind();
+
+		((PrivilegeQuery) this.getParent()).init();
 		this.onClose();
-		
+
 	}
 
 	/**
@@ -103,17 +111,17 @@ public class PrivilegeEdit extends ActionWindow{
 	}
 
 	/**
-	 * 返回 list
+	 * 返回 privileges
 	 */
-	public List<Privilege> getList() {
-		return list;
+	public List<Privilege> getPrivileges() {
+		return privileges;
 	}
 
 	/**
-	 * 设置 list
+	 * 设置 privileges
 	 */
-	public void setList(List<Privilege> list) {
-		this.list = list;
+	public void setPrivileges(List<Privilege> privileges) {
+		this.privileges = privileges;
 	}
 
 	/**
@@ -143,8 +151,33 @@ public class PrivilegeEdit extends ActionWindow{
 	public void setPrivCode(Textbox privCode) {
 		this.privCode = privCode;
 	}
-	
-	
-	
+
+	/**
+	 * 返回 listbox
+	 */
+	public Listbox getListbox() {
+		return listbox;
+	}
+
+	/**
+	 * 设置 listbox
+	 */
+	public void setListbox(Listbox listbox) {
+		this.listbox = listbox;
+	}
+
+	/**
+	 * 返回 privilege
+	 */
+	public Privilege getPrivilege() {
+		return privilege;
+	}
+
+	/**
+	 * 设置 privilege
+	 */
+	public void setPrivilege(Privilege privilege) {
+		this.privilege = privilege;
+	}
 
 }
