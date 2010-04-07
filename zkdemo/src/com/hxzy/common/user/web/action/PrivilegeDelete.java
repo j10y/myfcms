@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.zkoss.zk.ui.Executions;
 
 import com.hxzy.base.web.window.ActionWindow;
-import com.hxzy.base.web.window.ListWindow;
+import com.hxzy.base.web.window.TreeWindow;
 import com.hxzy.common.user.model.Privilege;
 import com.hxzy.common.user.service.PrivilegeService;
 
@@ -46,7 +46,7 @@ public class PrivilegeDelete extends ActionWindow {
 			privilegeService.delete(p);
 		}
 		
-		((PrivilegeQuery)this.getParent()).init();
+		((TreeWindow)this.getParent()).init();
 		this.onClose();	
 	}
 
