@@ -17,22 +17,17 @@ import java.util.Set;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.zkoss.zk.ui.Components;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.SuspendNotAllowedException;
-import org.zkoss.zk.ui.ext.AfterCompose;
-import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zul.SimpleTreeModel;
 import org.zkoss.zul.SimpleTreeNode;
-import org.zkoss.zul.Tree;
-import org.zkoss.zul.TreeModel;
 import org.zkoss.zul.Treecell;
 import org.zkoss.zul.Treeitem;
-import org.zkoss.zul.TreeitemRenderer;
 import org.zkoss.zul.Treerow;
 import org.zkoss.zul.Window;
 
 import com.hxzy.base.web.window.Message;
+import com.hxzy.base.web.window.TreeWindow;
 import com.hxzy.common.user.model.Privilege;
 import com.hxzy.common.user.service.PrivilegeService;
 
@@ -41,53 +36,41 @@ import com.hxzy.common.user.service.PrivilegeService;
  * 
  * 描述：
  */
-public class PrivilegeQuery extends Window implements AfterCompose {
+public class PrivilegeQuery extends TreeWindow {
 
 	@Autowired
 	private PrivilegeService privilegeService;
 
-	private Tree tree;
-
-	private TreeModel treeModel;
-
-	/**
-	 * 描述：数据绑定器
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.hxzy.base.web.window.TreeWindow#init()
 	 */
-	protected AnnotateDataBinder binder;
-
-	public void afterCompose() {
-		Components.wireVariables(this, this);
-		Components.addForwards(this, this);
-	}
-
-	public void onCreate() {
-		binder = (AnnotateDataBinder) this.getVariable("binder", true);
-
-		tree.setTreeitemRenderer(new TreeitemRenderer() {
-
-			public void render(Treeitem item, Object data) throws Exception {
-				if (data == null)
-					return;
-				Privilege p = null;
-
-				SimpleTreeNode t = (SimpleTreeNode) data;
-				p = (Privilege) t.getData();
-
-				Treerow tr = new Treerow();
-				item.setValue(p);
-				tr.setParent(item);
-				tr.appendChild(new Treecell(p.getPrivName()));
-				tr.appendChild(new Treecell(p.getPrivCode()));
-			}
-
-		});
-		init();
-		
-	}
-
 	public void init() {
 		treeModel = new SimpleTreeModel(createTree());
 		binder.loadComponent(tree);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.hxzy.base.web.window.TreeWindow#treeitemRenderer(org.zkoss.zul.Treeitem,
+	 *      java.lang.Object)
+	 */
+	@Override
+	public void treeitemRenderer(Treeitem item, Object data) {
+		if (data == null)
+			return;
+		Privilege p = null;
+
+		SimpleTreeNode t = (SimpleTreeNode) data;
+		p = (Privilege) t.getData();
+
+		Treerow tr = new Treerow();
+		item.setValue(p);
+		tr.setParent(item);
+		tr.appendChild(new Treecell(p.getPrivName()));
+		tr.appendChild(new Treecell(p.getPrivCode()));
 	}
 
 	public SimpleTreeNode createTree() {
@@ -95,11 +78,9 @@ public class PrivilegeQuery extends Window implements AfterCompose {
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Privilege.class);
 
 		detachedCriteria.add(Restrictions.isNull("parent"));
-
 		List<Privilege> roots = privilegeService.findByCriteria(detachedCriteria);
 
 		List<SimpleTreeNode> nodes = new ArrayList<SimpleTreeNode>();
-
 		SimpleTreeNode root = appendChilden(null, roots);
 
 		return root;
@@ -168,11 +149,10 @@ public class PrivilegeQuery extends Window implements AfterCompose {
 
 		Object privilege = tree.getSelectedItem().getValue();
 		List privileges = privilegeService.loadAll();
-		
+
 		Map map = new HashMap();
 		map.put("privilege", privilege);
 		map.put("privileges", privileges);
-
 
 		try {
 			((Window) Executions.createComponents("privilegeEdit.zul", PrivilegeQuery.this, map))
@@ -196,48 +176,6 @@ public class PrivilegeQuery extends Window implements AfterCompose {
 	 */
 	public void setPrivilegeService(PrivilegeService privilegeService) {
 		this.privilegeService = privilegeService;
-	}
-
-	/**
-	 * 返回 tree
-	 */
-	public Tree getTree() {
-		return tree;
-	}
-
-	/**
-	 * 设置 tree
-	 */
-	public void setTree(Tree tree) {
-		this.tree = tree;
-	}
-
-	/**
-	 * 返回 treeModel
-	 */
-	public TreeModel getTreeModel() {
-		return treeModel;
-	}
-
-	/**
-	 * 设置 treeModel
-	 */
-	public void setTreeModel(TreeModel treeModel) {
-		this.treeModel = treeModel;
-	}
-
-	/**
-	 * 返回 binder
-	 */
-	public AnnotateDataBinder getBinder() {
-		return binder;
-	}
-
-	/**
-	 * 设置 binder
-	 */
-	public void setBinder(AnnotateDataBinder binder) {
-		this.binder = binder;
 	}
 
 }
