@@ -13,11 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Comboitem;
-import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Textbox;
 
 import com.hxzy.base.web.window.ActionWindow;
-import com.hxzy.base.web.window.ListWindow;
+import com.hxzy.base.web.window.TreeWindow;
 import com.hxzy.common.user.model.Privilege;
 import com.hxzy.common.user.service.PrivilegeService;
 
@@ -32,12 +31,10 @@ public class PrivilegeEdit extends ActionWindow {
 	private PrivilegeService privilegeService;
 
 	private Combobox combobox;
-	
-	private Listbox listbox;
 
 	private List<Privilege> privileges = (List<Privilege>) Executions.getCurrent().getArg().get(
 			"privileges");
-	
+
 	private Privilege privilege = (Privilege) Executions.getCurrent().getArg().get("privilege");
 
 	private Textbox privName;
@@ -54,12 +51,12 @@ public class PrivilegeEdit extends ActionWindow {
 
 		privName.setValue(privilege.getPrivName());
 		privCode.setValue(privilege.getPrivCode());
-		
+
 		List<Comboitem> items = combobox.getItems();
-		
-		for(Comboitem item:items){
+
+		for (Comboitem item : items) {
 			Privilege p = (Privilege) item.getValue();
-			if(p.equals(privilege.getParent())){
+			if (p.equals(privilege.getParent())) {
 				combobox.setSelectedItem(item);
 				break;
 			}
@@ -85,7 +82,7 @@ public class PrivilegeEdit extends ActionWindow {
 
 		privilegeService.update(privilege);
 
-		((PrivilegeQuery) this.getParent()).init();
+		((TreeWindow) this.getParent()).init();
 		this.onClose();
 
 	}
@@ -158,20 +155,6 @@ public class PrivilegeEdit extends ActionWindow {
 	 */
 	public void setPrivCode(Textbox privCode) {
 		this.privCode = privCode;
-	}
-
-	/**
-	 * ∑µªÿ listbox
-	 */
-	public Listbox getListbox() {
-		return listbox;
-	}
-
-	/**
-	 * …Ë÷√ listbox
-	 */
-	public void setListbox(Listbox listbox) {
-		this.listbox = listbox;
 	}
 
 	/**

@@ -68,6 +68,9 @@ public class PrivilegeQuery extends TreeWindow {
 
 		Treerow tr = new Treerow();
 		item.setValue(p);
+		if(p.getParent() == null){
+			item.setOpen(true);
+		}
 		tr.setParent(item);
 		tr.appendChild(new Treecell(p.getPrivName()));
 		tr.appendChild(new Treecell(p.getPrivCode()));
