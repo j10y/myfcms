@@ -33,7 +33,7 @@ public abstract class ListWindow extends Window implements AfterCompose, Authent
 	 * 描述：页面显示的列表
 	 */
 	protected List list;
-	
+
 	/**
 	 * 描述：查询条件
 	 */
@@ -83,14 +83,13 @@ public abstract class ListWindow extends Window implements AfterCompose, Authent
 			}
 
 		});
-		
-		
-		this.addEventListener("onOK", new EventListener(){
+
+		this.addEventListener("onOK", new EventListener() {
 			public void onEvent(Event arg0) throws Exception {
 				onFind();
 			}
 		});
-		
+
 		onFind();
 	}
 
@@ -197,7 +196,6 @@ public abstract class ListWindow extends Window implements AfterCompose, Authent
 		this.needAuthorization = needAuthorization;
 	}
 
-
 	/**
 	 * 返回 pg
 	 */
@@ -218,6 +216,5 @@ public abstract class ListWindow extends Window implements AfterCompose, Authent
 	public AnnotateDataBinder getBinder() {
 		return binder;
 	}
-	
-	
+
 }

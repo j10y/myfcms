@@ -8,16 +8,19 @@
 package com.hxzy.common.user.web.action;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.SuspendNotAllowedException;
-import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zkplus.databind.AnnotateDataBinder;
+import org.zkoss.zul.Listitem;
 import org.zkoss.zul.SimpleTreeModel;
 import org.zkoss.zul.SimpleTreeNode;
 import org.zkoss.zul.Tree;
@@ -29,6 +32,7 @@ import org.zkoss.zul.Treerow;
 import org.zkoss.zul.Window;
 
 import com.hxzy.base.web.window.ActionWindow;
+import com.hxzy.base.web.window.Message;
 import com.hxzy.common.user.model.Privilege;
 import com.hxzy.common.user.service.PrivilegeService;
 
@@ -56,20 +60,21 @@ public class PrivilegeQuery extends ActionWindow {
 					return;
 				Privilege p = null;
 
-				
-				while(data instanceof SimpleTreeNode){
-					data = ((SimpleTreeNode) data).getData();
-				}
-				p = (Privilege) data;
+				SimpleTreeNode t = (SimpleTreeNode) data;
+				p = (Privilege) t.getData();
 
 				Treerow tr = new Treerow();
+				item.setValue(p);
 				tr.setParent(item);
 				tr.appendChild(new Treecell(p.getPrivName()));
 				tr.appendChild(new Treecell(p.getPrivCode()));
 			}
 
-		});
-
+		});		
+		init();
+	}
+	
+	public void init(){
 		treeModel = new SimpleTreeModel(createTree());
 		tree.setModel(treeModel);
 		binder.loadComponent(tree);
@@ -85,35 +90,53 @@ public class PrivilegeQuery extends ActionWindow {
 
 		List<SimpleTreeNode> nodes = new ArrayList<SimpleTreeNode>();
 
-		SimpleTreeNode root = new SimpleTreeNode(null, nodes);
+		SimpleTreeNode root = appendChilden(null, roots);
 
-		for (Privilege p : roots) {
-			SimpleTreeNode node = appendChilden(p);
-			nodes.add(node);
-		}
 		return root;
 	}
 
-	public SimpleTreeNode appendChilden(Privilege p) {
-
-		if (p.getChildrens() == null) {
-			return new SimpleTreeNode(p, null);
+	public SimpleTreeNode appendChilden(Privilege p, List<Privilege> childens) {
+		if (childens == null) {
+			return new SimpleTreeNode(p, childens);
 		} else {
 			List<SimpleTreeNode> nodes = new ArrayList<SimpleTreeNode>();
 			SimpleTreeNode root = new SimpleTreeNode(p, nodes);
 
-			for (Privilege child : p.getChildrens()) {
-				SimpleTreeNode node = new SimpleTreeNode(appendChilden(child), new ArrayList(child
-						.getChildrens()));
+			for (Privilege child : childens) {
+				SimpleTreeNode node = appendChilden(child, new ArrayList(child.getChildrens()));
 				nodes.add(node);
 			}
 			return root;
 		}
 	}
-	
-	public void onAdd(){
+
+	public void onAdd() {
 		try {
-			((Window)Executions.createComponents("privilegeAdd.zul", PrivilegeQuery.this, null)).doModal();
+			((Window) Executions.createComponents("privilegeAdd.zul", PrivilegeQuery.this, null))
+					.doModal();
+		} catch (SuspendNotAllowedException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void onDelete(){
+		if (tree.getSelectedItem() == null) {
+			Message.showInfo("请至少选择一个数据!");
+			return;
+		}
+		
+		Set<Treeitem> items = tree.getSelectedItems();
+		Set privileges = new HashSet();
+		for (Treeitem item : items) {
+			privileges.add(item.getValue());
+		}
+
+		Map map = new HashMap();
+		map.put("privileges", privileges);
+		try {
+			((Window) Executions.createComponents("privilegeDelete.zul", PrivilegeQuery.this, map)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
