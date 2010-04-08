@@ -7,8 +7,13 @@
  */
 package test;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.util.RequestInterceptor;
 import org.zkoss.zkplus.util.ThreadLocalListener;
 
 import com.hxzy.base.web.intercepter.Authenticatable;
@@ -20,50 +25,50 @@ import web.UserWindow;
  * 
  * √Ë ˆ£∫
  */
-public class ApplicationContextInterceptor extends ThreadLocalListener {
+public class ApplicationContextInterceptor implements RequestInterceptor {
 
 	/* (non-Javadoc)
 	 * @see org.zkoss.zkplus.util.ThreadLocalListener#init(org.zkoss.zk.ui.Component, org.zkoss.zk.ui.event.Event)
 	 */
-	@Override
-	public boolean init(Component comp, Event evt) {
-		
-		if(comp instanceof Authenticatable){
-			
-			System.out.println("ThreadLocalListenerThreadLocalListenerThreadLocalListenerThreadLocalListener");
-			
-			Authenticatable authenticatable = (Authenticatable)comp;
-			
-			System.out.println(authenticatable.needAuthentication());
-			
-			
-			
-		}
-		
-		System.out.println(evt.getName());
-		return super.init(comp, evt);
-	}
+//	@Override
+//	public boolean init(Component comp, Event evt) {
+//		
+//		if(comp instanceof Authenticatable){
+//			
+//			System.out.println("ThreadLocalListenerThreadLocalListenerThreadLocalListenerThreadLocalListener");
+//			
+//			Authenticatable authenticatable = (Authenticatable)comp;
+//			
+//			System.out.println(authenticatable.needAuthentication());
+//			
+//			
+//			
+//		}
+//		
+//		System.out.println(evt.getName());
+//		return super.init(comp, evt);
+//	}
 	
 	
 	
 	
 	
 
-//	public void handle(Session session, HttpServletRequest request, HttpServletResponse response) {
-//		
-//		System.out.println(request.getServletPath());
-//
-//	}
-//
-//	/*
-//	 * (non-Javadoc)
-//	 * 
-//	 * @see org.zkoss.zk.ui.util.RequestInterceptor#request(org.zkoss.zk.ui.Session,
-//	 *      java.lang.Object, java.lang.Object)
-//	 */
-//	public void request(Session session, Object request, Object response) {
-//		this.handle(session, (HttpServletRequest) request, (HttpServletResponse) response);
-//	}
+	public void handle(Session session, HttpServletRequest request, HttpServletResponse response) {
+		
+		System.out.println(request.getServletPath());
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.zkoss.zk.ui.util.RequestInterceptor#request(org.zkoss.zk.ui.Session,
+	 *      java.lang.Object, java.lang.Object)
+	 */
+	public void request(Session session, Object request, Object response) {
+		this.handle(session, (HttpServletRequest) request, (HttpServletResponse) response);
+	}
 //
 //	/* (non-Javadoc)
 //	 * @see org.zkoss.zk.ui.util.EventInterceptor#afterProcessEvent(org.zkoss.zk.ui.event.Event)
@@ -96,5 +101,9 @@ public class ApplicationContextInterceptor extends ThreadLocalListener {
 //		// TODO Auto-generated method stub
 //		return event;
 //	}
+
+	/* (non-Javadoc)
+	 * @see org.zkoss.zk.ui.util.RequestInterceptor#request(org.zkoss.zk.ui.Session, java.lang.Object, java.lang.Object)
+	 */	
 
 }

@@ -13,6 +13,11 @@
 			org.springframework.web.context.ContextLoaderListener
 		</listener-class>
 	</listener>
+	<!--
+	<listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>-->
+	
 	<!-- Spring 刷新Introspector防止内存泄露 -->
 	<listener>
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
@@ -22,6 +27,24 @@
 			com.hxzy.base.web.listener.ApplicationHttpSessionListener
 		</listener-class>
 	</listener>
+	<!--  -->
+	<filter> 
+	<filter-name>hibernateFilter</filter-name> 
+	<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+		<!-- 
+		<init-param>
+		<param-name>flushMode</param-name>
+		<param-value>AUTO</param-value>	
+		</init-param> -->
+	</filter >	 
+	<filter-mapping> 
+	<filter-name>hibernateFilter</filter-name> 
+	<url-pattern>/zkau</url-pattern> 
+	</filter-mapping>	
+	<filter-mapping> 
+	<filter-name>hibernateFilter</filter-name> 
+	<url-pattern>*.zul</url-pattern> 
+	</filter-mapping>
 	<!-- ZK -->
 	<listener>
 		<description>

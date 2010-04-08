@@ -54,7 +54,7 @@ public class Privilege implements Serializable {
 	/**
 	 * 描述:所有的子节点
 	 */
-	@OneToMany(mappedBy = "parent", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "parent", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
 	private Set<Privilege> childrens;
 
 	/**

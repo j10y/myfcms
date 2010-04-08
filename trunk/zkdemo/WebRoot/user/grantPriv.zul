@@ -1,6 +1,34 @@
-<?page title="权限授予" contentType="text/html;charset=UTF-8"?>
-<zk>
-<window title="权限授予" border="normal">
-New Content Here!
-</window>
+<?page title="授予权限" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./grantPriv"?>
+<?import src="/include.zul"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<window id="grantPriv" title="授予权限" use="com.hxzy.common.user.web.action.GrantPriv"
+		border="normal" width="300px" sizable="true" height="auto">
+
+		<borderlayout height="300px">
+			<north height="25px" border="none">
+			<div align="center">
+			<label value="被授予的角色："></label><label id="roleName"/>			
+			</div>					
+			</north>
+			<center border="none">
+				<tree id="tree" model="@{grantPriv.treeModel}"
+					checkmark="true" multiple="true" width="auto" height="auto"
+					fixedLayout="true">
+					<treecols sizable="true">
+						<treecol label="权限名称" />
+						<treecol label="权限编码" />
+					</treecols>
+				</tree>
+			</center>
+			<south height="25px" border="none">
+				<div align="center">					
+					<button id="submit" label="确认" /><space></space>
+					<button id="cancel" label="取消" />
+				</div>
+			</south>
+		</borderlayout>
+	</window>
 </zk>
