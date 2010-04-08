@@ -16,21 +16,20 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zkplus.databind.AnnotateDataBinder;
-import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.SimpleTreeModel;
 import org.zkoss.zul.SimpleTreeNode;
 import org.zkoss.zul.Tree;
 import org.zkoss.zul.TreeModel;
 import org.zkoss.zul.Treecell;
-import org.zkoss.zul.Treechildren;
 import org.zkoss.zul.Treeitem;
 import org.zkoss.zul.TreeitemRenderer;
 import org.zkoss.zul.Treerow;
 
 import com.hxzy.base.web.window.ActionWindow;
-import com.hxzy.base.web.window.ListWindow;
 import com.hxzy.common.user.model.Privilege;
 import com.hxzy.common.user.model.Role;
 import com.hxzy.common.user.service.PrivilegeService;
@@ -71,27 +70,21 @@ public class GrantPriv extends ActionWindow {
 
 		binder = (AnnotateDataBinder) this.getVariable("binder", true);
 
-		role = roleService.loadById(role.getId());
-		final Set<Privilege> privs = role.getPrivileges();
-
 		tree.setTreeitemRenderer(new TreeitemRenderer() {
 
 			public void render(Treeitem item, Object data) throws Exception {
 				if (data == null)
 					return;
-				Privilege p = null;
 
 				SimpleTreeNode t = (SimpleTreeNode) data;
-				p = (Privilege) t.getData();
+				Privilege p = (Privilege) t.getData();
 
 				Treerow tr = new Treerow();
 				item.setValue(p);
+				item.setSelected(true);
 
 				item.setOpen(true);
-
-				if (privs.contains(p)) {
-					item.setCheckable(true);
-				}
+				
 
 				tr.setParent(item);
 				tr.appendChild(new Treecell(p.getPrivName()));
@@ -102,6 +95,10 @@ public class GrantPriv extends ActionWindow {
 		});
 
 		binder.loadComponent(tree);
+		
+		
+
+	
 	}
 
 	/*
