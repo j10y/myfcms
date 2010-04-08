@@ -60,6 +60,14 @@ public abstract interface BaseService <T, V>{
 	 * 根据ID查找对象
 	 */
 	public T findById(Long id);
+	
+	
+	/**
+	 * 描述：根据id加载对象
+	 * @param id
+	 * @return
+	 */
+	public T loadById(Long id);
 
 	/** */
 	/**

@@ -139,9 +139,8 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 	public List<T> findByCriteria(final DetachedCriteria detachedCriteria) {
 		return (List<T>) getHibernateTemplate().execute(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException {
-				Criteria criteria = detachedCriteria
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
-				.getExecutableCriteria(session);
+				Criteria criteria = detachedCriteria.setResultTransformer(
+						Criteria.DISTINCT_ROOT_ENTITY).getExecutableCriteria(session);
 				List list = criteria.list();
 				return transformResults(list);
 			}
@@ -167,6 +166,10 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 	@SuppressWarnings("unchecked")
 	public T findById(Long id) {
 		return (T) getHibernateTemplate().get(getPojoClassName(), id);
+	}
+
+	public T loadById(Long id) {
+		return (T) getHibernateTemplate().load(getPojoClassName(), id);
 	}
 
 	/*
@@ -197,10 +200,8 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 			return p;
 		}
 
-		List items = criteria
-		.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
-		.setFirstResult(p.getFirstResult())
-		.setMaxResults(p.getPageSize()).list();
+		List items = criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).setFirstResult(
+				p.getFirstResult()).setMaxResults(p.getPageSize()).list();
 		items = transformResults(items);
 
 		p.setList(items);
@@ -238,8 +239,7 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 		return (Pagination) getHibernateTemplate().execute(new HibernateCallback() {
 			@SuppressWarnings("unchecked")
 			public Object doInHibernate(Session session) throws HibernateException {
-				Criteria criteria = detachedCriteria				
-				.getExecutableCriteria(session);
+				Criteria criteria = detachedCriteria.getExecutableCriteria(session);
 				int totalCount = ((Integer) criteria.setProjection(Projections.rowCount())
 						.uniqueResult()).intValue();
 				criteria.setProjection(null);
@@ -251,11 +251,8 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 					return p;
 				}
 
-				List items = criteria
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
-				.setFirstResult(p.getFirstResult())
-				.setMaxResults(p.getPageSize())
-				.list();
+				List items = criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+						.setFirstResult(p.getFirstResult()).setMaxResults(p.getPageSize()).list();
 				items = transformResults(items);
 
 				p.setList(items);
@@ -293,15 +290,16 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 		int totalCount = getCountByQuery(hql, values);
 
 		Pagination p = new Pagination(pageNo, pageSize, totalCount);
-		
+
 		if (totalCount < 1) {
 			p.setList(new ArrayList());
 			return p;
 		}
 
 		Query query = createQuery(hql, values);
-		List items = query.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).setFirstResult(p.getFirstResult()).setMaxResults(p.getPageSize()).list();
-		
+		List items = query.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).setFirstResult(
+				p.getFirstResult()).setMaxResults(p.getPageSize()).list();
+
 		p.setList(items);
 		return p;
 	}
@@ -313,7 +311,7 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 	 *      java.lang.Object[])
 	 */
 	public Pagination findPageByQuery(String hql, Object... values) {
-		return findPageByQuery(hql, 10, 1, values);   
+		return findPageByQuery(hql, 10, 1, values);
 	}
 
 	/*
@@ -323,7 +321,7 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 	 *      java.lang.Object[])
 	 */
 	public Pagination findPageByQuery(String hql, int pageNo, Object... values) {
-		return findPageByQuery(hql, 10, pageNo, values);  
+		return findPageByQuery(hql, 10, pageNo, values);
 	}
 
 	/*
@@ -332,8 +330,8 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 	 * @see base.dao.BaseDao#getCountByCriteria(org.hibernate.Criteria)
 	 */
 	public int getCountByCriteria(Criteria criteria) {
-		Integer count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();    
-        return count.intValue();   
+		Integer count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
+		return count.intValue();
 	}
 
 	/*
@@ -343,13 +341,13 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 	 */
 	@SuppressWarnings("deprecation")
 	public int getCountByCriteria(final DetachedCriteria detachedCriteria) {
-		Integer count = (Integer) getHibernateTemplate().execute(new HibernateCallback() {   
-            public Object doInHibernate(Session session) throws HibernateException {   
-                Criteria criteria = detachedCriteria.getExecutableCriteria(session);   
-                return criteria.setProjection(Projections.rowCount()).uniqueResult();   
-            }   
-        }, true);   
-        return count.intValue();
+		Integer count = (Integer) getHibernateTemplate().execute(new HibernateCallback() {
+			public Object doInHibernate(Session session) throws HibernateException {
+				Criteria criteria = detachedCriteria.getExecutableCriteria(session);
+				return criteria.setProjection(Projections.rowCount()).uniqueResult();
+			}
+		}, true);
+		return count.intValue();
 	}
 
 	/*
@@ -360,8 +358,8 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 	 */
 	public int getCountByQuery(String hql, Object... values) {
 		String countQueryString = " select count (*) " + removeSelect(removeOrders(hql));
-        List countlist = getHibernateTemplate().find(countQueryString, values);
-        return (Integer) countlist.get(0);
+		List countlist = getHibernateTemplate().find(countQueryString, values);
+		return (Integer) countlist.get(0);
 	}
 
 	/*
@@ -397,7 +395,7 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 	 * @see base.dao.BaseDao#save(java.lang.Object)
 	 */
 	public Long save(T transientInstance) {
-		return (Long)getHibernateTemplate().save(transientInstance);
+		return (Long) getHibernateTemplate().save(transientInstance);
 	}
 
 	/*
@@ -425,8 +423,8 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 				ArrayList list = new ArrayList(items.size());
 				int pos = 0;
 				for (int i = 0; i < ((Object[]) items.get(0)).length; i++) {
-					if (((Object[]) items.get(0))[i] != null && 
-							((Object[]) items.get(0))[i].getClass() == getPojoClass()) {
+					if (((Object[]) items.get(0))[i] != null
+							&& ((Object[]) items.get(0))[i].getClass() == getPojoClass()) {
 						pos = i;
 						break;
 					}
@@ -440,30 +438,28 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 		} else
 			return items;
 	}
-	
+
 	/**
-     * 方法取自SpringSide.
-     * 去除hql的orderby子句
-     */
-    private static String removeOrders(String hql) {
-        Pattern p = Pattern.compile("order\\s*by[\\w|\\W|\\s|\\S]*",  Pattern.CASE_INSENSITIVE);
-        Matcher m = p.matcher(hql);
-        StringBuffer sb = new StringBuffer();
-        while (m.find()) {
-            m.appendReplacement(sb, "");
-        }
-        m.appendTail(sb);
-        return sb.toString();
-    }
-    
-    /**
-     * 方法取自SpringSide.
-     * 去除hql的select子句，未考虑union的情况
-     */
-    private static String removeSelect(String hql) {
-        int beginPos = hql.toLowerCase().indexOf("from");
-        return hql.substring(beginPos);
-    }
+	 * 方法取自SpringSide. 去除hql的orderby子句
+	 */
+	private static String removeOrders(String hql) {
+		Pattern p = Pattern.compile("order\\s*by[\\w|\\W|\\s|\\S]*", Pattern.CASE_INSENSITIVE);
+		Matcher m = p.matcher(hql);
+		StringBuffer sb = new StringBuffer();
+		while (m.find()) {
+			m.appendReplacement(sb, "");
+		}
+		m.appendTail(sb);
+		return sb.toString();
+	}
+
+	/**
+	 * 方法取自SpringSide. 去除hql的select子句，未考虑union的情况
+	 */
+	private static String removeSelect(String hql) {
+		int beginPos = hql.toLowerCase().indexOf("from");
+		return hql.substring(beginPos);
+	}
 
 	/**
 	 * 设置 pojoClass
@@ -471,8 +467,5 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 	public void setPojoClass(Class<T> pojoClass) {
 		this.pojoClass = pojoClass;
 	}
-    
-    
-    
 
 }

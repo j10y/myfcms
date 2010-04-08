@@ -71,6 +71,9 @@ public class GrantPriv extends ActionWindow {
 
 		binder = (AnnotateDataBinder) this.getVariable("binder", true);
 
+		role = roleService.loadById(role.getId());
+		final Set<Privilege> privs = role.getPrivileges();
+
 		tree.setTreeitemRenderer(new TreeitemRenderer() {
 
 			public void render(Treeitem item, Object data) throws Exception {
@@ -86,11 +89,9 @@ public class GrantPriv extends ActionWindow {
 
 				item.setOpen(true);
 
-				// Set<Privilege> privs = role.getPrivileges();
-				//				
-				// if(privs.contains(p)){
-				// item.setCheckable(true);
-				// }
+				if (privs.contains(p)) {
+					item.setCheckable(true);
+				}
 
 				tr.setParent(item);
 				tr.appendChild(new Treecell(p.getPrivName()));
@@ -120,12 +121,7 @@ public class GrantPriv extends ActionWindow {
 
 		role.setPrivileges(privs);
 		roleService.update(role);
-		
-		role.setRoleName("211");
-		
-		
 
-//		((ListWindow) this.getParent()).onFind();
 		this.onClose();
 
 	}
@@ -256,5 +252,4 @@ public class GrantPriv extends ActionWindow {
 		this.binder = binder;
 	}
 
-	
 }

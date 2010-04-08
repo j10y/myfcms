@@ -107,6 +107,13 @@ public abstract class BaseServiceImpl<T, V extends BaseDao<T>> implements BaseSe
 	}
 
 	/* (non-Javadoc)
+	 * @see com.hxzy.base.service.BaseService#loadById(java.lang.Long)
+	 */
+	public T loadById(Long id) {
+		return getDao().loadById(id);
+	}
+
+	/* (non-Javadoc)
 	 * @see base.service.BaseService#findByProperty(java.lang.String, java.lang.Object)
 	 */
 	public List<T> findByProperty(String propertyName, Object value) {
