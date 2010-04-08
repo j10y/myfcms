@@ -7,6 +7,8 @@
  */
 package com.hxzy.common.user.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.hxzy.base.service.impl.BaseServiceImpl;
 import com.hxzy.common.user.dao.PrivilegeDao;
 import com.hxzy.common.user.model.Privilege;
@@ -19,7 +21,7 @@ import com.hxzy.common.user.service.PrivilegeService;
  */
 public class PrivilegeServiceImpl extends BaseServiceImpl<Privilege,PrivilegeDao> implements PrivilegeService {
 
-	
+	@Autowired
 	private PrivilegeDao privilegeDao;
 
 	/* (non-Javadoc)

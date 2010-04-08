@@ -7,6 +7,8 @@
  */
 package com.hxzy.common.user.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.hxzy.base.service.impl.BaseServiceImpl;
 import com.hxzy.common.user.dao.RoleDao;
 import com.hxzy.common.user.model.Role;
@@ -19,6 +21,7 @@ import com.hxzy.common.user.service.RoleService;
  */
 public class RoleServiceImpl extends BaseServiceImpl<Role,RoleDao> implements RoleService {
 
+	@Autowired
 	private RoleDao roleDao;
 
 	/* (non-Javadoc)

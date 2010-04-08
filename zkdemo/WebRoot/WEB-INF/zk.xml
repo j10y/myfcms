@@ -389,8 +389,8 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 	<listener>
 		<description>Hibernate SessionFactory Lifecycle</description>
 		<listener-class>org.zkoss.zkplus.hibernate.HibernateSessionFactoryListener</listener-class>
-	</listener>
-	-->
+	</listener>-->
+	
 	
 	<!-- Configure the Hibernate configuration file name if not "hibernate.cfg.xml"
 	<preference>
@@ -404,7 +404,34 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 		<description>Hibernate "Open Session In View" Session Lifecycle</description>
 		<listener-class>org.zkoss.zkplus.hibernate.OpenSessionInViewListener</listener-class>
 	</listener>
-	 -->
+	-->
+	<!--
+	<listener>
+        <description>Hibernate Open Session In conversation life-cycle</description>
+        <listener-class>cz.datalite.zkspring.config.HibernateLongSession</listener-class>
+     </listener>-->
+	<!-- -->
+	<listener>
+    	<description>Spring TransactionSynchronizationManager handler</description>
+    	<listener-class>org.zkoss.zkplus.spring.SpringTransactionSynchronizationListener</listener-class>
+	</listener>
+<!--
+	<listener>
+		<description>ThreadLocal Synchronization Listener</description>
+		<listener-class>org.zkoss.zkplus.util.ThreadLocalListener</listener-class>
+	</listener>-->
+<!--
+	<preference>
+		<name>ThreadLocal</name>
+        <value>org.springframework.transaction.support.TransactionSynchronizationManager=resources,
+                        synchronizations,currentTransactionName,currentTransactionReadOnly,actualTransactionActive;
+			org.springframework.orm.hibernate3.SessionFactoryUtils=deferredCloseHolder;
+			org.springframework.transaction.interceptor.TransactionAspectSupport=transactionInfoHolder;
+		</value>
+	</preference>	
+	-->
+ 
+	
 
 	<!-- Hibernate thread session context handler
 	<listener>
@@ -412,8 +439,8 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 		<listener-class>
 			org.zkoss.zkplus.hibernate.HibernateSessionContextListener
 		</listener-class>
-	</listener>
-	 -->	
+	</listener>-->
+	 	
 	 
 	 <listener>
 	 <listener-class>

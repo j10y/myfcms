@@ -3,15 +3,14 @@
     "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-
+<!--  
   <bean id="hibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
     <property name="properties">
       <props>
         <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
-        <prop key="hibernate.show_sql">true</prop>
       </props>
     </property>
-  </bean>
+  </bean>-->
 
   <bean id="dataSource" class="com.p6spy.engine.spy.P6DataSource" destroy-method="close">             
         <constructor-arg>             
