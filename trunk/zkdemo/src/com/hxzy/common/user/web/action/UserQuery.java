@@ -19,10 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.SuspendNotAllowedException;
-import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.Listitem;
-import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
 import com.hxzy.base.util.Pagination;
@@ -128,6 +125,26 @@ public class UserQuery extends ListWindow {
 	public void onAdd() {
 		try {
 			((Window) Executions.createComponents("userAdd.zul", UserQuery.this, null)).doModal();
+		} catch (SuspendNotAllowedException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void onGrantRole(){
+		if (listbox.getSelectedItem() == null) {
+			Message.showInfo("请至少选择一个数据!");
+			return;
+		}
+
+		Object user = listbox.getSelectedItem().getValue();
+
+		Map map = new HashMap();
+		map.put("user", user);
+
+		try {
+			((Window) Executions.createComponents("grantRole.zul", UserQuery.this, map)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {

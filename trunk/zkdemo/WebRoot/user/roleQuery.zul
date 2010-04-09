@@ -39,7 +39,7 @@
 			<listcell label="@{role.roleName}"/>
 			<listcell label="@{role.remarks}"/>			
 		</listitem>		
-		</listbox>
+	</listbox>
 	</center>
 	<south height="25px">
 	<paging id="pg" />

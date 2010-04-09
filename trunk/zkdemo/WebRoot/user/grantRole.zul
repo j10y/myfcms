@@ -1,0 +1,49 @@
+<?page title="授予角色" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./grantRole"?>
+<?import src="/include.zul"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<window id="grantRole" title="授予权限"
+		use="com.hxzy.common.user.web.action.GrantRole" border="normal"
+		width="300px" sizable="true" height="auto">
+
+		<borderlayout height="300px">
+			<north height="25px" border="none">
+				<div align="center">
+					<label value="被授予的用户："></label>
+					<label id="username" />
+				</div>
+			</north>
+			<center border="none">
+				<borderlayout>
+					<center>
+						<listbox id="listbox" model="@{grantRole.roles}"
+							paginal="${pg}" checkmark="true" multiple="true">
+							<listhead>
+								<listheader label="角色名称" />
+								<listheader label="角色说明" />
+							</listhead>
+							<!-- 
+							<listitem self="@{each=role}"
+								value="@{role}">
+								<listcell label="@{role.roleName}" />
+								<listcell label="@{role.remarks}" />
+							</listitem> -->
+						</listbox>
+					</center>
+					<south>
+						<paging id="pg" />
+					</south>
+				</borderlayout>
+			</center>
+			<south height="25px" border="none">
+				<div align="center">
+					<button id="submit" label="确认" />
+					<space></space>
+					<button id="cancel" label="取消" />
+				</div>
+			</south>
+		</borderlayout>
+	</window>
+</zk>
