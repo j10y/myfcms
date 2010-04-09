@@ -14,11 +14,71 @@
 		extends="window" 
 		class="com.hxzy.common.user.web.action.UserQuery" 
 		needAuthentication="true" 
-		needAuthorization="false"?>	
+		needAuthorization="true"
+		functionCode="userQuery"?>	
+		
+	<?component name="userAdd" 
+		extends="window" 
+		class="com.hxzy.common.user.web.action.UserAdd" 
+		functionCode="userAdd"?>	
 		
 	<?component name="userDelete" 
 		extends="window" 
 		class="com.hxzy.common.user.web.action.UserDelete" 
-		needAuthentication="false" 
-		needAuthorization="false"?>	
+		functionCode="userDelete"?>	
+	
+	<?component name="userEdit" 
+		extends="window" 
+		class="com.hxzy.common.user.web.action.UserEdit" 
+		functionCode="userEdit"?>
+		
+	<?component name="roleQuery" 
+		extends="window" 
+		class="com.hxzy.common.user.web.action.RoleQuery" 
+		functionCode="roleQuery"?>
+		
+	<?component name="roleEdit" 
+		extends="window" 
+		class="com.hxzy.common.user.web.action.RoleEdit" 
+		functionCode="roleEdit"?>
+		
+	<?component name="roleAdd" 
+		extends="window" 
+		class="com.hxzy.common.user.web.action.RoleAdd" 
+		functionCode="roleAdd"?>
+	
+	<?component name="roleDelete" 
+		extends="window" 
+		class="com.hxzy.common.user.web.action.RoleDelete" 
+		functionCode="roleDelete"?>
+	
+	<?component name="privilegeQuery" 
+		extends="window" 
+		class="com.hxzy.common.user.web.action.PrivilegeQuery" 
+		functionCode="privilegeQuery"?>
+		
+	<?component name="privilegeAdd" 
+		extends="window" 
+		class="com.hxzy.common.user.web.action.PrivilegeAdd" 
+		functionCode="privilegeAdd"?>
+		
+	<?component name="privilegeEdit" 
+		extends="window" 
+		class="com.hxzy.common.user.web.action.PrivilegeEdit" 
+		functionCode="privilegeEdit"?>
+	
+	<?component name="privilegeDelete" 
+		extends="window" 
+		class="com.hxzy.common.user.web.action.PrivilegeDelete" 
+		functionCode="privilegeDelete"?>
+		
+	<?component name="grantPriv" 
+		extends="window" 
+		class="com.hxzy.common.user.web.action.GrantPriv" 
+		functionCode="grantPriv"?>
+		
+	<?component name="grantRole" 
+		extends="window" 
+		class="com.hxzy.common.user.web.action.GrantRole" 
+		functionCode="grantRole"?>
 </zk>
