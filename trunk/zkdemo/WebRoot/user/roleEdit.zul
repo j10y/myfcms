@@ -3,8 +3,7 @@
 <zk xmlns="http://www.zkoss.org/2005/zul"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
-	<window title="修改角色" use="com.hxzy.common.user.web.action.RoleEdit"
-		border="normal" width="400px">
+	<roleEdit title="修改角色" border="normal" width="400px">
 
 		<grid fixedLayout="true">
 			<columns>
@@ -32,5 +31,5 @@
 		
 		</div>
 
-	</window>
+	</roleEdit>
 </zk>

@@ -46,7 +46,8 @@ public class AuthenticateInterceptor implements EventThreadInit {
 	 *      org.zkoss.zk.ui.event.Event)
 	 */
 	public boolean init(Component comp, Event evt) throws Exception {
-		HttpServletRequest request = (HttpServletRequest) Executions.getCurrent().getNativeRequest();
+		HttpServletRequest request = (HttpServletRequest) Executions.getCurrent()
+				.getNativeRequest();
 
 		if (!(comp instanceof Authorizable))
 			return true;
@@ -57,11 +58,7 @@ public class AuthenticateInterceptor implements EventThreadInit {
 		if (WebAppUtil.isUserLogined(request)) {
 			return true;
 		} else {
-			try {
-				Executions.getCurrent().sendRedirect(loginUrl);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
+			Executions.getCurrent().sendRedirect(loginUrl);
 			return false;
 		}
 

@@ -5,8 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
-	<window id="privilegeQuery"
-		use="com.hxzy.common.user.web.action.PrivilegeQuery" height="100%">
+	<privilegeQuery id="privilegeQuery" height="100%">
 		<borderlayout>
 			<north height="25px">
 				<borderlayout>
@@ -34,5 +33,5 @@
 				</tree>
 			</center>
 		</borderlayout>
-	</window>
+	</privilegeQuery>
 </zk>

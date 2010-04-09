@@ -4,8 +4,7 @@
 <zk xmlns="http://www.zkoss.org/2005/zul"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
-	<window id="grantPriv" title="授予权限" use="com.hxzy.common.user.web.action.GrantPriv"
-		border="normal" width="300px" sizable="true" height="auto">
+	<grantPriv id="grantPriv" title="授予权限" border="normal" width="300px" sizable="true" height="auto">
 
 		<borderlayout height="300px">
 			<north height="25px" border="none">
@@ -30,5 +29,5 @@
 				</div>
 			</south>
 		</borderlayout>
-	</window>
+	</grantPriv>
 </zk>

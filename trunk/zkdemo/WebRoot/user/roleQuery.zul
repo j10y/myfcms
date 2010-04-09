@@ -6,7 +6,7 @@
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 	
-	<window id="roleQuery" use="com.hxzy.common.user.web.action.RoleQuery" height="100%">
+	<roleQuery id="roleQuery"  height="100%">
 	<borderlayout>
 	<north height="25px">
 	<borderlayout>
@@ -46,5 +46,5 @@
 	</south>
 	</borderlayout>
 		
-	</window>
+	</roleQuery>
 </zk>
