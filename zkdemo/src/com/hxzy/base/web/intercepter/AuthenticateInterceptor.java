@@ -47,7 +47,6 @@ public class AuthenticateInterceptor implements EventThreadInit {
 	 */
 	public boolean init(Component comp, Event evt) throws Exception {
 		HttpServletRequest request = (HttpServletRequest) Executions.getCurrent().getNativeRequest();
-		HttpServletResponse response = (HttpServletResponse) Executions.getCurrent().getNativeResponse();
 
 		if (!(comp instanceof Authorizable))
 			return true;
@@ -59,7 +58,7 @@ public class AuthenticateInterceptor implements EventThreadInit {
 			return true;
 		} else {
 			try {
-				response.sendRedirect(request.getContextPath() + loginUrl);
+				Executions.getCurrent().sendRedirect(loginUrl);
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
