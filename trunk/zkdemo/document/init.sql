@@ -14,7 +14,9 @@ VALUES
 (12,'roleAdd','添加角色',3),
 (13,'roleEdit','编辑角色',3),
 (14,'roleDelete','删除角色',3),
-(15,'grantPriv','授予权限',3);
+(15,'grantPriv','授予权限',3),
+(16,userLock,'锁定/解锁用户',2);
+
 
 INSERT INTO `role` VALUES (1,0,'拥有所有权限','超级管理员');
 
@@ -33,7 +35,8 @@ INSERT INTO `role_privilege` VALUES
 (1,12),
 (1,13),
 (1,14),
-(1,15);
+(1,15),
+(1,16);
 
 INSERT INTO `user` VALUES (1,'2010-04-09 22:08:00',0,'2010-04-09 21:01:00',9,'admin','超级管理员',0,'admin');
 
