@@ -17,6 +17,7 @@
 		<button label="修改" forward="onEdit"/>
 		<button label="删除" forward="onDelete" />
 		<button label="锁定/解锁" forward="onLock"/>
+		<button label="授予角色" forward="onGrantRole"/>
 		</hbox>
 	</west>
 	<center border="none"></center>
