@@ -6,10 +6,14 @@
 		
 	<?component name="button" extends="button" mold="trendy"?>
 	
+	<?component name="login" 
+		extends="window" 
+		class="com.hxzy.common.web.action.Login" ?>	
+	
 	<?component name="userQuery" 
 		extends="window" 
 		class="com.hxzy.common.user.web.action.UserQuery" 
-		needAuthentication="false" 
+		needAuthentication="true" 
 		needAuthorization="false"?>	
 		
 	<?component name="userDelete" 

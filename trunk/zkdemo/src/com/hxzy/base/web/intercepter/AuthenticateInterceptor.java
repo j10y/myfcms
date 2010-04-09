@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.zkoss.zk.ui.Component;
-import org.zkoss.zk.ui.Session;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventThreadInit;
 
@@ -23,7 +23,7 @@ public class AuthenticateInterceptor implements EventThreadInit {
 	/**
 	 * √Ë ˆ: µ«¬º“≥√ÊUrl
 	 */
-	public String loginUrl = "";
+	public String loginUrl = "/login.zul";
 
 	/**
 	 * √Ë ˆ: ∑µªÿ loginUrl
@@ -46,10 +46,8 @@ public class AuthenticateInterceptor implements EventThreadInit {
 	 *      org.zkoss.zk.ui.event.Event)
 	 */
 	public boolean init(Component comp, Event evt) throws Exception {
-		HttpServletRequest request = (HttpServletRequest) comp.getDesktop().getExecution()
-				.getNativeRequest();
-		HttpServletResponse response = (HttpServletResponse) comp.getDesktop().getExecution()
-				.getNativeResponse();
+		HttpServletRequest request = (HttpServletRequest) Executions.getCurrent().getNativeRequest();
+		HttpServletResponse response = (HttpServletResponse) Executions.getCurrent().getNativeResponse();
 
 		if (!(comp instanceof Authorizable))
 			return true;
