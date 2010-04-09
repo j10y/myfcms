@@ -4,7 +4,7 @@
 
 	<?component name="myWindow" extends="window" class="web.UserWindow" needAuthentication="true" ?>
 		
-	<?component name="button" extends="button" mold="trendy"?>
+	<?component name="button" extends="button" class="com.hxzy.base.web.component.Button" mold="trendy"?>
 	
 	<?component name="login" 
 		extends="window" 
