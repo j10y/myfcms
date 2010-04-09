@@ -83,8 +83,6 @@ public class PrivilegeEdit extends ActionWindow {
 		privilegeService.update(privilege);
 
 		((TreeWindow) this.getParent()).init();
-		this.onClose();
-
 	}
 
 	/**

@@ -94,8 +94,7 @@ public class UserEdit extends ActionWindow {
 
 		userService.update(user);
 
-		((ListWindow) this.getParent()).onFind();
-		this.onClose();
+		 ((ListWindow) this.getParent()).onFind();
 	}
 
 }

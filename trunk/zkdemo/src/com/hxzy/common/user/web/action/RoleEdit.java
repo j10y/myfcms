@@ -76,7 +76,6 @@ public class RoleEdit extends ActionWindow {
 		roleService.update(role);
 
 		((ListWindow) this.getParent()).onFind();
-		this.onClose();
 	}
 
 }

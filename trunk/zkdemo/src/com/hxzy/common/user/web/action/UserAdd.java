@@ -88,7 +88,6 @@ public class UserAdd extends ActionWindow {
 		userService.save(user);
 
 		((ListWindow) this.getParent()).onFind();
-		this.onClose();
 	}
 
 }

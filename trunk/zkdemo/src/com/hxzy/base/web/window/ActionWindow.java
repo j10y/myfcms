@@ -36,6 +36,8 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 	 */
 	protected Button cancel;
 
+	protected AnnotateDataBinder binder;
+
 	/**
 	 * ÃèÊö: ¹¦ÄÜ´úÂë
 	 */
@@ -63,17 +65,20 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 
 	public void onCreate() {
 
+		binder = (AnnotateDataBinder) this.getVariable("binder", true);
+
 		this.setClosable(true);
 
 		submit.addEventListener("onClick", new EventListener() {
 			public void onEvent(Event arg0) throws Exception {
 				onSubmit();
+				ActionWindow.this.detach();
 			}
 		});
 
 		cancel.addEventListener("onClick", new EventListener() {
 			public void onEvent(Event arg0) throws Exception {
-				ActionWindow.this.onClose();
+				ActionWindow.this.detach();
 			}
 
 		});
@@ -81,12 +86,13 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 		this.addEventListener("onOK", new EventListener() {
 			public void onEvent(Event arg0) throws Exception {
 				onSubmit();
+				ActionWindow.this.detach();
 			}
 		});
 
 		this.addEventListener("onCancel", new EventListener() {
 			public void onEvent(Event arg0) throws Exception {
-				ActionWindow.this.onClose();
+				ActionWindow.this.detach();
 			}
 		});
 

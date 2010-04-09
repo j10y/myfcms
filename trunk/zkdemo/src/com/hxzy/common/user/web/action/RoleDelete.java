@@ -53,7 +53,6 @@ public class RoleDelete extends ActionWindow {
 		}
 		
 		((ListWindow)this.getParent()).onFind();
-		this.onClose();		
 	}
 
 }
