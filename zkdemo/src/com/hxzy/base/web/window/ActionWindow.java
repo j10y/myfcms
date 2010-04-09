@@ -36,6 +36,9 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 	 */
 	protected Button cancel;
 
+	/**
+	 * ÃèÊö£ºÊı¾İ°ó¶¨Æ÷
+	 */
 	protected AnnotateDataBinder binder;
 
 	/**

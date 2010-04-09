@@ -23,9 +23,7 @@
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>
-			com.hxzy.base.web.listener.ApplicationHttpSessionListener
-		</listener-class>
+		<listener-class>com.hxzy.base.web.listener.ApplicationHttpSessionListener</listener-class>
 	</listener>
 	<!--  -->
 	<filter> 
