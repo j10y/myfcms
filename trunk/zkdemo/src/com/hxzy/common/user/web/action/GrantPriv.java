@@ -16,7 +16,6 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.SimpleTreeModel;
 import org.zkoss.zul.SimpleTreeNode;
@@ -109,7 +108,8 @@ public class GrantPriv extends ActionWindow {
 		Set<Treeitem> items = tree.getSelectedItems();
 
 		for (Treeitem item : items) {
-			privs.add((Privilege) item.getValue());
+			Privilege p =(Privilege) item.getValue();
+			privs.add(p);
 		}
 
 		role.setPrivileges(privs);

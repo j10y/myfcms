@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -35,7 +37,7 @@ public class Privilege implements Serializable {
 
 	/**
 	 * 描述：权限的编码
-	 */	
+	 */
 	private String privCode;
 
 	/**
@@ -55,6 +57,9 @@ public class Privilege implements Serializable {
 	 */
 	@OneToMany(mappedBy = "parent", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
 	private Set<Privilege> childrens;
+
+	@ManyToMany(mappedBy = "privileges", fetch = FetchType.LAZY)
+	private Set<Role> roles;
 
 	/**
 	 * @return the id
@@ -157,7 +162,19 @@ public class Privilege implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
+	/**
+	 * 返回 roles
+	 */
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	/**
+	 * 设置 roles
+	 */
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 
 }
