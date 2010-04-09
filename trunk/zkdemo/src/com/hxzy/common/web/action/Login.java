@@ -7,22 +7,20 @@
  */
 package com.hxzy.common.web.action;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.zkoss.zk.ui.Components;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.ext.AfterCompose;
-import org.zkoss.zkplus.databind.AnnotateDataBinder;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Textbox;
@@ -31,7 +29,6 @@ import org.zkoss.zul.Window;
 import com.hxzy.base.constant.Constant;
 import com.hxzy.base.util.DateUtil;
 import com.hxzy.base.util.WebAppUtil;
-import com.hxzy.base.web.window.ActionWindow;
 import com.hxzy.common.user.model.Privilege;
 import com.hxzy.common.user.model.Role;
 import com.hxzy.common.user.model.User;
@@ -43,7 +40,7 @@ import com.hxzy.common.user.service.UserService;
  * 
  * 描述：
  */
-public class Login extends Window implements AfterCompose{
+public class Login extends Window implements AfterCompose {
 
 	@Autowired
 	private UserService userService;
@@ -53,24 +50,23 @@ public class Login extends Window implements AfterCompose{
 	private Textbox password;
 
 	private Label error;
-	
+
 	/**
 	 * 描述: 提交按钮
 	 */
 	protected Button submit;
-	
+
 	/**
 	 * 描述: 取消按钮
 	 */
 	protected Button cancel;
-	
+
 	public void afterCompose() {
 		Components.wireVariables(this, this);
 		Components.addForwards(this, this);
 	}
-	
-	public void onCreate() {
 
+	public void onCreate() {
 
 		this.setClosable(true);
 
@@ -118,14 +114,10 @@ public class Login extends Window implements AfterCompose{
 	public void onSubmit() {
 		List<User> users = userService.findByProperty("username", username.getValue());
 
-		HttpServletRequest request = (HttpServletRequest) Executions.getCurrent()
-				.getNativeRequest();
-
-		HttpServletResponse response = (HttpServletResponse) Executions.getCurrent()
-				.getNativeResponse();
+		HttpSession session = (HttpSession) Sessions.getCurrent().getNativeSession();
 
 		if (users.isEmpty()) {
-			error.setValue("用户名或密码错误！");
+			error.setValue("无效的用户信息！");
 			return;
 		}
 
@@ -146,11 +138,12 @@ public class Login extends Window implements AfterCompose{
 			int loginFrequency = 1;
 			Map loginMap = null;
 			// 从session中取用户列表
-			if (request.getSession().getAttribute("loginMap") != null)
-				loginMap = (Map) request.getSession().getAttribute("loginMap");
+			if (session.getAttribute("loginMap") != null)
+				loginMap = (Map) session.getAttribute("loginMap");
 			else
 				loginMap = new HashMap();
-			if (request.getSession().getAttribute("loginMap") != null
+			
+			if (session.getAttribute("loginMap") != null
 					&& loginMap.get(user.getUsername()) != null)
 				loginFrequency = ((Integer) loginMap.get(user.getUsername())).intValue() + 1;
 
@@ -160,14 +153,12 @@ public class Login extends Window implements AfterCompose{
 				user.setLockedTime(DateUtil.getNowPreciseToMin());
 				userService.update(user);
 				loginMap.put(user.getUsername(), null);
-				request.getSession().setAttribute("loginMap", loginMap);
-				error.setValue("密码输入错误次数达到5次，该用户帐号已经被锁定，请与管理员联系解除锁定");
+				session.setAttribute("loginMap", loginMap);
+				error.setValue("该用户帐号已经被锁定，请与管理员联系解除锁定");
 			} else {
 				loginMap.put(user.getUsername(), new Integer(loginFrequency));
-				request.getSession().setAttribute("loginMap", loginMap);
-				String[] login = new String[1];
-				login[0] = new Integer(5 - loginFrequency).toString();
-				error.setValue("用户名或密码错误！");
+				session.setAttribute("loginMap", loginMap);
+				error.setValue("无效的用户信息，您还有"+(5 - loginFrequency)+"次机会输入！");
 			}
 			return;
 		}
@@ -194,10 +185,10 @@ public class Login extends Window implements AfterCompose{
 		userInfo.setUserFunPriv(privileges);
 
 		// 将用户放入Session
-		request.getSession().setAttribute(Constant.ATTRIBUTE_USER_INFO, userInfo);
+		session.setAttribute(Constant.ATTRIBUTE_USER_INFO, userInfo);
 
 		// 设置用户登录标志
-		request.getSession().setAttribute(WebAppUtil.LOGIN_FLAG, WebAppUtil.LOGINED);
+		session.setAttribute(WebAppUtil.LOGIN_FLAG, WebAppUtil.LOGINED);
 
 		Executions.getCurrent().sendRedirect("user/userQuery.zul");
 
