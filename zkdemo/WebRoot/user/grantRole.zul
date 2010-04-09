@@ -24,12 +24,6 @@
 								<listheader label="角色名称" />
 								<listheader label="角色说明" />
 							</listhead>
-							<!-- 
-							<listitem self="@{each=role}"
-								value="@{role}">
-								<listcell label="@{role.roleName}" />
-								<listcell label="@{role.remarks}" />
-							</listitem> -->
 						</listbox>
 					</center>
 					<south>

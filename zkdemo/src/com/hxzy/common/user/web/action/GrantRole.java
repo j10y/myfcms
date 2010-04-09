@@ -7,7 +7,6 @@
  */
 package com.hxzy.common.user.web.action;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,7 +34,7 @@ import com.hxzy.common.user.service.UserService;
 /**
  * @author xiacc
  * 
- * 描述：
+ * 描述：用户角色授予类
  */
 public class GrantRole extends ActionWindow {
 
@@ -76,10 +75,8 @@ public class GrantRole extends ActionWindow {
 
 		});
 
-		onFind();
-
 		listbox.setItemRenderer(new ListitemRenderer() {
-
+			
 			public void render(Listitem item, Object o) throws Exception {
 				Role r = (Role) o;
 				
@@ -88,12 +85,13 @@ public class GrantRole extends ActionWindow {
 				item.setValue(r);
 				
 				if (user.getRoles().contains(r)) {
-					item.setSelected(true);				
+					item.setSelected(true);
 				}
 			}
-
+			
 		});
 
+		onFind();
 	}
 
 	public void onFind() {
@@ -107,15 +105,6 @@ public class GrantRole extends ActionWindow {
 		pg.setTotalSize(pagination.getTotalCount());
 		this.roles = pagination;
 		binder.loadComponent(listbox);
-		// binder.loadAll();
-		//
-		// List<Listitem> items = listbox.getItems();
-		//
-		// for (Listitem item : items) {
-		// if (user.getRoles().contains(item.getValue())) {
-		// listbox.setSelectedItem(item);
-		// }
-		// }
 	}
 
 	/*
