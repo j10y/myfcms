@@ -1,2 +1,3 @@
 <window title="" border="normal">
+<button label="ok" use="com.hxzy.base.web.component.Button" tooltiptext="1234" priv="1234"></button>
  </window>

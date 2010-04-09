@@ -13,11 +13,11 @@
 	<west border="none" width="300px">
 		<hbox>
 		<space></space>
-		<button label="新增" forward="onAdd"/>
-		<button label="修改" forward="onEdit"/>
-		<button label="删除" forward="onDelete" />
-		<button label="锁定/解锁" forward="onLock"/>
-		<button label="授予角色" forward="onGrantRole"/>
+		<button label="新增" forward="onAdd" priv="userAdd"/>
+		<button label="修改" forward="onEdit" priv="userEdit"/>
+		<button label="删除" forward="onDelete" priv="userDelete"/>
+		<button label="锁定/解锁" forward="onLock" priv="userLock"/>
+		<button label="授予角色" forward="onGrantRole" priv="grantRole"/>
 		</hbox>
 	</west>
 	<center border="none"></center>
