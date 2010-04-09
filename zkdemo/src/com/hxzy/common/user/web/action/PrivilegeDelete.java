@@ -19,17 +19,20 @@ import com.hxzy.common.user.service.PrivilegeService;
 
 /**
  * @author xiacc
- *
+ * 
  * √Ë ˆ£∫
  */
 public class PrivilegeDelete extends ActionWindow {
-	
+
 	@Autowired
 	private PrivilegeService privilegeService;
-	
-	private Set<Privilege> privileges = (Set<Privilege>)Executions.getCurrent().getArg().get("privileges");    
 
-	/* (non-Javadoc)
+	private Set<Privilege> privileges = (Set<Privilege>) Executions.getCurrent().getArg().get(
+			"privileges");
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.hxzy.base.web.window.ActionWindow#onBind()
 	 */
 	@Override
@@ -37,17 +40,18 @@ public class PrivilegeDelete extends ActionWindow {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.hxzy.base.web.window.ActionWindow#onSubmit()
 	 */
 	@Override
 	public void onSubmit() {
-		for(Privilege p:privileges){
+		for (Privilege p : privileges) {
 			privilegeService.delete(p);
 		}
-		
-		((TreeWindow)this.getParent()).init();
-		this.onClose();	
+
+		((TreeWindow) this.getParent()).init();
 	}
 
 }

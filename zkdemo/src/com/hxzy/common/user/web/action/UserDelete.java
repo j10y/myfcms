@@ -53,7 +53,6 @@ public class UserDelete extends ActionWindow {
 		}
 		
 		((ListWindow)this.getParent()).onFind();
-		this.onClose();		
 	}
 
 }

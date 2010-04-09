@@ -8,6 +8,7 @@
 package com.hxzy.common.user.web.action;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -68,7 +69,7 @@ public class PrivilegeQuery extends TreeWindow {
 
 		Treerow tr = new Treerow();
 		item.setValue(p);
-		if(p.getParent() == null){
+		if (p.getParent() == null) {
 			item.setOpen(true);
 		}
 		tr.setParent(item);
@@ -97,7 +98,12 @@ public class PrivilegeQuery extends TreeWindow {
 			SimpleTreeNode root = new SimpleTreeNode(p, nodes);
 
 			for (Privilege child : childens) {
-				SimpleTreeNode node = appendChilden(child, new ArrayList(child.getChildrens()));
+				List<Privilege> childs = new ArrayList();
+				if(child.getChildrens() != null){
+					childs.addAll(child.getChildrens());
+				}
+				
+				SimpleTreeNode node = appendChilden(child, childs);
 				nodes.add(node);
 			}
 			return root;

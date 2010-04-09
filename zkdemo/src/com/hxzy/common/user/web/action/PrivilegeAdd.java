@@ -68,8 +68,6 @@ public class PrivilegeAdd extends ActionWindow {
 		privilegeService.save(privilege);
 
 		((TreeWindow) this.getParent()).init();
-		this.onClose();
-
 	}
 
 	/**

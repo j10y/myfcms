@@ -8,7 +8,6 @@
 package com.hxzy.common.user.web.action;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,7 +23,6 @@ import org.zkoss.zul.SimpleTreeNode;
 import org.zkoss.zul.Tree;
 import org.zkoss.zul.TreeModel;
 import org.zkoss.zul.Treecell;
-import org.zkoss.zul.Treechildren;
 import org.zkoss.zul.Treeitem;
 import org.zkoss.zul.TreeitemRenderer;
 import org.zkoss.zul.Treerow;
@@ -57,8 +55,6 @@ public class GrantPriv extends ActionWindow {
 
 	private Tree tree;
 
-	private AnnotateDataBinder binder;
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -68,8 +64,6 @@ public class GrantPriv extends ActionWindow {
 	public void onBind() {
 		treeModel = new SimpleTreeModel(createTree());
 		roleName.setValue(role.getRoleName());
-
-		binder = (AnnotateDataBinder) this.getVariable("binder", true);
 
 		role = roleService.loadById(role.getId());
 
@@ -103,32 +97,6 @@ public class GrantPriv extends ActionWindow {
 
 	}
 
-//	protected <T> void setSelectedValues(Tree tree, Collection<T> selectedValues, boolean add) {
-//		if (!add)
-//			tree.clearSelection();
-//
-//		for (Object o : tree.getItems()) {
-//			Treeitem item = (Treeitem) o;
-//			setSelectedValues(tree, item, selectedValues);
-//		}
-//	}
-//
-//	@SuppressWarnings("unchecked")
-//	private <T> void setSelectedValues(Tree tree, Treeitem currentItem, Collection<T> selectedValues) {
-//		T value = (T) currentItem.getValue();
-//		if (selectedValues.contains(value)) {
-//			tree.addItemToSelection(currentItem);
-//		}
-//
-//		Treechildren children = currentItem.getTreechildren();
-//		if (children != null) {
-//			for (Object o : children.getItems()) {
-//				Treeitem child = (Treeitem) o;
-//				setSelectedValues(tree, child, selectedValues);
-//			}
-//		}
-//	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -145,10 +113,7 @@ public class GrantPriv extends ActionWindow {
 		}
 
 		role.setPrivileges(privs);
-		roleService.update(role);
-
-		this.onClose();
-
+		roleService.update(role);		
 	}
 
 	public SimpleTreeNode createTree() {
@@ -262,19 +227,4 @@ public class GrantPriv extends ActionWindow {
 	public void setRoleName(Label roleName) {
 		this.roleName = roleName;
 	}
-
-	/**
-	 * ∑µªÿ binder
-	 */
-	public AnnotateDataBinder getBinder() {
-		return binder;
-	}
-
-	/**
-	 * …Ë÷√ binder
-	 */
-	public void setBinder(AnnotateDataBinder binder) {
-		this.binder = binder;
-	}
-
 }

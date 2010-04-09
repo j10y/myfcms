@@ -73,7 +73,6 @@ public class RoleAdd extends ActionWindow {
 		roleService.save(role);
 
 		((ListWindow) this.getParent()).onFind();
-		this.onClose();
 	}
 
 }
