@@ -18,7 +18,7 @@
 			</categorybar>
 		</div>
 	</north>
-	<west title="ZK ${desktop.webApp.version} Live Demo" size="210px" flex="true" splittable="true"
+	<west title="Live Demo" size="210px" flex="true" splittable="true"
 		minsize="210" maxsize="500" collapsible="true">
 		<panel>			
 			<panelchildren>			  
