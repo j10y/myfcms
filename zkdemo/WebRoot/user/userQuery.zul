@@ -1,6 +1,7 @@
 <?import src="/include.zul"?>
+<?link  rel="stylesheet" type="text/css" href="/macros/userguide.css.dsp"?>
 <?page title="用户管理" contentType="text/html;charset=UTF-8"?>
-<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="userQuery"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./userQuery"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -23,7 +24,7 @@
 	<center border="none"></center>
 	<east border="none">
 	<hbox>
-		<textbox id="search" />
+		<textbox id="search" focus="true" sclass="main-search-inp"/>
 		<button label="查询" forward="onFind"></button>
 	</hbox>
 	</east>	

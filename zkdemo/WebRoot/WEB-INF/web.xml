@@ -3,6 +3,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<!-- 
+	<icon>
+		<small-icon>/img/logo.png</small-icon>
+		<large-icon></large-icon>
+	</icon>
+	 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/applicationContext*.xml</param-value>
@@ -92,6 +98,24 @@
 	<servlet-mapping>
 		<servlet-name>auEngine</servlet-name>
 		<url-pattern>/zkau/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- ///////////// -->
+	<!-- DSP (optional) -->
+	<!-- Uncomment it if you want to use DSP
+	However, it is turned on since zkdemo/userguide uses DSP to generate CSS.
+	-->
+	<servlet>
+		<servlet-name>dspLoader</servlet-name>
+		<servlet-class>org.zkoss.web.servlet.dsp.InterpreterServlet</servlet-class>
+		<init-param>
+			<param-name>class-resource</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dspLoader</servlet-name>
+		<url-pattern>*.dsp</url-pattern>
 	</servlet-mapping>
 
 	<error-page>
