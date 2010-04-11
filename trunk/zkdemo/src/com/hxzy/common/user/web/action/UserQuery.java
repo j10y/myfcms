@@ -79,7 +79,7 @@ public class UserQuery extends ListWindow {
 		Map map = new HashMap();
 		map.put("users", users);
 		try {
-			((Window) Executions.createComponents("userDelete.zul", UserQuery.this, map)).doModal();
+			((Window) Executions.createComponents("/user/userDelete.zul", UserQuery.this, map)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
@@ -99,7 +99,7 @@ public class UserQuery extends ListWindow {
 		map.put("user", user);
 
 		try {
-			((Window) Executions.createComponents("userEdit.zul", UserQuery.this, map)).doModal();
+			((Window) Executions.createComponents("/user/userEdit.zul", UserQuery.this, map)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
@@ -124,7 +124,7 @@ public class UserQuery extends ListWindow {
 
 	public void onAdd() {
 		try {
-			((Window) Executions.createComponents("userAdd.zul", UserQuery.this, null)).doModal();
+			((Window) Executions.createComponents("/user/userAdd.zul", UserQuery.this, null)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
@@ -144,7 +144,7 @@ public class UserQuery extends ListWindow {
 		map.put("user", user);
 
 		try {
-			((Window) Executions.createComponents("grantRole.zul", UserQuery.this, map)).doModal();
+			((Window) Executions.createComponents("/user/grantRole.zul", UserQuery.this, map)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
