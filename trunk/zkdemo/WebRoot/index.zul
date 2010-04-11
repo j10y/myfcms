@@ -1,3 +1,35 @@
-<window title="" border="normal">
-<button label="ok" use="com.hxzy.base.web.component.Button" tooltiptext="1234" priv="1234"></button>
- </window>
+<?xml version="1.0" encoding="UTF-8"?>
+<?page id="main" title="办公自动化系统"?>
+<?link  rel="stylesheet" type="text/css" href="~./zul/css/ext.css.dsp"?>
+<?link  rel="stylesheet" type="text/css" href="/macros/main.css.dsp"?>
+<?script type="text/javascript" src="/macros/category.js"?>
+<?component name="category" extends="button" mold="default" widgetClass="main.Category"?>
+<?component name="categorybar" extends="div" widgetClass="main.Categorybar"?>
+<zk>
+<borderlayout id="main" apply="com.hxzy.common.web.action.MainLayoutComposer">
+	<north border="none" size="100px" sclass="main-header" collapsible="true">
+		<div>
+			<div sclass="main-logo pointer">
+				<image width="90px" height="80px" src="/img/ZK-Logo.gif"/>
+			</div>
+			<categorybar zclass="main-categorybar" id="header">
+				<category zclass="main-category" forEach="${main$MainLayoutComposer.categories}" id="${each.id}" image="${each.icon}" label="${each.label}" 
+				forward="onClick=main.onCategorySelect"/>
+			</categorybar>
+		</div>
+	</north>
+	<west title="ZK ${desktop.webApp.version} Live Demo" size="210px" flex="true" splittable="true"
+		minsize="210" maxsize="500" collapsible="true">
+		<panel>			
+			<panelchildren>			  
+				<listbox id="itemList" oddRowSclass="non-odd" sclass="main-items"
+					itemRenderer="${main$MainLayoutComposer.itemRenderer}" model="${main$MainLayoutComposer.selectedModel}" fixedLayout="true" vflex="true">					
+				</listbox>
+			</panelchildren>
+		</panel>
+	</west>
+	<center autoscroll="true" flex="true">
+		<include style="padding:3px;" id="xcontents" />
+	</center>
+</borderlayout>
+</zk>

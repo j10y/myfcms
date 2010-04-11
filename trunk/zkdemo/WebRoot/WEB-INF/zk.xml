@@ -458,5 +458,12 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 		 <listener-class>test.ApplicationContextInterceptor</listener-class>	 
 	 </listener>
 	 
+	 <listener>
+		<description>ZK Demo properties loader</description>
+		<listener-class>
+			com.hxzy.common.web.action.DemoWebAppInit
+		</listener-class>
+	</listener>
+	 
 	
 </zk>
