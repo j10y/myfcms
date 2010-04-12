@@ -8,15 +8,19 @@
 package com.bdzb.oa.expert.web.aciton;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.SuspendNotAllowedException;
+import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Window;
 
 import com.bdzb.oa.expert.model.Expert;
@@ -24,7 +28,6 @@ import com.bdzb.oa.expert.service.ExpertService;
 import com.hxzy.base.util.Pagination;
 import com.hxzy.base.web.window.ListWindow;
 import com.hxzy.base.web.window.Message;
-import com.hxzy.common.user.web.action.UserQuery;
 
 /**
  * @author xiacc
@@ -46,14 +49,20 @@ public class ExpertQuery extends ListWindow {
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Expert.class);
 
 		if (StringUtils.hasText(search.getValue())) {
-			detachedCriteria.add(Restrictions.or(Restrictions.like("name", search.getValue(),
+			LogicalExpression l1  = Restrictions.or(Restrictions.like("name", search.getValue(),
 					MatchMode.ANYWHERE), Restrictions.like("titles", search.getValue(),
-					MatchMode.ANYWHERE)));
+					MatchMode.ANYWHERE));
 
-			detachedCriteria.add(Restrictions.or(Restrictions.like("department", search.getValue(),
+			LogicalExpression l2 =Restrictions.or(Restrictions.like("department", search.getValue(),
 					MatchMode.ANYWHERE), Restrictions.like("telephone", search.getValue(),
-					MatchMode.ANYWHERE)));
+					MatchMode.ANYWHERE));
+			
+			LogicalExpression l3 = Restrictions.or(l1,l2);
+			
+			detachedCriteria.add(l3);
 		}
+		
+		
 		Pagination pagination = expertService.findPageByCriteria(detachedCriteria,
 				pg.getPageSize(), pg.getActivePage() + 1);
 		pg.setTotalSize(pagination.getTotalCount());
@@ -85,6 +94,29 @@ public class ExpertQuery extends ListWindow {
 
 		try {
 			((Window) Executions.createComponents("/expert/expertEdit.zul", this, map)).doModal();
+		} catch (SuspendNotAllowedException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void onDelete() {
+		if (listbox.getSelectedItem() == null) {
+			Message.showInfo("请至少选择一个数据!");
+			return;
+		}
+
+		Set<Listitem> items = listbox.getSelectedItems();
+		Set set = new HashSet();
+		for (Listitem item : items) {
+			set.add(item.getValue());
+		}
+
+		Map map = new HashMap();
+		map.put("experts", set);
+		try {
+			((Window) Executions.createComponents("/expert/expertDelete.zul", this, map)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
