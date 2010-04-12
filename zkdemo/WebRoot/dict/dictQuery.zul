@@ -1,0 +1,38 @@
+<?import src="/include.zul"?>
+<?page title="数据字典管理" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./dictQuery"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+	<window id="dictQuery" height="100%" use="com.hxzy.common.dict.web.action.DictQuery">
+		<borderlayout>
+			<north height="25px">
+				<borderlayout>
+					<west border="none" width="300px">
+						<hbox>
+							<space></space>
+							<button label="新增" forward="onAdd" priv="dictAdd"/>
+							<button label="修改" forward="onEdit" priv="dictEdit"/>
+							<button label="删除" forward="onDelete" priv="dictDelete"/>
+						</hbox>
+					</west>
+					<center border="none"></center>
+					<east border="none">
+
+					</east>
+				</borderlayout>
+
+			</north>
+			<center border="none">
+				<tree id="tree" model="@{dictQuery.treeModel}" checkmark="true" multiple="true" width="auto" height="auto" fixedLayout="true">
+					<treecols sizable="true">
+						<treecol label="字典名称" />
+						<treecol label="字典编码" />
+						<treecol label="字典描述" />
+					</treecols>
+				</tree>
+			</center>
+		</borderlayout>
+	</window>
+</zk>

@@ -35,8 +35,6 @@
 		</property>
 	</bean>
 
-
-
 	<bean id="userService" parent="baseTransaction">
 		<property name="target">
 			<bean
@@ -56,6 +54,24 @@
 		<property name="target">
 			<bean
 				class="com.hxzy.common.user.service.impl.RoleServiceImpl" />
+		</property>
+
+	</bean>
+	
+	<bean id="dictService" parent="baseTransaction">
+		<property name="target">
+			<bean
+				class="com.hxzy.common.dict.service.impl.DictServiceImpl" />
+		</property>
+
+	</bean>
+	<!-- Application Service -->
+	
+	<!-- OA Service -->
+	<bean id="expertService" parent="baseTransaction">
+		<property name="target">
+			<bean
+				class="com.bdzb.oa.expert.service.impl.ExpertServiceImpl" />
 		</property>
 
 	</bean>
