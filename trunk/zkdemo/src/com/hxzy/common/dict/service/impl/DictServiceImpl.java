@@ -7,6 +7,8 @@
  */
 package com.hxzy.common.dict.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.hxzy.base.service.impl.BaseServiceImpl;
 import com.hxzy.common.dict.dao.DictDao;
 import com.hxzy.common.dict.model.Dict;
@@ -19,6 +21,7 @@ import com.hxzy.common.dict.service.DictService;
  */
 public class DictServiceImpl extends BaseServiceImpl<Dict,DictDao> implements DictService {
 
+	@Autowired
 	private DictDao dictDao;
 
 	/**

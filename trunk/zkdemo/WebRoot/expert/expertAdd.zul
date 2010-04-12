@@ -1,0 +1,55 @@
+<?import src="/include.zul"?>
+<?page title="增加专家" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./expertAdd"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<window id="expertAdd" use="com.bdzb.oa.expert.web.aciton.ExpertAdd"
+		title="增加专家" border="normal" width="400px">
+
+		<grid fixedLayout="true">
+			<columns>
+				<column label="类型" width="80px" align="right" />
+				<column label="输入" />
+			</columns>
+
+			<rows>
+				<row>
+					类别：
+					<combobox id="combobox" readonly="true"	model="@{expertAdd.list}">
+						<comboitem self="@{each=dict}"	label="@{dict.name}" value="@{dict}" />
+					</combobox>
+				</row>
+				<row>
+					专家名：
+					<textbox id="name" constraint="no empty" />
+				</row>
+				<row>
+					职称：
+					<textbox id="titles" />
+				</row>
+				<row>
+					工作单位：
+					<textbox id="department" />
+				</row>
+				<row>
+					联系电话：
+					<textbox id="telephone" rows="5" cols="40" />
+				</row>
+				<row>
+					备注：
+					<textbox id="remarks" rows="5" cols="40" />
+				</row>
+			</rows>
+
+		</grid>
+		<separator />
+		<div align="center">
+			<button id="submit" label="提交" />
+			<space />
+			<button id="cancel" label="取消" />
+
+		</div>
+
+	</window>
+</zk>
