@@ -8,6 +8,7 @@
 package com.hxzy.common.dict.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,14 +31,20 @@ public class Dict {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	//×ÖµäÃû³Æ
 	private String name;
 	
+	//×Öµä±àÂë
+	@Column(unique = true)
+	private String code;
+	
+	//ÃèÊö
 	private String desc;
 	
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE },fetch = FetchType.LAZY)
 	@JoinColumn(name = "parent_Id")
 	private Dict parent;
-
+	
 	/**
 	 * ·µ»Ø id
 	 */
@@ -93,4 +100,20 @@ public class Dict {
 	public void setParent(Dict parent) {
 		this.parent = parent;
 	}
+
+	/**
+	 * ·µ»Ø code
+	 */
+	public String getCode() {
+		return code;
+	}
+
+	/**
+	 * ÉèÖÃ code
+	 */
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
+	
 }
