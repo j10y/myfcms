@@ -243,7 +243,7 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 	-->
 	<!-- 
 	<desktop-config>
-	  <theme-provider-class>org.zkoss.zkdemo.userguide.FontSizeThemeProvider</theme-provider-class>
+	  <theme-provider-class>org.zkoss.zkdemo.main.FontSizeThemeProvider</theme-provider-class>
 	</desktop-config>
  -->
 	<!-- Uncomment the following if you want to redirect to particular
@@ -371,12 +371,12 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 	</library-property>
 	-->
 	<!-- Uncommet to control the encoding of the labe properties files
-		Default: UTF-8
+		Default: UTF-8-->
 	<library-property>
 		<name>org.zkoss.util.label.web.charset</name>
 		<value>UTF-8</value>
 	</library-property>
-	-->
+	
 
 	<!-- Uncomment it if you prefer to keep the desktops when an user browses to
 		another URL or reloads the page.
@@ -461,7 +461,7 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 	 <listener>
 		<description>ZK Demo properties loader</description>
 		<listener-class>
-			com.hxzy.common.web.action.DemoWebAppInit
+			com.hxzy.common.web.action.MainWebAppInit
 		</listener-class>
 	</listener>
 	 

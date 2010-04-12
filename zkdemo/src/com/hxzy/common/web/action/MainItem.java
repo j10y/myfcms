@@ -21,13 +21,13 @@ package com.hxzy.common.web.action;
 /**
  * @author jumperchen
  */
-public class DemoItem implements java.io.Serializable {
+public class MainItem implements java.io.Serializable {
 	private String _id;
 	private String _cateId;
 	private String _icon;
 	private String _file;
 	private String _label;
-	public DemoItem(String id, String cateId, String file, String icon, String label) {
+	public MainItem(String id, String cateId, String file, String icon, String label) {
 		_id = id;
 		_cateId = cateId;
 		_icon = icon;
@@ -50,6 +50,6 @@ public class DemoItem implements java.io.Serializable {
 		return _label;
 	}	
 	public String toString() {
-		return "[DemoItem:" + _id +", "+_file+']';
+		return "[MainItem:" + _id +", "+_file+']';
 	}
 }

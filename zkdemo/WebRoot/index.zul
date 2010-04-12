@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?page id="main" title="办公自动化系统"?>
 <?link  rel="stylesheet" type="text/css" href="~./zul/css/ext.css.dsp"?>
-<?link  rel="stylesheet" type="text/css" href="/macros/main.css.dsp"?>
+<?link  rel="stylesheet" type="text/css" href="/macros/style.css.dsp"?>
 <?script type="text/javascript" src="/macros/category.js"?>
 <?component name="category" extends="button" mold="default" widgetClass="main.Category"?>
 <?component name="categorybar" extends="div" widgetClass="main.Categorybar"?>
 <zk>
 <borderlayout id="main" apply="com.hxzy.common.web.action.MainLayoutComposer">
-	<north border="none" size="100px" sclass="main-header" collapsible="true">
+	<north border="none" size="100px" sclass="demo-header" collapsible="true">
 		<div>
-			<div sclass="main-logo pointer">
-				<image width="90px" height="80px" src="/img/ZK-Logo.gif"/>
+			<div sclass="demo-logo pointer">
+				<image width="90px" height="80px" src="/img/main/logo.jpg"/>
 			</div>
-			<categorybar zclass="main-categorybar" id="header">
-				<category zclass="main-category" forEach="${main$MainLayoutComposer.categories}" id="${each.id}" image="${each.icon}" label="${each.label}" 
+			<categorybar zclass="demo-categorybar" id="header">
+				<category zclass="demo-category" forEach="${main$MainLayoutComposer.categories}" id="${each.id}" image="${each.icon}" label="${each.label}" 
 				forward="onClick=main.onCategorySelect"/>
 			</categorybar>
 		</div>
 	</north>
-	<west title="Live Demo" size="210px" flex="true" splittable="true"
+	<west title="Live" size="210px" flex="true" splittable="true"
 		minsize="210" maxsize="500" collapsible="true">
 		<panel>			
-			<panelchildren>			  
-				<listbox id="itemList" oddRowSclass="non-odd" sclass="main-items"
+			<panelchildren>
+				<listbox id="itemList" oddRowSclass="non-odd" sclass="demo-items"
 					itemRenderer="${main$MainLayoutComposer.itemRenderer}" model="${main$MainLayoutComposer.selectedModel}" fixedLayout="true" vflex="true">					
 				</listbox>
 			</panelchildren>

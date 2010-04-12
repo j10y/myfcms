@@ -72,7 +72,7 @@ public class RoleQuery extends ListWindow {
 		Map map = new HashMap();
 		map.put("roles",values);
 		try {
-			((Window)Executions.createComponents("roleDelete.zul", RoleQuery.this, map)).doModal();
+			((Window)Executions.createComponents("/user/roleDelete.zul", RoleQuery.this, map)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
@@ -92,7 +92,7 @@ public class RoleQuery extends ListWindow {
 		map.put("role",value);
 		
 		try {
-			((Window)Executions.createComponents("roleEdit.zul", RoleQuery.this, map)).doModal();
+			((Window)Executions.createComponents("/user/roleEdit.zul", RoleQuery.this, map)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
@@ -102,7 +102,7 @@ public class RoleQuery extends ListWindow {
 	
 	public void onAdd(){
 		try {
-			((Window)Executions.createComponents("roleAdd.zul", RoleQuery.this, null)).doModal();
+			((Window)Executions.createComponents("/user/roleAdd.zul", RoleQuery.this, null)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
@@ -122,7 +122,7 @@ public class RoleQuery extends ListWindow {
 		map.put("role",value);
 		
 		try {
-			((Window)Executions.createComponents("grantPriv.zul", RoleQuery.this, map)).doModal();
+			((Window)Executions.createComponents("/user/grantPriv.zul", RoleQuery.this, map)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
