@@ -7,6 +7,9 @@
  */
 package com.bdzb.oa.expert.web.aciton;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
@@ -20,6 +23,8 @@ import com.bdzb.oa.expert.model.Expert;
 import com.bdzb.oa.expert.service.ExpertService;
 import com.hxzy.base.util.Pagination;
 import com.hxzy.base.web.window.ListWindow;
+import com.hxzy.base.web.window.Message;
+import com.hxzy.common.user.web.action.UserQuery;
 
 /**
  * @author xiacc
@@ -60,6 +65,26 @@ public class ExpertQuery extends ListWindow {
 	public void onAdd() {
 		try {
 			((Window) Executions.createComponents("/expert/expertAdd.zul", this, null)).doModal();
+		} catch (SuspendNotAllowedException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void onEdit() {
+		if (listbox.getSelectedItem() == null) {
+			Message.showInfo("请至少选择一个数据!");
+			return;
+		}
+
+		Object o = listbox.getSelectedItem().getValue();
+
+		Map map = new HashMap();
+		map.put("expert", o);
+
+		try {
+			((Window) Executions.createComponents("/expert/expertEdit.zul", this, map)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
