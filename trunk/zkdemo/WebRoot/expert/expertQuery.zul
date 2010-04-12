@@ -17,6 +17,8 @@
 		<button label="新增" forward="onAdd" priv="expertAdd"/>
 		<button label="修改" forward="onEdit" priv="expertEdit"/>
 		<button label="删除" forward="onDelete" priv="expertDelete"/>
+		<button label="导出excel" forward="onOutput" priv="expertOutput"/>
+		<button label="导入excel" forward="onInput" priv="expertInput"/>
 		</hbox>
 	</west>
 	<center border="none"></center>
