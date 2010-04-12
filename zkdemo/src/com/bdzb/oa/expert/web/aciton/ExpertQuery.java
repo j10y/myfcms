@@ -7,10 +7,19 @@
  */
 package com.bdzb.oa.expert.web.aciton;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javax.swing.filechooser.FileSystemView;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.LogicalExpression;
@@ -20,11 +29,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.SuspendNotAllowedException;
+import org.zkoss.zk.ui.event.ForwardEvent;
+import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
+import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
 
 import com.bdzb.oa.expert.model.Expert;
 import com.bdzb.oa.expert.service.ExpertService;
+import com.hxzy.base.model.Column;
+import com.hxzy.base.model.Excel;
+import com.hxzy.base.model.Row;
+import com.hxzy.base.model.Sheet;
 import com.hxzy.base.util.Pagination;
 import com.hxzy.base.web.window.ListWindow;
 import com.hxzy.base.web.window.Message;
@@ -49,20 +65,19 @@ public class ExpertQuery extends ListWindow {
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Expert.class);
 
 		if (StringUtils.hasText(search.getValue())) {
-			LogicalExpression l1  = Restrictions.or(Restrictions.like("name", search.getValue(),
+			LogicalExpression l1 = Restrictions.or(Restrictions.like("name", search.getValue(),
 					MatchMode.ANYWHERE), Restrictions.like("titles", search.getValue(),
 					MatchMode.ANYWHERE));
 
-			LogicalExpression l2 =Restrictions.or(Restrictions.like("department", search.getValue(),
-					MatchMode.ANYWHERE), Restrictions.like("telephone", search.getValue(),
-					MatchMode.ANYWHERE));
-			
-			LogicalExpression l3 = Restrictions.or(l1,l2);
-			
+			LogicalExpression l2 = Restrictions.or(Restrictions.like("department", search
+					.getValue(), MatchMode.ANYWHERE), Restrictions.like("telephone", search
+					.getValue(), MatchMode.ANYWHERE));
+
+			LogicalExpression l3 = Restrictions.or(l1, l2);
+
 			detachedCriteria.add(l3);
 		}
-		
-		
+
 		Pagination pagination = expertService.findPageByCriteria(detachedCriteria,
 				pg.getPageSize(), pg.getActivePage() + 1);
 		pg.setTotalSize(pagination.getTotalCount());
@@ -121,6 +136,44 @@ public class ExpertQuery extends ListWindow {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public void onOutput(ForwardEvent event) throws Exception {
+		Excel excel = new Excel();
+		if (listbox.getSelectedItem() == null) {
+			Messagebox.show("请选择要导出报表的内容！", "提示信息", Messagebox.OK, Messagebox.INFORMATION);
+		} else {
+			Date dat = new Date();
+			// dat.setTime(dat.getTime());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String timeStr = sdf.format(dat);
+			FileSystemView fsv = FileSystemView.getFileSystemView();
+			fsv.getHomeDirectory();
+			File f = new File(fsv.getHomeDirectory() + "//" + timeStr + ""
+					+ listbox.getSelectedItem().getLabel() + ".xls");
+			Sheet sheet = new Sheet();
+			listbox.getSelectedItem().getValue();
+			System.out.println(listbox.getSelectedItem().getLabel());
+			sheet.setName(listbox.getSelectedItem().getLabel() + "的费用报表");
+			Set set = listbox.getSelectedItems();
+			for (Iterator iter = set.iterator(); iter.hasNext();) {
+				Row row = new Row();
+				Listitem listitem = (Listitem) iter.next();
+				List columnList = new ArrayList();
+				for (int i = 0; i < listitem.getChildren().size(); i++) {
+					Column column = new Column();
+					column.setColumnLabel(((Listcell) listitem.getChildren().get(i)).getLabel());
+					column.setColumnNum(i);
+					columnList.add(column);
+				}
+				row.setColumnList(columnList);
+				sheet.appendRow(row);
+			}
+			List list = new ArrayList();
+			list.add(sheet);
+			new Excel().write(list, new FileOutputStream(f));
+			Messagebox.show("导出excel成功", "提示信息", Messagebox.OK, Messagebox.INFORMATION);
 		}
 	}
 
