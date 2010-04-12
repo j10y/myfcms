@@ -101,10 +101,7 @@
 	</servlet-mapping>
 	
 	<!-- ///////////// -->
-	<!-- DSP (optional) -->
-	<!-- Uncomment it if you want to use DSP
-	However, it is turned on since zkdemo/userguide uses DSP to generate CSS.
-	-->
+	<!-- DSP (optional) -->	
 	<servlet>
 		<servlet-name>dspLoader</servlet-name>
 		<servlet-class>org.zkoss.web.servlet.dsp.InterpreterServlet</servlet-class>

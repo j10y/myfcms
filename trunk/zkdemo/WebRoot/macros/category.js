@@ -17,21 +17,21 @@ main.Categorybar = zk.$extends(zul.wgt.Div, {
 	},
 	beforeSize: zk.ie6_ ? function(){
 			this.$n("body").style.width = "";
-			jq(this.$n("body")).removeClass("main-categorybar-body-scroll");
+			jq(this.$n("body")).removeClass("demo-categorybar-body-scroll");
 	}: zk.$void,
 	onSize: function(){	
 		var width = this.$n().offsetWidth;
 		//with scorll or not
 		if(width < this.childWidth){
-			jq(this.$n("left")).addClass("main-categorybar-left-scroll");
-			jq(this.$n("right")).addClass("main-categorybar-right-scroll");
-			jq(this.$n("body")).addClass("main-categorybar-body-scroll")
+			jq(this.$n("left")).addClass("demo-categorybar-left-scroll");
+			jq(this.$n("right")).addClass("demo-categorybar-right-scroll");
+			jq(this.$n("body")).addClass("demo-categorybar-body-scroll")
 								.width((width-40)+"px");
 			this._addScollEvent();	
 		}else{
-			jq(this.$n("left")).removeClass("main-categorybar-left-scroll");
-			jq(this.$n("right")).removeClass("main-categorybar-right-scroll");
-			jq(this.$n("body")).removeClass("main-categorybar-body-scroll")
+			jq(this.$n("left")).removeClass("demo-categorybar-left-scroll");
+			jq(this.$n("right")).removeClass("demo-categorybar-right-scroll");
+			jq(this.$n("body")).removeClass("demo-categorybar-body-scroll")
 								.width(width+"px");
 			this.$n("cave").style.marginLeft="0px";
 		}
@@ -115,17 +115,17 @@ main.Category = zk.$extends(zul.wgt.Button, {
 		out.push('</div></div>');
 	},
 	doMouseOver_: function (evt) {
-		jq(this.$n()).addClass("main-over");
+		jq(this.$n()).addClass("demo-over");
 	},
 	doMouseOut_: function (evt) {
 		if (zk.ie && jq.isAncestor(this.$n(), evt.domEvent.relatedTarget || evt.domEvent.toElement))
 			return; //nothing to do
-		jq(this.$n()).removeClass("main-over");
+		jq(this.$n()).removeClass("demo-over");
 	},
 	doClick_: function (evt){
 		this.$supers('doClick_', arguments);
-		jq(this.$n()).addClass("main-seld")
-						  .siblings().removeClass("main-seld");
+		jq(this.$n()).addClass("demo-seld")
+						  .siblings().removeClass("demo-seld");
 	}
 });
 });

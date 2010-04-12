@@ -117,7 +117,7 @@ public class PrivilegeQuery extends TreeWindow {
 		map.put("privileges", privileges);
 
 		try {
-			((Window) Executions.createComponents("privilegeAdd.zul", PrivilegeQuery.this, map))
+			((Window) Executions.createComponents("/user/privilegeAdd.zul", PrivilegeQuery.this, map))
 					.doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
@@ -141,7 +141,7 @@ public class PrivilegeQuery extends TreeWindow {
 		Map map = new HashMap();
 		map.put("privileges", privileges);
 		try {
-			((Window) Executions.createComponents("privilegeDelete.zul", PrivilegeQuery.this, map))
+			((Window) Executions.createComponents("/user/privilegeDelete.zul", PrivilegeQuery.this, map))
 					.doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
@@ -164,7 +164,7 @@ public class PrivilegeQuery extends TreeWindow {
 		map.put("privileges", privileges);
 
 		try {
-			((Window) Executions.createComponents("privilegeEdit.zul", PrivilegeQuery.this, map))
+			((Window) Executions.createComponents("/user/privilegeEdit.zul", PrivilegeQuery.this, map))
 					.doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();

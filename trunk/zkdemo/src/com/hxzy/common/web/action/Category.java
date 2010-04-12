@@ -41,7 +41,7 @@ public class Category {
 		};
 		_href = href;
 	}
-	public void addItem(DemoItem item) {
+	public void addItem(MainItem item) {
 		_items.add(item);
 	}
 	public String getHref() {
