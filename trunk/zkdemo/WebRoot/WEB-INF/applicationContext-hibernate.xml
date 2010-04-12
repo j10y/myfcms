@@ -70,4 +70,8 @@
   <bean id="privilegeDao" class="com.hxzy.common.user.dao.impl.PrivilegeDaoImpl" parent="daoTemplate" />
   
   <bean id="roleDao" class="com.hxzy.common.user.dao.impl.RoleDaoImpl" parent="daoTemplate" />
+  
+  <bean id="dictDao" class="com.hxzy.common.dict.dao.impl.DictDaoImpl" parent="daoTemplate" />
+  
+  <bean id="expertDao" class="com.bdzb.oa.expert.dao.impl.ExpertDaoImpl" parent="daoTemplate" />
 </beans>
