@@ -91,28 +91,7 @@ public class MainLayoutComposer extends GenericForwardComposer implements MainLa
 			}
 		}
 	}
-
-//	public void onBookmarkChange$main(BookmarkEvent event) {
-//		String id = event.getBookmark();
-//		if (id.length() > 0) {
-//			final MainItem[] items = getItems();
-//			for (int i = 0; i < items.length; i++) {
-//				if (items[i].getId().equals(id)) {
-//					_selected = (Button) self.getFellow(items[i].getCateId());
-//					itemList.setModel(getSelectedModel());
-//					itemList.renderAll();
-//					Listitem item = ((Listitem) itemList.getFellow(id));
-//					item.setSelected(true);
-//					itemList.invalidate();
-//					setSelectedCategory(item);
-//					xcontents.setSrc(((MainItem) item.getValue()).getFile());
-//					item.focus();
-//					return;
-//				}
-//			}
-//		}
-//	}
-
+	
 	public void onSelect$itemList(SelectEvent event) {
 		Listitem item = itemList.getSelectedItem();
 
@@ -151,7 +130,7 @@ public class MainLayoutComposer extends GenericForwardComposer implements MainLa
 		}
 
 		if (item == null) {
-			item = (Listitem) self.getFellow("userQuery");
+			item = (Listitem) self.getFellow("expertQuery");
 			setSelectedCategory(item);
 		}
 		xcontents.setSrc(((MainItem) item.getValue()).getFile());

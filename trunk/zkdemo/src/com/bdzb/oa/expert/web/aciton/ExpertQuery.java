@@ -29,8 +29,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.SuspendNotAllowedException;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.ForwardEvent;
 import org.zkoss.zul.Listcell;
+import org.zkoss.zul.Listhead;
+import org.zkoss.zul.Listheader;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
@@ -54,6 +58,24 @@ public class ExpertQuery extends ListWindow {
 
 	@Autowired
 	private ExpertService expertService;
+	
+	
+
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.window.ListWindow#onCreate()
+	 */
+	@Override
+	public void onCreate() {		
+		super.onCreate();
+		
+		listbox.addEventListener("onDoubleClick", new EventListener(){
+
+			public void onEvent(Event arg0) throws Exception {
+				onDetail();				
+			}
+			
+		});
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -155,8 +177,23 @@ public class ExpertQuery extends ListWindow {
 			Sheet sheet = new Sheet();
 			listbox.getSelectedItem().getValue();
 			System.out.println(listbox.getSelectedItem().getLabel());
-			sheet.setName(listbox.getSelectedItem().getLabel() + "的费用报表");
+			sheet.setName(listbox.getSelectedItem().getLabel());
 			Set set = listbox.getSelectedItems();
+
+			Row headR = new Row();
+
+			Listhead head = listbox.getListhead();
+
+			List<Listheader> headers = head.getChildren();
+
+			for (Listheader header : headers) {
+				Column headC = new Column();
+				headC.setColumnLabel(header.getLabel());
+				headR.appendColumn(headC);
+			}
+
+			sheet.appendRow(headR);
+
 			for (Iterator iter = set.iterator(); iter.hasNext();) {
 				Row row = new Row();
 				Listitem listitem = (Listitem) iter.next();
@@ -174,6 +211,26 @@ public class ExpertQuery extends ListWindow {
 			list.add(sheet);
 			new Excel().write(list, new FileOutputStream(f));
 			Messagebox.show("导出excel成功", "提示信息", Messagebox.OK, Messagebox.INFORMATION);
+		}
+	}
+	
+	public void onDetail(){
+		if (listbox.getSelectedItem() == null) {
+			Message.showInfo("请至少选择一个数据!");
+			return;
+		}
+
+		Object o = listbox.getSelectedItem().getValue();
+
+		Map map = new HashMap();
+		map.put("expert", o);
+
+		try {
+			((Window) Executions.createComponents("/expert/expertDetail.zul", this, map)).doModal();
+		} catch (SuspendNotAllowedException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 

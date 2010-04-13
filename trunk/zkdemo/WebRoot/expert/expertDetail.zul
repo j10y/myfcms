@@ -1,0 +1,65 @@
+<?import src="/include.zul"?>
+<?page title="专家信息" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./expertDetail"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<window id="expertDetail" title="专家信息"
+		use="com.bdzb.oa.expert.web.aciton.ExpertDetail" border="normal"
+		width="350px">
+
+		<grid id="grid" fixedLayout="true" self="@{expertDetail.expert}">
+			<columns>
+				<column label="类型" width="80px" align="right" />
+				<column label="值" valign="top"/>
+			</columns>
+
+			<rows>
+				<row>
+					类别：
+					<label id="category"
+						value="@{expertDetail.expert.category.name}">
+					</label>
+				</row>
+				<row>
+					专家名：
+					<label id="name"
+						value="@{expertDetail.expert.name}">
+					</label>
+				</row>
+				<row>
+					职称：
+					<label id="titles"
+						value="@{expertDetail.expert.titles}">
+					</label>
+				</row>
+				<row>
+					工作单位：
+					<label id="department"
+						value="@{expertDetail.expert.department}">
+					</label>
+				</row>
+				<row height="50px">
+					联系电话：
+					<label id="telephone"
+						value="@{expertDetail.expert.telephone}">
+					</label>
+				</row>
+				<row height="100px">
+					备注：
+					<label id="remarks"
+						value="@{expertDetail.expert.remarks}">
+					</label>
+				</row>
+			</rows>
+
+		</grid>
+		<separator />
+		<div align="center">
+			<button id="submit" visible="false"></button>
+			<space />
+			<button id="cancel" label="返回" />
+		</div>
+
+	</window>
+</zk>

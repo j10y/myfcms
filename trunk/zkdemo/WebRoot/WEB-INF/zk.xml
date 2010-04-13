@@ -452,14 +452,10 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 		 <description>用户权限检查Interceptor</description>
 		 <listener-class>com.hxzy.base.web.intercepter.AuthorizeInterceptor</listener-class> 
 	 </listener>
-	 -->
-	 <listener>
-		 <description>测试监听器</description>
-		 <listener-class>test.ApplicationContextInterceptor</listener-class>	 
-	 </listener>
+	 -->	 
 	 
 	 <listener>
-		<description>ZK Demo properties loader</description>
+		<description>properties loader</description>
 		<listener-class>
 			com.hxzy.common.web.action.MainWebAppInit
 		</listener-class>

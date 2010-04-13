@@ -22,7 +22,7 @@
 	<center border="none"></center>
 	<east border="none">
 	<hbox>
-		<textbox id="search" />
+		<textbox id="search" sclass="demo-search-inp" focus="true"/>
 		<button label="查询" forward="onFind"></button>
 	</hbox>
 	</east>	
