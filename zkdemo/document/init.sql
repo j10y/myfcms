@@ -15,7 +15,7 @@ VALUES
 (13,'roleEdit','编辑角色',3),
 (14,'roleDelete','删除角色',3),
 (15,'grantPriv','授予权限',3),
-(16,userLock,'锁定/解锁用户',2);
+(16,'userLock','锁定/解锁用户',2);
 
 
 INSERT INTO `role` VALUES (1,0,'拥有所有权限','超级管理员');
