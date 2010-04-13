@@ -18,7 +18,7 @@
 		<button label="修改" forward="onEdit" priv="expertEdit"/>
 		<button label="删除" forward="onDelete" priv="expertDelete"/>
 		<button label="导出excel" forward="onOutput"/>
-		<button label="导入excel" forward="onInput"/>
+		<fileupload id="fileupload" label="导入excel"/>
 		</hbox>
 	</west>
 	<center border="none"></center>
@@ -32,11 +32,11 @@
 		
 	</north>
 	<center border="none">
-	<listbox id="listbox" model="@{expertQuery.list}" paginal="${pg}" checkmark="true" multiple="true">
+	<listbox id="listbox" model="@{expertQuery.list}" rows="20" paginal="${pg}" checkmark="true" multiple="true">
 		<listhead>
-			<listheader label="类别" />
-			<listheader label="姓名" />
-			<listheader label="职称" />
+			<listheader label="类别" width="130px"/>
+			<listheader label="姓名" width="70px"/>
+			<listheader label="职称" width="100px"/>
 			<listheader label="工作单位" />
 			<listheader label="联系电话" />
 			<listheader label="备注" />
