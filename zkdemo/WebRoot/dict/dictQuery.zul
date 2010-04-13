@@ -5,7 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
-	<window id="dictQuery" height="100%" use="com.hxzy.common.dict.web.action.DictQuery">
+	<dictQuery id="dictQuery" height="100%" >
 		<borderlayout>
 			<north height="25px">
 				<borderlayout>
@@ -34,5 +34,5 @@
 				</tree>
 			</center>
 		</borderlayout>
-	</window>
+	</dictQuery>
 </zk>

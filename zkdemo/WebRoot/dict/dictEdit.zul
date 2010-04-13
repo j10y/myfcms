@@ -4,7 +4,7 @@
 <zk xmlns="http://www.zkoss.org/2005/zul"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
-	<window id="dictEdit" title="修改字典" use="com.hxzy.common.dict.web.action.DictEdit" border="normal" width="400px">
+	<dictEdit id="dictEdit" title="修改字典" border="normal" width="400px">
 
 		<grid fixedLayout="true">
 			<columns>
@@ -38,5 +38,5 @@
 		<button id="submit" label="提交" /><space />
 		<button id="cancel" label="取消" />		
 		</div>
-	</window>
+	</dictEdit>
 </zk>

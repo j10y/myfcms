@@ -7,7 +7,7 @@
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 	
-	<window id="expertQuery" use="com.bdzb.oa.expert.web.aciton.ExpertQuery" height="100%">
+	<expertQuery id="expertQuery" height="100%">
 	<borderlayout>
 	<north height="25px">
 	<borderlayout>
@@ -17,8 +17,8 @@
 		<button label="新增" forward="onAdd" priv="expertAdd"/>
 		<button label="修改" forward="onEdit" priv="expertEdit"/>
 		<button label="删除" forward="onDelete" priv="expertDelete"/>
-		<button label="导出excel" forward="onOutput" priv="expertOutput"/>
-		<button label="导入excel" forward="onInput" priv="expertInput"/>
+		<button label="导出excel" forward="onOutput"/>
+		<button label="导入excel" forward="onInput"/>
 		</hbox>
 	</west>
 	<center border="none"></center>
@@ -57,5 +57,5 @@
 	</south>
 	</borderlayout>
 		
-	</window>
+	</expertQuery>
 </zk>

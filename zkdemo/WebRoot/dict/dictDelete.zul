@@ -3,8 +3,7 @@
 <zk xmlns="http://www.zkoss.org/2005/zul"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
-	<window title="删除字典"
-		use="com.hxzy.common.dict.web.action.DictDelete" border="normal"
+	<dictDelete title="删除字典" border="normal"
 		width="300px">
 		<div align="center">
 			确认删除?
@@ -12,5 +11,5 @@
 			<button id="submit" label="确认" />
 			<button id="cancel" label="取消" />
 		</div>
-	</window>
+	</dictDelete>
 </zk>
