@@ -9,6 +9,8 @@ package com.bdzb.oa.expert.web.aciton;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,17 +23,24 @@ import java.util.Set;
 
 import javax.swing.filechooser.FileSystemView;
 
+import jxl.Cell;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.SuspendNotAllowedException;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.ForwardEvent;
+import org.zkoss.zk.ui.event.UploadEvent;
+import org.zkoss.zul.Fileupload;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listhead;
 import org.zkoss.zul.Listheader;
@@ -48,6 +57,7 @@ import com.hxzy.base.model.Sheet;
 import com.hxzy.base.util.Pagination;
 import com.hxzy.base.web.window.ListWindow;
 import com.hxzy.base.web.window.Message;
+import com.hxzy.common.dict.model.Dict;
 
 /**
  * @author xiacc
@@ -58,22 +68,32 @@ public class ExpertQuery extends ListWindow {
 
 	@Autowired
 	private ExpertService expertService;
-	
-	
 
-	/* (non-Javadoc)
+	private Fileupload fileupload;
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.hxzy.base.web.window.ListWindow#onCreate()
 	 */
 	@Override
-	public void onCreate() {		
+	public void onCreate() {
 		super.onCreate();
-		
-		listbox.addEventListener("onDoubleClick", new EventListener(){
+
+		listbox.addEventListener("onDoubleClick", new EventListener() {
 
 			public void onEvent(Event arg0) throws Exception {
-				onDetail();				
+				onDetail();
 			}
-			
+
+		});
+
+		fileupload.addEventListener("onUpload", new EventListener() {
+
+			public void onEvent(Event arg0) throws Exception {
+				onUpload((UploadEvent) arg0);
+			}
+
 		});
 	}
 
@@ -213,8 +233,77 @@ public class ExpertQuery extends ListWindow {
 			Messagebox.show("导出excel成功", "提示信息", Messagebox.OK, Messagebox.INFORMATION);
 		}
 	}
-	
-	public void onDetail(){
+
+	public void onUpload(UploadEvent event) {
+		Media media = event.getMedia();
+		InputStream is = null;
+
+		if (media.getFormat().equals("xls")) {
+			try {
+				is = media.getStreamData();
+				Workbook wbk = Workbook.getWorkbook(is);
+
+				jxl.Sheet rs = wbk.getSheet(0);
+
+				if (!checkExcel(rs)) {
+					return;
+				}
+
+				for (int i = 1; i < rs.getRows(); i++) {
+					Cell[] cells = rs.getRow(i);
+
+					Expert expert = new Expert();
+					expert.setName(cells[1].getContents());
+					expert.setTitles(cells[2].getContents());
+					expert.setDepartment(cells[3].getContents());
+					expert.setTelephone(cells[4].getContents());
+					expert.setRemarks(cells[5].getContents());
+					Dict dict = new Dict();
+					//dict.setId(24L);
+					expert.setCategory(dict);
+					expertService.save(expert);
+				}
+				this.onFind();
+
+			} catch (BiffException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				if (is != null) {
+					try {
+						is.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+		} else {
+			Message.showError("文件类型错误，请选择Excel类型！");
+		}
+
+	}
+
+	private boolean checkExcel(jxl.Sheet rs) {
+		int columns = rs.getColumns();
+		if (columns != 6) {
+			Message.showError("Excel列数错误，请按标准格式上传！");
+			return false;
+		}
+
+		Cell[] cells = rs.getRow(0);
+		if (!cells[0].getContents().equals("类别") || !cells[1].getContents().equals("姓名")
+				|| !cells[2].getContents().equals("职称") || !cells[3].getContents().equals("工作单位")
+				|| !cells[4].getContents().equals("联系电话") || !cells[5].getContents().equals("备注")) {
+			Message.showError("Excel格式错误，请按标准格式上传！");
+			return false;
+		}
+		return true;
+
+	}
+
+	public void onDetail() {
 		if (listbox.getSelectedItem() == null) {
 			Message.showInfo("请至少选择一个数据!");
 			return;
