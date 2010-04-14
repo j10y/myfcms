@@ -18,7 +18,7 @@
 			</categorybar>
 		</div>
 	</north>
-	<west title="Live" size="180px" flex="true" splittable="true"
+	<west title="功能列表" size="180px" flex="true" splittable="true"
 		minsize="180" maxsize="500" collapsible="true">
 		<panel>			
 			<panelchildren>
