@@ -35,7 +35,7 @@
 									<button label="导出excel"
 										forward="onOutput" />
 									<fileupload id="fileupload"
-										label="导入excel" />
+										label="导入excel" />									
 								</hbox>
 							</west>
 							<center border="none"></center>
@@ -75,7 +75,7 @@
 								<listcell label="@{expert.titles}" />
 								<listcell label="@{expert.department}" />
 								<listcell label="@{expert.telephone}" />
-								<listcell label="@{expert.remarks}" />
+								<listcell label="@{expert.remarks}" />								
 							</listitem>
 						</listbox>
 					</center>

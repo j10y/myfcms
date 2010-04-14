@@ -7,8 +7,9 @@
  */
 package com.bdzb.oa.expert.web.aciton;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.swing.filechooser.FileSystemView;
 
 import jxl.Cell;
@@ -41,6 +43,7 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.ForwardEvent;
 import org.zkoss.zk.ui.event.UploadEvent;
+import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Fileupload;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listhead;
@@ -78,12 +81,12 @@ public class ExpertQuery extends ListWindow {
 
 	@Autowired
 	private ExpertService expertService;
-	
+
 	@Autowired
 	private DictService dictService;
 
 	private Fileupload fileupload;
-	
+
 	/**
 	 * 树控件
 	 */
@@ -110,24 +113,24 @@ public class ExpertQuery extends ListWindow {
 			}
 
 		});
-		
+
 		tree.setTreeitemRenderer(new TreeitemRenderer() {
 			public void render(Treeitem item, Object data) throws Exception {
 				treeitemRenderer(item, data);
 			}
 		});
-		
-		tree.addEventListener("onClick", new EventListener(){
+
+		tree.addEventListener("onClick", new EventListener() {
 
 			public void onEvent(Event evt) throws Exception {
 				onFind();
 			}
-			
+
 		});
-		
+
 		treeModel = new SimpleTreeModel(createTree());
-		
-		binder.loadComponent(tree);		
+
+		binder.loadComponent(tree);
 	}
 
 	/*
@@ -146,21 +149,21 @@ public class ExpertQuery extends ListWindow {
 
 			LogicalExpression l2 = Restrictions.or(l1, Restrictions.like("telephone", search
 					.getValue(), MatchMode.ANYWHERE));
-			
+
 			LogicalExpression l3 = Restrictions.or(l2, Restrictions.like("department", search
 					.getValue(), MatchMode.ANYWHERE));
-			
+
 			LogicalExpression l4 = Restrictions.or(l3, Restrictions.like("remarks", search
-					.getValue(), MatchMode.ANYWHERE));		
+					.getValue(), MatchMode.ANYWHERE));
 
 			detachedCriteria.add(l4);
 		}
-		
+
 		Treeitem item = tree.getSelectedItem();
-		if(item != null){
+		if (item != null) {
 			Dict d = (Dict) item.getValue();
-			
-			if(!d.getCode().equals("industryCategory")){
+
+			if (!d.getCode().equals("industryCategory")) {
 				detachedCriteria.add(Restrictions.eq("category", d));
 			}
 		}
@@ -172,7 +175,7 @@ public class ExpertQuery extends ListWindow {
 		binder.loadComponent(listbox);
 
 	}
-	
+
 	public void treeitemRenderer(Treeitem item, Object data) {
 
 		if (data == null)
@@ -188,7 +191,7 @@ public class ExpertQuery extends ListWindow {
 			item.setOpen(true);
 		}
 		tr.setParent(item);
-		tr.appendChild(new Treecell(d.getName()));		
+		tr.appendChild(new Treecell(d.getName()));
 	}
 
 	public SimpleTreeNode createTree() {
@@ -198,9 +201,9 @@ public class ExpertQuery extends ListWindow {
 		detachedCriteria.add(Restrictions.eq("code", "industryCategory"));
 		detachedCriteria.addOrder(Order.asc("id"));
 		List<Dict> roots = dictService.findByCriteria(detachedCriteria);
-		
+
 		List<SimpleTreeNode> nodes = new ArrayList<SimpleTreeNode>();
-		SimpleTreeNode root = appendChilden(null, roots);		
+		SimpleTreeNode root = appendChilden(null, roots);
 
 		return root;
 	}
@@ -279,21 +282,13 @@ public class ExpertQuery extends ListWindow {
 	}
 
 	public void onOutput(ForwardEvent event) throws Exception {
-		Excel excel = new Excel();
 		if (listbox.getSelectedItem() == null) {
 			Messagebox.show("请选择要导出报表的内容！", "提示信息", Messagebox.OK, Messagebox.INFORMATION);
 		} else {
-			Date dat = new Date();
-			// dat.setTime(dat.getTime());
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String timeStr = sdf.format(dat);
-			FileSystemView fsv = FileSystemView.getFileSystemView();
-			fsv.getHomeDirectory();
-			File f = new File(fsv.getHomeDirectory() + "//" + timeStr + ""
-					+ listbox.getSelectedItem().getLabel() + ".xls");
+
 			Sheet sheet = new Sheet();
 			listbox.getSelectedItem().getValue();
-			System.out.println(listbox.getSelectedItem().getLabel());
+
 			sheet.setName(listbox.getSelectedItem().getLabel());
 			Set set = listbox.getSelectedItems();
 
@@ -326,8 +321,21 @@ public class ExpertQuery extends ListWindow {
 			}
 			List list = new ArrayList();
 			list.add(sheet);
-			new Excel().write(list, new FileOutputStream(f));
-			Messagebox.show("导出excel成功", "提示信息", Messagebox.OK, Messagebox.INFORMATION);
+			ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+			Excel excel = new Excel();
+			excel.write(list, stream);
+			InputStream is = new ByteArrayInputStream(stream.toByteArray());
+
+			if (null != is) {
+				Date dat = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String timeStr = sdf.format(dat);
+				Filedownload.save(is, "application/x-msdownload", timeStr+".xls");
+			} else {
+				Messagebox.show("文件下载错误，找不到要下载的文件！", "文件下载出错", Messagebox.OK, Messagebox.ERROR);
+			}
+			stream.close();
 		}
 	}
 
@@ -356,7 +364,7 @@ public class ExpertQuery extends ListWindow {
 					expert.setTelephone(cells[4].getContents());
 					expert.setRemarks(cells[5].getContents());
 					Dict dict = new Dict();
-					//dict.setId(24L);
+					// dict.setId(24L);
 					expert.setCategory(dict);
 					expertService.save(expert);
 				}
@@ -433,7 +441,5 @@ public class ExpertQuery extends ListWindow {
 	public void setTreeModel(TreeModel treeModel) {
 		this.treeModel = treeModel;
 	}
-	
-	
 
 }
