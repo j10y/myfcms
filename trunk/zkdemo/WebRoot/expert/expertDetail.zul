@@ -33,7 +33,7 @@
 						value="@{expertDetail.expert.titles}">
 					</label>
 				</row>
-				<row>
+				<row height="30px">
 					工作单位：
 					<label id="department"
 						value="@{expertDetail.expert.department}">

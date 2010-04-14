@@ -30,7 +30,6 @@ import com.hxzy.base.web.window.Message;
 import com.hxzy.base.web.window.TreeWindow;
 import com.hxzy.common.dict.model.Dict;
 import com.hxzy.common.dict.service.DictService;
-import com.hxzy.common.user.web.action.PrivilegeQuery;
 
 /**
  * @author xiacc

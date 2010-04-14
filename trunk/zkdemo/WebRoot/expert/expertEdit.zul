@@ -28,7 +28,7 @@
 				</row>
 				<row>
 					工作单位：
-					<textbox id="department" />
+					<textbox id="department" rows="3" cols="40"/>
 				</row>
 				<row>
 					联系电话：
