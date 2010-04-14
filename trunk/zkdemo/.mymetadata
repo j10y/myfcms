@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="zkdemo"
+  name="bdoa"
   id="myeclipse.1269352705187"
-  context-root="/zkdemo"
+  context-root="/bdoa"
   j2ee-spec="5.0"
   archive="zkdemo.war">
   <attributes>
-    <attribute name="webrootdir" value="WebRoot" />
+    <attribute name="webrootdir" value="/WebRoot" />
   </attributes>
 </project-module>
 

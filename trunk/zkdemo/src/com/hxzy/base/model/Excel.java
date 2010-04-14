@@ -7,7 +7,9 @@
  */
 package com.hxzy.base.model;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.List;
@@ -22,6 +24,8 @@ import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 
+import org.zkoss.zul.Filedownload;
+
 /**
  * @author xiacc
  * 
@@ -34,7 +38,7 @@ public class Excel {
 		WritableFont wf1 = new WritableFont(WritableFont.TIMES, 10, WritableFont.NO_BOLD, false,
 				UnderlineStyle.NO_UNDERLINE, Colour.BLACK);
 		WritableCellFormat wff1 = new WritableCellFormat(wf1);
-		
+
 		try {
 			wwb = Workbook.createWorkbook(os);
 			int i = 0;
@@ -54,17 +58,18 @@ public class Excel {
 					rowNum++;
 				}
 				i++;
-			}
+			}		
+			
 			// 写入Exel工作表
 			wwb.write();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			// 关闭Excel工作薄对象
-			if(wwb != null){
+			if (wwb != null) {
 				try {
 					wwb.close();
-					os.close();
 				} catch (WriteException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
