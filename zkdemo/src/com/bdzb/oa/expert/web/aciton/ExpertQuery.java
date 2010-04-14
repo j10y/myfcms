@@ -30,6 +30,7 @@ import jxl.read.biff.BiffException;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -46,6 +47,14 @@ import org.zkoss.zul.Listhead;
 import org.zkoss.zul.Listheader;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.SimpleTreeModel;
+import org.zkoss.zul.SimpleTreeNode;
+import org.zkoss.zul.Tree;
+import org.zkoss.zul.TreeModel;
+import org.zkoss.zul.Treecell;
+import org.zkoss.zul.Treeitem;
+import org.zkoss.zul.TreeitemRenderer;
+import org.zkoss.zul.Treerow;
 import org.zkoss.zul.Window;
 
 import com.bdzb.oa.expert.model.Expert;
@@ -58,6 +67,7 @@ import com.hxzy.base.util.Pagination;
 import com.hxzy.base.web.window.ListWindow;
 import com.hxzy.base.web.window.Message;
 import com.hxzy.common.dict.model.Dict;
+import com.hxzy.common.dict.service.DictService;
 
 /**
  * @author xiacc
@@ -68,8 +78,21 @@ public class ExpertQuery extends ListWindow {
 
 	@Autowired
 	private ExpertService expertService;
+	
+	@Autowired
+	private DictService dictService;
 
 	private Fileupload fileupload;
+	
+	/**
+	 * 树控件
+	 */
+	private Tree tree;
+
+	/**
+	 * 树结构模型
+	 */
+	private TreeModel treeModel;
 
 	/*
 	 * (non-Javadoc)
@@ -80,14 +103,6 @@ public class ExpertQuery extends ListWindow {
 	public void onCreate() {
 		super.onCreate();
 
-		listbox.addEventListener("onDoubleClick", new EventListener() {
-
-			public void onEvent(Event arg0) throws Exception {
-				onDetail();
-			}
-
-		});
-
 		fileupload.addEventListener("onUpload", new EventListener() {
 
 			public void onEvent(Event arg0) throws Exception {
@@ -95,6 +110,24 @@ public class ExpertQuery extends ListWindow {
 			}
 
 		});
+		
+		tree.setTreeitemRenderer(new TreeitemRenderer() {
+			public void render(Treeitem item, Object data) throws Exception {
+				treeitemRenderer(item, data);
+			}
+		});
+		
+		tree.addEventListener("onClick", new EventListener(){
+
+			public void onEvent(Event evt) throws Exception {
+				onFind();
+			}
+			
+		});
+		
+		treeModel = new SimpleTreeModel(createTree());
+		
+		binder.loadComponent(tree);		
 	}
 
 	/*
@@ -111,13 +144,25 @@ public class ExpertQuery extends ListWindow {
 					MatchMode.ANYWHERE), Restrictions.like("titles", search.getValue(),
 					MatchMode.ANYWHERE));
 
-			LogicalExpression l2 = Restrictions.or(Restrictions.like("department", search
-					.getValue(), MatchMode.ANYWHERE), Restrictions.like("telephone", search
+			LogicalExpression l2 = Restrictions.or(l1, Restrictions.like("telephone", search
 					.getValue(), MatchMode.ANYWHERE));
+			
+			LogicalExpression l3 = Restrictions.or(l2, Restrictions.like("department", search
+					.getValue(), MatchMode.ANYWHERE));
+			
+			LogicalExpression l4 = Restrictions.or(l3, Restrictions.like("remarks", search
+					.getValue(), MatchMode.ANYWHERE));		
 
-			LogicalExpression l3 = Restrictions.or(l1, l2);
-
-			detachedCriteria.add(l3);
+			detachedCriteria.add(l4);
+		}
+		
+		Treeitem item = tree.getSelectedItem();
+		if(item != null){
+			Dict d = (Dict) item.getValue();
+			
+			if(!d.getCode().equals("industryCategory")){
+				detachedCriteria.add(Restrictions.eq("category", d));
+			}
 		}
 
 		Pagination pagination = expertService.findPageByCriteria(detachedCriteria,
@@ -126,6 +171,58 @@ public class ExpertQuery extends ListWindow {
 		this.list = pagination;
 		binder.loadComponent(listbox);
 
+	}
+	
+	public void treeitemRenderer(Treeitem item, Object data) {
+
+		if (data == null)
+			return;
+		Dict d = null;
+
+		SimpleTreeNode t = (SimpleTreeNode) data;
+		d = (Dict) t.getData();
+
+		Treerow tr = new Treerow();
+		item.setValue(d);
+		if (d.getParent() == null) {
+			item.setOpen(true);
+		}
+		tr.setParent(item);
+		tr.appendChild(new Treecell(d.getName()));		
+	}
+
+	public SimpleTreeNode createTree() {
+
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Dict.class);
+
+		detachedCriteria.add(Restrictions.eq("code", "industryCategory"));
+		detachedCriteria.addOrder(Order.asc("id"));
+		List<Dict> roots = dictService.findByCriteria(detachedCriteria);
+		
+		List<SimpleTreeNode> nodes = new ArrayList<SimpleTreeNode>();
+		SimpleTreeNode root = appendChilden(null, roots);		
+
+		return root;
+	}
+
+	public SimpleTreeNode appendChilden(Dict d, List<Dict> childens) {
+		if (childens == null) {
+			return new SimpleTreeNode(d, childens);
+		} else {
+			List<SimpleTreeNode> nodes = new ArrayList<SimpleTreeNode>();
+			SimpleTreeNode root = new SimpleTreeNode(d, nodes);
+
+			for (Dict child : childens) {
+				List<Dict> childs = new ArrayList();
+				if (child.getChildrens() != null) {
+					childs.addAll(child.getChildrens());
+				}
+
+				SimpleTreeNode node = appendChilden(child, childs);
+				nodes.add(node);
+			}
+			return root;
+		}
 	}
 
 	public void onAdd() {
@@ -322,5 +419,21 @@ public class ExpertQuery extends ListWindow {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * 返回 treeModel
+	 */
+	public TreeModel getTreeModel() {
+		return treeModel;
+	}
+
+	/**
+	 * 设置 treeModel
+	 */
+	public void setTreeModel(TreeModel treeModel) {
+		this.treeModel = treeModel;
+	}
+	
+	
 
 }

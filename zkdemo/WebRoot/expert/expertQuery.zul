@@ -4,58 +4,92 @@
 <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./expertQuery"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
-	
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
 	<expertQuery id="expertQuery" height="100%">
-	<borderlayout>
-	<north height="25px">
-	<borderlayout>
-	<west border="none" width="300px">
-		<hbox>
-		<space></space>
-		<button label="新增" forward="onAdd" priv="expertAdd"/>
-		<button label="修改" forward="onEdit" priv="expertEdit"/>
-		<button label="删除" forward="onDelete" priv="expertDelete"/>
-		<button label="导出excel" forward="onOutput"/>
-		<fileupload id="fileupload" label="导入excel"/>
-		</hbox>
-	</west>
-	<center border="none"></center>
-	<east border="none">
-	<hbox>
-		<textbox id="search" focus="true" sclass="demo-search-inp"/>
-		<button label="查询" forward="onFind"></button>
-	</hbox>
-	</east>	
-	</borderlayout>
-		
-	</north>
-	<center border="none">
-	<listbox id="listbox" model="@{expertQuery.list}" rows="20" paginal="${pg}" checkmark="true" multiple="true">
-		<listhead>
-			<listheader label="类别" width="130px"/>
-			<listheader label="姓名" width="70px"/>
-			<listheader label="职称" width="100px"/>
-			<listheader label="工作单位" />
-			<listheader label="联系电话" />
-			<listheader label="备注" />
-		
-		</listhead>
-		<listitem self="@{each=expert}" value="@{expert}">
-			<listcell label="@{expert.category.name}"/>
-			<listcell label="@{expert.name}"/>
-			<listcell label="@{expert.titles}"/>
-			<listcell label="@{expert.department}"/>
-			<listcell label="@{expert.telephone}"/>
-			<listcell label="@{expert.remarks}"/>
-		</listitem>		
-		</listbox>
-	</center>
-	<south height="25px">
-	<paging id="pg" />
-	</south>
-	</borderlayout>
-		
+		<borderlayout>
+			<west width="150px" border="none" autoscroll="true">
+				<tree id="tree" model="@{expertQuery.treeModel}"
+					width="auto" height="auto" style="border:none;"
+					fixedLayout="true">
+					<treecols sizable="true">
+						<treecol label="行业分类" />
+					</treecols>
+				</tree>
+			</west>
+
+			<center border="none">
+				<borderlayout>
+					<north height="25px">
+						<borderlayout>
+							<west border="none" width="300px">
+								<hbox>
+									<space></space>
+									<button label="新增" forward="onAdd"
+										priv="expertAdd" />
+									<button label="修改" forward="onEdit"
+										priv="expertEdit" />
+									<button label="删除"
+										forward="onDelete" priv="expertDelete" />
+									<button label="导出excel"
+										forward="onOutput" />
+									<fileupload id="fileupload"
+										label="导入excel" />
+								</hbox>
+							</west>
+							<center border="none"></center>
+							<east border="none">
+								<hbox>
+									<textbox id="search" focus="true"
+										sclass="demo-search-inp" />
+									<button label="查询"
+										forward="onFind">
+									</button>
+								</hbox>
+							</east>
+						</borderlayout>
+
+					</north>
+					<center autoscroll="true" flex="true">
+						<listbox id="listbox" 
+							model="@{expertQuery.list}" 
+							paginal="${pg}" 							
+							checkmark="true" 
+							fixedLayout="true"
+							multiple="true" style="border:none;">
+							<listhead>
+								<listheader label="类别" width="130px" />
+								<listheader label="姓名" width="70px" />
+								<listheader label="职称" width="100px" />
+								<listheader label="工作单位" />
+								<listheader label="联系电话" />
+								<listheader label="备注" />
+
+							</listhead>
+							<listitem self="@{each=expert}"
+								value="@{expert}" forward="onDoubleClick=onDetail">
+								<listcell
+									label="@{expert.category.name}" />
+								<listcell label="@{expert.name}" />
+								<listcell label="@{expert.titles}" />
+								<listcell label="@{expert.department}" />
+								<listcell label="@{expert.telephone}" />
+								<listcell label="@{expert.remarks}" />
+							</listitem>
+						</listbox>
+					</center>
+					<south height="25px">
+						<paging id="pg" pageSize="20"/>
+					</south>
+				</borderlayout>
+
+			</center>
+
+		</borderlayout>
+
+
+
+
 	</expertQuery>
 </zk>

@@ -18,8 +18,8 @@
 			</categorybar>
 		</div>
 	</north>
-	<west title="Live" size="210px" flex="true" splittable="true"
-		minsize="210" maxsize="500" collapsible="true">
+	<west title="Live" size="180px" flex="true" splittable="true"
+		minsize="180" maxsize="500" collapsible="true">
 		<panel>			
 			<panelchildren>
 				<listbox id="itemList" oddRowSclass="non-odd" sclass="demo-items"
