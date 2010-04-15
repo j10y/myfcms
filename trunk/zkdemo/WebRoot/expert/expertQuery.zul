@@ -80,7 +80,7 @@
 						</listbox>
 					</center>
 					<south height="25px">
-						<paging id="pg" pageSize="20"/>
+						<paging id="pg" />
 					</south>
 				</borderlayout>
 

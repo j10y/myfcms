@@ -5,6 +5,7 @@
 	<!-- 通用控件 -->
 	<?component name="myWindow" extends="window" class="web.UserWindow" needAuthentication="true" ?>
 	<?component name="button" extends="button" class="com.hxzy.base.web.component.Button" mold="trendy"?>
+	<?component name="paging" extends="paging" detailed="true"?>
 	<!-- 通用控件 -->
 
 	<!-- 应用程序核心 -->
