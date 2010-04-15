@@ -89,6 +89,7 @@ public abstract class ListWindow extends Window implements AfterCompose, Authent
 				onFind();
 			}
 		});
+		
 
 		onFind();
 	}

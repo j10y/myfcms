@@ -171,6 +171,7 @@ public class ExpertQuery extends ListWindow {
 		Pagination pagination = expertService.findPageByCriteria(detachedCriteria,
 				pg.getPageSize(), pg.getActivePage() + 1);
 		pg.setTotalSize(pagination.getTotalCount());
+		
 		this.list = pagination;
 		binder.loadComponent(listbox);
 

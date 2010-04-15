@@ -19,6 +19,26 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 		<debug-js>true</debug-js>
 	</client-config>
 	-->
+	<!-- Uncomment if you turn off the caching of resources loaded from
+		the class path (aka., class Web resources).
+		By default, class Web resources are cached by the browser until
+		you upgraded ZK to a newer version.
+		However, it is better to turn the cache off when you are developing
+		a theme or a component. -->
+	<library-property>
+		<name>org.zkoss.web.classWebResource.cache</name>
+		<value>true</value>
+	</library-property>
+	
+	<!-- Turn on if you want to cache by etag for dynamic resource.
+	<library-property>
+		<name>org.zkoss.web.classWebResource.cache.etag</name>
+		<value>true</value>
+	</library-property>
+	-->
+	
+	
+	
 	<!--
 		The allowed child elements include evaluator-class. 
 		At most one xel-config element is allowed for each zk.xml.
@@ -48,13 +68,24 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 	</log>
 	-->
 
-	<!-- Turn on the following if want to use auto as the default.
-	
+	<!-- Turn on the following if want to use auto as the default.	
 	<library-property>
 		<name>org.zkoss.zul.include.mode</name>
 		<value>auto</value>
+	</library-property>-->
+	
+	<!--
+	<library-property>
+		<name>org.zkoss.zul.Paging.detailed</name>
+		<value>true</value>
+	</library-property>
+	
+	<library-property>
+		<name>org.zkoss.zul.Button.mold</name>
+		<value>trendy</value>
 	</library-property>
 	-->
+	
 	<!-- Turn on if you want to use language addons.
 	<language-config>
 		<addon-uri>/WEB-INF/lang-addon.xml</addon-uri>
@@ -152,6 +183,12 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 	</system-config>
 	-->
 
+	<!-- Turn on the following if you want to cache all desktops in a global
+	cache, rather than one for each session
+	<system-config>
+		<cache-provider-class>org.zkoss.zk.ui.sys.GlobalDesktopCacheProvider</cache-provider-class>
+	</system-config>
+	-->
 	<!-- Optional -->
 	<!-- You can define any number of richlets as follows.
 		Note: To use richlet, you have to map zkLoader to /xx/* in web.xml,
@@ -415,12 +452,12 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
     	<description>Spring TransactionSynchronizationManager handler</description>
     	<listener-class>org.zkoss.zkplus.spring.SpringTransactionSynchronizationListener</listener-class>
 	</listener>
-<!--
+    <!--
 	<listener>
 		<description>ThreadLocal Synchronization Listener</description>
 		<listener-class>org.zkoss.zkplus.util.ThreadLocalListener</listener-class>
 	</listener>-->
-<!--
+    <!--
 	<preference>
 		<name>ThreadLocal</name>
         <value>org.springframework.transaction.support.TransactionSynchronizationManager=resources,
