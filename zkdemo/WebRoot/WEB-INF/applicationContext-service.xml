@@ -1,80 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
-	"http://www.springframework.org/dtd/spring-beans.dtd">
 
-<beans>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="    
+             http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    
+             http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    
+             http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
-	<!-- Transaction Manager -->
-	<!-- <bean id="transactionManager"
-			class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-			<property name="sessionFactory" ref="hibernateSessionFactory" />
-		</bean> -->
-	<bean id="baseTransaction"
-		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
-		abstract="true">
-		<property name="transactionManager" ref="transactionManager" />
-		<property name="proxyTargetClass" value="true" />
-		<property name="transactionAttributes">
-			<props>
-				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
-				<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
-				<prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
-				<prop key="save*">PROPAGATION_REQUIRED</prop>
-				<prop key="add*">PROPAGATION_REQUIRED</prop>
-				<prop key="update*">PROPAGATION_REQUIRED</prop>
-				<prop key="delete*">PROPAGATION_REQUIRED</prop>
-			</props>
-		</property>
-	</bean>
 
+	<!-- 事务通知 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- Spring AOP config -->
+	<aop:config>
+		<!-- 切入点 -->
+		<aop:pointcut id="serviceTransaction"
+			expression="execution(* com.hxzy.base.service.impl.BaseServiceImpl.*(..))" />
+		<aop:advisor pointcut-ref="serviceTransaction"
+			advice-ref="txAdvice" />
+	</aop:config>
 
 	<!-- Application Service -->
-	<bean id="logService" parent="baseTransaction">
-		<property name="target">
-		<bean class="com.hxzy.common.log.service.impl.LogServiceImpl" />
-		</property>
-	</bean>
+	<bean id="logService"
+		class="com.hxzy.common.log.service.impl.LogServiceImpl" />
 
-	<bean id="userService" parent="baseTransaction">
-		<property name="target">
-			<bean
-				class="com.hxzy.common.user.service.impl.UserServiceImpl" />
-		</property>
-	</bean>
+	<bean id="userService"
+		class="com.hxzy.common.user.service.impl.UserServiceImpl" />
 
-	<bean id="privilegeService" parent="baseTransaction">
-		<property name="target">
-			<bean
-				class="com.hxzy.common.user.service.impl.PrivilegeServiceImpl" />
-		</property>
+	<bean id="privilegeService"
+		class="com.hxzy.common.user.service.impl.PrivilegeServiceImpl" />
 
-	</bean>
+	<bean id="roleService"
+		class="com.hxzy.common.user.service.impl.RoleServiceImpl" />
 
-	<bean id="roleService" parent="baseTransaction">
-		<property name="target">
-			<bean
-				class="com.hxzy.common.user.service.impl.RoleServiceImpl" />
-		</property>
-
-	</bean>
-	
-	<bean id="dictService" parent="baseTransaction">
-		<property name="target">
-			<bean
-				class="com.hxzy.common.dict.service.impl.DictServiceImpl" />
-		</property>
-
-	</bean>
+	<bean id="dictService"
+		class="com.hxzy.common.dict.service.impl.DictServiceImpl" />
 	<!-- Application Service -->
-	
+
 	<!-- OA Service -->
-	<bean id="expertService" parent="baseTransaction">
-		<property name="target">
-			<bean
-				class="com.bdzb.oa.expert.service.impl.ExpertServiceImpl" />
-		</property>
-
-	</bean>
+	<bean id="expertService"
+		class="com.bdzb.oa.expert.service.impl.ExpertServiceImpl" />
 
 
 </beans>
