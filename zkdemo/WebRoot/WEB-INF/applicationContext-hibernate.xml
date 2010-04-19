@@ -87,4 +87,8 @@
 	<bean id="expertDao"
 		class="com.bdzb.oa.expert.dao.impl.ExpertDaoImpl"
 		parent="daoTemplate" />
+		
+	<bean id="supplierDao"
+		class="com.bdzb.oa.supplier.dao.impl.SupplierDaoImpl"
+		parent="daoTemplate" />
 </beans>

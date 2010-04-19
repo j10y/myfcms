@@ -1,0 +1,71 @@
+<?import src="/include.zul"?>
+<?page title="供应商详细信息" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./supplierDetail"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<window id="supplierDetail" title="供应商详细信息"
+		use="com.bdzb.oa.supplier.web.action.SupplierDetail" border="normal"
+		width="350px">
+
+		<grid id="grid" fixedLayout="true" self="@{supplierDetail.supplier}">
+			<columns>
+				<column label="类型" width="80px" align="right" />
+				<column label="值" valign="top"/>
+			</columns>
+
+			<rows>
+				<row>
+					类别：
+					<label id="category"
+						value="@{supplierDetail.supplier.category.name}">
+					</label>
+				</row>
+				<row height="30px">
+					供应商名称：
+					<label id="name"
+						value="@{supplierDetail.supplier.companyName}">
+					</label>
+				</row>
+				<row height="30px">
+					地址：
+					<label id="address"
+						value="@{supplierDetail.supplier.address}">
+					</label>
+				</row>
+				<row>
+					法人：
+					<label id="legalPerson"
+						value="@{supplierDetail.supplier.legalPerson}">
+					</label>
+				</row>
+				<row>
+					联系人：
+					<label id="telephone"
+						value="@{supplierDetail.supplier.reference}">
+					</label>
+				</row>
+				<row height="50px">
+					联系方式s：
+					<label id="contacts"
+						value="@{supplierDetail.supplier.contacts}">
+					</label>
+				</row>
+				<row height="100px">
+					备注：
+					<label id="remarks"
+						value="@{supplierDetail.supplier.remarks}">
+					</label>
+				</row>
+			</rows>
+
+		</grid>
+		<separator />
+		<div align="center">
+			<button id="submit" visible="false"></button>
+			<space />
+			<button id="cancel" label="返回" />
+		</div>
+
+	</window>
+</zk>
