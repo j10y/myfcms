@@ -1,22 +1,24 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
 <window title="new page title" border="normal">
-<bandbox id="bd" readonly="true"> 
+<bandbox>
 <bandpopup>
-<tree id="tree" rows="5" width="145px" onSelect="bd.value=self.selectedItem.label; bd.close()">
+<tree id="tree" rows="5" multiple="true"	checkmark="true">
 		<treecols>
 			<treecol label="Name" />
-			
+			<treecol label="Description" />
 		</treecols>
 		<treechildren>
 			<treeitem>
 				<treerow>
 					<treecell label="Item 1" />
+					<treecell label="Item 1 description" />
 				</treerow>
 			</treeitem>
 			<treeitem>
 				<treerow>
 					<treecell label="Item 2" />
+					<treecell label="Item 2 description" />
 				</treerow>
 				<treechildren>
 					<treeitem>
@@ -39,6 +41,8 @@
 					<treeitem>
 						<treerow>
 							<treecell label="Item 2.2" />
+							<treecell
+								label="Item 2.2 is something who cares" />
 						</treerow>
 					</treeitem>
 				</treechildren>

@@ -50,6 +50,9 @@
 	<!-- OA Service -->
 	<bean id="expertService"
 		class="com.bdzb.oa.expert.service.impl.ExpertServiceImpl" />
+		
+	<bean id="supplierService"
+		class="com.bdzb.oa.supplier.service.impl.SupplierServiceImpl" />
 
 
 </beans>

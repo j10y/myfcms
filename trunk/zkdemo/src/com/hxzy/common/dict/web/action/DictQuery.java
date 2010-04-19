@@ -71,9 +71,7 @@ public class DictQuery extends TreeWindow {
 
 		Treerow tr = new Treerow();
 		item.setValue(d);
-		if (d.getParent() == null) {
-			item.setOpen(true);
-		}
+		
 		tr.setParent(item);
 		tr.appendChild(new Treecell(d.getName()));
 		tr.appendChild(new Treecell(d.getCode()));
