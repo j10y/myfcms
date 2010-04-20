@@ -7,7 +7,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
-	<window id="supplierQuery" height="100%" use="com.bdzb.oa.supplier.web.action.SupplierQuery">
+	<supplierQuery id="supplierQuery" height="100%">
 		<borderlayout>
 			<west width="150px" border="none" autoscroll="true">
 				<tree id="tree" model="@{supplierQuery.treeModel}"
@@ -93,5 +93,5 @@
 
 
 
-	</window>
+	</supplierQuery>
 </zk>

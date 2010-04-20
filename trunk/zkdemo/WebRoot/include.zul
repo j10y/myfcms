@@ -129,5 +129,25 @@
 		class="com.bdzb.oa.expert.web.aciton.ExpertDelete" 
 		functionCode="expertDelete"?>
 		
+	<?component name="supplierQuery" 
+		extends="window" 
+		class="com.bdzb.oa.supplier.web.action.SupplierQuery" 
+		functionCode="supplierQuery"?>
+	
+	<?component name="supplierAdd" 
+		extends="window" 
+		class="com.bdzb.oa.supplier.web.action.SupplierAdd" 
+		functionCode="supplierAdd"?>
+		
+	<?component name="supplierDelete" 
+		extends="window" 
+		class="com.bdzb.oa.supplier.web.action.SupplierDelete" 
+		functionCode="supplierDelete"?>
+		
+	<?component name="supplierEdit" 
+		extends="window" 
+		class="com.bdzb.oa.supplier.web.action.SupplierEdit" 
+		functionCode="supplierEdit"?>
+		
 	<!-- OA模块 -->
 </zk>
