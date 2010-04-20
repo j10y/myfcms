@@ -1,15 +1,14 @@
-<?page title="删除专家信息" contentType="text/html;charset=UTF-8"?>
+<?page title="删除供应商信息" contentType="text/html;charset=UTF-8"?>
 <?import src="/include.zul"?>
 <zk xmlns="http://www.zkoss.org/2005/zul"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
-	<window title="删除专家信息" border="normal" width="300px"
-		use="com.bdzb.oa.supplier.web.action.SupplierDelete">
+	<supplierDelete title="删除供应商信息" border="normal" width="300px">
 		<div align="center">
 			确认删除?
 			<separator></separator>
 			<button id="submit" label="确认" />
 			<button id="cancel" label="取消" />
 		</div>
-	</window>
+	</supplierDelete>
 </zk>
