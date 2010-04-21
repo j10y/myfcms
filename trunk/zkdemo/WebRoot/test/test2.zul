@@ -1,0 +1,11 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="new page title" border="normal">
+<button image="/img/icons/add-row.gif" label="新增" mold="os"></button>
+<button image="/img/icons/edit.png" label="编辑" mold="os"></button>
+<button image="/img/icons/delete.gif" label="删除" mold="os"></button>
+
+<button image="/img/icons/save.gif" label="保存" mold="os"></button>
+<button image="/img/icons/cancel.png" label="取消" mold="os"></button>
+</window>
+</zk>
