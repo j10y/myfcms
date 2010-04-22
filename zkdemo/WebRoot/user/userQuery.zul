@@ -11,14 +11,14 @@
 	<borderlayout>
 	<north height="25px">
 	<borderlayout>
-	<west border="none" width="300px">
+	<west border="none" width="auto">
 		<hbox>
 		<space></space>
-		<button label="新增" forward="onAdd" priv="userAdd"/>
-		<button label="修改" forward="onEdit" priv="userEdit"/>
-		<button label="删除" forward="onDelete" priv="userDelete"/>
-		<button label="锁定/解锁" forward="onLock" priv="userLock"/>
-		<button label="授予角色" forward="onGrantRole" priv="grantRole"/>
+		<button label="新增" forward="onAdd" priv="userAdd" image="/img/icons/add-row.gif"/>
+		<button label="修改" forward="onEdit" priv="userEdit" image="/img/icons/edit.png"/>
+		<button label="删除" forward="onDelete" priv="userDelete" image="/img/icons/delete.gif"/>
+		<button label="锁定/解锁" forward="onLock" priv="userLock" image="/img/icons/lock.png"/>
+		<button label="授予角色" forward="onGrantRole" priv="grantRole" image="/img/icons/customers.png"/>
 		</hbox>
 	</west>
 	<center border="none"></center>

@@ -7,8 +7,8 @@
 		<div align="center">
 			确认删除?			
 			<separator></separator>
-			<button id="submit" label="确认" />
-			<button id="cancel" label="取消" />
+			<button id="submit" label="确认" image="/img/icons/apply.png" />
+			<button id="cancel" label="取消" image="/img/icons/cancel.png" />
 		</div>
 	</userDelete>
 </zk>

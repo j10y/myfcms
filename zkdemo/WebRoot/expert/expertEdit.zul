@@ -43,9 +43,9 @@
 		</grid>
 		<separator />
 		<div align="center">
-			<button id="submit" label="提交" />
+			<button id="submit" label="确认" image="/img/icons/apply.png" />
 			<space />
-			<button id="cancel" label="取消" />
+			<button id="cancel" label="取消" image="/img/icons/cancel.png" />
 
 		</div>
 

@@ -32,8 +32,8 @@
 		</grid>		
 		<separator />
 		<div align="center">
-		<button id="submit" label="提交" /><space />
-		<button id="cancel" label="取消" />		
+		<button id="submit" label="确认" image="/img/icons/apply.png" /><space />
+		<button id="cancel" label="取消" image="/img/icons/cancel.png" />		
 		</div>
 	</privilegeAdd>
 </zk>

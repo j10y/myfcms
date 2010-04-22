@@ -10,13 +10,13 @@
 	<borderlayout>
 	<north height="25px">
 	<borderlayout>
-	<west border="none" width="300px">
+	<west border="none" width="auto">
 		<hbox>
 		<space></space>
-		<button label="新增" forward="onAdd" priv="roleAdd"/>
-		<button label="修改" forward="onEdit" priv="roleEdit"/>
-		<button label="删除" forward="onDelete" priv="roleDelete"/>	
-		<button label="授予权限" forward="onGrantPriv" priv="grantPriv"/>	
+		<button label="新增" forward="onAdd" priv="roleAdd" image="/img/icons/add-row.gif"/>
+		<button label="修改" forward="onEdit" priv="roleEdit" image="/img/icons/edit.png"/>
+		<button label="删除" forward="onDelete" priv="roleDelete" image="/img/icons/delete.gif"/>	
+		<button label="授予权限" forward="onGrantPriv" priv="grantPriv" image="/img/icons/issue.png"/>	
 		</hbox>
 	</west>
 	<center border="none"></center>

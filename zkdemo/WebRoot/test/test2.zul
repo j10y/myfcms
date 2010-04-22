@@ -1,11 +1,28 @@
+<?import src="/include.zul"?>
+<?link  rel="stylesheet" type="text/css" href="/macros/style.css.dsp"?>
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
-<window title="new page title" border="normal">
-<button image="/img/icons/add-row.gif" label="新增" mold="os"></button>
-<button image="/img/icons/edit.png" label="编辑" mold="os"></button>
-<button image="/img/icons/delete.gif" label="删除" mold="os"></button>
+	<style dynamic="true">
+	
 
-<button image="/img/icons/save.gif" label="保存" mold="os"></button>
-<button image="/img/icons/cancel.png" label="取消" mold="os"></button>
-</window>
+
+
+	</style>
+
+	<window title="new page title" border="normal">
+		<button image="/img/icons/add-row.gif" label="新增"></button>
+		<button image="/img/icons/edit.png" label="编辑"></button>
+		<button image="/img/icons/delete.gif" label="删除"></button>
+		<button image="/img/icons/save.gif" label="保存"></button>
+		<button image="/img/icons/apply.png" label="确认"></button>
+		<button image="/img/icons/cancel.png" label="取消"></button>
+		<button image="/img/icons/excel.gif" label="导入"></button>
+		<button image="/img/icons/excel.gif" label="导出"></button>
+		<button image="/img/icons/lock.png" label="锁定/解除锁定" ></button>
+		<button image="/img/icons/customers.png" label="授予角色" ></button>
+		<button image="/img/icons/issue.png" label="授予角色" ></button>
+	</window>
+	
+
+
 </zk>
