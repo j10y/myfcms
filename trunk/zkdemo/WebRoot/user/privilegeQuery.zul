@@ -9,12 +9,12 @@
 		<borderlayout>
 			<north height="25px">
 				<borderlayout>
-					<west border="none" width="300px">
+					<west border="none" width="auto">
 						<hbox>
 							<space></space>
-							<button label="新增" forward="onAdd" priv="privilegeAdd"/>
-							<button label="修改" forward="onEdit" priv="privilegeEdit"/>
-							<button label="删除" forward="onDelete" priv="privilegeDelete"/>
+							<button label="新增" forward="onAdd" priv="privilegeAdd" image="/img/icons/add-row.gif"/>
+							<button label="修改" forward="onEdit" priv="privilegeEdit" image="/img/icons/edit.png"/>
+							<button label="删除" forward="onDelete" priv="privilegeDelete" image="/img/icons/delete.gif"/>
 						</hbox>
 					</west>
 					<center border="none"></center>

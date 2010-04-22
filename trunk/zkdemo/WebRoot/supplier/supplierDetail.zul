@@ -64,7 +64,7 @@
 		<div align="center">
 			<button id="submit" visible="false"></button>
 			<space />
-			<button id="cancel" label="返回" />
+			<button id="cancel" label="返回" image="/img/icons/cancel.png"/>
 		</div>
 
 	</window>

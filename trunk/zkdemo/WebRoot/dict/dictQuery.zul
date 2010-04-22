@@ -9,12 +9,12 @@
 		<borderlayout>
 			<north height="25px">
 				<borderlayout>
-					<west border="none" width="300px">
+					<west border="none" width="auto">
 						<hbox>
 							<space></space>
-							<button label="新增" forward="onAdd" priv="dictAdd"/>
-							<button label="修改" forward="onEdit" priv="dictEdit"/>
-							<button label="删除" forward="onDelete" priv="dictDelete"/>
+							<button label="新增" forward="onAdd" priv="dictAdd" image="/img/icons/add-row.gif" />
+							<button label="修改" forward="onEdit" priv="dictEdit" image="/img/icons/edit.png"/>
+							<button label="删除" forward="onDelete" priv="dictDelete" image="/img/icons/delete.gif"/>
 						</hbox>
 					</west>
 					<center border="none"></center>
