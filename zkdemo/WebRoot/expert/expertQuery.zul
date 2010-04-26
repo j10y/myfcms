@@ -5,7 +5,6 @@
 
 <zk xmlns="http://www.zkoss.org/2005/zul" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
-
   <expertQuery id="expertQuery" height="100%">
     <borderlayout>
       <west width="150px" border="none" autoscroll="true">
@@ -41,13 +40,13 @@
             </borderlayout>
 
           </north>
-          <center autoscroll="true" flex="true">
+          <center autoscroll="true" flex="true" >
             <listbox id="listbox" model="@{expertQuery.list}" paginal="${pg}" checkmark="true" fixedLayout="true"
               multiple="true" style="border:none;">
               <listhead>
-                <listheader label="类别" width="130px" />
-                <listheader label="姓名" width="70px" />
-                <listheader label="职称" width="100px" />
+                <listheader label="类别" />
+                <listheader label="姓名" width="50px"/>
+                <listheader label="职称" />
                 <listheader label="工作单位" />
                 <listheader label="联系电话" />
                 <listheader label="备注" />
