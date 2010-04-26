@@ -10,36 +10,52 @@ package com.hxzy.base.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 /**
  * @author xiacc
- *
+ * 
  * 描述：
  */
 @MappedSuperclass
 public abstract class Revisable {
-	
+
+	/**
+	 * 描述：唯一id
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
 	/**
 	 * 描述：创建时间
 	 */
 	@Column(updatable = false)
 	private Date createTime;
-	
+
 	/**
 	 * 描述：修改时间
 	 */
 	private Date modifyTime;
-	
+
 	/**
 	 * 描述：创建人
 	 */
 	private String creator;
-	
+
 	/**
 	 * 描述：最后修改人
 	 */
 	private String lastModify;
+
+	/**
+	 * 描述：是否已经删除
+	 */
+	@Column(columnDefinition = "BOOLEAN")
+	private boolean deleted;
 
 	/**
 	 * 返回 createTime
@@ -96,7 +112,33 @@ public abstract class Revisable {
 	public void setLastModify(String lastModify) {
 		this.lastModify = lastModify;
 	}
-	
-	
+
+	/**
+	 * 返回 id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * 设置 id
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * 返回 deleted
+	 */
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	/**
+	 * 设置 deleted
+	 */
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 
 }
