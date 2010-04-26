@@ -10,39 +10,37 @@ package com.bdzb.oa.member.model;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 import com.hxzy.base.model.Revisable;
 import com.hxzy.common.dict.model.Dict;
 
 /**
  * @author xiacc
- * 
+ *
  * 描述：商业会员类
  */
 @Entity
 @Table(name = "member")
-public class Member extends Revisable {
+public class Member extends Revisable{
 
-	// 公司名称
+	//公司名称
 	private String companyName;
-
+	
 	// 所属种类
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id")
 	private Dict category;
-
-	// 联系方式
+	
+	//联系方式
 	private String contacts;
-
-	// 入会时间
+	
+	//入会时间
 	private Date joinTime;
-
-	// 到期时间
+	
+	//到期时间
 	private Date endTime;
 
 	/**
