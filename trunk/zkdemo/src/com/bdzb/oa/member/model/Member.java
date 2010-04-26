@@ -7,6 +7,15 @@
  */
 package com.bdzb.oa.member.model;
 
+import java.util.Date;
+
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.hxzy.common.dict.model.Dict;
+
 /**
  * @author xiacc
  *
@@ -15,5 +24,24 @@ package com.bdzb.oa.member.model;
 public class Member {
 	
 	private Long id;
+
+	//公司名称
+	private String companyName;
+	
+	// 所属种类
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
+	@JoinColumn(name = "category_id")
+	private Dict category;
+	
+	//联系方式
+	private String contacts;
+	
+	//入会时间
+	private Date joinTime;
+	
+	//到期时间
+	private Date endTime;
+	
+	
 
 }
