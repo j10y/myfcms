@@ -1,0 +1,65 @@
+<#include "/java_copyright.include">
+<#assign className = table.className>   
+<#assign classNameLower = className?uncap_first>
+<?import src="/include.zul"?>
+<?link  rel="stylesheet" type="text/css" href="/macros/style.css.dsp"?>
+<?page title="XX管理" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./${classNameLower}Query"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	
+	<${classNameLower}Query id="${classNameLower}Query" height="100%">
+	<borderlayout>
+	<north height="25px">
+	<borderlayout>
+	<west border="none" width="auto">
+		<hbox>
+		<space></space>
+		<button label="新增" forward="onAdd" priv="${classNameLower}Add" image="/img/icons/add-row.gif"/>
+		<button label="修改" forward="onEdit" priv="${classNameLower}Edit" image="/img/icons/edit.png"/>
+		<button label="删除" forward="onDelete" priv="${classNameLower}Delete" image="/img/icons/delete.gif"/>
+		</hbox>
+	</west>
+	<center border="none"></center>
+	<east border="none">
+	<hbox>
+		<textbox id="search" focus="true" sclass="demo-search-inp"/>
+		<button label="查询" forward="onFind"></button>
+	</hbox>
+	</east>	
+	</borderlayout>
+		
+	</north>
+	<center border="none">
+	<listbox id="listbox" model="@{${classNameLower}Query.list}" paginal="\x&#64;{pg}" checkmark="true" multiple="true">
+		<listhead>
+         <#list table.columns as column>
+          <#if column.isNotIdOrVersionField>
+			<listheader label="${column.columnNameLower}" />      
+          </#if>
+         </#list>
+			<listheader label="登录名" />
+			<listheader label="姓名" />
+			<listheader label="用户状态" />
+			<listheader label="登录次数" />
+			<listheader label="上次登录时间" />
+		
+		</listhead>
+		<listitem self="@{each=${classNameLower}}" value="@{${classNameLower}}">
+         <#list table.columns as column>
+          <#if column.isNotIdOrVersionField>
+			<listcell label="@{${classNameLower}.${column.columnNameLower}}"/>
+          </#if>
+         </#list>			
+		</listitem>		
+		</listbox>
+	</center>
+	<south height="25px">
+	<paging id="pg" />
+	</south>
+	</borderlayout>
+		
+	</${classNameLower}Query>
+</zk>

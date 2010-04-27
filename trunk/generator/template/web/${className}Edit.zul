@@ -1,0 +1,37 @@
+<#include "/java_copyright.include">
+<#assign className = table.className>   
+<#assign classNameLower = className?uncap_first>
+<?page title="编辑" contentType="text/html;charset=UTF-8"?>
+<?import src="/include.zul"?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<${classNameLower}Edit title="编辑" border="normal" width="400px">
+
+		<grid fixedLayout="true">
+			<columns>
+				<column label="类型" width="80px" align="right"/>
+				<column label="输入" />
+			</columns>
+
+			<rows>
+         <#list table.columns as column>
+          <#if column.isNotIdOrVersionField>
+                <row>
+                      ${column.columnNameLower}：
+                      <textbox id="${column.columnNameLower}" constraint="no empty"/>
+                </row>
+          </#if>
+         </#list>				
+			</rows>
+
+		</grid>
+		<separator />
+		<div align="center">
+		<button id="submit" label="确认" image="/img/icons/apply.png"/><space />
+		<button id="cancel" label="取消" image="/img/icons/cancel.png"/>
+		
+		</div>
+
+	</${classNameLower}Edit>
+</zk>

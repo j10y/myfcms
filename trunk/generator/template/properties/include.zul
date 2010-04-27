@@ -1,0 +1,9 @@
+<#include "/java_copyright.include">
+<#assign className = table.className>   
+<#assign classNameLower = className?uncap_first>
+
+
+	<?component name="${classNameLower}Edit" 
+		extends="window" 
+		class="${basepackage}.${classNameLower}.web.action.${className}Edit" 
+		functionCode="${classNameLower}Edit"?>
