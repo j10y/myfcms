@@ -1,6 +1,0 @@
-<#assign className = table.className>   
-<#assign classNameLower = className?uncap_first> 
-
-<bean id="${classNameLower}Service" class="${basepackage}.service.impl.${className}ServiceImpl"/>
-<bean id="${classNameLower}Dao" class="${basepackage}.dao.impl.${className}DaoImpl"/>
-
