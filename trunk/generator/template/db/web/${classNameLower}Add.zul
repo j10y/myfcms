@@ -1,11 +1,11 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first>
-<?page title="新增" contentType="text/html;charset=UTF-8"?>
+<?page title="新增${chineseDesc}" contentType="text/html;charset=UTF-8"?>
 <?import src="/include.zul"?>
 <zk xmlns="http://www.zkoss.org/2005/zul"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
-	<${classNameLower}Add id="${classNameLower}Add" title="新增" border="normal" width="400px">
+	<${classNameLower}Add id="${classNameLower}Add" title="新增{chineseDesc}" border="normal" width="400px">
 
 		<grid fixedLayout="true">
 			<columns>

@@ -2,14 +2,26 @@ package cn.org.rapid_framework.generator;
 
 import java.util.Date;
 
+import cn.org.rapid_framework.generator.annotation.Description;
+
 public class Member {
 
+	@Description("javaeye,做最棒的软件开发交流社区") 
 	private String companyName;
 
+	/**
+	 * 联系方式
+	 */
 	private String contacts;
 
+	/**
+	 * 入会时间
+	 */
 	private Date joinTime;
 
+	/**
+	 * 截止时间
+	 */
 	private Date endTime;
 
 	/**
