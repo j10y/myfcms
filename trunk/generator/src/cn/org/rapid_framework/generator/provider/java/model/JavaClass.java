@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.org.rapid_framework.generator.annotation.Description;
 import cn.org.rapid_framework.generator.util.ActionScriptDataTypesUtils;
 import cn.org.rapid_framework.generator.util.StringHelper;
 
@@ -59,6 +60,14 @@ public class JavaClass {
 			result.add(new JavaField(f,this));
 		}
 		return result;
+	}
+	
+	public String getDescription(){
+		Description desc = (Description)clazz.getAnnotation(Description.class);
+		if(desc == null){
+			return getClassNameLower();
+		}
+		return desc.value();
 	}
 	
 	public String getPackagePath(){

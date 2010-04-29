@@ -1,5 +1,7 @@
 package cn.org.rapid_framework.generator;
 
+import cn.org.rapid_framework.generator.util.FileSystemClassLoader;
+
 
 
 /**
@@ -20,7 +22,13 @@ public class GeneratorMain {
 //		g.generateByTable("member");	//通过数据库表生成文件,注意: oracle 需要指定schema及注意表名的大小写.
 //		g.generateByTable("table_name","TableName");	//通过数据库表生成文件,并可以自定义类名
 //		g.generateByAllTable();				//自动搜索数据库中的所有表并生成文件
-		g.generateByClass(Member.class);
+		
+		
+		FileSystemClassLoader fscl = new FileSystemClassLoader("E:/xiacc/workspace/generator/bin");
+		Class clazz = Class.forName("cn.org.rapid_framework.generator.Member", true, fscl);
+		//g.generateByClass(clazz);
+		//Class clz = fscl.loadClass("cn.org.rapid_framework.generator.Member");
+		g.generateByClass(clazz);
 		
 		//打开文件夹
 //		Runtime.getRuntime().exec("cmd.exe /c start D:\\webapp-generator-output");

@@ -2,6 +2,7 @@ package cn.org.rapid_framework.generator.provider.java.model;
 
 import java.lang.reflect.Field;
 
+import cn.org.rapid_framework.generator.annotation.Description;
 import cn.org.rapid_framework.generator.util.ActionScriptDataTypesUtils;
 
 public class JavaField {
@@ -24,6 +25,14 @@ public class JavaField {
 
 	public String getJavaType() {
 		return field.getType().getName();
+	}
+	
+	public String getDescription(){
+		Description desc = field.getAnnotation(Description.class);
+		if(desc == null){
+			return getFieldName();
+		}
+		return desc.value();
 	}
 
 	public String getAsType() {
