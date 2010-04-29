@@ -4,24 +4,19 @@ import java.util.Date;
 
 import cn.org.rapid_framework.generator.annotation.Description;
 
+@Description("会员") 
 public class Member {
 
-	@Description("javaeye,做最棒的软件开发交流社区") 
+	@Description("公司名称") 
 	private String companyName;
 
-	/**
-	 * 联系方式
-	 */
+	@Description("联系方式")
 	private String contacts;
 
-	/**
-	 * 入会时间
-	 */
+	@Description("入会时间")
 	private Date joinTime;
 
-	/**
-	 * 截止时间
-	 */
+	@Description("截止时间")
 	private Date endTime;
 
 	/**
