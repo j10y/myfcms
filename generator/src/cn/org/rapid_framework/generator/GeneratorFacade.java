@@ -61,17 +61,21 @@ public class GeneratorFacade {
 		g.clean();
 	}
 	
+	public void setOutPutDir(String outPutDir){
+		
+	}
+	
 	public Generator createGeneratorForDbTable() {
 		Generator g = new Generator();
 		g.setTemplateRootDir(new File("template/db").getAbsoluteFile());
-		g.setOutRootDir(GeneratorProperties.getRequiredProperty("outRoot"));
+		g.setOutPutDir(GeneratorProperties.getRequiredProperty("outPut"));
 		return g;
 	}
 	
 	private Generator createGeneratorForJavaClass() {
 		Generator g = new Generator();
 		g.setTemplateRootDir(new File("template/javaclass").getAbsoluteFile());
-		g.setOutRootDir(GeneratorProperties.getRequiredProperty("outRoot"));
+		g.setOutPutDir(GeneratorProperties.getRequiredProperty("outPut"));
 		return g;
 	}
 }

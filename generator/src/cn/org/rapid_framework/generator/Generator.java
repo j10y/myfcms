@@ -34,7 +34,7 @@ import freemarker.template.TemplateException;
 public class Generator {
 	private static final String GENERATOR_INSERT_LOCATION = "generator-insert-location";
 	private List templateRootDirs = new ArrayList();
-	private String outRootDir;
+	private String outPutDir;
 	
 	String encoding = "UTF-8";
 	public Generator() {
@@ -61,9 +61,9 @@ public class Generator {
 		this.encoding = v;
 	}
 	
-	public void setOutRootDir(String v) {
-		if(v == null) throw new IllegalArgumentException("outRootDir must be not null");
-		this.outRootDir = v;
+	public void setOutPutDir(String v) {
+		if(v == null) throw new IllegalArgumentException("outPutDir must be not null");
+		this.outPutDir = v;
 	}
 
 	public void generateByModelProvider(IGeneratorModelProvider modelProvider) throws Exception {
@@ -188,8 +188,8 @@ public class Generator {
 	}
 
 	private File getAbsoluteOutputFilePath(String targetFilename) {
-		String outRoot = getOutRootDir();
-		File outputFile = new File(outRoot,targetFilename);
+		String outPut = getOutPutDir();
+		File outputFile = new File(outPut,targetFilename);
 		outputFile.getParentFile().mkdirs();
 		return outputFile;
 	}
@@ -222,14 +222,16 @@ public class Generator {
 	}
 
 	public void clean() throws IOException {
-		String outRoot = getOutRootDir();
-		FileUtils.deleteDirectory(new File(outRoot));
-		System.out.println("[Delete Dir]	"+outRoot);
+		String outPut = getOutPutDir();
+		FileUtils.deleteDirectory(new File(outPut));
+		System.out.println("[Delete Dir]	"+outPut);
 	}
 
-	private String getOutRootDir() {
-		if(outRootDir == null) throw new IllegalStateException("'outRootDir' property must be not null.");
-		return outRootDir;
+	private String getOutPutDir() {
+		if(outPutDir == null) throw new IllegalStateException("'outPutDir' property must be not null.");
+		return outPutDir;
 	}
+	
+	
 	
 }
