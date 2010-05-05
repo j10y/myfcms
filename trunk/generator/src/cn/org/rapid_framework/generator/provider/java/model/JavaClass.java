@@ -27,7 +27,7 @@ public class JavaClass {
 	}
 	
 	public String getPackageName() {
-		return clazz.getPackage().getName();
+		return clazz.getName().substring(0, clazz.getName().lastIndexOf(clazz.getSimpleName())-1);
 	}
 	
 	public String getSuperclassName() {
