@@ -37,7 +37,7 @@ public class FileSystemClassLoader extends ClassLoader {
             } 
             return baos.toByteArray(); 
         } catch (IOException e) { 
-            e.printStackTrace(); 
+            System.out.println("File not found:"+e.getMessage());
         } 
         return null; 
     } 
@@ -45,5 +45,5 @@ public class FileSystemClassLoader extends ClassLoader {
     private String classNameToPath(String className) { 
         return rootDir + File.separatorChar 
                 + className.replace('.', File.separatorChar) + ".class"; 
-    } 
+    }    
 } 
