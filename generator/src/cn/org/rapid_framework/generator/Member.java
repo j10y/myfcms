@@ -1,22 +1,27 @@
 package cn.org.rapid_framework.generator;
 
+
 import java.util.Date;
 
-import cn.org.rapid_framework.generator.annotation.Description;
+public class Member 
+//extends Revisable 
+{
 
-@Description("会员") 
-public class Member {
-
-	@Description("公司名称") 
+	// ��˾���
 	private String companyName;
 
-	@Description("联系方式")
+	// ��������
+//	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
+//	@JoinColumn(name = "category_id")
+//	private Dict category;
+
+	// jϵ��ʽ
 	private String contacts;
 
-	@Description("入会时间")
+	// ���ʱ��
 	private Date joinTime;
 
-	@Description("截止时间")
+	// ����ʱ��
 	private Date endTime;
 
 	/**
@@ -33,6 +38,19 @@ public class Member {
 		this.companyName = companyName;
 	}
 
+	/**
+	 * ���� category
+	 */
+//	public Dict getCategory() {
+//		return category;
+//	}
+//
+//	/**
+//	 * ���� category
+//	 */
+//	public void setCategory(Dict category) {
+//		this.category = category;
+//	}
 
 	/**
 	 * ���� contacts
