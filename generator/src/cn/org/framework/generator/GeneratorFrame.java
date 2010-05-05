@@ -22,6 +22,7 @@ import java.util.Properties;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import cn.org.framework.generator.util.FileSystemClassLoader;
@@ -161,7 +162,6 @@ public class GeneratorFrame extends JFrame {
 		saveAsPro = new javax.swing.JMenuItem();
 		exitMenuItem = new javax.swing.JMenuItem();
 		helpMenu = new javax.swing.JMenu();
-		contentsMenuItem = new javax.swing.JMenuItem();
 		aboutMenuItem = new javax.swing.JMenuItem();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -309,10 +309,15 @@ public class GeneratorFrame extends JFrame {
 
 		helpMenu.setText("Help");
 
-		contentsMenuItem.setText("Contents");
-		helpMenu.add(contentsMenuItem);
-
 		aboutMenuItem.setText("About");
+		aboutMenuItem.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e) {
+				String about="Code Generator!\nCopyright by Yourfei,All rights reserved!\nyourfei@sina.com";
+				JOptionPane.showMessageDialog(GeneratorFrame.this, about, "about", JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+		});
 		helpMenu.add(aboutMenuItem);
 
 		menuBar.add(helpMenu);
@@ -469,7 +474,6 @@ public class GeneratorFrame extends JFrame {
 	private javax.swing.JButton chooseDir;
 	private javax.swing.JButton chooseDir2;
 	private javax.swing.JTextField className;
-	private javax.swing.JMenuItem contentsMenuItem;
 	private javax.swing.JMenuItem exitMenuItem;
 	private javax.swing.JMenu fileMenu;
 	private javax.swing.JButton generateButton;
