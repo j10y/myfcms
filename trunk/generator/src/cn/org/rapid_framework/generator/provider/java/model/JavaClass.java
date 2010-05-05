@@ -43,7 +43,7 @@ public class JavaClass {
 		return result;
 	}
 	
-	public List getProperties() throws Exception {
+	public List<JavaProperty> getProperties() throws Exception {
 		List result = new ArrayList();
 		BeanInfo beanInfo = Introspector.getBeanInfo(clazz);
 		PropertyDescriptor[] pds = beanInfo.getPropertyDescriptors();
