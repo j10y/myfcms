@@ -165,9 +165,9 @@ public class GeneratorFrame extends JFrame {
 		aboutMenuItem = new javax.swing.JMenuItem();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle("CodeGenerator");
+		setTitle("CodeGenerator 1.0b");
 		setLocationByPlatform(true);
-		setName("CodeGenerator");
+		setName("CodeGenerator 1.0b");
 		setResizable(false);
 
 		jPanel7.setMaximumSize(new java.awt.Dimension(600, 200));
