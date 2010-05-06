@@ -227,7 +227,7 @@ public class Generator {
 		System.out.println("[Delete Dir]	"+outPut);
 	}
 
-	private String getOutPutDir() {
+	public String getOutPutDir() {
 		if(outPutDir == null) throw new IllegalStateException("'outPutDir' property must be not null.");
 		return outPutDir;
 	}

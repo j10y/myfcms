@@ -24,10 +24,11 @@ public class GeneratorMain {
 //		g.generateByAllTable();				//自动搜索数据库中的所有表并生成文件
 		
 		
-		FileSystemClassLoader fscl = new FileSystemClassLoader("E:/xiacc/workspace/bdoa/WebRoot/WEB-INF/classes");
-		Class clazz = Class.forName("com.bdzb.oa.member.model.Member", true, fscl);
+		FileSystemClassLoader fscl = new FileSystemClassLoader("E:/xiacc/workspace/test/bin");
+		Class clazz = Class.forName("test.User", true, fscl);
 		//g.generateByClass(clazz);
 //		Class clazz = fscl.loadClass("cn.org.rapid_framework.generator.Member");
+		g.setOutPutDir("d:/output");
 		g.generateByClass(clazz);
 		
 		//打开文件夹

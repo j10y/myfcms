@@ -75,6 +75,9 @@ public class JavaClass {
 	}
 	
 	public String getParentPackageName() {
+		if(getPackageName().lastIndexOf(".") == -1){
+			return "/";
+		}		
 		return getPackageName().substring(0,getPackageName().lastIndexOf("."));
 	}
 

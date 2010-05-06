@@ -17,6 +17,8 @@ import cn.org.framework.generator.provider.java.model.JavaClass;
  */
 public class GeneratorFacade {
 	
+	private String outPutDir;
+	
 	
 	public GeneratorFacade() {
 	}
@@ -60,22 +62,35 @@ public class GeneratorFacade {
 		Generator g = createGeneratorForDbTable();
 		g.clean();
 	}
-	
-	public void setOutPutDir(String outPutDir){
 		
-	}
-	
 	public Generator createGeneratorForDbTable() {
 		Generator g = new Generator();
 		g.setTemplateRootDir(new File("template/db").getAbsoluteFile());
-		g.setOutPutDir(GeneratorProperties.getRequiredProperty("outPut"));
+		g.setOutPutDir(outPutDir);
 		return g;
 	}
 	
 	private Generator createGeneratorForJavaClass() {
 		Generator g = new Generator();
 		g.setTemplateRootDir(new File("template/javaclass").getAbsoluteFile());
-		g.setOutPutDir(GeneratorProperties.getRequiredProperty("outPut"));
+		g.setOutPutDir(outPutDir);
 		return g;
 	}
+
+	/**
+	 * 返回 outPutDir
+	 */
+	public String getOutPutDir() {
+		return outPutDir;
+	}
+
+	/**
+	 * 设置 outPutDir
+	 */
+	public void setOutPutDir(String outPutDir) {
+		this.outPutDir = outPutDir;
+	}
+	
+	
+	
 }
