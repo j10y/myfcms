@@ -10,6 +10,7 @@ import cn.org.framework.generator.provider.db.DbTableGeneratorModelProvider;
 import cn.org.framework.generator.provider.db.model.Table;
 import cn.org.framework.generator.provider.java.JavaClassGeneratorModelProvider;
 import cn.org.framework.generator.provider.java.model.JavaClass;
+import cn.org.framework.generator.util.PropertiesHelper;
 /**
  * 
  * @author badqiu
@@ -76,6 +77,7 @@ public class GeneratorFacade {
 		Generator g = new Generator();
 		g.setTemplateRootDir(new File(templateDir).getAbsoluteFile());
 		g.setOutPutDir(outPutDir);
+		g.setEncoding(GeneratorProperties.getProperty("encoding","UTF-8"));
 		return g;
 	}
 
