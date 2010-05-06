@@ -414,11 +414,12 @@ public class GeneratorFrame extends JFrame {
 	private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
 		GeneratorFacade g = new GeneratorFacade();
-		FileSystemClassLoader fscl = new FileSystemClassLoader(this.rootDir.getText());
-		
+		FileSystemClassLoader fscl = new FileSystemClassLoader(this.rootDir.getText());		
 		
 		try {
 			Class clazz = Class.forName(className.getText(), true, fscl);
+			g.setOutPutDir(outPutDir.getText());
+			g.clean();
 			g.generateByClass(clazz);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
