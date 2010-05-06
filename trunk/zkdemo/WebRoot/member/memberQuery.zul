@@ -1,0 +1,56 @@
+<?import src="/include.zul"?>
+<?link  rel="stylesheet" type="text/css" href="/macros/style.css.dsp"?>
+<?page title="会员管理" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./memberQuery"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	
+	<memberQuery id="memberQuery" height="100%">
+	<borderlayout>
+	<north height="25px">
+	<borderlayout>
+	<west border="none" width="auto">
+		<hbox>
+		<space></space>
+		<button label="新增" forward="onAdd" priv="memberAdd" image="/img/icons/add-row.gif"/>
+		<button label="修改" forward="onEdit" priv="memberEdit" image="/img/icons/edit.png"/>
+		<button label="删除" forward="onDelete" priv="memberDelete" image="/img/icons/delete.gif"/>
+		</hbox>
+	</west>
+	<center border="none"></center>
+	<east border="none">
+	<hbox>
+		<textbox id="search" focus="true" sclass="demo-search-inp"/>
+		<button label="查询" forward="onFind"></button>
+	</hbox>
+	</east>	
+	</borderlayout>
+		
+	</north>
+	<center border="none">
+	<listbox id="listbox" model="@{memberQuery.list}" paginal="${pg}" checkmark="true" multiple="true">
+		<listhead>
+			<listheader label="类别" />      
+			<listheader label="公司名称" />      
+			<listheader label="联系方式" />      
+			<listheader label="入会时间" />      
+			<listheader label="到期时间" />      
+		</listhead>
+		<listitem self="@{each=member}" value="@{member}">
+			<listcell label="@{member.category}"/>
+			<listcell label="@{member.companyName}"/>
+			<listcell label="@{member.contacts}"/>
+			<listcell label="@{member.joinTime}"/>
+			<listcell label="@{member.endTime}"/>
+		</listitem>		
+		</listbox>
+	</center>
+	<south height="25px">
+	<paging id="pg" />
+	</south>
+	</borderlayout>
+		
+	</memberQuery>
+</zk>

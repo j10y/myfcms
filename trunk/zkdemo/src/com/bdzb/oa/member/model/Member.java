@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import cn.org.framework.generator.annotation.Description;
+
 import com.hxzy.base.model.Revisable;
 import com.hxzy.common.dict.model.Dict;
 
@@ -26,23 +28,29 @@ import com.hxzy.common.dict.model.Dict;
  */
 @Entity
 @Table(name = "member")
+@Description("会员")
 public class Member extends Revisable {
 
 	// 公司名称
+	@Description("公司名称")
 	private String companyName;
 
 	// 所属种类
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id")
+	@Description("类别")
 	private Dict category;
 
 	// 联系方式
+	@Description("联系方式")
 	private String contacts;
 
 	// 入会时间
+	@Description("入会时间")
 	private Date joinTime;
 
 	// 到期时间
+	@Description("到期时间")
 	private Date endTime;
 
 	/**

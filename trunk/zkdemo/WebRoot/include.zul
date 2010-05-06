@@ -1,9 +1,8 @@
-<zk xmlns="http://www.zkoss.org/2005/zul"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+<zk xmlns="http://www.zkoss.org/2005/zul" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
-	<!-- 通用控件 -->
-	<?component name="myWindow" extends="window" class="eb.UserWindow" needAuthentication="true" ?>	
+  <!-- 通用控件 -->
+	<?component name="myWindow" extends="window" class="eb.UserWindow" needAuthentication="true" ?>
 	<?component name="button" extends="button" class="com.hxzy.base.web.component.Button" mold="trendy" height="23px"?>
 	<?component name="paging" extends="paging" detailed="true"?>
 	<!-- 通用控件 -->
@@ -84,22 +83,22 @@
 		extends="window" 
 		class="com.hxzy.common.user.web.action.GrantRole" 
 		functionCode="grantRole"?>
-		
+
 	<?component name="dictQuery" 
 		extends="window" 
 		class="com.hxzy.common.dict.web.action.DictQuery" 
 		functionCode="dictQuery"?>
-		
+
 	<?component name="dictAdd" 
 		extends="window" 
 		class="com.hxzy.common.dict.web.action.DictAdd" 
 		functionCode="dictAdd"?>
-		
+
 	<?component name="dictDelete" 
 		extends="window" 
 		class="com.hxzy.common.dict.web.action.DictDelete" 
 		functionCode="dictDelete"?>
-		
+
 	<?component name="dictEdit" 
 		extends="window" 
 		class="com.hxzy.common.dict.web.action.DictEdit" 
@@ -128,26 +127,49 @@
 		extends="window" 
 		class="com.bdzb.oa.expert.web.aciton.ExpertDelete" 
 		functionCode="expertDelete"?>
-		
+
 	<?component name="supplierQuery" 
 		extends="window" 
 		class="com.bdzb.oa.supplier.web.action.SupplierQuery" 
 		functionCode="supplierQuery"?>
-	
+
 	<?component name="supplierAdd" 
 		extends="window" 
 		class="com.bdzb.oa.supplier.web.action.SupplierAdd" 
 		functionCode="supplierAdd"?>
-		
+
 	<?component name="supplierDelete" 
 		extends="window" 
 		class="com.bdzb.oa.supplier.web.action.SupplierDelete" 
 		functionCode="supplierDelete"?>
-		
+
 	<?component name="supplierEdit" 
 		extends="window" 
 		class="com.bdzb.oa.supplier.web.action.SupplierEdit" 
 		functionCode="supplierEdit"?>
-		
+
+	<!-- Member	-->
+	<?component name="memberQuery" 
+		extends="window" 
+		class="com.bdzb.oa.member.web.action.MemberQuery" 
+		functionCode="memberQuery"?>
+
+	<?component name="memberAdd" 
+		extends="window" 
+		class="com.bdzb.oa.member.web.action.MemberAdd" 
+		functionCode="memberAdd"?>
+
+	<?component name="memberDelete" 
+		extends="window" 
+		class="com.bdzb.oa.member.web.action.MemberDelete" 
+		functionCode="memberDelete"?>
+
+	<?component name="memberEdit" 
+		extends="window" 
+		class="com.bdzb.oa.member.web.action.MemberEdit" 
+		functionCode="memberEdit"?>
+	<!-- Member	-->
+
+
 	<!-- OA模块 -->
 </zk>

@@ -5,7 +5,7 @@
   id="myeclipse.1269352705187"
   context-root="/bdoa"
   j2ee-spec="5.0"
-  archive="zkdemo.war">
+  archive="bdoa.war">
   <attributes>
     <attribute name="webrootdir" value="/WebRoot" />
   </attributes>
