@@ -19,6 +19,8 @@ public class GeneratorFacade {
 	
 	private String outPutDir;
 	
+	private String templateDir;
+	
 	
 	public GeneratorFacade() {
 	}
@@ -65,14 +67,14 @@ public class GeneratorFacade {
 		
 	public Generator createGeneratorForDbTable() {
 		Generator g = new Generator();
-		g.setTemplateRootDir(new File("template/db").getAbsoluteFile());
+		g.setTemplateRootDir(new File(templateDir).getAbsoluteFile());
 		g.setOutPutDir(outPutDir);
 		return g;
 	}
 	
 	private Generator createGeneratorForJavaClass() {
 		Generator g = new Generator();
-		g.setTemplateRootDir(new File("template/javaclass").getAbsoluteFile());
+		g.setTemplateRootDir(new File(templateDir).getAbsoluteFile());
 		g.setOutPutDir(outPutDir);
 		return g;
 	}
@@ -90,6 +92,22 @@ public class GeneratorFacade {
 	public void setOutPutDir(String outPutDir) {
 		this.outPutDir = outPutDir;
 	}
+
+	/**
+	 * 返回 templateDir
+	 */
+	public String getTemplateDir() {
+		return templateDir;
+	}
+
+	/**
+	 * 设置 templateDir
+	 */
+	public void setTemplateDir(String templateDir) {
+		this.templateDir = templateDir;
+	}
+	
+	
 	
 	
 	

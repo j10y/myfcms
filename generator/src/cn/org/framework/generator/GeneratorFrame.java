@@ -38,19 +38,19 @@ import cn.org.framework.generator.util.FileSystemClassLoader;
  * @author xiacc
  */
 public class GeneratorFrame extends JFrame {
-	
+
 	private Properties pro;
-	
+
 	private String propertiesFileName;
 
 	/** Creates new form GeneratorFrame */
 	public GeneratorFrame() {
 		initComponents();
-		
+
 		propertiesFileName = "generator.properties";
-		
+
 		this.loadProperties(propertiesFileName);
-		
+
 		new Thread() {
 			public void run() {
 				String log = null;
@@ -70,13 +70,13 @@ public class GeneratorFrame extends JFrame {
 
 				System.setOut(ps);
 				System.setErr(ps);
-				
+
 				InputStreamReader isr = new InputStreamReader(pipedIS);
 				BufferedReader br = new BufferedReader(isr);
 
 				while (true) {
 					try {
-						logArea.append(br.readLine()+"\n");
+						logArea.append(br.readLine() + "\n");
 						logArea.setSelectionStart(logArea.getText().length());
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -85,38 +85,40 @@ public class GeneratorFrame extends JFrame {
 			}
 
 		}.start();
-		
-		logArea.addMouseListener(new MouseAdapter(){
 
-			/* (non-Javadoc)
+		logArea.addMouseListener(new MouseAdapter() {
+
+			/*
+			 * (non-Javadoc)
+			 * 
 			 * @see java.awt.event.MouseAdapter#mouseClicked(java.awt.event.MouseEvent)
 			 */
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				if(e.getButton() == MouseEvent.BUTTON3){
+
+				if (e.getButton() == MouseEvent.BUTTON3) {
 					PopupMenu pm = new PopupMenu();
 					MenuItem cleanup = new MenuItem("cleanup");
-					pm.add(cleanup);					
+					pm.add(cleanup);
 					logArea.add(pm);
 
-					cleanup.addActionListener(new ActionListener(){
+					cleanup.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							logArea.setText("");
 						}
 					});
-					
-					pm.show(logArea,e.getX(),e.getY());
-				}				
+
+					pm.show(logArea, e.getX(), e.getY());
+				}
 			}
-			
+
 		});
 	}
-	
-	public void loadProperties(String fileName){
+
+	public void loadProperties(String fileName) {
 		InputStream in;
 		pro = new Properties();
-		
+
 		try {
 			in = new BufferedInputStream(new FileInputStream(fileName));
 			pro.load(in);
@@ -124,10 +126,11 @@ public class GeneratorFrame extends JFrame {
 			this.rootDir.setText(pro.getProperty("rootDir"));
 			this.basepackage.setText(pro.getProperty("basepackage"));
 			this.className.setText(pro.getProperty("className"));
-			
+			this.templateDir.setText(pro.getProperty("templateDir"));
+
 		} catch (IOException e) {
 			e.printStackTrace();
-		}	
+		}
 	}
 
 	// GEN-BEGIN:initComponents
@@ -164,19 +167,24 @@ public class GeneratorFrame extends JFrame {
 		helpMenu = new javax.swing.JMenu();
 		aboutMenuItem = new javax.swing.JMenuItem();
 
+		jPanel9 = new javax.swing.JPanel();
+		jLabel5 = new javax.swing.JLabel();
+		templateDir = new javax.swing.JTextField();
+		chooseDir3 = new javax.swing.JButton();
+
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("CodeGenerator 1.0b");
 		setLocationByPlatform(true);
 		setName("CodeGenerator 1.0b");
 		setResizable(false);
 
-		jPanel7.setMaximumSize(new java.awt.Dimension(600, 200));
-		jPanel7.setMinimumSize(new java.awt.Dimension(600, 200));
-		jPanel7.setPreferredSize(new java.awt.Dimension(600, 200));
+		jPanel7.setMaximumSize(new java.awt.Dimension(600, 230));
+		jPanel7.setMinimumSize(new java.awt.Dimension(600, 230));
+		jPanel7.setPreferredSize(new java.awt.Dimension(600, 230));
 		jPanel7.setLayout(new java.awt.BorderLayout());
 
-		jPanel1.setMaximumSize(new java.awt.Dimension(600, 150));
-		jPanel1.setPreferredSize(new java.awt.Dimension(600, 150));
+		jPanel1.setMaximumSize(new java.awt.Dimension(600, 230));
+		jPanel1.setPreferredSize(new java.awt.Dimension(600, 230));
 		jPanel1.setLayout(new java.awt.GridLayout(0, 1));
 
 		jPanel3.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -186,7 +194,7 @@ public class GeneratorFrame extends JFrame {
 		jLabel1.setPreferredSize(new java.awt.Dimension(100, 14));
 		jPanel3.add(jLabel1);
 
-		rootDir.setColumns(25);
+		rootDir.setColumns(35);
 		jPanel3.add(rootDir);
 
 		chooseDir.setText("Choose");
@@ -206,7 +214,7 @@ public class GeneratorFrame extends JFrame {
 		jLabel4.setPreferredSize(new java.awt.Dimension(100, 14));
 		jPanel6.add(jLabel4);
 
-		outPutDir.setColumns(25);
+		outPutDir.setColumns(35);
 		jPanel6.add(outPutDir);
 
 		chooseDir2.setText("Choose");
@@ -219,6 +227,26 @@ public class GeneratorFrame extends JFrame {
 
 		jPanel1.add(jPanel6);
 
+		jPanel9.setMinimumSize(new java.awt.Dimension(0, 0));
+		jPanel9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+		jLabel5.setText("TemplateDir:");
+		jLabel5.setPreferredSize(new java.awt.Dimension(100, 14));
+		jPanel9.add(jLabel5);
+
+		templateDir.setColumns(35);
+		jPanel9.add(templateDir);
+
+		chooseDir3.setText("Choose");
+		chooseDir3.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				chooseDir3ActionPerformed(evt);
+			}
+		});
+		jPanel9.add(chooseDir3);
+
+		jPanel1.add(jPanel9);
+
 		jPanel4.setMinimumSize(new java.awt.Dimension(0, 0));
 		jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
@@ -226,7 +254,7 @@ public class GeneratorFrame extends JFrame {
 		jLabel2.setPreferredSize(new java.awt.Dimension(100, 14));
 		jPanel4.add(jLabel2);
 
-		className.setColumns(25);
+		className.setColumns(35);
 		jPanel4.add(className);
 
 		jPanel1.add(jPanel4);
@@ -238,7 +266,7 @@ public class GeneratorFrame extends JFrame {
 		jLabel3.setPreferredSize(new java.awt.Dimension(100, 14));
 		jPanel5.add(jLabel3);
 
-		basepackage.setColumns(25);
+		basepackage.setColumns(35);
 		jPanel5.add(basepackage);
 
 		jPanel1.add(jPanel5);
@@ -286,14 +314,14 @@ public class GeneratorFrame extends JFrame {
 				saveProActionPerformed(evt);
 			}
 		});
-		
+
 		saveAsPro.setText("SaveAs...");
 		saveAsPro.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				saveAsProActionPerformed(evt);
 			}
 		});
-		
+
 		fileMenu.add(savePro);
 		fileMenu.add(saveAsPro);
 
@@ -310,13 +338,14 @@ public class GeneratorFrame extends JFrame {
 		helpMenu.setText("Help");
 
 		aboutMenuItem.setText("About");
-		aboutMenuItem.addActionListener(new ActionListener(){
-			
+		aboutMenuItem.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
-				String about="Code Generator!\nCopyright by Yourfei,All rights reserved!\nyourfei@sina.com";
-				JOptionPane.showMessageDialog(GeneratorFrame.this, about, "about", JOptionPane.INFORMATION_MESSAGE);
+				String about = "Code Generator!\nCopyright by Yourfei,All rights reserved!\nyourfei@sina.com";
+				JOptionPane.showMessageDialog(GeneratorFrame.this, about, "about",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
-			
+
 		});
 		helpMenu.add(aboutMenuItem);
 
@@ -330,25 +359,25 @@ public class GeneratorFrame extends JFrame {
 	// GEN-END:initComponents
 
 	private void saveProActionPerformed(java.awt.event.ActionEvent evt) {
-		System.out.println("You have save this file: "
-				+ propertiesFileName);
-		
+		System.out.println("You have save this file: " + propertiesFileName);
+
 		pro.setProperty("rootDir", this.rootDir.getText());
 		pro.setProperty("outPut", this.outPutDir.getText());
 		pro.setProperty("className", this.className.getText());
 		pro.setProperty("basepackage", this.basepackage.getText());
-		
+		pro.setProperty("templateDir", this.templateDir.getText());
+
 		OutputStream os = null;
-		
+
 		try {
 			os = new FileOutputStream(propertiesFileName);
-			pro.store(os, "");
+			pro.store(os, "Generator Properties.");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			if(os != null){
+			if (os != null) {
 				try {
 					os.close();
 				} catch (IOException e) {
@@ -356,9 +385,9 @@ public class GeneratorFrame extends JFrame {
 				}
 			}
 		}
-			
+
 	}
-	
+
 	private void saveAsProActionPerformed(java.awt.event.ActionEvent evt) {
 		JFileChooser chooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Properties", "properties");
@@ -367,23 +396,24 @@ public class GeneratorFrame extends JFrame {
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			System.out.println("You chose to save this file: "
 					+ chooser.getSelectedFile().getName());
-			
+
 			pro.setProperty("rootDir", this.rootDir.getText());
 			pro.setProperty("outPut", this.outPutDir.getText());
 			pro.setProperty("className", this.className.getText());
 			pro.setProperty("basepackage", this.basepackage.getText());
-			
+			pro.setProperty("templateDir", this.templateDir.getText());
+
 			OutputStream os = null;
-			
+
 			try {
 				os = new FileOutputStream(chooser.getSelectedFile().getName());
-				pro.store(os, "");
+				pro.store(os, "Generator Properties.");
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			} finally {
-				if(os != null){
+				if (os != null) {
 					try {
 						os.close();
 					} catch (IOException e) {
@@ -396,17 +426,17 @@ public class GeneratorFrame extends JFrame {
 
 	private void openProActionPerformed(java.awt.event.ActionEvent evt) {
 		JFileChooser chooser = new JFileChooser();
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("Properties file", "properties");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Properties file",
+				"properties");
 
 		chooser.addChoosableFileFilter(filter);
-		
+
 		int returnVal = chooser.showOpenDialog(this);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			propertiesFileName = chooser.getSelectedFile().getPath();
-			
-			System.out.println("You chose to open this file: "
-					+ propertiesFileName);
-			
+
+			System.out.println("You chose to open this file: " + propertiesFileName);
+
 			this.loadProperties(propertiesFileName);
 		}
 	}
@@ -414,11 +444,12 @@ public class GeneratorFrame extends JFrame {
 	private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
 		GeneratorFacade g = new GeneratorFacade();
-		FileSystemClassLoader fscl = new FileSystemClassLoader(this.rootDir.getText());		
-		
+		FileSystemClassLoader fscl = new FileSystemClassLoader(this.rootDir.getText());
+
 		try {
 			Class clazz = Class.forName(className.getText(), true, fscl);
 			g.setOutPutDir(outPutDir.getText());
+			g.setTemplateDir(templateDir.getText());
 			g.clean();
 			g.generateByClass(clazz);
 		} catch (ClassNotFoundException e) {
@@ -426,8 +457,19 @@ public class GeneratorFrame extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
+	}
+
+	private void chooseDir3ActionPerformed(ActionEvent evt) {
+		JFileChooser chooser = new JFileChooser();
+		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+		int returnVal = chooser.showOpenDialog(this);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			this.templateDir.setText(chooser.getSelectedFile().getPath());
+			System.out.println("Set templateDir : " + chooser.getSelectedFile().getPath());
+		}
+
 	}
 
 	private void chooseDir2ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -437,7 +479,7 @@ public class GeneratorFrame extends JFrame {
 		int returnVal = chooser.showOpenDialog(this);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			this.outPutDir.setText(chooser.getSelectedFile().getPath());
-			System.out.println("Set outPutDir : "+chooser.getSelectedFile().getPath());
+			System.out.println("Set outPutDir : " + chooser.getSelectedFile().getPath());
 		}
 	}
 
@@ -448,7 +490,7 @@ public class GeneratorFrame extends JFrame {
 		int returnVal = chooser.showOpenDialog(this);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			this.rootDir.setText(chooser.getSelectedFile().getPath());
-			System.out.println("Set rootDir : "+chooser.getSelectedFile().getPath());
+			System.out.println("Set rootDir : " + chooser.getSelectedFile().getPath());
 		}
 
 	}
@@ -474,6 +516,7 @@ public class GeneratorFrame extends JFrame {
 	private javax.swing.JMenuItem aboutMenuItem;
 	private javax.swing.JButton chooseDir;
 	private javax.swing.JButton chooseDir2;
+	private javax.swing.JButton chooseDir3;
 	private javax.swing.JTextField className;
 	private javax.swing.JMenuItem exitMenuItem;
 	private javax.swing.JMenu fileMenu;
@@ -483,6 +526,7 @@ public class GeneratorFrame extends JFrame {
 	private javax.swing.JLabel jLabel2;
 	private javax.swing.JLabel jLabel3;
 	private javax.swing.JLabel jLabel4;
+	private javax.swing.JLabel jLabel5;
 	private javax.swing.JPanel jPanel1;
 	private javax.swing.JPanel jPanel2;
 	private javax.swing.JPanel jPanel3;
@@ -491,6 +535,7 @@ public class GeneratorFrame extends JFrame {
 	private javax.swing.JPanel jPanel6;
 	private javax.swing.JPanel jPanel7;
 	private javax.swing.JPanel jPanel8;
+	private javax.swing.JPanel jPanel9;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JTextArea logArea;
 	private javax.swing.JMenuBar menuBar;
@@ -498,6 +543,7 @@ public class GeneratorFrame extends JFrame {
 	private javax.swing.JTextField outPutDir;
 	private javax.swing.JTextField rootDir;
 	private javax.swing.JTextField basepackage;
+	private javax.swing.JTextField templateDir;
 	private javax.swing.JMenuItem savePro;
 	private javax.swing.JMenuItem saveAsPro;
 	// End of variables declaration//GEN-END:variables
