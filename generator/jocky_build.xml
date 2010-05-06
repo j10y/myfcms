@@ -4,7 +4,7 @@
 -->
 <project basedir="." default="build" name="generator.jocky">
     <property name="jocky.jar" value="C:\Program Files\MyEclipse 6.5\eclipse\plugins\org.apusic.jocky_1.0.3\jocky.jar"/>
-    <property name="jocky.output.dir" value="jocky"/>
+    <property name="jocky.output.dir" value="E:\xiacc\workspace\generator\bin"/>
     <property name="jocky.scramble.level" value="package"/>
     <property name="target" value="1.5"/>
     <path id="project.classpath">
@@ -46,11 +46,6 @@
     </target>
     <target name="StringHelper">
         <java classname="cn.org.framework.generator.util.StringHelper" failonerror="true" fork="yes">
-            <classpath refid="project.classpath"/>
-        </java>
-    </target>
-    <target name="GeneratorMain (1)">
-        <java classname="cn.org.framework.generator.GeneratorMain" failonerror="true" fork="yes">
             <classpath refid="project.classpath"/>
         </java>
     </target>
