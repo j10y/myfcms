@@ -1,0 +1,51 @@
+<?import src="/include.zul"?>
+<?page title="会员详细信息" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./memberDetail"?>
+<zk xmlns="http://www.zkoss.org/2005/zul" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+  <window id="memberDetail" title="会员详细信息" use="com.bdzb.oa.member.web.action.MemberDetail" border="normal"
+    width="350px">
+
+    <grid id="grid" fixedLayout="true" self="@{memberDetail.member}">
+      <columns>
+        <column label="类型" width="80px" align="right" />
+        <column label="值" valign="center" />
+      </columns>
+
+      <rows>
+        <row>
+          类别：
+          <label value="@{memberDetail.member.category.name}"></label>
+        </row>
+        <row height="30px">
+          公司名称：
+          <label value="@{memberDetail.member.companyName}"></label>
+        </row>
+        <row height="50px">
+          联系方式：
+          <label value="@{memberDetail.member.contacts}"></label>
+        </row>
+        <row height="30px">
+          入会时间：
+          <label value="@{memberDetail.member.joinTime,converter='org.zkoss.zkplus.databind.DateFormatConverter'}"
+            self="@{format(yyyy-MM-dd)}}">
+          </label>
+        </row>
+        <row height="30px">
+          到期时间：
+          <label value="@{memberDetail.member.endTime,converter='org.zkoss.zkplus.databind.DateFormatConverter'}"
+            self="@{format(yyyy-MM-dd)}}">
+          </label>
+        </row>
+      </rows>
+
+    </grid>
+    <separator />
+    <div align="center">
+      <button id="submit" visible="false"></button>
+      <space />
+      <button id="cancel" label="返回" image="/img/icons/cancel.png" />
+    </div>
+
+  </window>
+</zk>

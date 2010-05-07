@@ -2,23 +2,17 @@ package com.bdzb.oa.member.web.action;
 
 import java.util.List;
 
-import org.hibernate.dialect.Dialect;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.zkoss.zk.ui.Component;
-import org.zkoss.zk.ui.WrongValueException;
-import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.Combobox;
-import org.zkoss.zul.Constraint;
 import org.zkoss.zul.Datebox;
 import org.zkoss.zul.Textbox;
 
+import com.bdzb.oa.member.model.Member;
+import com.bdzb.oa.member.service.MemberService;
 import com.hxzy.base.web.window.ActionWindow;
 import com.hxzy.base.web.window.ListWindow;
 import com.hxzy.common.dict.model.Dict;
 import com.hxzy.common.dict.service.DictService;
-import com.bdzb.oa.member.model.Member;
-import com.bdzb.oa.member.service.MemberService;
 
 /**
  * @author xiacc

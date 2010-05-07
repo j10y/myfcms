@@ -1,7 +1,9 @@
+  
+
 <zk xmlns="http://www.zkoss.org/2005/zul" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
 
-  <!-- 通用控件 -->
+    <!-- 通用控件 -->
 	<?component name="myWindow" extends="window" class="eb.UserWindow" needAuthentication="true" ?>
 	<?component name="button" extends="button" class="com.hxzy.base.web.component.Button" mold="trendy" height="23px"?>
 	<?component name="paging" extends="paging" detailed="true"?>
