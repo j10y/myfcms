@@ -1,0 +1,9 @@
+<#assign className = clazz.className>   
+<#assign classNameLower = className?uncap_first> 
+
+<bean id="${classNameLower}Service" 
+    class="${basepackage}.${classNameLower}.service.impl.${className}ServiceImpl"/>
+<bean id="${classNameLower}Dao" 
+    class="${basepackage}.${classNameLower}.dao.impl.${className}DaoImpl"
+    parent="daoTemplate"/>
+
