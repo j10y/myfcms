@@ -40,7 +40,7 @@
           </#if>
          </#list>		
 		</listhead>
-		<listitem self="@{each=${classNameLower}}" value="@{${classNameLower}}">
+		<listitem self="@{each=${classNameLower}}" value="@{${classNameLower}}" forward="onDoubleClick=onDetail">
          <#list clazz.fields as field>
           <#if field.fieldName != "id">
 			<listcell label="@{${classNameLower}.${field.fieldName}}"/>
