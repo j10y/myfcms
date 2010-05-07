@@ -120,4 +120,24 @@ public class ${className}Query extends ListWindow {
 		}
 	}
 	
+	public void onDetail() {
+		if (listbox.getSelectedItem() == null) {
+			Message.showInfo("请至少选择一个数据!");
+			return;
+		}
+
+		Object o = listbox.getSelectedItem().getValue();
+
+		Map map = new HashMap();
+		map.put("${classNameLower}", o);
+
+		try {
+			((Window) Executions.createComponents("/${classNameLower}/${classNameLower}Detail.zul", this, map)).doModal();
+		} catch (SuspendNotAllowedException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
