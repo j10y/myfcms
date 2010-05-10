@@ -1,0 +1,95 @@
+package com.hxzy.common.log.web.action;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.SuspendNotAllowedException;
+import org.zkoss.zul.Listitem;
+import org.zkoss.zul.Window;
+
+import com.hxzy.base.util.Pagination;
+import com.hxzy.base.web.window.ListWindow;
+import com.hxzy.base.web.window.Message;
+import com.hxzy.common.log.model.Log;
+import com.hxzy.common.log.service.LogService;
+
+/**
+ * @author xiacc
+ * @version 1.0
+ * @since 1.0
+ * @description 
+ */
+
+public class LogQuery extends ListWindow {
+
+	@Autowired
+	private LogService logService;
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.hxzy.base.web.window.ListWindow#onFind()
+	 */
+	@Override
+	public void onFind() {
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Log.class);
+
+		if (StringUtils.hasText(search.getValue())) {
+			LogicalExpression l1 = Restrictions.or(
+					Restrictions.like("username", search.getValue(),MatchMode.ANYWHERE),			
+					Restrictions.like("ip", search.getValue(),MatchMode.ANYWHERE));
+			LogicalExpression l2 = Restrictions.or(
+					l1, 
+					Restrictions.like("logTime", search.getValue(), MatchMode.ANYWHERE));			
+			LogicalExpression l3 = Restrictions.or(
+					l2, 
+					Restrictions.like("logObject", search.getValue(), MatchMode.ANYWHERE));			
+			LogicalExpression l4 = Restrictions.or(
+					l3, 
+					Restrictions.like("logAction", search.getValue(), MatchMode.ANYWHERE));			
+			LogicalExpression l5 = Restrictions.or(
+					l4, 
+					Restrictions.like("detail", search.getValue(), MatchMode.ANYWHERE));			
+			
+			detachedCriteria.add(l5);
+		}
+		Pagination pagination = logService.findPageByCriteria(detachedCriteria, pg.getPageSize(),
+				pg.getActivePage() + 1);
+		pg.setTotalSize(pagination.getTotalCount());
+		this.list = pagination;
+		binder.loadComponent(listbox);
+
+	}
+
+	public void onDelete() {
+		if (listbox.getSelectedItem() == null) {
+			Message.showInfo("");
+			return;
+		}
+
+		Set<Listitem> items = listbox.getSelectedItems();
+		Set logs = new HashSet();
+		for (Listitem item : items) {
+			logs.add(item.getValue());
+		}
+
+		Map map = new HashMap();
+		map.put("logs", logs);
+		try {
+			((Window) Executions.createComponents("/log/logDelete.zul", this, map)).doModal();
+		} catch (SuspendNotAllowedException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}	
+}

@@ -76,19 +76,19 @@ public class GrantRole extends ActionWindow {
 		});
 
 		listbox.setItemRenderer(new ListitemRenderer() {
-			
+
 			public void render(Listitem item, Object o) throws Exception {
 				Role r = (Role) o;
-				
+
 				item.appendChild(new Listcell(r.getRoleName()));
 				item.appendChild(new Listcell(r.getRemarks()));
 				item.setValue(r);
-				
+
 				if (user.getRoles().contains(r)) {
 					item.setSelected(true);
 				}
 			}
-			
+
 		});
 
 		onFind();
@@ -223,6 +223,27 @@ public class GrantRole extends ActionWindow {
 	 */
 	public void setRoles(List roles) {
 		this.roles = roles;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+
+		Set<Listitem> items = listbox.getSelectedItems();
+
+		StringBuilder sb = new StringBuilder();
+
+		for (Listitem item : items) {
+			Role r = (Role) item.getValue();
+			sb.append(r.getRoleName());
+			sb.append(",");
+		}
+
+		return "ÊÚÓè½ÇÉ«" + sb.toString() + "¸ø" + user.getUsername();
 	}
 
 }

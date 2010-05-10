@@ -67,6 +67,14 @@ public class MemberDetail extends ActionWindow {
 	public void setGrid(Grid grid) {
 		this.grid = grid;
 	}
+
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		return null;
+	}
 	
 	
 

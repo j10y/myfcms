@@ -105,6 +105,17 @@
 		extends="window" 
 		class="com.hxzy.common.dict.web.action.DictEdit" 
 		functionCode="dictEdit"?>
+    
+    <!-- Log  -->
+	<?component name="logQuery" 
+    	extends="window" 
+    	class="com.hxzy.common.log.web.action.LogQuery" 
+		functionCode="logQuery"?>
+	<?component name="logAdd" 
+		extends="window" 
+		class="com.hxzy.common.log.web.action.LogAdd" 
+		functionCode="logAdd"?>   
+    <!-- Log  -->
 
 	<!-- 应用程序核心 -->
 

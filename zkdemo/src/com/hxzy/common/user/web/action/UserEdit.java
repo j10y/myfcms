@@ -97,4 +97,12 @@ public class UserEdit extends ActionWindow {
 		 ((ListWindow) this.getParent()).onFind();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ÐÞ¸Ä"+user.getUsername();
+	}
+
 }

@@ -115,4 +115,7 @@ public class Member extends Revisable {
 		this.endTime = endTime;
 	}
 
+	
+
+	
 }

@@ -54,4 +54,18 @@ public class SupplierDelete extends ActionWindow {
 		((ListWindow) this.getParent()).onFind();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder("É¾³ý");
+		for (Supplier sup : suppliers) {
+			sb.append(sup.getCompanyName());
+			sb.append(",");
+		}
+		
+		return "É¾³ý"+sb.toString();
+	}
+
 }

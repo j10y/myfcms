@@ -155,6 +155,14 @@ public class DictAdd extends ActionWindow {
 		this.remarks = remarks;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Ôö¼Ó"+name;
+	}
+
 	
 	
 }

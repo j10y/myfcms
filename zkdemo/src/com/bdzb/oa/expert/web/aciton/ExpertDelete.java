@@ -54,4 +54,18 @@ public class ExpertDelete extends ActionWindow {
 		((ListWindow) this.getParent()).onFind();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder("É¾³ý");
+		
+		for (Expert exp : experts) {
+			sb.append(exp.getName());
+			sb.append(",");
+		}
+		return sb.toString();
+	}
+
 }

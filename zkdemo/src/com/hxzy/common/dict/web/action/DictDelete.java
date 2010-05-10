@@ -54,4 +54,17 @@ public class DictDelete extends ActionWindow {
 		((TreeWindow) this.getParent()).init();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder("É¾³ý");
+		for (Dict d : dicts) {
+			sb.append(d.getName());
+			sb.append(",");
+		}
+		return sb.toString();
+	}
+
 }

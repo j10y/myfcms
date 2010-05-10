@@ -1,4 +1,4 @@
-package com.bdzb.oa.member.web.action;
+package com.hxzy.common.log.web.action;
 
 import java.util.Set;
 
@@ -7,22 +7,20 @@ import org.zkoss.zk.ui.Executions;
 
 import com.hxzy.base.web.window.ActionWindow;
 import com.hxzy.base.web.window.ListWindow;
-import com.bdzb.oa.member.model.Member;
-import com.bdzb.oa.member.service.MemberService;
+import com.hxzy.common.log.model.Log;
+import com.hxzy.common.log.service.LogService;
 
 /**
  * @author xiacc
  * @version 1.0
  * @since 1.0
- * @description 会员
+ * @description 
  */
 
-public class MemberDelete extends ActionWindow {	
+public class LogDelete extends ActionWindow {	
 
 	@Autowired
-	private MemberService memberService;
-
-	private Set<Member> members = (Set<Member>)Executions.getCurrent().getArg().get("members");    
+	private LogService logService;
 
 	/*
 	 * (non-Javadoc)
@@ -43,9 +41,7 @@ public class MemberDelete extends ActionWindow {
 	 */
 	@Override
 	public void onSubmit() {
-		for(Member member:members){
-			memberService.delete(member);
-		}
+		//logService.
 		
 		((ListWindow)this.getParent()).onFind();
 	}
@@ -56,13 +52,7 @@ public class MemberDelete extends ActionWindow {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder("删除");
-		for(Member member:members){
-			sb.append(member.getCompanyName());
-			sb.append(",");
-		}
-		
-		return sb.toString();
+		return "删除所有日志信息";
 	}
 
 }

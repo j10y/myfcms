@@ -78,4 +78,12 @@ public class RoleEdit extends ActionWindow {
 		((ListWindow) this.getParent()).onFind();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ÐÞ¸Ä"+role.getRoleName();
+	}
+
 }

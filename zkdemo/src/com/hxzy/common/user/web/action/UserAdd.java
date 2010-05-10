@@ -90,4 +90,12 @@ public class UserAdd extends ActionWindow {
 		((ListWindow) this.getParent()).onFind();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Ôö¼Ó"+username.getText();
+	}
+
 }

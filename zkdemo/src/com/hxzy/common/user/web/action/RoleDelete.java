@@ -22,12 +22,12 @@ import com.hxzy.common.user.service.RoleService;
  * 
  * ÃèÊö£ºÓÃ»§É¾³ý
  */
-public class RoleDelete extends ActionWindow {	
+public class RoleDelete extends ActionWindow {
 
 	@Autowired
 	private RoleService roleService;
 
-	private Set<Role> roles = (Set<Role>)Executions.getCurrent().getArg().get("roles");    
+	private Set<Role> roles = (Set<Role>) Executions.getCurrent().getArg().get("roles");
 
 	/*
 	 * (non-Javadoc)
@@ -36,11 +36,10 @@ public class RoleDelete extends ActionWindow {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void onBind() {		
-				
+	public void onBind() {
+
 	}
 
-	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -48,11 +47,28 @@ public class RoleDelete extends ActionWindow {
 	 */
 	@Override
 	public void onSubmit() {
-		for(Role role:roles){
+		for (Role role : roles) {
 			roleService.delete(role);
 		}
-		
-		((ListWindow)this.getParent()).onFind();
+
+		((ListWindow) this.getParent()).onFind();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder("É¾³ý");
+
+		for (Role role : roles) {
+			sb.append(role.getRoleName());
+			sb.append(",");
+		}
+
+		return sb.toString();
 	}
 
 }
