@@ -117,5 +117,13 @@ public class MemberEdit extends ActionWindow {
 		this.list = list;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ÐÞ¸Ä"+member.getCompanyName();
+	}
+
 	
 }

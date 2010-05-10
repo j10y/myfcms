@@ -54,4 +54,18 @@ public class PrivilegeDelete extends ActionWindow {
 		((TreeWindow) this.getParent()).init();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder("É¾³ý");
+		
+		for (Privilege p : privileges) {
+			sb.append(p.getPrivName());
+			sb.append(",");
+		}
+		return sb.toString();
+	}
+
 }

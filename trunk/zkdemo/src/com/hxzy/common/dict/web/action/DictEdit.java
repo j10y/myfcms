@@ -186,4 +186,12 @@ public class DictEdit extends ActionWindow {
 		this.remarks = remarks;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ÐÞ¸Ä"+dict.getName();
+	}
+
 }

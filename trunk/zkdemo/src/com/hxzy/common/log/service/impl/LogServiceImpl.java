@@ -7,6 +7,8 @@
  */
 package com.hxzy.common.log.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.hxzy.base.service.impl.BaseServiceImpl;
 import com.hxzy.common.log.dao.LogDao;
 import com.hxzy.common.log.model.Log;
@@ -19,6 +21,7 @@ import com.hxzy.common.log.service.LogService;
  */
 public class LogServiceImpl extends BaseServiceImpl<Log,LogDao> implements LogService {
 	
+	@Autowired
 	private LogDao logDao;
 
 	/* (non-Javadoc)

@@ -169,4 +169,12 @@ public class PrivilegeEdit extends ActionWindow {
 		this.privilege = privilege;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ÐÞ¸Ä"+privilege.getPrivName();
+	}
+
 }

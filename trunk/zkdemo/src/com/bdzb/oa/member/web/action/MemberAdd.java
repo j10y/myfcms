@@ -88,6 +88,13 @@ public class MemberAdd extends ActionWindow {
 		this.list = list;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Ôö¼Ó"+member.getCompanyName();
+	}
 	
 
 }

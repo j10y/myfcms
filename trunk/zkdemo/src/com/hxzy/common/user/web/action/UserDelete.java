@@ -22,12 +22,12 @@ import com.hxzy.common.user.service.UserService;
  * 
  * ÃèÊö£ºÓÃ»§É¾³ý
  */
-public class UserDelete extends ActionWindow {	
+public class UserDelete extends ActionWindow {
 
 	@Autowired
 	private UserService userService;
 
-	private Set<User> users = (Set<User>)Executions.getCurrent().getArg().get("users");    
+	private Set<User> users = (Set<User>) Executions.getCurrent().getArg().get("users");
 
 	/*
 	 * (non-Javadoc)
@@ -36,11 +36,10 @@ public class UserDelete extends ActionWindow {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void onBind() {		
-				
+	public void onBind() {
+
 	}
 
-	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -48,11 +47,28 @@ public class UserDelete extends ActionWindow {
 	 */
 	@Override
 	public void onSubmit() {
-		for(User user:users){
+		for (User user : users) {
 			userService.delete(user);
 		}
-		
-		((ListWindow)this.getParent()).onFind();
+
+		((ListWindow) this.getParent()).onFind();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder("É¾³ý");
+
+		for (User user : users) {
+			sb.append(user.getUsername());
+			sb.append(",");
+		}
+
+		return sb.toString();
 	}
 
 }

@@ -140,4 +140,12 @@ public class PrivilegeAdd extends ActionWindow {
 		this.privCode = privCode;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Ôö¼Ó"+privName.getText();
+	}
+
 }

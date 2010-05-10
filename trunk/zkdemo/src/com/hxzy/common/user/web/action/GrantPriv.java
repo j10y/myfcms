@@ -227,4 +227,22 @@ public class GrantPriv extends ActionWindow {
 	public void setRoleName(Label roleName) {
 		this.roleName = roleName;
 	}
+
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		Set<Treeitem> items = tree.getSelectedItems();
+		
+		StringBuilder sb = new StringBuilder();
+		
+		for (Treeitem item : items) {
+			Privilege p =(Privilege) item.getValue();
+			sb.append(p.getPrivName());
+			sb.append(",");
+		}
+		
+		return "分配权限"+sb.toString()+"给"+role.getRoleName();
+	}
 }

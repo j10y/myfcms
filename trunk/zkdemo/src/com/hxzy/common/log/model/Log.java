@@ -1,6 +1,6 @@
 /**
  * <p>项目名称：公共模块</p>
- * <p>版权所有 (c) 2005 湖北全达信息科技有限公司</p>
+ * <p>版权所有 (c) </p>
  * <p>作者：</p>
  * <p>版本：1.0</p>
  * <p>日期：2005-12-3</p>
@@ -28,7 +28,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "log")
 public class Log implements Serializable {
-
+	
 	/**
 	 * 描述: 记录ID
 	 */
@@ -52,11 +52,6 @@ public class Log implements Serializable {
 	 * 描述: 操作时间
 	 */
 	private Date logTime = new Date();
-
-	/**
-	 * 描述: 操作对象
-	 */
-	private String logObject;
 
 	/**
 	 * 描述: 操作：删除，修改，新增，登陆，登出等
@@ -94,20 +89,6 @@ public class Log implements Serializable {
 	 */
 	public void setLogAction(String logAction) {
 		this.logAction = logAction;
-	}
-
-	/**
-	 * 描述: 返回 logObject
-	 */
-	public String getLogObject() {
-		return logObject;
-	}
-
-	/**
-	 * 描述: 设置 logObject
-	 */
-	public void setLogObject(String logObject) {
-		this.logObject = logObject;
 	}
 
 	/**
@@ -152,4 +133,19 @@ public class Log implements Serializable {
 		this.username = username;
 	}
 
+	/**
+	 * 返回 ip
+	 */
+	public String getIp() {
+		return ip;
+	}
+
+	/**
+	 * 设置 ip
+	 */
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	
 }

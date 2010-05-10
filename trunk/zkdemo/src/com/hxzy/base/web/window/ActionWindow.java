@@ -7,16 +7,25 @@
  */
 package com.hxzy.base.web.window;
 
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.zkoss.zk.ui.Components;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.ext.AfterCompose;
 import org.zkoss.zkplus.databind.AnnotateDataBinder;
+import org.zkoss.zkplus.spring.SpringUtil;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Window;
 
+import com.hxzy.base.constant.Constant;
 import com.hxzy.base.web.intercepter.Authenticatable;
 import com.hxzy.base.web.intercepter.Authorizable;
+import com.hxzy.common.log.model.Log;
+import com.hxzy.common.log.service.LogService;
+import com.hxzy.common.user.model.UserInfo;
 
 /**
  * @author xiacc
@@ -55,6 +64,11 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 	 * 描述: 是否需要授权
 	 */
 	private String needAuthorization;
+	
+	@Autowired
+	protected LogService logService; 
+	
+	protected Log log;
 
 	/*
 	 * (non-Javadoc)
@@ -67,14 +81,16 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 	}
 
 	public void onCreate() {
-
+		logService = (LogService) SpringUtil.getBean("logService");
+		
 		binder = (AnnotateDataBinder) this.getVariable("binder", true);
 
 		this.setClosable(true);
 
 		submit.addEventListener("onClick", new EventListener() {
-			public void onEvent(Event arg0) throws Exception {
-				onSubmit();
+			public void onEvent(Event arg0) throws Exception {							
+				onSubmit();				
+				logging();				
 				ActionWindow.this.detach();
 			}
 		});
@@ -89,6 +105,7 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 		this.addEventListener("onOK", new EventListener() {
 			public void onEvent(Event arg0) throws Exception {
 				onSubmit();
+				logging();
 				ActionWindow.this.detach();
 			}
 		});
@@ -106,7 +123,25 @@ public abstract class ActionWindow extends Window implements AfterCompose, Authe
 	public abstract void onBind();
 
 	public abstract void onSubmit();
-
+	
+	public abstract String toString();
+	
+	protected void logging(){
+		log = new Log();
+		log.setIp(Executions.getCurrent().getRemoteAddr());
+		UserInfo userInfo = (UserInfo)Executions.getCurrent().getSession().getAttribute(Constant.ATTRIBUTE_USER_INFO);
+		if(userInfo != null){
+			log.setUsername(userInfo.getUser().getTruename());
+		}
+		log.setLogAction(ActionWindow.this.getClass().getSimpleName());
+		log.setLogTime(new Date());	
+		String detail = ActionWindow.this.toString();
+		if(detail != null){
+			log.setDetail(detail);
+			logService.save(log);
+		}
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 

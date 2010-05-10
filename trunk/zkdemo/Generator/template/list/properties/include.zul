@@ -1,24 +1,20 @@
-<#assign className = clazz.className>   
+<#assign className = clazz.className>
 <#assign classNameLower = className?uncap_first>
-
 <!-- ${className}  -->
 	<?component name="${classNameLower}Query" 
 		extends="window" 
 		class="${basepackage}.${classNameLower}.web.action.${className}Query" 
 		functionCode="${classNameLower}Query"?>
-  
 	<?component name="${classNameLower}Add" 
 		extends="window" 
 		class="${basepackage}.${classNameLower}.web.action.${className}Add" 
 		functionCode="${classNameLower}Add"?>
-    
 	<?component name="${classNameLower}Delete" 
 		extends="window" 
 		class="${basepackage}.${classNameLower}.web.action.${className}Delete" 
 		functionCode="${classNameLower}Delete"?>
-    
 	<?component name="${classNameLower}Edit" 
 		extends="window" 
 		class="${basepackage}.${classNameLower}.web.action.${className}Edit" 
-		functionCode="${classNameLower}Edit"?>	
+		functionCode="${classNameLower}Edit"?>
 <!-- ${className}  -->

@@ -1,0 +1,54 @@
+<?import src="/include.zul"?>
+<?link  rel="stylesheet" type="text/css" href="/macros/style.css.dsp"?>
+<?page title="日志管理" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./logQuery"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	
+	<logQuery id="logQuery" height="100%">
+	<borderlayout>
+	<north height="25px">
+	<borderlayout>
+	<west border="none" width="auto">
+		<hbox>
+		<space></space>
+		<button label="清除日志" forward="onDelete" priv="logDelete" image="/img/icons/delete.gif"/>
+		</hbox>
+	</west>
+	<center border="none"></center>
+	<east border="none">
+	<hbox>
+		<textbox id="search" focus="true" sclass="demo-search-inp"/>
+		<button label="查询" forward="onFind"></button>
+	</hbox>
+	</east>	
+	</borderlayout>
+		
+	</north>
+	<center border="none">
+	<listbox id="listbox" model="@{logQuery.list}" paginal="${pg}" checkmark="true" multiple="true">
+		<listhead>
+			<listheader label="操作用户" />      
+			<listheader label="操作IP" />      
+			<listheader label="操作时间" />      
+			<listheader label="动作" />      
+			<listheader label="详情" />      
+		</listhead>
+		<listitem self="@{each=log}" value="@{log}" forward="onDoubleClick=onDetail">
+			<listcell label="@{log.username}"/>
+			<listcell label="@{log.ip}"/>
+			<listcell label="@{log.logTime}"/>
+			<listcell label="@{log.logAction}"/>
+			<listcell label="@{log.detail}"/>
+		</listitem>		
+		</listbox>
+	</center>
+	<south height="25px">
+	<paging id="pg" />
+	</south>
+	</borderlayout>
+		
+	</logQuery>
+</zk>

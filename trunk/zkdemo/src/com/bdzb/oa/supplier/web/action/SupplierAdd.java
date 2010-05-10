@@ -155,6 +155,14 @@ public class SupplierAdd extends ActionWindow {
 	public void setList(List list) {
 		this.list = list;
 	}
+
+	/* (non-Javadoc)
+	 * @see com.hxzy.base.web.window.ActionWindow#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Ôö¼Ó"+compnayName.getText();
+	}
 	
 	
 
