@@ -111,10 +111,10 @@
     	extends="window" 
     	class="com.hxzy.common.log.web.action.LogQuery" 
 		functionCode="logQuery"?>
-	<?component name="logAdd" 
+	<?component name="logDelete" 
 		extends="window" 
-		class="com.hxzy.common.log.web.action.LogAdd" 
-		functionCode="logAdd"?>   
+		class="com.hxzy.common.log.web.action.LogDelete" 
+		functionCode="logDelete"?>   
     <!-- Log  -->
 
 	<!-- 应用程序核心 -->
