@@ -8,6 +8,7 @@ import java.util.Set;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -60,8 +61,11 @@ public class LogQuery extends ListWindow {
 					l4, 
 					Restrictions.like("detail", search.getValue(), MatchMode.ANYWHERE));			
 			
-			detachedCriteria.add(l5);
+			detachedCriteria.add(l5);			
 		}
+		
+		detachedCriteria.addOrder(Order.desc("id"));
+		
 		Pagination pagination = logService.findPageByCriteria(detachedCriteria, pg.getPageSize(),
 				pg.getActivePage() + 1);
 		pg.setTotalSize(pagination.getTotalCount());

@@ -30,10 +30,10 @@
 	<center border="none">
 	<listbox id="listbox" model="@{logQuery.list}" paginal="${pg}" checkmark="true" multiple="true">
 		<listhead>
-			<listheader label="操作用户" />      
-			<listheader label="操作IP" />      
-			<listheader label="操作时间" />      
-			<listheader label="动作" />      
+			<listheader label="操作用户" width="100px"/>      
+			<listheader label="操作IP" width="120px"/>      
+			<listheader label="操作时间" width="130px"/>      
+			<listheader label="动作" width="100px"/>      
 			<listheader label="详情" />      
 		</listhead>
 		<listitem self="@{each=log}" value="@{log}" forward="onDoubleClick=onDetail">
