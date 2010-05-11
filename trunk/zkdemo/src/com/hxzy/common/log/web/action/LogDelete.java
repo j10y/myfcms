@@ -1,13 +1,9 @@
 package com.hxzy.common.log.web.action;
 
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.zkoss.zk.ui.Executions;
 
 import com.hxzy.base.web.window.ActionWindow;
 import com.hxzy.base.web.window.ListWindow;
-import com.hxzy.common.log.model.Log;
 import com.hxzy.common.log.service.LogService;
 
 /**
@@ -41,7 +37,7 @@ public class LogDelete extends ActionWindow {
 	 */
 	@Override
 	public void onSubmit() {
-		//logService.
+		logService.updateByHql("delete from Log");
 		
 		((ListWindow)this.getParent()).onFind();
 	}

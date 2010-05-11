@@ -7,6 +7,7 @@
  */
 package com.hxzy.base.dao.impl;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -385,7 +386,7 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 	 * 
 	 * @see base.dao.BaseDao#loadAll()
 	 */
-	public List<T> loadAll() {
+	public List<T> loadAll() {		
 		return (List<T>) getHibernateTemplate().loadAll(getPojoClass());
 	}
 
@@ -466,6 +467,37 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 	 */
 	public void setPojoClass(Class<T> pojoClass) {
 		this.pojoClass = pojoClass;
+	}
+	
+	/**
+	 * √Ë ˆ£∫÷¥––∏¸–¬sql”Ôæ‰
+	 * @param sql
+	 * @return
+	 */
+	public Integer updateByHql(final String sql){
+		
+		return (Integer) getHibernateTemplate().execute(new HibernateCallback(){
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+				Query query = session.createQuery(sql);
+				return query.executeUpdate();
+			}
+			
+		});
+	}
+	
+	/**
+	 * √Ë ˆ£∫÷¥––≤È—Øsql”Ôæ‰
+	 * @param sql
+	 * @return
+	 */
+	public List queryByHql(final String sql){
+		return (List) getHibernateTemplate().execute(new HibernateCallback(){
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+				Query query = session.createQuery(sql);
+				return query.list();
+			}
+			
+		});
 	}
 
 }

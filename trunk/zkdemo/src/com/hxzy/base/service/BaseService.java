@@ -223,5 +223,19 @@ public abstract interface BaseService <T, V>{
 	 * @param values 可变参数.
 	 */
 	public Query createQuery(String hql, Object... values);
+	
+	/**
+	 * 描述：执行更新sql
+	 * @param sql
+	 * @return
+	 */
+	public Integer updateByHql(String sql);
+	
+	/**
+	 * 描述：执行查询sql
+	 * @param sql
+	 * @return
+	 */
+	public List queryByHql(String sql);
 
 }

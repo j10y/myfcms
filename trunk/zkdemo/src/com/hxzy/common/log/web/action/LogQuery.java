@@ -70,22 +70,9 @@ public class LogQuery extends ListWindow {
 
 	}
 
-	public void onDelete() {
-		if (listbox.getSelectedItem() == null) {
-			Message.showInfo("");
-			return;
-		}
-
-		Set<Listitem> items = listbox.getSelectedItems();
-		Set logs = new HashSet();
-		for (Listitem item : items) {
-			logs.add(item.getValue());
-		}
-
-		Map map = new HashMap();
-		map.put("logs", logs);
+	public void onDelete() {		
 		try {
-			((Window) Executions.createComponents("/log/logDelete.zul", this, map)).doModal();
+			((Window) Executions.createComponents("/log/logDelete.zul", this, null)).doModal();
 		} catch (SuspendNotAllowedException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
