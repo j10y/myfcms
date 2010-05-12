@@ -450,6 +450,8 @@ public class GeneratorFrame extends JFrame {
 			Class clazz = Class.forName(className.getText(), true, fscl);
 			g.setOutPutDir(outPutDir.getText());
 			g.setTemplateDir(templateDir.getText());
+			GeneratorProperties.setProperty("basepackage", basepackage.getText());
+			GeneratorProperties.setProperty("className", className.getText());
 			g.clean();
 			g.generateByClass(clazz);
 		} catch (ClassNotFoundException e) {
