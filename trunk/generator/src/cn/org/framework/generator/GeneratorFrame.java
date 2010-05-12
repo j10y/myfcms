@@ -173,9 +173,9 @@ public class GeneratorFrame extends JFrame {
 		chooseDir3 = new javax.swing.JButton();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle("CodeGenerator 1.0b");
+		setTitle("CodeGenerator 1.1b");
 		setLocationByPlatform(true);
-		setName("CodeGenerator 1.0b");
+		setName("CodeGenerator 1.1b");
 		setResizable(false);
 
 		jPanel7.setMaximumSize(new java.awt.Dimension(600, 230));
