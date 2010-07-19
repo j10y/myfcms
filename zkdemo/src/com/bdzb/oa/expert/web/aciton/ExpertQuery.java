@@ -9,9 +9,9 @@ package com.bdzb.oa.expert.web.aciton;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.filechooser.FileSystemView;
 
 import jxl.Cell;
 import jxl.Workbook;
@@ -329,10 +329,58 @@ public class ExpertQuery extends ListWindow {
 			InputStream is = new ByteArrayInputStream(stream.toByteArray());
 
 			if (null != is) {
-				Date dat = new Date();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				String timeStr = sdf.format(dat);
-				Filedownload.save(is, "application/x-msdownload", timeStr+".xls");
+//				Date dat = new Date();
+//				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//				String timeStr = sdf.format(dat);
+//				
+//				Filedownload.save(is, "application/vnd.ms-excel;charset=GBK", timeStr+".xls");
+				
+
+				HttpServletResponse response = (HttpServletResponse) Executions.getCurrent().getNativeResponse();
+				
+				response.sendRedirect("expertAdd.zul");
+				
+				
+//				Executions.getCurrent().sendRedirect("expertAdd.zul", "_blank");
+				
+//				int col_num = 0;
+//				response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+//				response.setHeader("Content-Disposition", "attachment;filename="
+//						+ new String("导出采购商明细报表Excel.xls".getBytes(), "iso-8859-1"));
+//				OutputStream os = response.getOutputStream();// 将
+//				// WritableWorkbook
+//				// 写入到输出流
+//				jxl.write.WritableWorkbook wwb = jxl.Workbook.createWorkbook(os); // 创建Excel工作表
+//				jxl.write.WritableSheet ws = wwb.createSheet("sheet_1", 0);
+//				col_num = 7;
+//				jxl.write.Label label_head;
+//
+//				label_head = new jxl.write.Label(0, 0, "请购单号");
+//				ws.addCell(label_head);
+//				label_head = new jxl.write.Label(1, 0, "供应商名");
+//				ws.addCell(label_head);
+//				label_head = new jxl.write.Label(2, 0, "产品规格型号");
+//				ws.addCell(label_head);
+//				label_head = new jxl.write.Label(3, 0, "产品编码");
+//				ws.addCell(label_head);
+//				label_head = new jxl.write.Label(4, 0, "数量");
+//				ws.addCell(label_head);
+//				label_head = new jxl.write.Label(5, 0, "单价");
+//				ws.addCell(label_head);
+//				label_head = new jxl.write.Label(6, 0, "定单号");
+//				ws.addCell(label_head);// 结果集中的数据添加到excel中
+//
+//				jxl.write.Number label_num;
+//				jxl.write.Label label_str;
+//				jxl.write.WritableCellFormat floatFormat;
+//				int numrow = 1;
+//				System.out.println(System.currentTimeMillis() + "  welcome to hehe!!!!!!!!!!!");
+//
+//				wwb.write();
+//				wwb.close();
+//				os.flush();
+//				os.close();
+				
 			} else {
 				Messagebox.show("文件下载错误，找不到要下载的文件！", "文件下载出错", Messagebox.OK, Messagebox.ERROR);
 			}
@@ -342,7 +390,7 @@ public class ExpertQuery extends ListWindow {
 
 	public void onUpload(UploadEvent event) {
 		Media media = event.getMedia();
-		InputStream is = null;
+		InputStream is = null;		
 
 		if (media.getFormat().equals("xls")) {
 			try {
