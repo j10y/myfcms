@@ -26,7 +26,7 @@ public class SiteUtil {
 	private static Mapx ID_CommentAuditFlagMap = new Mapx(CACHESIZE);
 
 	public static String getPath(long siteID) {
-		return getPath(siteID);
+		return getPath(String.valueOf(siteID));
 	}
 
 	public static String getPath(String siteID) {
@@ -46,7 +46,7 @@ public class SiteUtil {
 	}
 
 	public static String getName(long siteID) {
-		return getName(siteID);
+		return getName(String.valueOf(siteID));
 	}
 
 	public static String getName(String siteID) {
@@ -78,7 +78,7 @@ public class SiteUtil {
 	}
 
 	public static String getCode(long siteID) {
-		return getAlias(siteID);
+		return getAlias(String.valueOf(siteID));
 	}
 
 	public static String getCode(String siteID) {
@@ -103,7 +103,7 @@ public class SiteUtil {
 	}
 
 	public static String getArchiveTime(long siteID) {
-		return getArchiveTime(siteID);
+		return getArchiveTime(String.valueOf(siteID));
 	}
 
 	public static String getArchiveTime(String siteID) {
@@ -116,7 +116,7 @@ public class SiteUtil {
 	}
 
 	public static String getAllowStatus(long siteID) {
-		return getAllowStatus(siteID);
+		return getAllowStatus(String.valueOf(siteID));
 	}
 
 	public static String getAllowStatus(String siteID) {
@@ -129,7 +129,7 @@ public class SiteUtil {
 	}
 
 	public static String getAttachDownFlag(long siteID) {
-		return getAttachDownFlag(siteID);
+		return getAttachDownFlag(String.valueOf(siteID));
 	}
 
 	public static String getAttachDownFlag(String siteID) {
@@ -142,7 +142,7 @@ public class SiteUtil {
 	}
 
 	public static void update(long siteID) {
-		update(siteID);
+		update(String.valueOf(siteID));
 	}
 
 	public static boolean getCommentAuditFlag(String siteID) {
@@ -155,7 +155,7 @@ public class SiteUtil {
 	}
 
 	public static boolean getCommentAuditFlag(long siteID) {
-		return getCommentAuditFlag(siteID);
+		return getCommentAuditFlag(String.valueOf(siteID));
 	}
 
 	public static void update(String siteID) {
