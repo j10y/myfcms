@@ -14,6 +14,11 @@
 		extends="window" 
 		class="com.hxzy.common.web.action.Login" ?>
 
+	<?component name="logOut" 
+    	extends="window" 
+    	class="com.hxzy.common.web.action.LogOut" 
+		needAuthentication="true"?>
+
 	<?component name="userQuery" 
 		extends="window" 
 		class="com.hxzy.common.user.web.action.UserQuery" 
