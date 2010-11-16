@@ -26,6 +26,7 @@ Page.onClick(function(){
 			$E.hide(div);
 	}	
 });
+
 var topFrame = window.parent;
 function add(){
 	if($NV('SingleFlag')=='Y'){
