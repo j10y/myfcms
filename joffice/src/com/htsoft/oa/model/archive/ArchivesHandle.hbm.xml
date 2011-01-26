@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.htsoft.oa.model.archive.ArchivesHandle"
+        table="archives_handle"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="handleId"
+            column="handleId"
+            type="java.lang.Long"
+            length="19"
+        >
+            <generator class="native"/>
+        </id>
+         <property
+            name="handleOpinion"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="handleOpinion"
+            length="1024"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="userId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="userId"
+            length="19"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="userFullname"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="userFullname"
+            length="128"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="createtime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="createtime"
+            length="19"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="fillTime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="fillTime"
+            length="19"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="isPass"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="isPass"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to Archives -->
+		<many-to-one
+			name="archives"
+			class="com.htsoft.oa.model.archive.Archives"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="archivesId" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>
