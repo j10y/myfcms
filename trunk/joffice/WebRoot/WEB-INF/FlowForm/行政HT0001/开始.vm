@@ -1,0 +1,23 @@
+Ext.MyForm=Ext.extend(Ext.form.FormPanel ,{
+xtype:"formpanel",
+	title:"普通任务",
+	labelWidth:100,
+	labelAlign:"left",
+	layout:"form",
+	width:453,
+	height:231,
+	padding:"10px",
+	autoScroll:true,
+	initComponent: function(){
+		this.items=[
+			{
+				xtype:"combo",
+				name:"MyField",
+				fieldLabel:"选择内容",
+				anchor:"100%",
+				store:[1,2]
+			}
+		]
+		Ext.MyForm.superclass.initComponent.call(this);
+	}
+})

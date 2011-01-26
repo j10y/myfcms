@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fields>
+	<field name="MyField" label="请假人" type="varchar" length="0" isShowed="true"/>
+	<field name="MyField1" label="开始时间" type="date" length="0" isShowed="true"/>
+	<field name="MyField2" label="结束时间" type="date" length="0" isShowed="true"/>
+	<field name="MyField3" label="事由" type="varchar" length="0" isShowed="true"/>
+</fields>

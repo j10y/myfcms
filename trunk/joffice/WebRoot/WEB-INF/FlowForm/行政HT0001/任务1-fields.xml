@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fields>
+	<field name="MyCheckbox" label="是否同意" type="varchar" length="0" isShowed="true"/>
+	<field name="MyField" label="签写意见" type="varchar" length="0" isShowed="true"/>
+	<field name="MyRadio" label="姓别" type="varchar" length="0" isShowed="true"/>
+</fields>
