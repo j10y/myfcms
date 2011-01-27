@@ -201,7 +201,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof Provider) {
+     if (!(object instanceof Provider)) {
        return false;
      }
      Provider rhs = (Provider)object;

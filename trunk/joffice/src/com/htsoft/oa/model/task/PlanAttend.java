@@ -133,7 +133,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof PlanAttend) {
+     if (!(object instanceof PlanAttend)) {
        return false;
      }
      PlanAttend rhs = (PlanAttend)object;

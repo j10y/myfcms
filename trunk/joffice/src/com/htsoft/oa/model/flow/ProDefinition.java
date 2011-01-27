@@ -9,8 +9,8 @@
  
  public class ProDefinition extends BaseModel
  {
-   public static final Short IS_DEFAULT = Short.valueOf(1);
-   public static final Short IS_NOT_DEFAULT = Short.valueOf(0);
+   public static final Short IS_DEFAULT = 1;
+   public static final Short IS_NOT_DEFAULT = 0;
    protected Long defId;
    protected String name;
    protected String description;
@@ -137,7 +137,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ProDefinition) {
+     if (!(object instanceof ProDefinition)) {
        return false;
      }
      ProDefinition rhs = (ProDefinition)object;

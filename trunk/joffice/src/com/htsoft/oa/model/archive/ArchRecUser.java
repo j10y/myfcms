@@ -85,7 +85,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ArchRecUser) {
+     if (!(object instanceof ArchRecUser)) {
        return false;
      }
      ArchRecUser rhs = (ArchRecUser)object;

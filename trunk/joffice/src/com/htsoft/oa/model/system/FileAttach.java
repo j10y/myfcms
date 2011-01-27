@@ -125,7 +125,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof FileAttach) {
+     if (!(object instanceof FileAttach)) {
        return false;
      }
      FileAttach rhs = (FileAttach)object;

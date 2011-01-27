@@ -9,13 +9,13 @@
  
  public class ArchivesDep extends BaseModel
  {
-   public static final Short RECEIVE_MAIN = Short.valueOf(1);
+   public static final Short RECEIVE_MAIN = 1;
  
-   public static final Short RECEIVE_COPY = Short.valueOf(0);
+   public static final Short RECEIVE_COPY = 0;
  
-   public static final Short STATUS_SIGNED = Short.valueOf(1);
+   public static final Short STATUS_SIGNED = 1;
  
-   public static final Short STATUS_UNSIGNED = Short.valueOf(0);
+   public static final Short STATUS_UNSIGNED = 0;
    protected Long archDepId;
    protected String signNo;
    protected String subject;
@@ -178,7 +178,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ArchivesDep) {
+     if (!(object instanceof ArchivesDep)) {
        return false;
      }
      ArchivesDep rhs = (ArchivesDep)object;

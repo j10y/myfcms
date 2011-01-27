@@ -90,7 +90,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof BookSn) {
+     if (!(object instanceof BookSn)) {
        return false;
      }
      BookSn rhs = (BookSn)object;

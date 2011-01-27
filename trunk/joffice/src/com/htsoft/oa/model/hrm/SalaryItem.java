@@ -53,7 +53,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof SalaryItem) {
+     if (!(object instanceof SalaryItem)) {
        return false;
      }
      SalaryItem rhs = (SalaryItem)object;

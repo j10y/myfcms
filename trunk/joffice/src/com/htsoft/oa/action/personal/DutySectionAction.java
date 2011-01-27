@@ -68,7 +68,7 @@
    public String combo() {
      StringBuffer sb = new StringBuffer();
  
-     List dutySectionList = this.dutySectionService.getAll();
+     List<DutySection> dutySectionList = this.dutySectionService.getAll();
      sb.append("[");
      for (DutySection dutySection : dutySectionList) {
        sb.append("['").append(dutySection.getSectionId()).append("','").append(dutySection.getSectionName()).append("'],");

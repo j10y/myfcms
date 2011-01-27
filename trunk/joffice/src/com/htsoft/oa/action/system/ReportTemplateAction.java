@@ -72,7 +72,7 @@
      String[] ids = getRequest().getParameterValues("ids");
      if (ids != null) {
        for (String id : ids) {
-         List list = this.reportParamService.findByRepTemp(new Long(id));
+         List<ReportParam> list = this.reportParamService.findByRepTemp(new Long(id));
          for (ReportParam rp : list) {
            this.reportParamService.remove(rp);
          }
@@ -116,7 +116,7 @@
    {
      String strReportId = getRequest().getParameter("reportId");
      if (StringUtils.isNotEmpty(strReportId)) {
-       List list = this.reportParamService.findByRepTemp(new Long(strReportId));
+       List<ReportParam> list = this.reportParamService.findByRepTemp(new Long(strReportId));
        StringBuffer sb = new StringBuffer("[");
        for (ReportParam rp : list) {
          sb.append("{xtype:'label',text:'" + rp.getParamName() + "'},{");

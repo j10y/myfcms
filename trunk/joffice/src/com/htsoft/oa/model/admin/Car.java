@@ -200,7 +200,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof Car) {
+     if (!(object instanceof Car)) {
        return false;
      }
      Car rhs = (Car)object;

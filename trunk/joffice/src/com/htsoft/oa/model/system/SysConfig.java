@@ -98,7 +98,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof SysConfig) {
+     if (!(object instanceof SysConfig)) {
        return false;
      }
      SysConfig rhs = (SysConfig)object;

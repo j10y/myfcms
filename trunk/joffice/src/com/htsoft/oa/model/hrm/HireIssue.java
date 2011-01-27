@@ -8,9 +8,9 @@
  
  public class HireIssue extends BaseModel
  {
-   public static Short PASS_CHECK = Short.valueOf(1);
-   public static Short NOTPASS_CHECK = Short.valueOf(2);
-   public static Short NOTYETPASS_CHECK = Short.valueOf(0);
+   public static Short PASS_CHECK = 1 ;
+   public static Short NOTPASS_CHECK = 2 ;
+   public static Short NOTYETPASS_CHECK = 0 ;
    protected Long hireId;
    protected String title;
    protected Date startDate;
@@ -199,7 +199,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof HireIssue) {
+     if (!(object instanceof HireIssue)) {
        return false;
      }
      HireIssue rhs = (HireIssue)object;

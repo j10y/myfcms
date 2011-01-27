@@ -73,7 +73,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof FunUrl) {
+     if (!(object instanceof FunUrl)) {
        return false;
      }
      FunUrl rhs = (FunUrl)object;

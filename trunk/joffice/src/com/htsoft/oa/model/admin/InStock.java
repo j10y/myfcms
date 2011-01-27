@@ -136,7 +136,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof InStock) {
+     if (!(object instanceof InStock)) {
        return false;
      }
      InStock rhs = (InStock)object;

@@ -324,7 +324,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof JobChange) {
+     if (!(object instanceof JobChange)) {
        return false;
      }
      JobChange rhs = (JobChange)object;

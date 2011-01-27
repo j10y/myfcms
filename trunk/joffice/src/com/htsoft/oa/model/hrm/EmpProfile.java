@@ -566,7 +566,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof EmpProfile) {
+     if (!(object instanceof EmpProfile)) {
        return false;
      }
      EmpProfile rhs = (EmpProfile)object;

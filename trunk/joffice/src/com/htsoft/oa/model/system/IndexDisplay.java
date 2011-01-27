@@ -90,7 +90,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof IndexDisplay) {
+     if (!(object instanceof IndexDisplay)) {
        return false;
      }
      IndexDisplay rhs = (IndexDisplay)object;

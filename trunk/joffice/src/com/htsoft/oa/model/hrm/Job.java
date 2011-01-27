@@ -102,7 +102,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof Job) {
+     if (!(object instanceof Job)) {
        return false;
      }
      Job rhs = (Job)object;

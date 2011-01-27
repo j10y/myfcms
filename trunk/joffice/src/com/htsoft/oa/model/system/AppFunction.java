@@ -70,7 +70,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof AppFunction) {
+     if (!(object instanceof AppFunction)) {
        return false;
      }
      AppFunction rhs = (AppFunction)object;

@@ -190,7 +190,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof Mail) {
+     if (!(object instanceof Mail)) {
        return false;
      }
      Mail rhs = (Mail)object;

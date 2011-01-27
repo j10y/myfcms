@@ -63,7 +63,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof Dictionary) {
+     if (!(object instanceof Dictionary)) {
        return false;
      }
      Dictionary rhs = (Dictionary)object;

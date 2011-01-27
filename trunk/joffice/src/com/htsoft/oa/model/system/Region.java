@@ -63,7 +63,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof Region) {
+     if (!(object instanceof Region)) {
        return false;
      }
      Region rhs = (Region)object;

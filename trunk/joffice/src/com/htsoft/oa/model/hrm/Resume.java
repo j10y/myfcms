@@ -367,7 +367,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof Resume) {
+     if (!(object instanceof Resume)) {
        return false;
      }
      Resume rhs = (Resume)object;

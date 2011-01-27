@@ -62,7 +62,7 @@
    public String combo() {
      QueryFilter filter = new QueryFilter(getRequest());
      filter.addFilter("Q_userId_L_EQ", ContextUtil.getCurrentUserId().toString());
-     List list = this.userSubService.getAll(filter);
+     List<UserSub> list = this.userSubService.getAll(filter);
      StringBuffer buff = new StringBuffer("[");
      for (UserSub sub : list) {
        buff.append("['" + sub.getSubAppUser().getUserId().toString() + "','" + sub.getSubAppUser().getFullname() + "'],");

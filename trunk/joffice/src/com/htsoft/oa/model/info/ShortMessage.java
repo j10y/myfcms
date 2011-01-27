@@ -13,11 +13,11 @@
    private String sender;
    private Short msgType;
    private Date sendTime;
-   public static final Short MSG_TYPE_PERSONAL = Short.valueOf(1);
-   public static final Short MSG_TYPE_CALENDAR = Short.valueOf(2);
-   public static final Short MSG_TYPE_PLAN = Short.valueOf(3);
-   public static final Short MSG_TYPE_TASK = Short.valueOf(4);
-   public static final Short MSG_TYPE_SYS = Short.valueOf(5);
+   public static final Short MSG_TYPE_PERSONAL = 1;
+   public static final Short MSG_TYPE_CALENDAR = 2;
+   public static final Short MSG_TYPE_PLAN = 3;
+   public static final Short MSG_TYPE_TASK = 4;
+   public static final Short MSG_TYPE_SYS = 5;
  
    private Set<InMessage> messages = new HashSet();
  

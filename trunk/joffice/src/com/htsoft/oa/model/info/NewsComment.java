@@ -118,7 +118,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof NewsComment) {
+     if (!(object instanceof NewsComment)) {
        return false;
      }
      NewsComment rhs = (NewsComment)object;

@@ -102,7 +102,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof Diary) {
+     if (!(object instanceof Diary)) {
        return false;
      }
      Diary rhs = (Diary)object;

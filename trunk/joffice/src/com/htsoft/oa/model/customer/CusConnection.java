@@ -123,7 +123,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof CusConnection) {
+     if (!(object instanceof CusConnection)) {
        return false;
      }
      CusConnection rhs = (CusConnection)object;

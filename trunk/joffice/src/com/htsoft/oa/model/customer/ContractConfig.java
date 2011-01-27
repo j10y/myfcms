@@ -113,7 +113,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ContractConfig) {
+     if (!(object instanceof ContractConfig)) {
        return false;
      }
      ContractConfig rhs = (ContractConfig)object;

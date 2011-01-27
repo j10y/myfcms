@@ -350,7 +350,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof PhoneBook) {
+     if (!(object instanceof PhoneBook)) {
        return false;
      }
      PhoneBook rhs = (PhoneBook)object;

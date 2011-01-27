@@ -15,9 +15,9 @@
    protected Long userId;
    protected String fullname;
    protected Short isAll;
-   public static final Short IS_ALL_HOLIDAY = Short.valueOf(1);
+   public static final Short IS_ALL_HOLIDAY = 1;
  
-   public static final Short IS_PERSONAL_HOLIDAY = Short.valueOf(0);
+   public static final Short IS_PERSONAL_HOLIDAY = 0;
  
    public HolidayRecord()
    {
@@ -98,7 +98,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof HolidayRecord) {
+     if (!(object instanceof HolidayRecord)) {
        return false;
      }
      HolidayRecord rhs = (HolidayRecord)object;

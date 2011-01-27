@@ -133,7 +133,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof GoodsApply) {
+     if (!(object instanceof GoodsApply)) {
        return false;
      }
      GoodsApply rhs = (GoodsApply)object;

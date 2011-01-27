@@ -231,7 +231,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof Project) {
+     if (!(object instanceof Project)) {
        return false;
      }
      Project rhs = (Project)object;

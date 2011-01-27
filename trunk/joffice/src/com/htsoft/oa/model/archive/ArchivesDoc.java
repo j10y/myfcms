@@ -244,7 +244,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ArchivesDoc) {
+     if (!(object instanceof ArchivesDoc)) {
        return false;
      }
      ArchivesDoc rhs = (ArchivesDoc)object;

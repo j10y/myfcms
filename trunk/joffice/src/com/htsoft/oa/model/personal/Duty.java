@@ -110,7 +110,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof Duty) {
+     if (!(object instanceof Duty)) {
        return false;
      }
      Duty rhs = (Duty)object;

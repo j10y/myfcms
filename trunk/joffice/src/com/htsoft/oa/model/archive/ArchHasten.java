@@ -113,7 +113,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ArchHasten) {
+     if (!(object instanceof ArchHasten)) {
        return false;
      }
      ArchHasten rhs = (ArchHasten)object;

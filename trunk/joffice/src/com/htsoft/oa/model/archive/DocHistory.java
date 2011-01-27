@@ -140,7 +140,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof DocHistory) {
+     if (!(object instanceof DocHistory)) {
        return false;
      }
      DocHistory rhs = (DocHistory)object;

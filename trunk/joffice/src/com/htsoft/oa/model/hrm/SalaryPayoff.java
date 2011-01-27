@@ -262,7 +262,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof SalaryPayoff) {
+     if (!(object instanceof SalaryPayoff)) {
        return false;
      }
      SalaryPayoff rhs = (SalaryPayoff)object;
