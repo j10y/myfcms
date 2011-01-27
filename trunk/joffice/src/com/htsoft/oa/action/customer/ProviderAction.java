@@ -1,17 +1,17 @@
  package com.htsoft.oa.action.customer;
  
- import com.google.gson.Gson;
- import com.google.gson.GsonBuilder;
- import com.google.gson.reflect.TypeToken;
- import com.htsoft.core.command.QueryFilter;
- import com.htsoft.core.web.action.BaseAction;
- import com.htsoft.core.web.paging.PagingBean;
- import com.htsoft.oa.model.customer.Provider;
- import com.htsoft.oa.service.customer.ProviderService;
  import java.lang.reflect.Type;
- import java.util.List;
- import javax.annotation.Resource;
- import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.htsoft.core.command.QueryFilter;
+import com.htsoft.core.web.action.BaseAction;
+import com.htsoft.oa.model.customer.Provider;
+import com.htsoft.oa.service.customer.ProviderService;
  
  public class ProviderAction extends BaseAction
  {
@@ -92,8 +92,3 @@
      return "success";
    }
  }
-
-/* Location:           E:\JOffice1.3安装试用版10人\joffice131Tomcat6\tomcat6-joffice\webapps\joffice1.3.1\WEB-INF\classes\
- * Qualified Name:     com.htsoft.oa.action.customer.ProviderAction
- * JD-Core Version:    0.5.4
- */
