@@ -71,7 +71,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ArchivesType) {
+     if (!(object instanceof ArchivesType)) {
        return false;
      }
      ArchivesType rhs = (ArchivesType)object;

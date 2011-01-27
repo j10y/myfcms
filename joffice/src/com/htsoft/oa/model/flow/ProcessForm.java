@@ -105,7 +105,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ProcessForm) {
+     if (!(object instanceof ProcessForm)) {
        return false;
      }
      ProcessForm rhs = (ProcessForm)object;

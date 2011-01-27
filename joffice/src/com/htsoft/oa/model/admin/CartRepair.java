@@ -125,7 +125,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof CartRepair) {
+     if (!(object instanceof CartRepair)) {
        return false;
      }
      CartRepair rhs = (CartRepair)object;

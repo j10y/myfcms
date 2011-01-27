@@ -7,8 +7,8 @@
  
  public class ArchFlowConf extends BaseModel
  {
-   public static Short ARCH_SEND_TYPE = Short.valueOf(0);
-   public static Short ARCH_REC_TYPE = Short.valueOf(1);
+   public static Short ARCH_SEND_TYPE = 0;
+   public static Short ARCH_REC_TYPE = 1;
    protected Long configId;
    protected String processName;
    protected Long processDefId;
@@ -65,7 +65,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ArchFlowConf) {
+     if (!(object instanceof ArchFlowConf)) {
        return false;
      }
      ArchFlowConf rhs = (ArchFlowConf)object;

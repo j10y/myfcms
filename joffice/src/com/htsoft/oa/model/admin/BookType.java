@@ -41,7 +41,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof BookType) {
+     if (!(object instanceof BookType)) {
        return false;
      }
      BookType rhs = (BookType)object;

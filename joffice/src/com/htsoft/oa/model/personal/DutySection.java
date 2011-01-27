@@ -207,7 +207,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof DutySection) {
+     if (!(object instanceof DutySection)) {
        return false;
      }
      DutySection rhs = (DutySection)object;

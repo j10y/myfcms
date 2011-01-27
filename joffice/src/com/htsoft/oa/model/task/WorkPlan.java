@@ -258,7 +258,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof WorkPlan) {
+     if (!(object instanceof WorkPlan)) {
        return false;
      }
      WorkPlan rhs = (WorkPlan)object;

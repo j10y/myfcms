@@ -291,7 +291,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof FixedAssets) {
+     if (!(object instanceof FixedAssets)) {
        return false;
      }
      FixedAssets rhs = (FixedAssets)object;

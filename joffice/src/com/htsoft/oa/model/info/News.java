@@ -11,8 +11,8 @@
  
  public class News extends BaseModel
  {
-   public static Short ISDESKNEWS = Short.valueOf(1);
-   public static Short NOTDESKNEWS = Short.valueOf(0);
+   public static Short ISDESKNEWS =  1 ;
+   public static Short NOTDESKNEWS =  0 ;
  
    @Expose
    protected Long newsId;
@@ -215,7 +215,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof News) {
+     if (!(object instanceof News)) {
        return false;
      }
      News rhs = (News)object;

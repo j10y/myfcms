@@ -41,7 +41,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ProType) {
+     if (!(object instanceof ProType)) {
        return false;
      }
      ProType rhs = (ProType)object;

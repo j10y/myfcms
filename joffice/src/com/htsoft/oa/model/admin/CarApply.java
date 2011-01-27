@@ -218,7 +218,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof CarApply) {
+     if (!(object instanceof CarApply)) {
        return false;
      }
      CarApply rhs = (CarApply)object;

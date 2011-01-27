@@ -165,7 +165,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof Book) {
+     if (!(object instanceof Book)) {
        return false;
      }
      Book rhs = (Book)object;

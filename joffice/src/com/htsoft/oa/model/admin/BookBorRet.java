@@ -131,7 +131,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof BookBorRet) {
+     if (!(object instanceof BookBorRet)) {
        return false;
      }
      BookBorRet rhs = (BookBorRet)object;

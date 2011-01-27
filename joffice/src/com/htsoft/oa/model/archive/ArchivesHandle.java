@@ -139,7 +139,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ArchivesHandle) {
+     if (!(object instanceof ArchivesHandle)) {
        return false;
      }
      ArchivesHandle rhs = (ArchivesHandle)object;

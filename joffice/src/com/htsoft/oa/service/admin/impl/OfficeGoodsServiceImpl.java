@@ -36,7 +36,7 @@
  
    public void sendWarmMessage()
    {
-     List list = this.dao.findByWarm();
+     List<OfficeGoods> list = this.dao.findByWarm();
      if (list.size() > 0) {
        StringBuffer sb = new StringBuffer("办公用品：");
        for (OfficeGoods goods : list) {

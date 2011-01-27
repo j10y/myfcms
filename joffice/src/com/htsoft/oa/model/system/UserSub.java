@@ -75,7 +75,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof UserSub) {
+     if (!(object instanceof UserSub)) {
        return false;
      }
      UserSub rhs = (UserSub)object;

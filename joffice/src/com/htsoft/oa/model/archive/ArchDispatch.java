@@ -8,11 +8,11 @@
  
  public class ArchDispatch extends BaseModel
  {
-   public static Short HAVE_READ = Short.valueOf(1);
-   public static Short NOT_READ = Short.valueOf(0);
-   public static Short IS_UNDERTAKE = Short.valueOf(1);
-   public static Short IS_READER = Short.valueOf(0);
-   public static Short IS_DISPATCH = Short.valueOf(2);
+   public static Short HAVE_READ = 1;
+   public static Short NOT_READ = 0;
+   public static Short IS_UNDERTAKE = 1;
+   public static Short IS_READER = 0;
+   public static Short IS_DISPATCH = 2;
    protected Long dispatchId;
    protected Date dispatchTime;
    protected Long userId;
@@ -162,7 +162,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ArchDispatch) {
+     if (!(object instanceof ArchDispatch)) {
        return false;
      }
      ArchDispatch rhs = (ArchDispatch)object;

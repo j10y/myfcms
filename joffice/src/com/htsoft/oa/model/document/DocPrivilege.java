@@ -136,7 +136,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof DocPrivilege) {
+     if (!(object instanceof DocPrivilege)) {
        return false;
      }
      DocPrivilege rhs = (DocPrivilege)object;

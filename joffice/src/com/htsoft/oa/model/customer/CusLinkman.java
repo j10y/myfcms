@@ -229,7 +229,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof CusLinkman) {
+     if (!(object instanceof CusLinkman)) {
        return false;
      }
      CusLinkman rhs = (CusLinkman)object;

@@ -184,7 +184,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof OfficeGoods) {
+     if (!(object instanceof OfficeGoods)) {
        return false;
      }
      OfficeGoods rhs = (OfficeGoods)object;

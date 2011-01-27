@@ -165,7 +165,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof MailBox) {
+     if (!(object instanceof MailBox)) {
        return false;
      }
      MailBox rhs = (MailBox)object;

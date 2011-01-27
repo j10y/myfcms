@@ -85,7 +85,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ProUserAssign) {
+     if (!(object instanceof ProUserAssign)) {
        return false;
      }
      ProUserAssign rhs = (ProUserAssign)object;

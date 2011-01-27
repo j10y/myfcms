@@ -74,7 +74,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof DepreType) {
+     if (!(object instanceof DepreType)) {
        return false;
      }
      DepreType rhs = (DepreType)object;

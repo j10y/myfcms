@@ -86,7 +86,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ReportTemplate) {
+     if (!(object instanceof ReportTemplate)) {
        return false;
      }
      ReportTemplate rhs = (ReportTemplate)object;

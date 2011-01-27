@@ -41,7 +41,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof AssetsType) {
+     if (!(object instanceof AssetsType)) {
        return false;
      }
      AssetsType rhs = (AssetsType)object;

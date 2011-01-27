@@ -123,7 +123,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof MailFolder) {
+     if (!(object instanceof MailFolder)) {
        return false;
      }
      MailFolder rhs = (MailFolder)object;

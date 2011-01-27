@@ -75,7 +75,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof SystemLog) {
+     if (!(object instanceof SystemLog)) {
        return false;
      }
      SystemLog rhs = (SystemLog)object;

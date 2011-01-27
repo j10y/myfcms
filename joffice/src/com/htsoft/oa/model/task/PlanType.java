@@ -46,7 +46,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof PlanType) {
+     if (!(object instanceof PlanType)) {
        return false;
      }
      PlanType rhs = (PlanType)object;

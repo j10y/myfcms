@@ -111,7 +111,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof FormDef) {
+     if (!(object instanceof FormDef)) {
        return false;
      }
      FormDef rhs = (FormDef)object;

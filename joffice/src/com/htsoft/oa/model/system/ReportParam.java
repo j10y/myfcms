@@ -112,7 +112,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ReportParam) {
+     if (!(object instanceof ReportParam)) {
        return false;
      }
      ReportParam rhs = (ReportParam)object;

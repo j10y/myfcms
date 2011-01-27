@@ -218,7 +218,7 @@
    {
      PagingBean pb = new PagingBean(0, 8);
  
-     List list = this.newsService.findImageNews(pb);
+     List<News> list = this.newsService.findImageNews(pb);
      List newList = new ArrayList();
      for (News news : list) {
        String content = StringUtil.html2Text(news.getContent());

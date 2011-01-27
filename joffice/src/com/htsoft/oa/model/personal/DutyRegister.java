@@ -11,21 +11,21 @@
  
  public class DutyRegister extends BaseModel
  {
-   public static final Short SIGN_IN = Short.valueOf(1);
+   public static final Short SIGN_IN = 1;
  
-   public static final Short SIGN_OFF = Short.valueOf(2);
+   public static final Short SIGN_OFF = 2;
  
-   public static final Short REG_FLAG_NORMAL = Short.valueOf(1);
+   public static final Short REG_FLAG_NORMAL = 1;
  
-   public static final Short REG_FLAG_LATE = Short.valueOf(2);
+   public static final Short REG_FLAG_LATE = 2;
  
-   public static final Short REG_FLAG_EARLY_OFF = Short.valueOf(3);
+   public static final Short REG_FLAG_EARLY_OFF = 3;
  
-   public static final Short REG_FLAG_RELAX = Short.valueOf(4);
+   public static final Short REG_FLAG_RELAX = 4;
  
-   public static final Short REG_FLAG_TRUANCY = Short.valueOf(5);
+   public static final Short REG_FLAG_TRUANCY = 5;
  
-   public static final Short REG_FLAG_HOLIDAY = Short.valueOf(6);
+   public static final Short REG_FLAG_HOLIDAY = 6;
  
    @Expose
    protected Long registerId;
@@ -160,7 +160,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof DutyRegister) {
+     if (!(object instanceof DutyRegister)) {
        return false;
      }
      DutyRegister rhs = (DutyRegister)object;

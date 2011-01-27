@@ -388,7 +388,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof Customer) {
+     if (!(object instanceof Customer)) {
        return false;
      }
      Customer rhs = (Customer)object;

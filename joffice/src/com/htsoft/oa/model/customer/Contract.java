@@ -281,7 +281,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof Contract) {
+     if (!(object instanceof Contract)) {
        return false;
      }
      Contract rhs = (Contract)object;

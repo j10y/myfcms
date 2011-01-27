@@ -18,21 +18,21 @@
      super(CusLinkman.class);
    }
  
-   public boolean checkMainCusLinkman(Long customerId, Long linkmanId)
+   public boolean checkMainCusLinkman(final Long customerId, final Long linkmanId)
    {
-     StringBuffer hql = new StringBuffer("select count(*) from CusLinkman  cl where cl.isPrimary = 1 and cl.customer.customerId =? ");
+     final StringBuffer hql = new StringBuffer("select count(*) from CusLinkman  cl where cl.isPrimary = 1 and cl.customer.customerId =? ");
      if (linkmanId != null) {
        hql.append("and cl.linkmanId != ? ");
      }
-     Long count = (Long)getHibernateTemplate().execute(new HibernateCallback(hql, customerId, linkmanId)
+     Long count = (Long)getHibernateTemplate().execute(new HibernateCallback()
      {
        public Object doInHibernate(Session session)
          throws HibernateException, SQLException
        {
-         Query query = session.createQuery(this.val$hql.toString());
-         query.setLong(0, this.val$customerId.longValue());
-         if (this.val$linkmanId != null) {
-           query.setLong(1, this.val$linkmanId.longValue());
+         Query query = session.createQuery(hql.toString());
+         query.setLong(0, customerId.longValue());
+         if (linkmanId != null) {
+           query.setLong(1, linkmanId.longValue());
          }
          return query.uniqueResult();
        }

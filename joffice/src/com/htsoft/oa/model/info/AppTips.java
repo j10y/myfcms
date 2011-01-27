@@ -166,7 +166,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof AppTips) {
+     if (!(object instanceof AppTips)) {
        return false;
      }
      AppTips rhs = (AppTips)object;

@@ -106,7 +106,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ArchTemplate) {
+     if (!(object instanceof ArchTemplate)) {
        return false;
      }
      ArchTemplate rhs = (ArchTemplate)object;

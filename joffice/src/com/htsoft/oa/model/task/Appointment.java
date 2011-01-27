@@ -155,7 +155,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof Appointment) {
+     if (!(object instanceof Appointment)) {
        return false;
      }
      Appointment rhs = (Appointment)object;

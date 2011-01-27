@@ -4,8 +4,8 @@
  
  public class InMessage extends BaseModel
  {
-   public static final Short FLAG_READ = Short.valueOf(1);
-   public static final Short FLAG_UNREAD = Short.valueOf(0);
+   public static final Short FLAG_READ =  1 ;
+   public static final Short FLAG_UNREAD =  0 ;
    private Long receiveId;
    private ShortMessage shortMessage;
    private Long userId;

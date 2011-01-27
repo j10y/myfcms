@@ -51,7 +51,7 @@
    {
      QueryFilter filter = new QueryFilter(getRequest());
      String start = getRequest().getParameter("start");
-     List list = this.newsCommentService.getAll(filter);
+     List<NewsComment> list = this.newsCommentService.getAll(filter);
  
      Gson gson = new Gson();
      SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

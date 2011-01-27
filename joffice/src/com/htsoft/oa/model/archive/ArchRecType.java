@@ -97,7 +97,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ArchRecType) {
+     if (!(object instanceof ArchRecType)) {
        return false;
      }
      ArchRecType rhs = (ArchRecType)object;

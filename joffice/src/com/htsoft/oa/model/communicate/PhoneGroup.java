@@ -112,7 +112,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof PhoneGroup) {
+     if (!(object instanceof PhoneGroup)) {
        return false;
      }
      PhoneGroup rhs = (PhoneGroup)object;

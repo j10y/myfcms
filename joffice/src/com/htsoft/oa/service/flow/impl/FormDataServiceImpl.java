@@ -21,7 +21,7 @@
  
    public Map<String, Object> getFromDataMap(Long runId, String activityName)
    {
-     List list = this.dao.getByRunIdActivityName(runId, activityName);
+     List<FormData> list = this.dao.getByRunIdActivityName(runId, activityName);
      Map dataMap = new HashMap();
      for (FormData form : list) {
        dataMap.put(form.getFieldName(), form.getValue());

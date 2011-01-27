@@ -12,29 +12,29 @@
  
  public class Archives extends BaseModel
  {
-   public static final Short STATUS_DRAFT = Short.valueOf(0);
+   public static final Short STATUS_DRAFT = 0;
  
-   public static final Short STATUS_ISSUE = Short.valueOf(1);
+   public static final Short STATUS_ISSUE = 1;
  
-   public static final Short STATUS_ARCHIVE = Short.valueOf(2);
+   public static final Short STATUS_ARCHIVE = 2;
  
-   public static final Short STATUS_HANDLE = Short.valueOf(1);
+   public static final Short STATUS_HANDLE = 1;
  
-   public static final Short STATUS_HANDLEING = Short.valueOf(2);
+   public static final Short STATUS_HANDLEING = 2;
  
-   public static final Short STATUS_LEADERREAD = Short.valueOf(3);
+   public static final Short STATUS_LEADERREAD = 3;
  
-   public static final Short STATUS_DISPATCH = Short.valueOf(4);
+   public static final Short STATUS_DISPATCH = 4;
  
-   public static final Short STATUS_READ = Short.valueOf(5);
+   public static final Short STATUS_READ = 5;
  
-   public static final Short STATUS_READING = Short.valueOf(6);
+   public static final Short STATUS_READING = 6;
  
-   public static final Short STATUS_END = Short.valueOf(7);
+   public static final Short STATUS_END = 7;
  
-   public static final Short ARCHIVE_TYPE_DISPATCH = Short.valueOf(0);
+   public static final Short ARCHIVE_TYPE_DISPATCH = 0;
  
-   public static final Short ARCHIVE_TYPE_RECEIVE = Short.valueOf(1);
+   public static final Short ARCHIVE_TYPE_RECEIVE = 1;
  
    @Expose
    protected Long archivesId;
@@ -471,7 +471,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof Archives) {
+     if (!(object instanceof Archives)) {
        return false;
      }
      Archives rhs = (Archives)object;

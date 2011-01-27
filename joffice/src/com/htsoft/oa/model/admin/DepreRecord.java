@@ -92,7 +92,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof DepreRecord) {
+     if (!(object instanceof DepreRecord)) {
        return false;
      }
      DepreRecord rhs = (DepreRecord)object;

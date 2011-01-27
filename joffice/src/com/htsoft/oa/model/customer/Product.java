@@ -145,7 +145,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof Product) {
+     if (!(object instanceof Product)) {
        return false;
      }
      Product rhs = (Product)object;

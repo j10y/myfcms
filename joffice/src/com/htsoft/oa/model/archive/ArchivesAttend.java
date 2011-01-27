@@ -113,7 +113,7 @@
  
    public boolean equals(Object object)
    {
-     if (!object instanceof ArchivesAttend) {
+     if (!(object instanceof ArchivesAttend)) {
        return false;
      }
      ArchivesAttend rhs = (ArchivesAttend)object;
