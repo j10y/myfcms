@@ -1,1 +1,0 @@
-FCKConfig.Plugins.Add("bbcode");

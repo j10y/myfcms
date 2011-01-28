@@ -1,1 +1,0 @@
-Ext.ux.Exporter.Formatter=function(a){a=a||{};Ext.applyIf(a,{});};Ext.ux.Exporter.Formatter.prototype={format:Ext.emptyFn};
