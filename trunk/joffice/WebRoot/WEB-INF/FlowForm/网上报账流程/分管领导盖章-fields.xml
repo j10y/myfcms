@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<fields>
-	<field name="OnlineAccountFilePath" label="申请表文件" type="file"/>
-	<field name="stampOption" label="申请备注" type="varchar" length="512"/>
-</fields>
