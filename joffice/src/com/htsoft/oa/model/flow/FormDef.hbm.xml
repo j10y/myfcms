@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.htsoft.oa.model.flow.FormDef"
+        table="form_def"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="formDefId"
+            column="formDefId"
+            type="java.lang.Long"
+            length="19"
+        >
+            <generator class="native"/>
+        </id>
+         <property
+            name="formName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="formName"
+            length="128"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="columns"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="columns"
+            length="10"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="isEnabled"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="isEnabled"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="activityName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="activityName"
+            length="128"
+            not-null="true"
+            unique="false"
+        />
+         <property
+            name="extDef"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="extDef"
+            length="65535"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="deployId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="deployId"
+            length="128"
+            not-null="true"
+            unique="false"
+        />
+  <!-- exported bi-directional one-to-many association to FormFields -->	
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+Ext.MyForm=Ext.extend(Ext.form.FormPanel ,{
+xtype:"formpanel",
+	title:"sdfsadf",
+	labelWidth:100,
+	labelAlign:"left",
+	layout:"form",
+	width:683,
+	height:463,
+	padding:"10px",
+	initComponent: function(){
+		this.items=[
+			{
+				xtype:"checkbox",
+				name:"MyCheckbox",
+				fieldLabel:"asdfa",
+				boxLabel:"boxLabel",
+				anchor:"100%"
+			},
+			{
+				xtype:"textarea",
+				name:"MyField",
+				fieldLabel:"sfddasf",
+				anchor:"100%",
+				height:200
+			}
+		]
+		Ext.MyForm.superclass.initComponent.call(this);
+	}
+})

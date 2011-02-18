@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fields>
+	<field name="MyField" label="Label" type="varchar" length="0" isShowed="true"/>
+	<field name="MyField1" label="Label" type="varchar" length="0" isShowed="true"/>
+	<field name="MyCheckbox" label="Label" type="varchar" length="0" isShowed="true"/>
+</fields>
