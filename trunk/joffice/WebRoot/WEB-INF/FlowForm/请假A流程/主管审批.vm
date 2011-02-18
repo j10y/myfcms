@@ -1,0 +1,21 @@
+Ext.MyForm=Ext.extend(Ext.form.FormPanel ,{
+xtype:"formpanel",
+	title:"主管审批",
+	labelWidth:100,
+	labelAlign:"left",
+	layout:"form",
+	width:400,
+	height:250,
+	padding:"10px",
+	initComponent: function(){
+		this.items=[
+			{
+				xtype:"textarea",
+				name:"MyField",
+				fieldLabel:"审批意见",
+				anchor:"100%"
+			}
+		]
+		Ext.MyForm.superclass.initComponent.call(this);
+	}
+})

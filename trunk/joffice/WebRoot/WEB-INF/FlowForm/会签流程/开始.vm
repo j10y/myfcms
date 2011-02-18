@@ -1,0 +1,22 @@
+Ext.MyForm=Ext.extend(Ext.form.FormPanel ,{
+xtype:"formpanel",
+	title:"会签流程启动 ",
+	labelWidth:100,
+	labelAlign:"left",
+	layout:"form",
+	width:408,
+	height:254,
+	padding:"10px",
+	initComponent: function(){
+		this.items=[
+			{
+				xtype:"textarea",
+				name:"MyField",
+				fieldLabel:"备注",
+				anchor:"100%",
+				height:120
+			}
+		]
+		Ext.MyForm.superclass.initComponent.call(this);
+	}
+})

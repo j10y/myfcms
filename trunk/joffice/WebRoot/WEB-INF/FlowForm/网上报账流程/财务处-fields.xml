@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fields>
+	<field name="OnlineAccountFilePath" label="申请表文件" type="file"/>
+	<field name="financeOption" label="财务处意见" type="varchar" length="512"/>
+</fields>
