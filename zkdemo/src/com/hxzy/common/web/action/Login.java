@@ -29,6 +29,8 @@ import org.zkoss.zul.Window;
 import com.hxzy.base.constant.Constant;
 import com.hxzy.base.util.DateUtil;
 import com.hxzy.base.util.WebAppUtil;
+import com.hxzy.common.log.model.Log;
+import com.hxzy.common.log.service.LogService;
 import com.hxzy.common.user.model.Privilege;
 import com.hxzy.common.user.model.Role;
 import com.hxzy.common.user.model.User;
@@ -60,6 +62,11 @@ public class Login extends Window implements AfterCompose {
 	 * 描述: 取消按钮
 	 */
 	protected Button cancel;
+	
+	@Autowired
+	private LogService logService;
+	
+	private Log log;
 
 	public void afterCompose() {
 		Components.wireVariables(this, this);
@@ -67,6 +74,15 @@ public class Login extends Window implements AfterCompose {
 	}
 
 	public void onCreate() {
+		
+		log = new Log();
+		log.setIp(Executions.getCurrent().getRemoteAddr());
+		UserInfo userInfo = (UserInfo)Executions.getCurrent().getSession().getAttribute(Constant.ATTRIBUTE_USER_INFO);
+		if(userInfo != null){
+			log.setUsername(userInfo.getUser().getTruename());
+		}
+		log.setLogAction(this.getClass().getSimpleName());
+		log.setLogTime(new Date());	
 
 		this.setClosable(true);
 
@@ -118,6 +134,8 @@ public class Login extends Window implements AfterCompose {
 
 		if (users.isEmpty()) {
 			error.setValue("无效的用户信息！");
+			log.setDetail("无效的用户信息！");
+			logService.save(log);
 			return;
 		}
 
@@ -130,6 +148,8 @@ public class Login extends Window implements AfterCompose {
 				userService.update(user);
 			} else {
 				error.setValue("该用户帐号已经被锁定，请与管理员联系解除锁定");
+				log.setDetail(user.getUsername()+"帐号锁定");
+				logService.save(log);
 				return;
 			}
 		}
@@ -159,7 +179,9 @@ public class Login extends Window implements AfterCompose {
 				loginMap.put(user.getUsername(), new Integer(loginFrequency));
 				session.setAttribute("loginMap", loginMap);
 				error.setValue("无效的用户信息，您还有"+(5 - loginFrequency)+"次机会输入！");
+				log.setDetail("无效的用户信息");
 			}
+			logService.save(log);
 			return;
 		}
 
@@ -189,8 +211,11 @@ public class Login extends Window implements AfterCompose {
 
 		// 设置用户登录标志
 		session.setAttribute(WebAppUtil.LOGIN_FLAG, WebAppUtil.LOGINED);
-
-		Executions.getCurrent().sendRedirect("user/userQuery.zul");
+		
+		log.setDetail(user.getUsername()+"登录成功");
+		logService.save(log);
+		
+		Executions.getCurrent().sendRedirect("index.zul");
 
 	}
 

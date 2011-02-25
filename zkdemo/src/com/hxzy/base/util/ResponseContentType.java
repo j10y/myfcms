@@ -1,11 +1,4 @@
-/**
- * <p>项目名称：湖北省委组织部内网网站系统</p>
- * <p>版权所有 (c) 2005 湖北全达信息科技有限公司</p>
- * <p>作者：Reika</p>
- * <p>版本：1.0</p>
- * <p>日期：2008-8-30</p>
- * <p>更新：</p>
- */
+
 package com.hxzy.base.util;
 
 import java.util.ArrayList;

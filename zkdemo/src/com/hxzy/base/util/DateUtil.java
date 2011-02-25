@@ -1,11 +1,4 @@
-/**
- * <p>项目名称：公共模块</p>
- * <p>版权所有 (c) 2006 湖北全达信息科技有限公司</p>
- * <p>作者：</p>
- * <p>版本：1.0</p>
- * <p>日期：2006-7-14</p>
- * <p>更新：</p>
- */
+
 package com.hxzy.base.util;
 
 import java.text.SimpleDateFormat;
