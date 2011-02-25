@@ -1,13 +1,5 @@
 package com.hxzy.base.constant;
 
-/**
- * <p>项目名称：公共模块</p>
- * <p>版权所有 (c) 2005 湖北全达信息科技有限公司</p>
- * <p>作者：</p>
- * <p>版本：1.0</p>
- * <p>日期：2007-9-3</p>
- * <p>更新：</p>
- */
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

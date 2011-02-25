@@ -478,7 +478,7 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 		</listener-class>
 	</listener>-->
 	
-     <!--
+     
 	 <listener>
 		 <description>用户登录检查Interceptor</description>
 		 <listener-class>com.hxzy.base.web.intercepter.AuthenticateInterceptor</listener-class> 
@@ -489,7 +489,7 @@ Copyright (C) 2006 Potix Corporation. All Rights Reserved.
 		 <description>用户权限检查Interceptor</description>
 		 <listener-class>com.hxzy.base.web.intercepter.AuthorizeInterceptor</listener-class> 
 	 </listener>
-	 -->	 
+	 <!---->	 
 	 
 	 <listener>
 		<description>properties loader</description>

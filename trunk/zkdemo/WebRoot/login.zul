@@ -17,12 +17,12 @@
 						<rows>
 							<row>
 								<div align="right">用户名：</div>
-								<textbox id="username" constraint="no empty">
+								<textbox id="username" constraint="no empty" value="admin">
 								</textbox>
 							</row>
 							<row>
 								<div align="right">密 码：</div>
-								<textbox id="password" type="password" constraint="no empty">
+								<textbox id="password" type="password" constraint="no empty" value="admin">
 								</textbox>
 							</row>
 						</rows>
@@ -36,10 +36,7 @@
 						<label id="error" style="color:red;" />
 					</div>
 				</div>
-
-
 			</login>
-
 			</div>
 		</center>
 	</borderlayout>
