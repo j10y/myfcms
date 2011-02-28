@@ -5,7 +5,7 @@
 
 <zk xmlns="http://www.zkoss.org/2005/zul" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
-  <expertQuery id="expertQuery" height="100%">
+  <expertQuery id="expertQuery" height="100%" width="100%">
     <borderlayout>
       <west width="150px" border="none" autoscroll="true">
         <tree id="tree" model="@{expertQuery.treeModel}" width="auto" height="auto" style="border:none;"
@@ -18,9 +18,9 @@
 
       <center border="none">
         <borderlayout>
-          <north height="25px">
+          <north height="25px" >
             <borderlayout>
-              <west border="none" width="auto">
+              <west border="none" size="70%"  flex="true">
                 <hbox>
                   <space></space>
                   <button label="新增" forward="onAdd" priv="expertAdd" image="/img/icons/add-row.gif" />
@@ -30,8 +30,8 @@
                   <fileupload id="fileupload" label="导入excel" image="/img/icons/excel.gif" />
                 </hbox>
               </west>
-              <center border="none"></center>
-              <east border="none">
+              <center border="none"/>
+              <east border="none" width="200px">
                 <hbox>
                   <textbox id="search" focus="true" sclass="demo-search-inp" />
                   <button label="查询" forward="onFind"></button>
@@ -40,7 +40,7 @@
             </borderlayout>
 
           </north>
-          <center autoscroll="true" flex="true" >
+          <center  flex="true" >
             <listbox id="listbox" model="@{expertQuery.list}" paginal="${pg}" checkmark="true" fixedLayout="true"
               multiple="true" style="border:none;">
               <listhead>

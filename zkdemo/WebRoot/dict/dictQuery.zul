@@ -18,13 +18,13 @@
 						</hbox>
 					</west>
 					<center border="none"></center>
-					<east border="none">
+					<east border="none" width="200px">
 
 					</east>
 				</borderlayout>
 
 			</north>
-			<center border="none" autoscroll="true" flex="true">
+			<center border="none"  flex="true">
 				<tree id="tree" model="@{dictQuery.treeModel}" checkmark="true" multiple="true" width="auto" height="auto" fixedLayout="true">
 					<treecols sizable="true">
 						<treecol label="字典名称" />

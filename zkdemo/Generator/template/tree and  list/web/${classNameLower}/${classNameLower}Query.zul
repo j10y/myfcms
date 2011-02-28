@@ -22,7 +22,7 @@
 		</hbox>
 	</west>
 	<center border="none"></center>
-	<east border="none">
+	<east border="none" width="200px">
 	<hbox>
 		<textbox id="search" focus="true" sclass="demo-search-inp"/>
 		<button label="查询" forward="onFind"></button>
@@ -31,7 +31,7 @@
 	</borderlayout>
 		
 	</north>
-	<center border="none">
+	<center border="none" flex="true" >
 	<listbox id="listbox" model="@{${classNameLower}Query.list}" paginal="${"$"}{pg}" checkmark="true" multiple="true">
 		<listhead>
          <#list clazz.fields as field>

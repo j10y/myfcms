@@ -27,6 +27,7 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.ComponentNotFoundException;
 import org.zkoss.zk.ui.Execution;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.SuspendNotAllowedException;
 import org.zkoss.zk.ui.event.BookmarkEvent;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
@@ -46,6 +47,7 @@ import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.Textbox;
+import org.zkoss.zul.Window;
 
 /**
  * @author jumperchen
@@ -65,7 +67,18 @@ public class MainLayoutComposer extends GenericForwardComposer implements MainLa
 	Button _selected;
 
 	public MainLayoutComposer() {
+		
 
+	}
+
+	public void onLogOut(ForwardEvent event) {
+		try {
+			((Window) Executions.createComponents("/logOut.zul",null, null)).doModal();
+		} catch (SuspendNotAllowedException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private Map getCategoryMap() {
@@ -91,7 +104,7 @@ public class MainLayoutComposer extends GenericForwardComposer implements MainLa
 			}
 		}
 	}
-	
+
 	public void onSelect$itemList(SelectEvent event) {
 		Listitem item = itemList.getSelectedItem();
 

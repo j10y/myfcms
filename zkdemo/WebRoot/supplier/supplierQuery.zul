@@ -32,7 +32,7 @@
                 </hbox>
               </west>
               <center border="none"></center>
-              <east border="none">
+              <east border="none" width="200px">
                 <hbox>
                   <textbox id="search" focus="true" sclass="demo-search-inp" />
                   <button label="查询" forward="onFind"></button>
@@ -41,7 +41,7 @@
             </borderlayout>
 
           </north>
-          <center autoscroll="true" flex="true">
+          <center flex="true">
             <listbox id="listbox" model="@{supplierQuery.list}" paginal="${pg}" checkmark="true" fixedLayout="true"
               multiple="true" style="border:none;">
               <listhead>
