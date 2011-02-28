@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -62,10 +63,10 @@ public class Login extends Window implements AfterCompose {
 	 * 描述: 取消按钮
 	 */
 	protected Button cancel;
-	
+
 	@Autowired
 	private LogService logService;
-	
+
 	private Log log;
 
 	public void afterCompose() {
@@ -74,15 +75,16 @@ public class Login extends Window implements AfterCompose {
 	}
 
 	public void onCreate() {
-		
+
 		log = new Log();
 		log.setIp(Executions.getCurrent().getRemoteAddr());
-		UserInfo userInfo = (UserInfo)Executions.getCurrent().getSession().getAttribute(Constant.ATTRIBUTE_USER_INFO);
-		if(userInfo != null){
+		UserInfo userInfo = (UserInfo) Executions.getCurrent().getSession().getAttribute(
+				Constant.ATTRIBUTE_USER_INFO);
+		if (userInfo != null) {
 			log.setUsername(userInfo.getUser().getTruename());
 		}
 		log.setLogAction(this.getClass().getSimpleName());
-		log.setLogTime(new Date());	
+		log.setLogTime(new Date());
 
 		this.setClosable(true);
 
@@ -148,7 +150,7 @@ public class Login extends Window implements AfterCompose {
 				userService.update(user);
 			} else {
 				error.setValue("该用户帐号已经被锁定，请与管理员联系解除锁定");
-				log.setDetail(user.getUsername()+"帐号锁定");
+				log.setDetail(user.getUsername() + "帐号锁定");
 				logService.save(log);
 				return;
 			}
@@ -162,7 +164,7 @@ public class Login extends Window implements AfterCompose {
 				loginMap = (Map) session.getAttribute("loginMap");
 			else
 				loginMap = new HashMap();
-			
+
 			if (session.getAttribute("loginMap") != null
 					&& loginMap.get(user.getUsername()) != null)
 				loginFrequency = ((Integer) loginMap.get(user.getUsername())).intValue() + 1;
@@ -178,7 +180,7 @@ public class Login extends Window implements AfterCompose {
 			} else {
 				loginMap.put(user.getUsername(), new Integer(loginFrequency));
 				session.setAttribute("loginMap", loginMap);
-				error.setValue("无效的用户信息，您还有"+(5 - loginFrequency)+"次机会输入！");
+				error.setValue("无效的用户信息，您还有" + (5 - loginFrequency) + "次机会输入！");
 				log.setDetail("无效的用户信息");
 			}
 			logService.save(log);
@@ -211,10 +213,15 @@ public class Login extends Window implements AfterCompose {
 
 		// 设置用户登录标志
 		session.setAttribute(WebAppUtil.LOGIN_FLAG, WebAppUtil.LOGINED);
-		
-		log.setDetail(user.getUsername()+"登录成功");
+
+		TreeMap onlineUsers = (TreeMap) session.getServletContext().getAttribute(
+				Constant.ATTRIBUTE_ONLINE_USER_INFO);
+
+		onlineUsers.put(user.getUsername(), user);
+
+		log.setDetail(user.getUsername() + "登录成功");
 		logService.save(log);
-		
+
 		Executions.getCurrent().sendRedirect("index.zul");
 
 	}

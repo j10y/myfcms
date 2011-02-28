@@ -1,10 +1,6 @@
 package com.hxzy.common.log.web.action;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
+import org.apache.commons.lang.time.DateUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.MatchMode;
@@ -14,12 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.SuspendNotAllowedException;
-import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Window;
 
 import com.hxzy.base.util.Pagination;
 import com.hxzy.base.web.window.ListWindow;
-import com.hxzy.base.web.window.Message;
 import com.hxzy.common.log.model.Log;
 import com.hxzy.common.log.service.LogService;
 
@@ -47,21 +41,15 @@ public class LogQuery extends ListWindow {
 		if (StringUtils.hasText(search.getValue())) {
 			LogicalExpression l1 = Restrictions.or(
 					Restrictions.like("username", search.getValue(),MatchMode.ANYWHERE),			
-					Restrictions.like("ip", search.getValue(),MatchMode.ANYWHERE));
+					Restrictions.like("ip", search.getValue(),MatchMode.ANYWHERE));						
 			LogicalExpression l2 = Restrictions.or(
 					l1, 
-					Restrictions.like("logTime", search.getValue(), MatchMode.ANYWHERE));			
+					Restrictions.like("logAction", search.getValue(), MatchMode.ANYWHERE));			
 			LogicalExpression l3 = Restrictions.or(
 					l2, 
-					Restrictions.like("logObject", search.getValue(), MatchMode.ANYWHERE));			
-			LogicalExpression l4 = Restrictions.or(
-					l3, 
-					Restrictions.like("logAction", search.getValue(), MatchMode.ANYWHERE));			
-			LogicalExpression l5 = Restrictions.or(
-					l4, 
 					Restrictions.like("detail", search.getValue(), MatchMode.ANYWHERE));			
 			
-			detachedCriteria.add(l5);			
+			detachedCriteria.add(l3);			
 		}
 		
 		detachedCriteria.addOrder(Order.desc("id"));

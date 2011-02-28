@@ -14,7 +14,7 @@
 					<label id="roleName" />
 				</div>
 			</north>
-			<center border="none" autoscroll="true" flex="true">
+			<center border="none" flex="true">
 				<tree id="tree" model="@{grantPriv.treeModel}"
 					checkmark="true" multiple="true" width="auto" height="auto"
 					fixedLayout="true">
