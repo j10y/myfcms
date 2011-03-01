@@ -1,6 +1,5 @@
 package com.hxzy.common.log.web.action;
 
-import org.apache.commons.lang.time.DateUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.MatchMode;
@@ -48,7 +47,6 @@ public class LogQuery extends ListWindow {
 			LogicalExpression l3 = Restrictions.or(
 					l2, 
 					Restrictions.like("detail", search.getValue(), MatchMode.ANYWHERE));			
-			
 			detachedCriteria.add(l3);			
 		}
 		
