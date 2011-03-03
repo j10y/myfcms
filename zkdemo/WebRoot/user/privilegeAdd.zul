@@ -1,6 +1,6 @@
 <?import src="/include.zul"?>
 <?page title="增加权限" contentType="text/html;charset=UTF-8"?>
-
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./privilegeAdd"?>
 <zk xmlns="http://www.zkoss.org/2005/zul"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
@@ -14,10 +14,19 @@
 
 			<rows>
 				<row>
-					父节点：					
+					父节点：
+                    <bandbox id="bd" readonly="true" width="155px"> 
+                      <bandpopup>
+                        <tree id="tree" model="@{privilegeAdd.treeModel}" 
+                        width="150px" height="200px"
+                        onSelect="bd.value=self.selectedItem.label; bd.close()">                          
+                        </tree>                      
+                      </bandpopup>
+                    </bandbox>
+                    <!-- 
 					<combobox id="combobox" readonly="true">								
 					<comboitem forEach="${privilegeAdd.privileges}" label="${each.privName}" value="${each}" />				
-					</combobox>			
+					</combobox>	 -->		
 				</row>
 				<row>
 					权限名称：
