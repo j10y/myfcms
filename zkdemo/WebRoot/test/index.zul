@@ -3,7 +3,7 @@
 <window title="new page title" border="normal">
 <bandbox id="bd" readonly="true"> 
 <bandpopup>
-<tree id="tree" rows="5" width="145px" onSelect="bd.value=self.selectedItem.label; bd.close()">
+<tree id="tree" rows="5" width="145px" onSelect="bd.value=self.selectedItem.label; bd.close()" >
 		<treecols>
 			<treecol label="Name" />
 			
