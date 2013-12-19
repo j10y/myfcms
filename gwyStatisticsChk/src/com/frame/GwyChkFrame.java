@@ -4,7 +4,6 @@
  */
 package com.frame;
 
-import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,8 +14,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.TreeMap;
+import java.util.Map;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -330,9 +330,6 @@ public class GwyChkFrame extends javax.swing.JFrame {
 					Workbook wb1 = Workbook.getWorkbook(is1);
 					Workbook wb2 = Workbook.getWorkbook(is2);
 
-					Sheet[] sheets1 = wb1.getSheets();// 获取所有的sheet
-					Sheet[] sheets2 = wb2.getSheets();// 获取所有的sheet
-
 					String str = null;
 					while ((str = br.readLine()) != null) {
 						if (!str.isEmpty()) {
@@ -395,6 +392,8 @@ public class GwyChkFrame extends javax.swing.JFrame {
 
 					DefaultTableModel tableModel = (DefaultTableModel) resultTable.getModel();
 					tableModel.setRowCount(0);// 清除原有行
+					
+					resultDialog.setTitle(jComboBox1.getSelectedItem().toString()+resultDialog.getTitle());
 
 					int i = 0;
 					for (String key : resultMap.keySet()) {
@@ -403,6 +402,7 @@ public class GwyChkFrame extends javax.swing.JFrame {
 						arr[1] = key;
 						arr[2] = resultMap.get(key);
 						tableModel.addRow(arr);
+						i++;
 					}
 					resultTable.invalidate();
 
@@ -451,9 +451,10 @@ public class GwyChkFrame extends javax.swing.JFrame {
 			}
 
 		});
-
+		
 		int i = fc.showDialog(resultDialog, "保存");
 		if (i == JFileChooser.APPROVE_OPTION) {
+			
 			File file = fc.getSelectedFile();
 			String URL = file.getPath();
 			if (!URL.endsWith(".xls")) {
@@ -469,7 +470,7 @@ public class GwyChkFrame extends javax.swing.JFrame {
 				fos = new FileOutputStream(URL);
 
 				wwb = Workbook.createWorkbook(fos);
-				WritableSheet ws = wwb.createSheet("Sheet 1", 0);
+				WritableSheet ws = wwb.createSheet(jComboBox1.getSelectedItem().toString()+resultDialog.getTitle(), 0);
 
 				int j = 0;
 				for (String key : resultMap.keySet()) {
@@ -579,6 +580,6 @@ public class GwyChkFrame extends javax.swing.JFrame {
 	private javax.swing.JDialog resultDialog;
 	private javax.swing.JTable resultTable;
 	private javax.swing.JTextField thisYearPath;
-	TreeMap<String, String> resultMap = new TreeMap<String, String>();
+	Map<String, String> resultMap = new LinkedHashMap<String, String>();
 	// End of variables declaration
 }
