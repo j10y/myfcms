@@ -13,6 +13,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -25,8 +27,12 @@ import javax.swing.table.DefaultTableModel;
 
 import jxl.Sheet;
 import jxl.Workbook;
+import jxl.format.Border;
 import jxl.read.biff.BiffException;
 import jxl.write.Label;
+import jxl.write.NumberFormat;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
@@ -75,16 +81,15 @@ public class GwyChkFrame extends javax.swing.JFrame {
 
 		resultDialog.setTitle("校核结果");
 		// resultDialog.setAlwaysOnTop(true);
-//		resultDialog.setLocationByPlatform(true);
+		// resultDialog.setLocationByPlatform(true);
 		resultDialog.setLocationRelativeTo(null);
-		
+
 		resultDialog.setMinimumSize(new java.awt.Dimension(550, 550));
 
 		resultTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
 
 		}, new String[] { "", "校核问题", "值" }) {
-			Class[] types = new Class[] { java.lang.Integer.class, java.lang.String.class,
-					java.lang.String.class };
+			Class[] types = new Class[] { java.lang.Integer.class, java.lang.String.class, java.lang.String.class };
 			boolean[] canEdit = new boolean[] { false, false, false };
 
 			public Class getColumnClass(int columnIndex) {
@@ -109,29 +114,26 @@ public class GwyChkFrame extends javax.swing.JFrame {
 			}
 		});
 
-		javax.swing.GroupLayout resultDialogLayout = new javax.swing.GroupLayout(resultDialog
-				.getContentPane());
+		javax.swing.GroupLayout resultDialogLayout = new javax.swing.GroupLayout(resultDialog.getContentPane());
 		resultDialog.getContentPane().setLayout(resultDialogLayout);
-		resultDialogLayout.setHorizontalGroup(resultDialogLayout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				resultDialogLayout.createSequentialGroup().addContainerGap().addGroup(
-						resultDialogLayout.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.CENTER).addComponent(
-								exportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105,
-								javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(jScrollPane2,
-								javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
-						.addContainerGap()));
-		resultDialogLayout.setVerticalGroup(resultDialogLayout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				resultDialogLayout.createSequentialGroup().addContainerGap().addComponent(
-						jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-						.addComponent(exportButton).addContainerGap()));
+		resultDialogLayout.setHorizontalGroup(resultDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						resultDialogLayout.createSequentialGroup().addContainerGap().addGroup(
+								resultDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER).addComponent(
+										exportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105,
+										javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(jScrollPane2,
+										javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)).addContainerGap()));
+		resultDialogLayout.setVerticalGroup(resultDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						resultDialogLayout.createSequentialGroup().addContainerGap().addComponent(jScrollPane2,
+								javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE).addPreferredGap(
+								javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addComponent(exportButton)
+								.addContainerGap()));
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("公务员统计校核软件");
-//		setLocationByPlatform(true);
-		
+		// setLocationByPlatform(true);
+
 		setResizable(false);
 
 		jLabel1.setText("中共黄冈市委组织部");
@@ -158,70 +160,45 @@ public class GwyChkFrame extends javax.swing.JFrame {
 			}
 		});
 
-		jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "公务员统计表",
-				"参照公务员法管理的群团机关工作人员统计表", "参照公务员法管理的事业单位工作人员统计表", "地方各级领导班子成员情况统计表" }));
+		jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "公务员统计表", "参照公务员法管理的群团机关工作人员统计表",
+				"参照公务员法管理的事业单位工作人员统计表", "地方各级领导班子成员情况统计表" }));
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
 				layout.createSequentialGroup().addContainerGap().addGroup(
-						layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-								.addGroup(
-										layout.createSequentialGroup().addComponent(progressBar,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE).addContainerGap()).addGroup(
-										layout.createSequentialGroup().addComponent(jLabel1)
-												.addGap(81, 81, 81)))).addGroup(
+						layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER).addGroup(
+								layout.createSequentialGroup().addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addContainerGap()).addGroup(
+								layout.createSequentialGroup().addComponent(jLabel1).addGap(81, 81, 81)))).addGroup(
 				layout.createSequentialGroup().addGap(385, 385, 385).addComponent(actionButton,
-						javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-						Short.MAX_VALUE).addContainerGap()).addGroup(
+						javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addContainerGap()).addGroup(
 				layout.createSequentialGroup().addGap(10, 10, 10).addComponent(jComboBox1, 0,
-						javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGap(125, 125, 125))
-				.addGroup(
-						layout.createSequentialGroup().addGap(10, 10, 10)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(thisYearPath,
-														javax.swing.GroupLayout.DEFAULT_SIZE, 365,
-														Short.MAX_VALUE).addComponent(lastYearPath,
-														javax.swing.GroupLayout.DEFAULT_SIZE, 365,
-														Short.MAX_VALUE)).addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(jButton1).addComponent(jButton2))
-								.addGap(10, 10, 10)));
-		layout.setVerticalGroup(layout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				layout.createSequentialGroup().addContainerGap().addComponent(jLabel1).addGap(18,
+						javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addGap(125, 125, 125)).addGroup(
+				layout.createSequentialGroup().addGap(10, 10, 10).addGroup(
+						layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(thisYearPath,
+								javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE).addComponent(lastYearPath,
+								javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)).addPreferredGap(
+						javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addGroup(
+						layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(jButton1)
+								.addComponent(jButton2)).addGap(10, 10, 10)));
+		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+				layout.createSequentialGroup().addContainerGap().addComponent(jLabel1).addGap(18, 18, 18).addGroup(
+						layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(lastYearPath,
+								javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+								javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(jButton1)).addGap(18, 18, 18).addGroup(
+						layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(jButton2)
+								.addComponent(thisYearPath, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(18,
 						18, 18).addGroup(
-						layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(lastYearPath, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE,
-										javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
-										jButton1)).addGap(18, 18, 18).addGroup(
-						layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(jButton2).addComponent(thisYearPath,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE,
-										javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18)
-						.addGroup(
-								layout.createParallelGroup(
-										javax.swing.GroupLayout.Alignment.BASELINE).addComponent(
-										actionButton).addComponent(jComboBox1,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE,
-										javax.swing.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
-								javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9,
-								Short.MAX_VALUE).addComponent(progressBar,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 22,
-								javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap()));
-		
+						layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(actionButton)
+								.addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE).addComponent(
+								progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addContainerGap()));
+
 		pack();
 	}// </editor-fold>
 
@@ -351,13 +328,15 @@ public class GwyChkFrame extends javax.swing.JFrame {
 
 									if (values[0].equals("1")) {
 										Sheet s1 = wb1.getSheet(Integer.parseInt(values[1]));// 获取sheet
-										value = s1.getCell(Common.getLetterNumber(values[2]) - 1,
-												Integer.parseInt(values[3]) - 1).getContents();
+										value = s1
+												.getCell(Common.getLetterNumber(values[2]) - 1, Integer.parseInt(values[3]) - 1)
+												.getContents();
 									}
 									if (values[0].equals("2")) {
 										Sheet s2 = wb2.getSheet(Integer.parseInt(values[1]));// 获取sheet
-										value = s2.getCell(Common.getLetterNumber(values[2]) - 1,
-												Integer.parseInt(values[3]) - 1).getContents();
+										value = s2
+												.getCell(Common.getLetterNumber(values[2]) - 1, Integer.parseInt(values[3]) - 1)
+												.getContents();
 									}
 
 									if (value.equals("")) {
@@ -392,8 +371,8 @@ public class GwyChkFrame extends javax.swing.JFrame {
 
 					DefaultTableModel tableModel = (DefaultTableModel) resultTable.getModel();
 					tableModel.setRowCount(0);// 清除原有行
-					
-					resultDialog.setTitle(jComboBox1.getSelectedItem().toString()+resultDialog.getTitle());
+
+					resultDialog.setTitle(jComboBox1.getSelectedItem().toString() + resultDialog.getTitle());
 
 					int i = 0;
 					for (String key : resultMap.keySet()) {
@@ -451,10 +430,10 @@ public class GwyChkFrame extends javax.swing.JFrame {
 			}
 
 		});
-		
+
 		int i = fc.showDialog(resultDialog, "保存");
 		if (i == JFileChooser.APPROVE_OPTION) {
-			
+
 			File file = fc.getSelectedFile();
 			String URL = file.getPath();
 			if (!URL.endsWith(".xls")) {
@@ -470,20 +449,45 @@ public class GwyChkFrame extends javax.swing.JFrame {
 				fos = new FileOutputStream(URL);
 
 				wwb = Workbook.createWorkbook(fos);
-				WritableSheet ws = wwb.createSheet(jComboBox1.getSelectedItem().toString()+resultDialog.getTitle(), 0);
+				WritableSheet ws = wwb.createSheet(jComboBox1.getSelectedItem().toString() + resultDialog.getTitle(), 0);
+				ws.setColumnView(0, 54);
+				ws.setColumnView(1, 34);
 
-				int j = 0;
+				ws.mergeCells(0, 0, 1, 0);
+
+				WritableFont wf = new WritableFont(WritableFont.createFont("黑体"), 20, WritableFont.BOLD);
+				WritableCellFormat wcf = new WritableCellFormat(wf);
+				wcf.setAlignment(jxl.format.Alignment.CENTRE);
+				wcf.setVerticalAlignment(jxl.format.VerticalAlignment.CENTRE);
+				Label head1 = new Label(0, 0, jComboBox1.getSelectedItem().toString() + "校核报告");
+				head1.setCellFormat(wcf);
+				ws.addCell(head1);
+
+				Label head2 = new Label(0, 1, "填报单位：");
+				ws.addCell(head2);
+
+				Label head3 = new Label(1, 1, "校核时间：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+				ws.addCell(head3);
+
+				WritableFont font = new WritableFont(WritableFont.createFont("宋体"), 10, WritableFont.NO_BOLD);
+				WritableCellFormat cfResult = new WritableCellFormat(font);
+				cfResult.setBorder(Border.ALL, jxl.format.BorderLineStyle.THIN);
+				// cfResult.setWrap(true);
+
+				int j = 2;
 				for (String key : resultMap.keySet()) {
+
 					Label label1 = new Label(0, j, key);
+					label1.setCellFormat(cfResult);
 					ws.addCell(label1);
+
 					Label label2 = new Label(1, j, resultMap.get(key));
+					label2.setCellFormat(cfResult);
 					ws.addCell(label2);
 					j++;
 				}
 
 				wwb.write();
-//				wwb.close();
-//				fos.close();
 
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -550,8 +554,7 @@ public class GwyChkFrame extends javax.swing.JFrame {
 		// null, ex);
 		// }
 		try {
-			javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager
-					.getSystemLookAndFeelClassName());
+			javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
@@ -562,7 +565,7 @@ public class GwyChkFrame extends javax.swing.JFrame {
 			public void run() {
 				GwyChkFrame gwyChk = new GwyChkFrame();
 				gwyChk.setVisible(true);
-				gwyChk.setLocationRelativeTo(gwyChk.getOwner()); 
+				gwyChk.setLocationRelativeTo(gwyChk.getOwner());
 			}
 		});
 	}
