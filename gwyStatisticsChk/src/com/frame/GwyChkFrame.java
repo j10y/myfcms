@@ -337,8 +337,7 @@ public class GwyChkFrame extends javax.swing.JFrame {
 									}
 									if (values[0].equals("2")) {
 										Sheet s2 = wb2.getSheet(Integer.parseInt(values[1]));// ªÒ»°sheet
-										value = s2
-												.getCell(Common.getLetterNumber(values[2]) - 1, Integer.parseInt(values[3]) - 1)
+										value = s2.getCell(Common.getLetterNumber(values[2]) - 1, Integer.parseInt(values[3]) - 1)
 												.getContents();
 									}
 
