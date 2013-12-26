@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.Thread.UncaughtExceptionHandler;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,6 +42,8 @@ import jxl.write.biff.RowsExceededException;
 import org.wltea.expression.ExpressionExecutor;
 import org.wltea.expression.ExpressionToken;
 import org.wltea.expression.IllegalExpressionException;
+
+import sun.tools.jar.Main;
 
 import com.base.Common;
 
@@ -131,7 +134,7 @@ public class GwyChkFrame extends javax.swing.JFrame {
 								.addContainerGap()));
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle("公务员统计校核软件");
+		setTitle("2013年度公务员统计校核软件(V20131224)");
 		// setLocationByPlatform(true);
 
 		setResizable(false);
@@ -308,6 +311,7 @@ public class GwyChkFrame extends javax.swing.JFrame {
 					Workbook wb2 = Workbook.getWorkbook(is2);
 
 					String str = null;
+					progressBar.setValue(10);
 					while ((str = br.readLine()) != null) {
 						if (!str.isEmpty()) {
 							str = str.replaceAll(" ", "");
@@ -328,8 +332,7 @@ public class GwyChkFrame extends javax.swing.JFrame {
 
 									if (values[0].equals("1")) {
 										Sheet s1 = wb1.getSheet(Integer.parseInt(values[1]));// 获取sheet
-										value = s1
-												.getCell(Common.getLetterNumber(values[2]) - 1, Integer.parseInt(values[3]) - 1)
+										value = s1.getCell(Common.getLetterNumber(values[2]) - 1, Integer.parseInt(values[3]) - 1)
 												.getContents();
 									}
 									if (values[0].equals("2")) {
@@ -389,15 +392,15 @@ public class GwyChkFrame extends javax.swing.JFrame {
 					resultDialog.setLocationRelativeTo(resultDialog.getOwner());
 
 				} catch (FileNotFoundException e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(GwyChkFrame.this, "发生异常！ 抛出的异常:" + e);
 				} catch (IOException e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(GwyChkFrame.this, "发生异常！ 抛出的异常:" + e);
 				} catch (BiffException e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(GwyChkFrame.this, "发生异常！ 抛出的异常:" + e);
 				} catch (IllegalExpressionException e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(GwyChkFrame.this, "发生异常！ 抛出的异常:" + e);
 				} catch (ParseException e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(GwyChkFrame.this, "发生异常！ 抛出的异常:" + e);
 				}
 
 				progressBar.setValue(0);
@@ -490,13 +493,13 @@ public class GwyChkFrame extends javax.swing.JFrame {
 				wwb.write();
 
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(this, "发生异常！ 抛出的异常:" + e);
 			} catch (IOException e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(this, "发生异常！ 抛出的异常:" + e);
 			} catch (RowsExceededException e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(this, "发生异常！ 抛出的异常:" + e);
 			} catch (WriteException e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(this, "发生异常！ 抛出的异常:" + e);
 			} finally {
 				if (wwb != null) {
 					try {
@@ -563,9 +566,17 @@ public class GwyChkFrame extends javax.swing.JFrame {
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				GwyChkFrame gwyChk = new GwyChkFrame();
+				final GwyChkFrame gwyChk = new GwyChkFrame();
 				gwyChk.setVisible(true);
 				gwyChk.setLocationRelativeTo(gwyChk.getOwner());
+
+//				Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
+//
+//					public void uncaughtException(Thread t, Throwable e) {
+//						JOptionPane.showMessageDialog(gwyChk, "发生异常！ 捕获自线程 " + t.getName() + " 抛出的异常:" + e);
+//					}
+//
+//				});
 			}
 		});
 	}
