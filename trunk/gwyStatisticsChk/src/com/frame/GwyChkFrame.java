@@ -331,12 +331,12 @@ public class GwyChkFrame extends javax.swing.JFrame {
 									String value = "";
 
 									if (values[0].equals("1")) {
-										Sheet s1 = wb1.getSheet(Integer.parseInt(values[1]));// 获取sheet
+										Sheet s1 = wb1.getSheet(Integer.parseInt(values[1]));
 										value = s1.getCell(Common.getLetterNumber(values[2]) - 1, Integer.parseInt(values[3]) - 1)
 												.getContents();
 									}
 									if (values[0].equals("2")) {
-										Sheet s2 = wb2.getSheet(Integer.parseInt(values[1]));// 获取sheet
+										Sheet s2 = wb2.getSheet(Integer.parseInt(values[1]));
 										value = s2.getCell(Common.getLetterNumber(values[2]) - 1, Integer.parseInt(values[3]) - 1)
 												.getContents();
 									}
@@ -392,14 +392,19 @@ public class GwyChkFrame extends javax.swing.JFrame {
 
 				} catch (FileNotFoundException e) {
 					JOptionPane.showMessageDialog(GwyChkFrame.this, "发生异常！ 抛出的异常:" + e);
+					e.printStackTrace();
 				} catch (IOException e) {
 					JOptionPane.showMessageDialog(GwyChkFrame.this, "发生异常！ 抛出的异常:" + e);
+					e.printStackTrace();
 				} catch (BiffException e) {
 					JOptionPane.showMessageDialog(GwyChkFrame.this, "发生异常！ 抛出的异常:" + e);
+					e.printStackTrace();
 				} catch (IllegalExpressionException e) {
 					JOptionPane.showMessageDialog(GwyChkFrame.this, "发生异常！ 抛出的异常:" + e);
+					e.printStackTrace();
 				} catch (ParseException e) {
 					JOptionPane.showMessageDialog(GwyChkFrame.this, "发生异常！ 抛出的异常:" + e);
+					e.printStackTrace();
 				}
 
 				progressBar.setValue(0);
@@ -451,7 +456,7 @@ public class GwyChkFrame extends javax.swing.JFrame {
 				fos = new FileOutputStream(URL);
 
 				wwb = Workbook.createWorkbook(fos);
-				WritableSheet ws = wwb.createSheet(jComboBox1.getSelectedItem().toString() + resultDialog.getTitle(), 0);
+				WritableSheet ws = wwb.createSheet(jComboBox1.getSelectedItem().toString(), 0);
 				ws.setColumnView(0, 54);
 				ws.setColumnView(1, 34);
 
@@ -476,14 +481,22 @@ public class GwyChkFrame extends javax.swing.JFrame {
 				cfResult.setBorder(Border.ALL, jxl.format.BorderLineStyle.THIN);
 				// cfResult.setWrap(true);
 
-				int j = 2;
+				Label label1 = new Label(0, 2, "校核结果");
+				label1.setCellFormat(cfResult);
+				ws.addCell(label1);
+				
+				Label label2 = new Label(1, 2, "建议值");
+				label2.setCellFormat(cfResult);
+				ws.addCell(label2);
+				
+				int j = 3;
 				for (String key : resultMap.keySet()) {
 
-					Label label1 = new Label(0, j, key);
+					label1 = new Label(0, j, key);
 					label1.setCellFormat(cfResult);
 					ws.addCell(label1);
 
-					Label label2 = new Label(1, j, resultMap.get(key));
+					label2 = new Label(1, j, resultMap.get(key));
 					label2.setCellFormat(cfResult);
 					ws.addCell(label2);
 					j++;
@@ -493,12 +506,16 @@ public class GwyChkFrame extends javax.swing.JFrame {
 
 			} catch (FileNotFoundException e) {
 				JOptionPane.showMessageDialog(this, "发生异常！ 抛出的异常:" + e);
+				e.printStackTrace();
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(this, "发生异常！ 抛出的异常:" + e);
+				e.printStackTrace();
 			} catch (RowsExceededException e) {
 				JOptionPane.showMessageDialog(this, "发生异常！ 抛出的异常:" + e);
+				e.printStackTrace();
 			} catch (WriteException e) {
 				JOptionPane.showMessageDialog(this, "发生异常！ 抛出的异常:" + e);
+				e.printStackTrace();
 			} finally {
 				if (wwb != null) {
 					try {
@@ -573,6 +590,7 @@ public class GwyChkFrame extends javax.swing.JFrame {
 //
 //					public void uncaughtException(Thread t, Throwable e) {
 //						JOptionPane.showMessageDialog(gwyChk, "发生异常！ 捕获自线程 " + t.getName() + " 抛出的异常:" + e);
+//				        e.printStackTrace();
 //					}
 //
 //				});
