@@ -20,6 +20,8 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -31,7 +33,6 @@ import jxl.Workbook;
 import jxl.format.Border;
 import jxl.read.biff.BiffException;
 import jxl.write.Label;
-import jxl.write.NumberFormat;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
@@ -43,7 +44,6 @@ import org.wltea.expression.ExpressionExecutor;
 import org.wltea.expression.ExpressionToken;
 import org.wltea.expression.IllegalExpressionException;
 
-import sun.tools.jar.Main;
 
 import com.base.Common;
 
@@ -311,9 +311,10 @@ public class GwyChkFrame extends javax.swing.JFrame {
 					Workbook wb2 = Workbook.getWorkbook(is2);
 
 					String str = null;
-					progressBar.setValue(10);
+					progressBar.setValue(20);
 					while ((str = br.readLine()) != null) {
-						if (!str.isEmpty()) {
+						if (!str.isEmpty()&& !str.startsWith("#")) {
+							System.out.println(str);
 							str = str.replaceAll(" ", "");
 
 							String str1[] = str.split("\\?");
@@ -324,7 +325,8 @@ public class GwyChkFrame extends javax.swing.JFrame {
 							String experssions[] = expression.split(";");
 
 							for (int i = 0; i < experssions.length; i++) {
-								if (!operator.contains(experssions[i])) {
+								if (!operator.contains(experssions[i]) && 
+										Pattern.matches("\\d{1,3},\\d{1,3},\\w{1,3},\\d{1,3}", experssions[i])) {
 
 									String values[] = experssions[i].split(",");
 
@@ -358,15 +360,18 @@ public class GwyChkFrame extends javax.swing.JFrame {
 
 							List<ExpressionToken> tokenList = ee.analyze(sb.toString());
 
+							System.out.println(tokenList);
 							tokenList = ee.compile(tokenList);
 
-							if (!Boolean.valueOf(ee.execute(tokenList).toJavaObject().toString())) {
+							if (true||!Boolean.valueOf(ee.execute(tokenList).toJavaObject().toString())) {
 								// System.out.println("´íÎó;" + reason);
 								resultMap.put(reason, sb.toString());
 							}
 
 						}
 					}
+					
+					progressBar.setValue(80);
 
 					br.close();
 					reader.close();

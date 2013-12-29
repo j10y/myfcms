@@ -24,7 +24,7 @@ public class FunctionalityTest {
 		ExpressionExecutor ee = new ExpressionExecutor();
 		ArrayList<String> expressions = new ArrayList<String>();
 		// ËãÊõ·û
-		expressions.add("-1+2-3*4/5%6");
+		expressions.add("3>2 || 2<1");
 		// LE
 		expressions.add("\"12345\" <= \"223\"");
 		expressions.add("12345 <= 223");
