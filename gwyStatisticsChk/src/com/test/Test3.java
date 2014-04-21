@@ -41,7 +41,7 @@ public class Test3 {
 	public static void main(String[] args) {
 
 		try {
-			Test3.readExcel("test1.xls");// 文件存放地址
+			Test3.readExcel("test.xls");// 文件存放地址
 		} catch (BiffException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
