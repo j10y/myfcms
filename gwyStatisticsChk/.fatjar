@@ -1,14 +1,14 @@
 #Fat Jar Configuration File
-#Thu Dec 26 15:47:28 CST 2013
+#Tue Feb 18 16:16:24 CST 2014
 onejar.license.required=true
 manifest.classpath=
 manifest.removesigners=true
 onejar.checkbox=false
-jarname=gwyStatisticsChk_fat.jar
+jarname=f\:\\Desktop\\gwyStatisticsChk_fat.jar
 manifest.mergeall=true
-manifest.mainclass=com.frame.GwyChkFrame
+manifest.mainclass=com.test.EncryptTest
 manifest.file=<createnew>
-jarname.isextern=false
+jarname.isextern=true
 onejar.expand=
 excludes=
 includes=
