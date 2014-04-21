@@ -17,7 +17,7 @@ public class Common {
 	public static int getLetterNumber(String var) {
 		
 		if(var.length()>1){
-			throw new RuntimeException("字符串长度超过2");
+			return getLetterNumber(var.charAt(0))*26+getLetterNumber(var.substring(1, var.length()));
 		}
 		char cha = var.charAt(0);
 		// 如果输入的不是字母，就抛出异常
