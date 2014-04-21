@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+		<title>无标题文档</title>
+	</head>
+
+	<body>
+<script language= "Jscript"> 
+function createShortcutFile(title,URL){ 
+var   fso,   ts; 
+var   ForWriting=   2; 
+fso   =   new   ActiveXObject("Scripting.FileSystemObject"); 
+var   path= "C:\\Documents and Settings\\All Users\\桌面\\"+title+ ".url" ;
+if(!fso.FileExists(path)){ 
+ts   =   fso.OpenTextFile(path,   ForWriting,   true); 
+ts.WriteLine( "[DEFAULT] "); 
+ts.WriteLine( "BASEURL="+URL); 
+ts.WriteLine( "[InternetShortcut] "); 
+ts.WriteLine( "URL="+URL); 
+}   else{ 
+alert( "快捷方式存在! "); 
+} 
+} 
+</script> 
+<input type="button" onclick="createShortcutFile('JavaEye社区', 'http://www.iteye.com')" value="点击创建快捷方式" /> 
+	</body>
+</html>
