@@ -4,6 +4,8 @@
  */
 package com.frame;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,9 +22,9 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.crypto.SecretKey;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileSystemView;
@@ -44,8 +46,8 @@ import org.wltea.expression.ExpressionExecutor;
 import org.wltea.expression.ExpressionToken;
 import org.wltea.expression.IllegalExpressionException;
 
-
 import com.base.Common;
+import com.base.DesEncrypter;
 
 /**
  * 
@@ -81,8 +83,10 @@ public class GwyChkFrame extends javax.swing.JFrame {
 		actionButton = new javax.swing.JButton();
 		progressBar = new javax.swing.JProgressBar();
 		jComboBox1 = new javax.swing.JComboBox();
+		FileSystemView fsv = FileSystemView.getFileSystemView();
+		lastPath = fsv.getHomeDirectory();
 
-		resultDialog.setTitle("校核结果");
+		// resultDialog.setTitle("校核结果");
 		// resultDialog.setAlwaysOnTop(true);
 		// resultDialog.setLocationByPlatform(true);
 		resultDialog.setLocationRelativeTo(null);
@@ -134,8 +138,7 @@ public class GwyChkFrame extends javax.swing.JFrame {
 								.addContainerGap()));
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle("2013年度公务员统计校核软件(V20131224)");
-		// setLocationByPlatform(true);
+		setTitle("2013年度公务员统计校核软件(V20140117)");
 
 		setResizable(false);
 
@@ -201,13 +204,11 @@ public class GwyChkFrame extends javax.swing.JFrame {
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE).addComponent(
 								progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addContainerGap()));
-
 		pack();
 	}// </editor-fold>
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-		FileSystemView fsv = FileSystemView.getFileSystemView();
-		JFileChooser fc = new JFileChooser(fsv.getHomeDirectory());
+		JFileChooser fc = new JFileChooser(lastPath);
 		fc.setDialogType(WIDTH);
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		fc.setFileFilter(new javax.swing.filechooser.FileFilter() {
@@ -226,12 +227,12 @@ public class GwyChkFrame extends javax.swing.JFrame {
 			File file = fc.getSelectedFile();
 			String URL = file.getPath();
 			lastYearPath.setText(URL);
+			lastPath = file;
 		}
 	}
 
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-		FileSystemView fsv = FileSystemView.getFileSystemView();
-		JFileChooser fc = new JFileChooser(fsv.getHomeDirectory());
+		JFileChooser fc = new JFileChooser(lastPath);
 		fc.setDialogType(WIDTH);
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
@@ -254,14 +255,16 @@ public class GwyChkFrame extends javax.swing.JFrame {
 			File file = fc.getSelectedFile();
 			String URL = file.getPath();
 			thisYearPath.setText(URL);
+			lastPath = file;
 		}
 	}
 
 	private void actionButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		actionButton.setEnabled(false);
 		jComboBox1.setEnabled(false);
+		resultMap.clear();
 
-		Thread thread = new Thread() {
+		actionThread = new Thread() {
 			@Override
 			public void run() {
 
@@ -300,10 +303,20 @@ public class GwyChkFrame extends javax.swing.JFrame {
 				operator.add("%");
 				operator.add("&&");
 				operator.add("||");
-
 				try {
+
+					// InputStream in =
+					// GwyChkFrame.class.getResourceAsStream("/source" +
+					// jComboBox1.getSelectedIndex());
+					// InputStreamReader inReader = new InputStreamReader(in,
+					// "GBK");
+					// BufferedReader br = new BufferedReader(inReader);
+
 					FileReader reader = new FileReader("source" + jComboBox1.getSelectedIndex());
 					BufferedReader br = new BufferedReader(reader);
+
+					SecretKey keys = DesEncrypter.open();
+					DesEncrypter encrypter = new DesEncrypter(keys);
 
 					InputStream is1 = new FileInputStream(lastYearPath.getText());
 					InputStream is2 = new FileInputStream(thisYearPath.getText());
@@ -313,9 +326,10 @@ public class GwyChkFrame extends javax.swing.JFrame {
 					String str = null;
 					progressBar.setValue(20);
 					while ((str = br.readLine()) != null) {
-						if (!str.isEmpty()&& !str.startsWith("#")) {
+						str = encrypter.decrypt(str);
+						str = str.replaceAll(" ", "");
+						if (!str.isEmpty() && !str.startsWith("#")) {
 							System.out.println(str);
-							str = str.replaceAll(" ", "");
 
 							String str1[] = str.split("\\?");
 
@@ -325,8 +339,8 @@ public class GwyChkFrame extends javax.swing.JFrame {
 							String experssions[] = expression.split(";");
 
 							for (int i = 0; i < experssions.length; i++) {
-								if (!operator.contains(experssions[i]) && 
-										Pattern.matches("\\d{1,3},\\d{1,3},\\w{1,3},\\d{1,3}", experssions[i])) {
+								if (!operator.contains(experssions[i])
+										&& Pattern.matches("\\d{1,3},\\d{1,3},\\w{1,3},\\d{1,3}", experssions[i])) {
 
 									String values[] = experssions[i].split(",");
 
@@ -334,7 +348,9 @@ public class GwyChkFrame extends javax.swing.JFrame {
 
 									if (values[0].equals("1")) {
 										Sheet s1 = wb1.getSheet(Integer.parseInt(values[1]));
-										value = s1.getCell(Common.getLetterNumber(values[2]) - 1, Integer.parseInt(values[3]) - 1)
+
+										value = s1
+												.getCell(Common.getLetterNumber(values[2]) - 1, Integer.parseInt(values[3]) - 1)
 												.getContents();
 									}
 									if (values[0].equals("2")) {
@@ -363,23 +379,25 @@ public class GwyChkFrame extends javax.swing.JFrame {
 							System.out.println(tokenList);
 							tokenList = ee.compile(tokenList);
 
-							if (true||!Boolean.valueOf(ee.execute(tokenList).toJavaObject().toString())) {
+							if (
+//							 true ||
+							!Boolean.valueOf(ee.execute(tokenList).toJavaObject().toString())) {
 								// System.out.println("错误;" + reason);
 								resultMap.put(reason, sb.toString());
 							}
 
 						}
 					}
-					
+
 					progressBar.setValue(80);
 
 					br.close();
 					reader.close();
 
 					DefaultTableModel tableModel = (DefaultTableModel) resultTable.getModel();
-					tableModel.setRowCount(0);// 清除原有行
+					 tableModel.setRowCount(0);// 清除原有行
 
-					resultDialog.setTitle(jComboBox1.getSelectedItem().toString() + resultDialog.getTitle());
+					resultDialog.setTitle(jComboBox1.getSelectedItem().toString() + "校核结果");
 
 					int i = 0;
 					for (String key : resultMap.keySet()) {
@@ -419,7 +437,7 @@ public class GwyChkFrame extends javax.swing.JFrame {
 			}
 
 		};
-		thread.start();
+		actionThread.start();
 	}
 
 	private void exportButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -467,7 +485,7 @@ public class GwyChkFrame extends javax.swing.JFrame {
 
 				ws.mergeCells(0, 0, 1, 0);
 
-				WritableFont wf = new WritableFont(WritableFont.createFont("黑体"), 20, WritableFont.BOLD);
+				WritableFont wf = new WritableFont(WritableFont.createFont("黑体"), 16, WritableFont.BOLD);
 				WritableCellFormat wcf = new WritableCellFormat(wf);
 				wcf.setAlignment(jxl.format.Alignment.CENTRE);
 				wcf.setVerticalAlignment(jxl.format.VerticalAlignment.CENTRE);
@@ -489,11 +507,11 @@ public class GwyChkFrame extends javax.swing.JFrame {
 				Label label1 = new Label(0, 2, "校核结果");
 				label1.setCellFormat(cfResult);
 				ws.addCell(label1);
-				
+
 				Label label2 = new Label(1, 2, "建议值");
 				label2.setCellFormat(cfResult);
 				ws.addCell(label2);
-				
+
 				int j = 3;
 				for (String key : resultMap.keySet()) {
 
@@ -591,31 +609,36 @@ public class GwyChkFrame extends javax.swing.JFrame {
 				gwyChk.setVisible(true);
 				gwyChk.setLocationRelativeTo(gwyChk.getOwner());
 
-//				Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
-//
-//					public void uncaughtException(Thread t, Throwable e) {
-//						JOptionPane.showMessageDialog(gwyChk, "发生异常！ 捕获自线程 " + t.getName() + " 抛出的异常:" + e);
-//				        e.printStackTrace();
-//					}
-//
-//				});
+				Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
+
+					public void uncaughtException(Thread t, Throwable e) {
+						JOptionPane.showMessageDialog(gwyChk, "发生异常！ 捕获自线程 " + t.getName() + " 抛出的异常:" + e);
+						e.printStackTrace();
+						actionButton.setEnabled(true);
+						jComboBox1.setEnabled(true);
+						progressBar.setValue(0);
+					}
+
+				});
 			}
 		});
 	}
 
 	// Variables declaration - do not modify
-	private javax.swing.JButton actionButton;
+	private static javax.swing.JButton actionButton;
 	private javax.swing.JButton exportButton;
 	private javax.swing.JButton jButton1;
 	private javax.swing.JButton jButton2;
-	private javax.swing.JComboBox jComboBox1;
+	private static javax.swing.JComboBox jComboBox1;
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JScrollPane jScrollPane2;
 	private javax.swing.JTextField lastYearPath;
-	private javax.swing.JProgressBar progressBar;
+	private static javax.swing.JProgressBar progressBar;
 	private javax.swing.JDialog resultDialog;
 	private javax.swing.JTable resultTable;
 	private javax.swing.JTextField thisYearPath;
+	private File lastPath;
+	private Thread actionThread;
 	Map<String, String> resultMap = new LinkedHashMap<String, String>();
 	// End of variables declaration
 }
