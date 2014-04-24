@@ -10,7 +10,7 @@
 	</property>
 	<property>
 		<name>searcher.dir</name>
-		<value>D:\wrokspace\Nutch1.2\crawl</value>
+		<value>D:\workspace\Nutch1.2\crawl</value>
 	</property>
 
 	<property>
@@ -63,7 +63,7 @@
 	<property>
 		<name>plugin.includes</name>
 		<value>
-			protocol-http|urlfilter-regex|parse-(text|html|js|tika)|analysis-(zh)|index-(basic|anchor)|query-(basic|site|url)|response-(json|xml)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)
+			analysis-(zh)|protocol-http|urlfilter-regex|parse-(text|html|js|tika)|index-(basic|anchor)|query-(basic|site|url)|response-(json|xml)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)
 		</value>
 		<description>
 			Regular expression naming plugin directory names to include.
