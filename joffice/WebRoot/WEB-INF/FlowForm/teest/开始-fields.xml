@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<fields>
-	<field name="MyCheckbox" label="asdfa" type="varchar" length="0" isShowed="true"/>
-	<field name="MyField" label="sfddasf" type="varchar" length="0" isShowed="true"/>
-</fields>
