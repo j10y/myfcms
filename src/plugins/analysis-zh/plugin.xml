@@ -2,9 +2,9 @@
    id="analysis-zh"
    name="Chinese Analysis Plug-in"
    version="1.0.0"
-   provider-name="word.analysis">
+   provider-name="ChineseAnalysis">
    <runtime>
-      <library name="IKAnalyzer.jar">
+      <library name="analysis-zh.jar">
          <export name="*"/>
       </library>
    </runtime>
@@ -15,7 +15,7 @@
               name="Chinese Analyzer"
               point="org.apache.nutch.analysis.NutchAnalyzer">
       <implementation id="ChineseAnalyzer"
-                      class="org.wltea.analyzer.lucene.ChineseAnalyzer">
+                      class="org.apache.nutch.analysis.zh.ChineseAnalyzer">
 		<parameter name="lang" value="zh"/>
       </implementation>
    </extension>
