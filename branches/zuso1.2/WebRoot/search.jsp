@@ -277,7 +277,7 @@ function queryfocus() { document.search.query.focus(); }
 		<br>
 		<br>
 		
-		<div align="left" style="width: 546px;">
+		<div align="left" style="width: 640px;">
 					<%
 						for (int i = 0; i < length; i++) { // display the hits
 							Hit hit = show[i];
