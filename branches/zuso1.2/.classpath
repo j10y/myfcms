@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="conf"/>
 	<classpathentry excluding="org/apache/nutch/analysis/lang/|org/apache/nutch/analysis/" kind="src" path="test"/>
-	<classpathentry excluding="org/apache/nutch/analysis/lang/|org/apache/nutch/summary/basic/|org/wltea/analyzer/|org/apache/nutch/analysis/zh/" kind="src" path="plugins"/>
+	<classpathentry excluding="org/apache/nutch/analysis/lang/|org/apache/nutch/summary/basic/|org/wltea/analyzer/" kind="src" path="plugins"/>
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jsp-2.1/jsp-2.1.jar"/>
