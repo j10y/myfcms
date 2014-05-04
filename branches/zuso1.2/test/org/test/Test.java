@@ -18,14 +18,12 @@ public class Test {
 	public static void main(String[] args) {
 		/* 标准分词器：单子分词 */
 		try {
-			String text2 = "党政领导干部选拔任用工作条例";
+			String text2 = "党政 领导 干部 选拔任用 工作条例";
 			Configuration conf = NutchConfiguration.createCrawlConfiguration();
 			Analyzer analyzer = AnalyzerFactory.get(conf).get("zh");
 			testAnalyzer(analyzer, text2); // 使用IKAnalyzer，词库分词
 	
-			
-		
-			
+//			System.out.println(new ToAnalysis().parse("党政领导干部选拔任用工作条例")); 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
