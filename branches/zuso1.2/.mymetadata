@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="zuso1.2"
+  name="zuso1.3"
   id="myeclipse.1392940838531"
   context-root="/zuso"
   j2ee-spec="5.0"
-  archive="zuso1.2.war">
+  archive="zuso1.3.war">
   <attributes>
     <attribute name="webrootdir" value="/WebRoot" />
   </attributes>
