@@ -11,6 +11,7 @@ import org.apache.lucene.analysis.Tokenizer;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
 import org.apache.lucene.analysis.tokenattributes.PositionIncrementAttribute;
 import org.apache.lucene.analysis.tokenattributes.TermAttribute;
+import org.apache.lucene.analysis.tokenattributes.TypeAttribute;
 
 public class AnsjTokenizer extends Tokenizer {
 	// 当前词
@@ -22,6 +23,8 @@ public class AnsjTokenizer extends Tokenizer {
 	private Analysis ta = null;
 	private Set<String> filter;
 	private boolean pstemming;
+	
+	private TypeAttribute typeAtt;
 
 	private final PorterStemmer stemmer = new PorterStemmer();
 
@@ -33,6 +36,7 @@ public class AnsjTokenizer extends Tokenizer {
 		positionAttr = addAttribute(PositionIncrementAttribute.class);
 		this.filter = filter;
 		this.pstemming = pstemming;
+		typeAtt = addAttribute(TypeAttribute.class);
 	}
 
 	@Override
