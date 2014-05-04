@@ -22,10 +22,10 @@ public class SearchTest {
 		try {
 			
 			bean = new NutchBean(conf);
-//			Query query = Query.parse("No matter where you go in life or how old you get","zh", conf);
-			Query query = Query.parse("焦裕禄精神学习","zh", conf);			
+			Query query = Query.parse("No matter where you go in life or how old you get","en", conf);
+//			Query query = Query.parse("焦裕禄精神学习","zh", conf);			
 			System.out.println(query);
-			query =  Query.parse(query.toString().replace("\"", ""),"zh", conf);
+//			query =  Query.parse(query.toString().replace("\"", ""),"zh", conf);
 			System.out.println(query);
 			query.getParams().setMaxHitsPerDup(1);
 			final Hits hits = bean.search(query);

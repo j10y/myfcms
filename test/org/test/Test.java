@@ -18,7 +18,7 @@ public class Test {
 	public static void main(String[] args) {
 		/* 标准分词器：单子分词 */
 		try {
-			String text2 = "党政 领导 干部 选拔任用 工作条例";
+			String text2 = "有着近80年历史的Ray-Ban雷朋太阳镜已深入人心，无需赘述了。";
 			Configuration conf = NutchConfiguration.createCrawlConfiguration();
 			Analyzer analyzer = AnalyzerFactory.get(conf).get("zh");
 			testAnalyzer(analyzer, text2); // 使用IKAnalyzer，词库分词
@@ -35,7 +35,7 @@ public class Test {
 	private static void testAnalyzer(Analyzer analyzer, String text) throws Exception {
 		System.out.println("当前使用的分词器：" + analyzer.getClass());
 
-		TokenStream tokenStream = analyzer.tokenStream("content", new StringReader(text));
+		TokenStream tokenStream = analyzer.tokenStream("DEFAULT", new StringReader(text));
 		tokenStream.addAttribute(TypeAttribute.class);
 
 		while (tokenStream.incrementToken()) {

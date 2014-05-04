@@ -129,21 +129,93 @@
 	<head>
 		<title><%=queryString%>_组工搜索</title>
 		<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-		<link rel="alternate" type="application/rss+xml" title="RSS"
-			href="<%=rss%>" />
-		<%-- 
-<jsp:include page="include/style.html"/>
---%>
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="<%=rss%>" />
+		
+
 
 		<link rel="stylesheet" type="text/css" href="include/style2.css" />
-		<!-- 
-<base href="base/zh">
- -->
+
 		<script type="text/javascript">
 <!--
 function queryfocus() { document.search.query.focus(); }
 // -->
-</script>
+		</script>
+		<style id="style_super_inline">
+.bg {
+	background-image:
+		url(./img/icons_37d13939.png);
+	background-repeat: no-repeat;
+	_background-image:
+		url(./img/icons_5e61a51c.gif);
+	background-repeat: no-repeat
+}
+
+.s_ipt_wr {
+	width: 536px;
+	height: 30px;
+	display: inline-block;
+	margin-right: 5px;
+	background-position: 0 -96px;
+	border: 1px solid #b6b6b6;
+	border-color: #7b7b7b #b6b6b6 #b6b6b6 #7b7b7b;
+	vertical-align: top
+}
+
+.s_ipt {
+	width: 523px;
+	height: 22px;
+	font: 16px/ 22px arial;
+	margin: 5px 0 0 7px;
+	padding: 0;
+	background: #fff;
+	border: 0;
+	outline: 0;
+	-webkit-appearance: none
+}
+
+.s_btn {
+	width: 95px;
+	height: 32px;
+	padding-top: 2px\9;
+	font-size: 14px;
+	padding: 0;
+	background-color: #ddd;
+	background-position: 0 -48px;
+	border: 0;
+	cursor: pointer
+}
+
+.s_btn_h {
+	background-position: -240px -48px
+}
+
+.s_btn_wr {
+	width: 97px;
+	height: 34px;
+	display: inline-block;
+	background-position: -120px -48px; *
+	position: relative;
+	z-index: 0;
+	vertical-align: top
+}
+#u,#head,#tool,#search,#foot {
+	font-size: 12px
+}
+#foot {
+	height: 20px;
+	line-height: 20px;
+	color: #77c;
+	background: #e6e6e6;
+	text-align: center
+}
+
+#foot span {
+	color: #666
+}
+</style>
+
+
+
 	</head>
 
 	<body onLoad="queryfocus();">
@@ -152,13 +224,12 @@ function queryfocus() { document.search.query.focus(); }
  --%>
 		<p style="height: 20px" />
 		<form name="search" class="fm" action="./search.jsp" method="get">
-			<input name="query" size=44 value="<%=htmlQueryString%>">
+			<span class="bg s_ipt_wr"><input name="query" maxlength="100" class="s_ipt" id="kw" name="wd" autocomplete="off" value="<%=htmlQueryString%>"></span>
 			<input type="hidden" name="hitsPerPage" value="<%=hitsPerPage%>">
 			<input type="hidden" name="lang" value="<%=language%>">
-			<input type="submit" value="搜索一下">
-			<!-- 
- <a href="help.html">help</a>
-  -->
+			<span class="bg s_btn_wr"><input type="submit" id="su" value="搜索一下" class="bg s_btn" onmousedown="this.className='bg s_btn s_btn_h'"
+							onmouseout="this.className='bg s_btn'">
+			</span>
 		</form>
 
 		<%--
@@ -206,7 +277,7 @@ function queryfocus() { document.search.query.focus(); }
 		<br>
 		<br>
 		
-		<div align="left" style="width: 640px;">
+		<div align="left" style="width: 546px;">
 					<%
 						for (int i = 0; i < length; i++) { // display the hits
 							Hit hit = show[i];
@@ -266,9 +337,9 @@ function queryfocus() { document.search.query.focus(); }
 					<%
 						}
 					%>
-		</div>
+		
 		<%---------------------------------------------------%>
-		<table align="left">
+		<table align="left" >
 			<tr>
 				<td>
 					<%
@@ -349,8 +420,25 @@ function queryfocus() { document.search.query.focus(); }
 				</td>
 			</tr>
 		</table>
+		</div>
 		<%---------------------------------------------------%>
+<!--  
+		<div id="search">
+			<form name="search" class="fm" action="./search.jsp" method="get">
+				<span class="bg s_ipt_wr"><input name="query" maxlength="100" class="s_ipt" id="kw" name="wd" autocomplete="off" value="<%=htmlQueryString%>"></span>
+				<input type="hidden" name="hitsPerPage" value="<%=hitsPerPage%>">
+				<input type="hidden" name="lang" value="<%=language%>">
+				<span class="bg s_btn_wr"><input type="submit" id="su" value="搜索一下" class="bg s_btn" onmousedown="this.className='bg s_btn s_btn_h'"
+								onmouseout="this.className='bg s_btn'">
+				</span>
+			</form>
 
+		</div>
 
+		<div id="foot">
+				
+				<span>中共黄冈市委组织部信息管理科 ©2013</span>
+		</div>
+	-->	
 	</body>
 </html>
