@@ -62,7 +62,7 @@
 	<!--  -->
 	<property>
 		<name>plugin.includes</name>
-		<value>analysis-zh|language-identifier|protocol-http|urlfilter-regex|parse-(text|html|js|tika)|index-(basic|anchor)|query-(basic|site|url)|response-(json|xml)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
+		<value>analysis-zh|language-identifier|protocol-http|urlfilter-regex|parse-(text|html)|index-(basic|anchor)|query-(basic|site|url)|response-(json|xml)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
 		<description>
 			Regular expression naming plugin directory names to include.
 			Any plugin not matching this expression is excluded. In any
