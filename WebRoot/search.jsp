@@ -130,11 +130,7 @@
 		<title><%=queryString%>_组工搜索</title>
 		<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
 		<link rel="alternate" type="application/rss+xml" title="RSS" href="<%=rss%>" />
-		
-
-
 		<link rel="stylesheet" type="text/css" href="include/style2.css" />
-
 		<script type="text/javascript">
 <!--
 function queryfocus() { document.search.query.focus(); }
@@ -223,15 +219,20 @@ function queryfocus() { document.search.query.focus(); }
 <jsp:include page="include/header.html"/>
  --%>
 		<p style="height: 20px" />
+		<nobr>
 		<form name="search" class="fm" action="./search.jsp" method="get">
-			<span class="bg s_ipt_wr"><input name="query" maxlength="100" class="s_ipt" id="kw" name="wd" autocomplete="off" value="<%=htmlQueryString%>"></span>
 			<input type="hidden" name="hitsPerPage" value="<%=hitsPerPage%>">
 			<input type="hidden" name="lang" value="<%=language%>">
-			<span class="bg s_btn_wr"><input type="submit" id="su" value="搜索一下" class="bg s_btn" onmousedown="this.className='bg s_btn s_btn_h'"
-							onmouseout="this.className='bg s_btn'">
+			<span class="bg s_ipt_wr">
+			<input name="query" maxlength="100" 
+			class="s_ipt" id="kw" name="wd" autocomplete="off" value="<%=htmlQueryString%>"></span>
+			<span class="bg s_btn_wr">
+			<input type="submit" id="su" value="搜索一下" 
+			class="bg s_btn" onmousedown="this.className='bg s_btn s_btn_h'"
+							 onmouseout="this.className='bg s_btn'">
 			</span>
 		</form>
-
+		</nobr>
 		<%--
 // Uncomment this to enable query refinement.
 // Do the same to "refine-query-init.jsp" above.
