@@ -12,10 +12,20 @@
 		<name>searcher.dir</name>
 		<value>D:\workspace\zuso1.3\crawl</value>
 	</property>
+	
+	<property>
+	  <name>http.robots.agents</name>
+	  <value>spider,*</value>
+	  <description>The agent strings we'll look for in robots.txt files,
+	  comma-separated, in decreasing order of precedence. You should
+	  put the value of http.agent.name as the first agent name, and keep the
+	  default * at the end of the list. E.g.: BlurflDev,Blurfl,*
+	  </description>
+	</property>
 
 	<property>
 		<name>searcher.summary.length</name>
-		<value>20</value>
+		<value>30</value>
 		<description>
 			The total number of terms to display in a hit summary.
 		</description>
@@ -62,7 +72,7 @@
 	<!--  -->
 	<property>
 		<name>plugin.includes</name>
-		<value>analysis-zh|language-identifier|protocol-http|urlfilter-regex|parse-(text|html)|index-(basic|anchor)|query-(basic|site|url)|response-(json|xml)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
+		<value>analysis-zh|language-identifier|protocol-http|urlfilter-regex|parse-(text|html|js|tika)|index-(basic|anchor)|query-(basic|site|url)|response-(json|xml)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
 		<description>
 			Regular expression naming plugin directory names to include.
 			Any plugin not matching this expression is excluded. In any
@@ -79,16 +89,7 @@
 			away from anything not provided by parse-tika.
 		</description>
 	</property>
-
-	<property>
-		<name>parser.character.encoding.default</name>
-		<value>GBK</value>
-		<description>
-			The character encoding to fall back to when no other
-			information is available
-		</description>
-	</property>
-
+	
 	<property>
 		<name>db.parsemeta.to.crawldb</name>
 		<value>zh</value>
@@ -111,6 +112,13 @@
 	</property>
 	
 	<property>
+	  <name>parser.character.encoding.default</name>
+	  <value>utf-8</value>
+	  <description>The character encoding to fall back to when no other information
+	  is available</description>
+	</property>
+	
+	<property>
 		<name>http.accept.language</name>
 		<value>ja-jp,en-us,zh-cn,en-gb,zh;q=0.7,*;q=0.3</value>
 		<description>
@@ -119,6 +127,29 @@
 			retrieve. It is a useful setting for search engines build
 			for certain national group.
 		</description>
+	</property>
+	
+	<property>
+	  <name>searcher.summary.context</name>
+	  <value>10</value>
+	  <description>
+	  The number of context terms to display preceding and following
+	  matching terms in a hit summary.
+	  </description>
+	</property>
+	
+	<property>
+	  <name>fetcher.server.delay</name>
+	  <value>1.0</value>
+	  <description>The number of seconds the fetcher will delay between 
+	   successive requests to the same server.</description>
+	</property>
+	
+	<property>
+	  <name>fetcher.threads.per.host</name>
+	  <value>5</value>
+	  <description>This number is the maximum number of threads that
+	    should be allowed to access a host at one time.</description>
 	</property>
 	
 </configuration>
