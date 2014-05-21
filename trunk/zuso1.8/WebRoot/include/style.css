@@ -1,0 +1,523 @@
+@CHARSET "UTF-8";
+
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td
+	{
+	margin: 0;
+	padding: 0
+}
+
+html {
+	color: #000;
+	overflow-y: scoll;
+	overflow: -moz-scrollbars-vertical
+}
+
+body,button,input,select,textarea {
+	font-size: 12px;
+	font-family: arial, \5b8b\4f53, sans-serif
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-size: 100%
+}
+
+em {
+	font-style: normal
+}
+
+small {
+	font-size: 12px
+}
+
+ul,ol {
+	list-style: none
+}
+
+a {
+	text-decoration: none
+}
+
+a:hover {
+	text-decoration: underline
+}
+
+legend {
+	color: #000
+}
+
+fieldset,img {
+	border: 0
+}
+
+button,input,select,textarea {
+	font-size: 100%
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+img {
+	-ms-interpolation-mode: bicubic
+}
+
+textarea {
+	resize: vertical
+}
+
+.left {
+	float: left
+}
+
+.right {
+	float: right
+}
+
+.overflow {
+	overflow: hidden
+}
+
+.hide {
+	display: none
+}
+
+.block {
+	display: block
+}
+
+.inline {
+	display: inline
+}
+
+.error {
+	color: #F00;
+	font-size: 12px
+}
+
+label,button {
+	cursor: pointer
+}
+
+.grid-5,.grid-30,.grid-39,.grid-42,.grid-50,.grid-56,.grid-62,.grid-71,.grid-73,.grid-92,.grid-98
+	{
+	overflow: hidden;
+	margin: 0 auto;
+	padding: 0
+}
+
+.grid-5 {
+	width: 50px
+}
+
+.grid-30 {
+	width: 300px
+}
+
+.grid-39 {
+	width: 390px
+}
+
+.grid-42 {
+	width: 420px
+}
+
+.grid-50 {
+	width: 500px
+}
+
+.grid-56 {
+	width: 560px
+}
+
+.grid-62 {
+	width: 620px
+}
+
+.grid-71 {
+	width: 710px
+}
+
+.grid-73 {
+	width: 730px
+}
+
+.grid-92 {
+	width: 920px
+}
+
+.grid-98 {
+	width: 980px
+}
+
+.clearfix:after {
+	content: '\20';
+	display: block;
+	height: 0;
+	clear: both
+}
+
+.clearfix {
+	zoom: 1
+}
+
+.clear {
+	clear: both;
+	height: 0;
+	line-height: 0;
+	font-size: 0;
+	visibility: hidden;
+	overflow: hidden
+}
+
+.wordwrap {
+	word-break: break-all;
+	word-wrap: break-word
+}
+
+pre.wordwrap {
+	white-space: pre-wrap
+}
+
+body {
+	text-align: center
+}
+
+body,form,#s_fm {
+	position: relative
+}
+
+td {
+	text-align: left
+}
+
+img {
+	border: 0
+}
+
+#u_sp {
+	color: #999;
+	padding: 4px 10px 5px 0;
+	text-align: right
+}
+
+#u_sp a {
+	color: #00c;
+	text-decoration: underline;
+	margin: 0 5px
+}
+
+#u_sp a.last {
+	margin-right: 0
+}
+
+#m {
+	width: 680px;
+	margin: 0 auto
+}
+
+#nv {
+	margin: 0 0 5px;
+	_margin-bottom: 4px;
+	padding: 2px 0 0;
+	text-align: left;
+	text-indent: 72px
+}
+
+#nv a,#nv b {
+	margin-left: 12px
+}
+
+#nv a,#nv b,.btn,#lk {
+	font-size: 14px
+}
+
+#s_fm {
+	text-align: left;
+	padding-left: 61px;
+	z-index: 300;
+	height: 35px
+}
+
+#kw1,.btn,.btn_wr,#mCon1 {
+	background: url(../img/spis.png) no-repeat #fff
+}
+
+#kw1 {
+	width: 529px;
+	height: 22px;
+	padding: 4px 7px;
+	padding: 6px 7px 2px\9;
+	font: 16px arial;
+	border: 1px solid #cdcdcd;
+	border-color: #9a9a9a #cdcdcd #cdcdcd #9a9a9a;
+	vertical-align: top;
+	outline: none
+}
+
+.btn {
+	width: 95px;
+	height: 32px;
+	padding: 0;
+	padding-top: 2px\9;
+	border: 0;
+	background-position: 0 -35px;
+	background-color: #ddd;
+	cursor: pointer
+}
+
+.btn_h {
+	background-position: -100px -35px
+}
+
+#kw1,.btn_wr {
+	margin: 0 3px 0 0
+}
+
+.btn_wr {
+	background-position: -202px -33px;
+	width: 97px;
+	height: 34px;
+	display: inline-block;
+	_margin-top: 1px
+}
+
+#lk {
+	margin: 33px 0
+}
+
+#lk span {
+	font: 14px "\5b8b\4f53"
+}
+
+#lh {
+	margin: 16px 0 5px;
+	word-spacing: 3px
+}
+
+#mCon1 {
+	position: absolute;
+	right: 5px;
+	top: 10px;
+	height: 15px;
+	line-height: 15px;
+	width: 25px;
+	cursor: pointer;
+	padding: 0 16px 0 0;
+	background-position: right -206px
+}
+
+#mCon1 span {
+	color: #00c;
+	cursor: default;
+	display: block
+}
+
+#mCon1 .hw {
+	text-decoration: underline;
+	cursor: pointer
+}
+
+#mMenu1 {
+	width: 56px;
+	border: 1px solid #9B9B9B;
+	list-style: none;
+	position: absolute;
+	right: 2px;
+	top: 28px;
+	display: none;
+	background: #fff;
+	box-shadow: 1px 1px 2px #ccc;
+	-moz-box-shadow: 1px 1px 2px #ccc;
+	-webkit-box-shadow: 1px 1px 2px #ccc;
+	filter: progid :       DXImageTransform .       Microsoft .   
+		   Shadow(Strength =       2, Direction =       135, Color =      
+		"#cccccc") \9
+
+}
+
+#mMenu1 a,#mMenu1 a:visited {
+	color: #00C;
+	width: 100%;
+	height: 100%;
+	display: block;
+	line-height: 22px;
+	text-indent: 6px;
+	text-decoration: none;
+	filter: none\9
+
+}
+
+#mMenu1 a:hover {
+	background: #ebebeb
+}
+
+#mMenu1 .ln {
+	height: 1px;
+	background: #ebebeb;
+	overflow: hidden;
+	font-size: 1px;
+	line-height: 1px;
+	margin-top: -1px
+}
+
+#cp,#cp a {
+	color: #77c
+}
+
+#tb_mr {
+	color: #00C;
+	cursor: pointer;
+	position: relative;
+	z-index: 200
+}
+
+#tb_mr b {
+	font-weight: normal
+}
+
+#nv a,#tb_mr b {
+	text-decoration: underline
+}
+
+#nv a {
+	color: #00C
+}
+
+#hwr_div,#loading {
+	z-index: 3000
+}
+
+#mHolder1 {
+	display: none
+}
+
+#mHolder1 .c-icon {
+	right: 0;
+	top: 0;
+	position: absolute;
+	float: right;
+	width: 15px;
+	height: 15px
+}
+
+.user-name-top {
+	cursor: pointer;
+	line-height: 20px;
+	color: #00C;
+	font-weight: bold;
+	padding-right: 11px;
+	background: url(../img/spis.png) no-repeat right -221px
+}
+
+html {
+	overflow: -moz-scrollbars-vertical;
+	overflow-y: scroll
+}
+
+.main {
+	display: none
+}
+
+#s_feed {
+	display: none
+}
+
+.s-ps-sug {
+	border: 1px solid #817F82;
+	position: absolute;
+	top: 32px;
+	left: 0
+}
+
+.s-ps-sug table {
+	width: 100%;
+	background: #fff;
+	cursor: default
+}
+
+.s-ps-sug td {
+	color: #000;
+	font: 14px arial;
+	height: 25px;
+	line-height: 25px;
+	padding: 0 8px
+}
+
+.s-ps-sug td b {
+	color: #000
+}
+
+.s-ps-sug .mo {
+	background: #ebebeb
+}
+
+.s-ps-sug .ml {
+	background: #fff
+}
+
+.s-ps-sug td.sug_storage {
+	color: #7A77C8
+}
+
+.s-ps-sug td.sug_storage b {
+	color: #7A77C8
+}
+
+.s-ps-sug .sug_del {
+	font-size: 12px;
+	color: #666;
+	text-decoration: underline;
+	float: right;
+	cursor: pointer;
+	display: none
+}
+
+.s-ps-sug .sug_del {
+	font-size: 12px;
+	color: #666;
+	text-decoration: underline;
+	float: right;
+	cursor: pointer;
+	display: none
+}
+
+.s-ps-sug .mo .sug_del {
+	display: block
+}
+
+.s-ps-sug .sug_ala {
+	border-bottom: 1px solid #e6e6e6
+}
+
+.s-ps-sug td h3 {
+	line-height: 14px;
+	margin: 6px 0 4px 0;
+	font-size: 12px;
+	font-weight: normal;
+	color: #7B7B7B;
+	padding-left: 20px;
+	background: url(../img/sug_bd.png) no-repeat left center
+}
+
+.s-ps-sug td p {
+	font-size: 14px;
+	font-weight: bold;
+	padding-left: 20px
+}
+
+.s-ps-sug td p span {
+	font-size: 12px;
+	font-weight: normal;
+	color: #7B7B7B
+}
+
+#s_user_center {
+	font-weight: normal;
+	background-position: right -223px\9
+
+}
+
+#s_user_center_menu {
+	right: 131px
+}
