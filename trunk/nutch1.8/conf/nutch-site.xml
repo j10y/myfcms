@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+	
+	<property>
+    <name>http.robots.agents</name>
+    <value>zuso,*</value>
+    <description>The agent strings we'll look for in robots.txt files,
+    comma-separated, in decreasing order of precedence. You should
+    put the value of http.agent.name as the first agent name, and keep the
+    default * at the end of the list. E.g.: BlurflDev,Blurfl,*
+    </description>
+  </property>
+  
+  <property>
+    <name>http.agent.name</name>
+    <value>zuso-robot</value>
+  </property>
+  
+  <property>
+		<name>http.agent.version</name>
+		<value>1.8</value>
+		<description>
+			A version string to advertise in the User-Agent header.
+		</description>
+	</property>
+	
+  <property>
+    <name>http.timeout</name>
+    <value>20000</value>
+    <description>The default network timeout, in milliseconds.</description>
+  </property>
+
+	<property>
+		<name>http.redirect.max</name>
+		<value>2</value>
+		<description>
+			The maximum number of redirects the fetcher will follow when
+			trying to fetch a page. If set to negative or 0, fetcher
+			won't immediately follow redirected URLs, instead it will
+			record them for later fetching.
+		</description>
+	</property>
+	
+	<property>
+		<name>parser.character.encoding.default</name>
+		<value>utf-8</value>
+		<description>
+			The character encoding to fall back to when no other
+			information is available
+		</description>
+	</property>
+	
+	 <property>
+    <name>db.parsemeta.to.crawldb</name>
+    <value>zh</value>
+    <description>Comma-separated list of parse metadata keys to transfer to the crawldb (NUTCH-779).
+     Assuming for instance that the languageidentifier plugin is enabled, setting the value to 'lang' 
+     will copy both the key 'lang' and its value to the corresponding entry in the crawldb.
+    </description>
+  </property>
+	
+	<property>
+		<name>http.content.limit</name>
+		<value>-1</value>
+		<description>
+			The length limit for downloaded content using the http://
+			protocol, in bytes. If this value is nonnegative (>=0),
+			content longer than it will be truncated; otherwise, no
+			truncation at all. Do not confuse this setting with the
+			file.content.limit setting.
+		</description>
+	</property>
+	
+	<property>
+		<name>http.accept.language</name>
+		<value>ja-jp,en-us,en-gb,en,zh,zh-cn;q=0.7,*;q=0.3</value>
+		<description>
+			Value of theAccept-Language request header field.
+			This allows selecting non-Englishlanguage as default one to
+			retrieve.
+			It is a useful setting for search enginesbuild for certain
+			national group.
+		</description>
+	</property>
+	
+	<property>
+    <name>fetcher.server.delay</name>
+    <value>1.0</value>
+    <description>The number of seconds the fetcher will delay between 
+     successive requests to the same server.</description>
+  </property>
+  
+  
+  	<property>
+	    <name>fetcher.threads.per.host</name>
+	    <value>5</value>
+	    <description>This number is the maximum number of threads that
+	      should be allowed to access a host at one time.</description>
+	  </property>
+</configuration>
