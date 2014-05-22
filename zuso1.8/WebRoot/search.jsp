@@ -257,6 +257,7 @@
 					<br>
 					<font style="line-height: 150%;font-size: 14px;">
 					<span class="url"><%=Entities.encode(url)%></span>
+					(<a target="_blank" href="./cached.jsp?id=<%=id%>">网页快照</a>)
 					</font>
 					<br>
 					<br>
