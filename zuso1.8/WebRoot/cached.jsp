@@ -10,7 +10,6 @@
 	import="org.apache.solr.common.SolrDocument"
 	import="org.apache.solr.common.SolrDocumentList"
 	import="org.apache.commons.lang.StringUtils"
- 
 %>
 	<%!
 	private String url = null;
@@ -37,7 +36,6 @@
 	} catch (Exception e) {
 		doc = new SolrDocument();
 	}
-  String contentType =  "text/html";
   String content = String.valueOf(doc.getFieldValue("cached"));
 %>
 <!---->
