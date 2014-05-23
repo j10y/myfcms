@@ -47,7 +47,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/solr-core-4.8.0.jar" sourcepath="F:/java/solr-4.8.0-src/solr/core/src/java/"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/solr-solrj-4.8.0.jar" sourcepath="F:/java/solr-4.8.0-src/solr/solrj/src/java"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spatial4j-0.4.1.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/tree_split-1.4.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/tree_split-1.4.jar" sourcepath="D:/workspace/tree_split-master/src/main/java"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/wstx-asl-3.2.7.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/zookeeper-3.4.6.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ext/jcl-over-slf4j-1.7.6.jar"/>
@@ -55,8 +55,8 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ext/log4j-1.2.16.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ext/slf4j-api-1.7.6.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ext/slf4j-log4j12-1.7.6.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ansj-solr4.7.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ansj-solr4.7.jar" sourcepath="D:/workspace2/mlcsseg/mlcsseg-ansj/src/main/java"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mlcsseg-common.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ansj_seg-1.4-min.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ansj_seg-1.4-min.jar" sourcepath="D:/workspace/ansj_seg-master/src/main/java"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
