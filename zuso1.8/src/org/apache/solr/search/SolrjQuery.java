@@ -1,8 +1,6 @@
 package org.apache.solr.search;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringReader;
 import java.util.List;
 import java.util.Map;
 
@@ -12,12 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.search.highlight.Formatter;
-import org.apache.lucene.search.highlight.Highlighter;
-import org.apache.lucene.search.highlight.QueryScorer;
-import org.apache.lucene.search.highlight.Scorer;
-import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -26,10 +18,15 @@ import org.apache.solr.common.SolrDocumentList;
 
 public class SolrjQuery extends HttpServlet {
 
+	/**
+	 * 描述：
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String url = "http://127.0.0.1:8080/zusoweb/";
 
 	private HttpSolrServer solrServer = null;
-	private final static String ASC = "asc";
+	//private final static String ASC = "asc";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -68,11 +65,11 @@ public class SolrjQuery extends HttpServlet {
 			SolrDocumentList docs = qrsp.getResults();
 			Map<String, Map<String, List<String>>> hightlightMap = qrsp.getHighlighting();
 
-			PrintWriter out = resp.getWriter();
+//			PrintWriter out = resp.getWriter();
 
-			int end = (int) Math.min(docs.size(), start + rows);
-			int length = end - start;
-			int realEnd = (int) Math.min(docs.size(), start);
+//			int end = (int) Math.min(docs.size(), start + rows);
+//			int length = end - start;
+//			int realEnd = (int) Math.min(docs.size(), start);
 
 			
 
