@@ -6,8 +6,6 @@
 	<classpathentry excluding="org/apache/nutch/analysis/lang/|org/apache/nutch/summary/basic/|org/wltea/analyzer/" kind="src" path="plugins"/>
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jsp-2.1/jsp-2.1.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jsp-2.1/jsp-api-2.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ansj_seg-1.4.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/apache-solr-core-1.4.0.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/apache-solr-solrj-1.4.0.jar"/>
@@ -29,12 +27,8 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hsqldb-1.8.0.10.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/icu4j-4_0_1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jakarta-oro-2.0.8.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasper-compiler-5.5.12.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasper-runtime-5.5.12.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jcl-over-slf4j-1.5.5.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jets3t-0.6.1.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jetty-6.1.14.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jetty-util-6.1.14.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/junit-3.8.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/kfs-0.2.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log4j-1.2.15.jar"/>
@@ -43,7 +37,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/oro-2.0.8.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/resolver.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/serializer.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/servlet-api-2.5-6.1.14.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-api-1.5.5.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-log4j12-1.4.3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/taglibs-i18n.jar"/>
