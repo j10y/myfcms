@@ -58,5 +58,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ansj-solr4.7.jar" sourcepath="D:/workspace2/mlcsseg/mlcsseg-ansj/src/main/java"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mlcsseg-common.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ansj_seg-1.4-min.jar" sourcepath="D:/workspace/ansj_seg-master/src/main/java"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/servlet-api-3.0.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

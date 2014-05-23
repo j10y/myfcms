@@ -27,13 +27,6 @@
 
 		
 	}%>
-
-<%--
-// Uncomment this to enable query refinement.
-// Do the same to "refine-query.jsp" below.,
-<%@ include file="./refine-query-init.jsp" %>
---%>
-
 <%
 
     url = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
@@ -244,7 +237,7 @@
 								title = url;
 							}
 					%>
-					<b><a href="<%=url%>" target="_blank"><%=title%></a>
+					<b><nobr><a href="<%=url%>" target="_blank"><%=title%></a></nobr>
 					</b>
 					<%-- 
 					<%@ include file="more.jsp"%>
