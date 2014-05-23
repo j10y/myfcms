@@ -46,5 +46,10 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xercesImpl.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xmlenc-0.52.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasper-compiler-5.5.12.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jasper-runtime-5.5.12.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jetty-6.1.14.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jetty-util-6.1.14.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/servlet-api-2.5-6.1.14.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
