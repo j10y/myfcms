@@ -13,6 +13,8 @@
 	import="org.apache.solr.common.SolrDocumentList"
 	import="org.apache.commons.lang.StringUtils"
 	%>
+<%@page import="org.apache.lucene.search.Query"%>
+<%@page import="org.apache.solr.client.solrj.SolrQuery.ORDER"%>
 	<%!
 	
 	private String url = null;
