@@ -67,7 +67,7 @@
 	query.setHighlightSimplePost("</font></strong>");
 	query.setHighlightFragsize(70);
 	query.setHighlightSnippets(3);
-	log.warn("query request from " + request.getRemoteAddr());
+	log.warn("requestfrom: " + request.getRemoteAddr());
 	log.warn("queryString: " + q);
 	
 %>
@@ -230,6 +230,10 @@
 							String title = String.valueOf(doc.getFieldValue("title")); 
 							String summary = String.valueOf(doc.getFieldValue("content"));
 							
+							java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+							Date date = (Date)doc.get("tstamp");
+							String dateString = formatter.format(date);
+							
 							boolean showSummary = true;
 							boolean showCached = true;
 
@@ -254,6 +258,7 @@
 					<font style="line-height: 150%;font-size: 14px;">
 					<span class="url"><%=Entities.encode(url)%></span>
 					(<a target="_blank" href="./cached.jsp?id=<%=id%>">网页快照</a>)
+					<br><%=dateString %>
 					</font>
 					<br>
 					<br>
