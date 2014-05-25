@@ -173,7 +173,7 @@ do
   fi
 
   echo "Indexing $SEGMENT on SOLR index -> $SOLRURL"
-  $bin/nutch index -D solr.server.url=$SOLRURL $CRAWL_PATH/crawldb -linkdb $CRAWL_PATH/linkdb $CRAWL_PATH/segments/$SEGMENT
+  $bin/nutch index -D solr.server.url=$SOLRURL $CRAWL_PATH/crawldb -linkdb $CRAWL_PATH/linkdb $CRAWL_PATH/segments/$SEGMENT -filter -normalize
   
   if [ $? -ne 0 ] 
    then exit $? 
