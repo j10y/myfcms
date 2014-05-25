@@ -50,6 +50,8 @@
 <%=id%>
 </h3>
 <hr>
-<% if (content != null && !content.equals("")) {%>
+<% if (!content.isEmpty()) {%>
 <%= content %>
-<% } %>
+<% } else {%>
+
+<% }%>

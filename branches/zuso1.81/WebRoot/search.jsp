@@ -67,6 +67,11 @@
 	query.setHighlightSimplePost("</font></strong>");
 	query.setHighlightFragsize(70);
 	query.setHighlightSnippets(3);
+	query.setParam("defType","edismax");
+	query.setParam("qf","title^1 content^0.8");
+	//query.setParam("pf","title content");
+	query.setParam("fl","*,score");
+	//query.setParam("bf","sum(recip(ms(NOW,tstamp),3.16e-11,1,1))");
 	log.warn("requestfrom: " + request.getRemoteAddr());
 	log.warn("queryString: " + q);
 	
@@ -173,7 +178,7 @@
 			<input type="hidden" name="rows" value="<%=rows%>">
 			<span class="bg s_ipt_wr">
 			<input name="q" maxlength="100" 
-			class="s_ipt" id="kw" name="wd" autocomplete="off" value="<%=q%>"></span>
+			class="s_ipt" id="kw" name="wd" autocomplete="off" value="<%=htmlQueryString%>"></span>
 			<span class="bg s_btn_wr">
 			<input type="submit" id="su" value="搜索一下" 
 			class="bg s_btn" onmousedown="this.className='bg s_btn s_btn_h'"
@@ -230,10 +235,6 @@
 							String title = String.valueOf(doc.getFieldValue("title")); 
 							String summary = String.valueOf(doc.getFieldValue("content"));
 							
-							java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
-							Date date = (Date)doc.get("tstamp");
-							String dateString = formatter.format(date);
-							
 							boolean showSummary = true;
 							boolean showCached = true;
 
@@ -258,7 +259,7 @@
 					<font style="line-height: 150%;font-size: 14px;">
 					<span class="url"><%=Entities.encode(url)%></span>
 					(<a target="_blank" href="./cached.jsp?id=<%=id%>">网页快照</a>)
-					<br><%=dateString %>
+					<br><%=doc.getFieldValue("score") %>
 					</font>
 					<br>
 					<br>
