@@ -219,8 +219,8 @@
 						for (int i = 0; i < length; i++) { // display the hits
 							SolrDocument doc = docs.get(i);
 						
-							if(String.valueOf(doc.getFieldValue("content")).length()>200){
-								doc.setField("content",String.valueOf(doc.getFieldValue("content")).substring(0,200));
+							if(String.valueOf(doc.getFieldValue("content")).length()>100){
+								doc.setField("content",String.valueOf(doc.getFieldValue("content")).substring(0,100));
 							}
 							
 							String id = String.valueOf(doc.get("id"));
@@ -235,6 +235,12 @@
 							String url = String.valueOf(doc.getFieldValue("url"));
 							String title = String.valueOf(doc.getFieldValue("title")); 
 							String summary = String.valueOf(doc.getFieldValue("content"));
+							
+							if(summary.length()>700){
+								summary = summary.substring(0,700)+"...";
+							}
+							
+							System.out.println(String.valueOf(doc.getFieldValue("content")).length());
 							
 							boolean showSummary = true;
 							boolean showCached = true;
