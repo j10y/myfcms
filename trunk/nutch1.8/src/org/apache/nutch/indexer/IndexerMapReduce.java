@@ -17,6 +17,7 @@
 package org.apache.nutch.indexer;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -277,9 +278,16 @@ implements Mapper<Text, Writable, Text, NutchWritable>,
     
     byte[] contentByte = content.getContent();
     StringBuilder retval = new StringBuilder();
-    char ch;
+    Metadata parseMeta = parseData.getParseMeta();
+    String charEncodingForConversion = parseMeta.get(Nutch.CHAR_ENCODING_FOR_CONVERSION);
 
-    String contentString = new String(contentByte,"UTF-8");
+    if(null == charEncodingForConversion||charEncodingForConversion.isEmpty()){
+    	charEncodingForConversion="gb2312";
+    }
+    String contentString = new String(contentByte,charEncodingForConversion);
+    contentString = URLEncoder.encode(contentString,"utf-8");
+    
+    char ch;
     for (int i = 0; i < contentString.length(); i++) {
     	ch = contentString.charAt(i);
     	if (ch % 0x10000 != 0xffff && // 0xffff - 0x10ffff range step 0x10000
