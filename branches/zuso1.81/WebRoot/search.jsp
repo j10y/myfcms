@@ -69,7 +69,7 @@
 	query.setHighlightSnippets(3);
 	query.setParam("defType","edismax");
 	query.setParam("qf","title^1 content^0.8");
-	//query.setParam("pf","title content");
+	query.setParam("pf","title content");
 	query.setParam("fl","*,score");
 	//query.setParam("bf","sum(recip(ms(NOW,tstamp),3.16e-11,1,1))");
 	log.warn("requestfrom: " + request.getRemoteAddr());
@@ -259,7 +259,9 @@
 					<font style="line-height: 150%;font-size: 14px;">
 					<span class="url"><%=Entities.encode(url)%></span>
 					(<a target="_blank" href="./cached.jsp?id=<%=id%>">网页快照</a>)
+					<%-- 
 					<br><%=doc.getFieldValue("score") %>
+					--%>
 					</font>
 					<br>
 					<br>
