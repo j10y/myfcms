@@ -1,6 +1,5 @@
-<%@ page
-	session="false"
-	contentType="text/html; charset=UTF-8"
+<%@ page trimDirectiveWhitespaces="true" %>
+<%@ page session="false" contentType="text/html; charset=UTF-8"
 	import="java.io.*"
 	import="java.util.*"
 	import="org.apache.solr.html.Entities"

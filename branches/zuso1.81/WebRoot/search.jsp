@@ -70,7 +70,7 @@
 	query.setParam("defType","edismax");
 	query.setParam("qf","title^1 content^0.8");
 	query.setParam("pf","title content");
-	query.setParam("fl","*,score");
+	//query.setParam("fl","*,score");
 	//query.setParam("bf","sum(recip(ms(NOW,tstamp),3.16e-11,1,1))");
 	log.warn("requestfrom: " + request.getRemoteAddr());
 	log.warn("queryString: " + q);
