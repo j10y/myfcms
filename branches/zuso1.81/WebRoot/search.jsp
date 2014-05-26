@@ -66,7 +66,7 @@
 	query.addHighlightField("content");
 	query.setHighlightSimplePre("<strong><font color='red'>");
 	query.setHighlightSimplePost("</font></strong>");
-	query.setHighlightFragsize(70);
+	query.setHighlightFragsize(50);
 	query.setHighlightSnippets(3);
 	query.setParam("defType","edismax");
 	query.setParam("qf","title^1 content^0.8");
@@ -219,8 +219,8 @@
 						for (int i = 0; i < length; i++) { // display the hits
 							SolrDocument doc = docs.get(i);
 						
-							if(String.valueOf(doc.getFieldValue("content")).length()>100){
-								doc.setField("content",String.valueOf(doc.getFieldValue("content")).substring(0,100));
+							if(String.valueOf(doc.getFieldValue("content")).length()>500){
+								doc.setField("content",String.valueOf(doc.getFieldValue("content")).substring(0,500));
 							}
 							
 							String id = String.valueOf(doc.get("id"));
@@ -236,9 +236,9 @@
 							String title = String.valueOf(doc.getFieldValue("title")); 
 							String summary = String.valueOf(doc.getFieldValue("content"));
 							
-							if(summary.length()>700){
-								summary = summary.substring(0,700)+"...";
-							}
+							//if(summary.length()>700){
+							//	summary = summary.substring(0,700)+"...";
+							//}
 							
 							boolean showSummary = true;
 							boolean showCached = true;
