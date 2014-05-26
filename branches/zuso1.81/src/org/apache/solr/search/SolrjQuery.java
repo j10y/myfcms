@@ -26,12 +26,8 @@ public class SolrjQuery extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String url = "http://127.0.0.1:8080/zusoweb/";
-
 	private EmbeddedSolrServer solrServer = null;
 	//private final static String ASC = "asc";
-	
-    private static CoreContainer coreContainer = null;  
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -107,11 +103,9 @@ public class SolrjQuery extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		
-		System.setProperty("solr.solr.home", "D://test//solrcore//core0");  
-//		CoreContainer.Initializer initializer = new CoreContainer.Initializer();  
-//        coreContainer = initializer.initialize();  
-//        server = new EmbeddedSolrServer(coreContainer, "");  
+		CoreContainer coreContainer = new CoreContainer("D:/workspace/zuso1.81/solr");
+		coreContainer.load();
+		solrServer = new EmbeddedSolrServer(coreContainer, "");  
 	}
 
 }
