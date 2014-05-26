@@ -285,7 +285,6 @@ implements Mapper<Text, Writable, Text, NutchWritable>,
     	charEncodingForConversion="gb2312";
     }
     String contentString = new String(contentByte,charEncodingForConversion);
-    contentString = URLEncoder.encode(contentString,"utf-8");
     
     char ch;
     for (int i = 0; i < contentString.length(); i++) {
