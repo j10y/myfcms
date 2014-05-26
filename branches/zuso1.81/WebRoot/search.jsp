@@ -240,8 +240,6 @@
 								summary = summary.substring(0,700)+"...";
 							}
 							
-							System.out.println(String.valueOf(doc.getFieldValue("content")).length());
-							
 							boolean showSummary = true;
 							boolean showCached = true;
 
