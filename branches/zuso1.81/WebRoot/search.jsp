@@ -73,9 +73,6 @@
 	query.setParam("pf","title content");
 	query.setParam("mm","2<-1 5<80%");
 	//query.setParam("fl","*,score");
-	log.warn("requestfrom: " + request.getRemoteAddr());
-	log.warn("queryString: " + q);
-	
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%
@@ -167,11 +164,7 @@
 	color: #666
 }
 </style>
-
-
-
 	</head>
-
 	<body onLoad="queryfocus();">
 		<p style="height: 20px" />
 		<nobr>
@@ -187,7 +180,6 @@
 			</span>
 		</form>
 		</nobr>
-
 		<%
 
 		    QueryResponse qrsp = null;
@@ -203,17 +195,18 @@
 			}
 			int end = Math.min(start+rows,start + docs.size());
 			int length = Math.min(rows,docs.size());
+			
+			log.warn("requestfrom: " + request.getRemoteAddr());
+			log.warn("queryString: " + q);
+			log.warn("NumFound:    " + docs.getNumFound());
 		%>
-
 		第<b><%=new Long((end == 0) ? 0 : (start + 1))%>-<%=new Long(end)%></b>项(共有<%=new Long(docs.getNumFound())%>项搜索结果):
 		<%
 			// be responsive
 			out.flush();
 		%>
-
 		<br>
 		<br>
-		
 		<div align="left" style="width: 640px;">
 					<%
 						for (int i = 0; i < length; i++) { // display the hits
@@ -236,13 +229,8 @@
 							String title = String.valueOf(doc.getFieldValue("title")); 
 							String summary = String.valueOf(doc.getFieldValue("content"));
 							
-							//if(summary.length()>700){
-							//	summary = summary.substring(0,700)+"...";
-							//}
-							
 							boolean showSummary = true;
 							boolean showCached = true;
-
 
 							if (title == null || title.equals("")) { // use url for docs w/o title
 								title = url;
@@ -305,7 +293,6 @@
 					%>
 				
 				<td>
-
 					<form name="next" action="./search.jsp" method="get">
 						<input type="hidden" name="start" value="<%=i%>">
 						<input type="hidden" name="rows" value="<%=rows%>">
