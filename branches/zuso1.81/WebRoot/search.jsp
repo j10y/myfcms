@@ -135,7 +135,7 @@
 							boolean showSummary = true;
 							boolean showCached = true;
 
-							if (title == null || title.equals("")) { // use url for docs w/o title
+							if (StringUtils.isBlank(title)||title.equals("null")) { // use url for docs w/o title
 								title = url;
 							}
 					%>
