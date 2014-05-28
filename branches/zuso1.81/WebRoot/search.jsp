@@ -14,7 +14,7 @@
 	import="org.apache.solr.common.SolrDocumentList"
 	import="org.apache.commons.lang.StringUtils"
 	%>
-<%@ page import="org.apache.log4j.Logger" %>
+<%@page import="org.apache.log4j.Logger" %>
 <%@page import="org.apache.lucene.search.Query"%>
 <%@page import="org.apache.solr.client.solrj.SolrQuery.ORDER"%>
 	<%!
@@ -23,14 +23,10 @@
 	private HttpSolrServer solrServer = null;
 	private Logger log = Logger.getLogger("Search");
 	
-	/**
-	 * Initialize
-	 */
 	public void jspInit() {
 
 		
 	}%>
-
 <%
 
     url = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
@@ -54,32 +50,13 @@
 	if (rowsString != null)
 		rows = Integer.parseInt(rowsString);
 
-	String sort = request.getParameter("sort");
-	boolean reverse = sort != null && "true".equals(request.getParameter("reverse"));
-	
 	SolrQuery query = new SolrQuery();
 	query.setQuery(q);
 	query.setStart(start);
 	query.setRows(rows);
-	query.setHighlight(true);
-	query.addHighlightField("title");
-	query.addHighlightField("content");
-	query.setHighlightSimplePre("<strong><font color='red'>");
-	query.setHighlightSimplePost("</font></strong>");
-	query.setHighlightFragsize(50);
-	query.setHighlightSnippets(3);
-	query.setParam("defType","edismax");
-	query.setParam("qf","title^1 content^0.8");
-	query.setParam("pf","title content");
-	query.setParam("mm","2<-1 5<80%");
-	//query.setParam("fl","*,score");
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%
-	// To prevent the character encoding declared with 'contentType' page
-	// directive from being overriden by JSTL (apache i18n), we freeze it
-	// by flushing the output buffer. 
-	// see http://java.sun.com/developer/technicalArticles/Intl/MultilingualJSP/
 	out.flush();
 %>
 <html lang="zh-CN">
@@ -87,83 +64,10 @@
 	<head>
 		<title><%=q%>_组工搜索</title>
 		<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-		<link rel="stylesheet" type="text/css" href="include/style2.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<script type="text/javascript">
 			function queryfocus() { document.search.q.focus(); }
 		</script>
-		<style id="style_super_inline">
-.bg {
-	background-image:
-		url(./img/icons_37d13939.png);
-	background-repeat: no-repeat;
-	_background-image:
-		url(./img/icons_5e61a51c.gif);
-	background-repeat: no-repeat
-}
-
-.s_ipt_wr {
-	width: 536px;
-	height: 30px;
-	display: inline-block;
-	margin-right: 5px;
-	background-position: 0 -96px;
-	border: 1px solid #b6b6b6;
-	border-color: #7b7b7b #b6b6b6 #b6b6b6 #7b7b7b;
-	vertical-align: top
-}
-
-.s_ipt {
-	width: 523px;
-	height: 22px;
-	font: 16px/ 22px arial;
-	margin: 5px 0 0 7px;
-	padding: 0;
-	background: #fff;
-	border: 0;
-	outline: 0;
-	-webkit-appearance: none
-}
-
-.s_btn {
-	width: 95px;
-	height: 32px;
-	padding-top: 2px\9;
-	font-size: 14px;
-	padding: 0;
-	background-color: #ddd;
-	background-position: 0 -48px;
-	border: 0;
-	cursor: pointer
-}
-
-.s_btn_h {
-	background-position: -240px -48px
-}
-
-.s_btn_wr {
-	width: 97px;
-	height: 34px;
-	display: inline-block;
-	background-position: -120px -48px; *
-	position: relative;
-	z-index: 0;
-	vertical-align: top
-}
-#u,#head,#tool,#search,#foot {
-	font-size: 12px
-}
-#foot {
-	height: 20px;
-	line-height: 20px;
-	color: #77c;
-	background: #e6e6e6;
-	text-align: center
-}
-
-#foot span {
-	color: #666
-}
-</style>
 	</head>
 	<body onLoad="queryfocus();">
 		<p style="height: 20px" />
@@ -181,7 +85,6 @@
 		</form>
 		</nobr>
 		<%
-
 		    QueryResponse qrsp = null;
 			SolrDocumentList docs = null;
 			Map<String, Map<String, List<String>>> hightlightMap = null;
