@@ -36,8 +36,8 @@
 
 # skip URLs with slash-delimited segment that repeats 3+ times, to break loops
 -.*(/[^/]+)/[^/]+\1/[^/]+\1/
--^http://localhost*/*
--^http://127.0.0.1*/*
+-^[a-zA-z]+://localhost[^\s]*
+-^[a-zA-z]+://127.0.0.1[^\s]*
 
 # accept anything else
 +.
