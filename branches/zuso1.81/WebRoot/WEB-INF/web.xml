@@ -144,16 +144,6 @@
     </init-param>
   </servlet>
   
-  <servlet>
-    <servlet-name>SolrjQuery</servlet-name>
-    <servlet-class>org.apache.solr.search.SolrjQuery</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>SolrjQuery</servlet-name>
-    <url-pattern>/s</url-pattern>
-  </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>RedirectOldAdminUI</servlet-name>
     <url-pattern>/admin/</url-pattern>
