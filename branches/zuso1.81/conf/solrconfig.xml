@@ -846,12 +846,17 @@
        <!-- 关键字高亮算法 -->
        <str name="hl">true</str>
        <str name="hl.fl">title content</str>
+       <str name="ht.encoder">html</str>
        <str name="hl.simple.pre">&lt;strong&gt;&lt;font color='red'&gt;</str>
        <str name="hl.simple.post">&lt;/font&gt;&lt;/strong&gt;</str>
-       <int name="hl.snippets">3</int>
-       <int name="hl.fragsize">50</int>
-       <int name="hl.maxAlternateFieldLength">150</int>
-       <str name="hl">hl.mergeContiguous</str>       
+       <str name="hl.mergeContiguous">true</str>
+       <str name="f.title.hl.fragsize">0</str>
+       <str name="f.title.hl.alternateField">title</str>
+       <str name="f.content.hl.snippets">3</str>
+       <str name="f.content.hl.fragsize">50</str>
+       <str name="f.content.hl.alternateField">content</str>
+       <str name="f.content.hl.maxAlternateFieldLength">200</str>
+
      </lst>
     <!-- In addition to defaults, "appends" params can be specified
          to identify values which should be appended to the list of
