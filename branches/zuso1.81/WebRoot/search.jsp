@@ -114,10 +114,6 @@
 					<%
 						for (int i = 0; i < length; i++) { // display the hits
 							SolrDocument doc = docs.get(i);
-						
-							if(String.valueOf(doc.getFieldValue("content")).length()>500){
-								doc.setField("content",String.valueOf(doc.getFieldValue("content")).substring(0,500));
-							}
 							
 							String id = String.valueOf(doc.get("id"));
 							Map<String, List<String>> highlight = hightlightMap.get(id);
@@ -128,9 +124,9 @@
 									doc.setField("content",StringUtils.join(highlight.get("content"),""));
 							}
 							
-							String url = String.valueOf(doc.getFieldValue("url"));
-							String title = String.valueOf(doc.getFieldValue("title")); 
-							String summary = String.valueOf(doc.getFieldValue("content"));
+							String url = String.valueOf(doc.get("url"));
+							String title = String.valueOf(doc.get("title")); 
+							String summary = String.valueOf(doc.get("content"));
 							
 							boolean showSummary = true;
 							boolean showCached = true;
