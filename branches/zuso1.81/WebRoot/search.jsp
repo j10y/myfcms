@@ -54,6 +54,7 @@
 	query.setQuery(q);
 	query.setStart(start);
 	query.setRows(rows);
+	query.setParam("mm","2<-1 5<-2 6<90%");
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%
@@ -70,8 +71,14 @@
 		</script>
 	</head>
 	<body onLoad="queryfocus();">
-		<p style="height: 20px" />
-		<nobr>
+	<!-- 
+	<p id="u_sp">
+			<a href="./help.html" target="_blank">使用帮助</a>
+			<a href="javascript:window.external.addFavorite('http://10.145.73.5/','组工搜索');">加入收藏</a>
+	</p>
+	 -->
+	 <p id="lg" style="height: 40px"><a href="./" title="返回组工搜索首页"><img src="./img/sylogo.png" width="180" height="50"  style="border: 0px"></a></p>
+	 <nobr>
 		<form name="search" class="fm" action="./search.jsp" method="get">
 			<input type="hidden" name="rows" value="<%=rows%>">
 			<span class="bg s_ipt_wr">
@@ -133,6 +140,10 @@
 
 							if (StringUtils.isBlank(title)||title.equals("null")) { // use url for docs w/o title
 								title = url;
+							}
+							
+							if(summary.length()>1100){
+								summary = summary.substring(0,300);
 							}
 					%>
 					<b><a href="<%=url%>" target="_blank"><%=title%></a>
