@@ -842,7 +842,9 @@
        <float name="tie">0.01</float>
        <str name="qf">content^0.5 anchor^1.0 title^1.2</str>
        <str name="pf">content^0.5 anchor^1.5 title^1.2 site^1.5</str>
+       <!-- 排序算法移至页面
        <str name="mm">2&lt;-1 5&lt;-2 6&lt;90%</str>
+        -->
        <int name="ps">100</int>
        
 
@@ -1334,7 +1336,7 @@
       <!-- maximum threshold of documents a query term can appear to be considered for correction -->
       <float name="maxQueryFrequency">0.01</float>
       <!-- uncomment this to require suggestions to occur in 1% of the documents
-      	<float name="thresholdTokenFrequency">.01</float>
+        <float name="thresholdTokenFrequency">.01</float>
       -->
     </lst>
     
@@ -1425,7 +1427,7 @@
   </requestHandler>
 
   <searchComponent name="suggest" class="solr.SuggestComponent">
-  	<lst name="suggester">
+        <lst name="suggester">
       <str name="name">mySuggester</str>
       <str name="lookupImpl">FuzzyLookupFactory</str>      <!-- org.apache.solr.spelling.suggest.fst -->
       <str name="dictionaryImpl">DocumentDictionaryFactory</str>     <!-- org.apache.solr.spelling.suggest.HighFrequencyDictionaryFactory --> 
