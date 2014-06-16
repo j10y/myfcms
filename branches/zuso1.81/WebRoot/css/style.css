@@ -145,3 +145,21 @@ h4 {
 #foot span {
 	color: #666
 }
+
+#u_sp {
+	color: #999;
+	padding: 4px 10px 5px 0;
+	text-align: right;
+	font-size: 13px
+}
+
+#u_sp a {
+	color: #00c;
+	text-decoration: underline;
+	margin: 0 5px
+}
+
+#u_sp a.last {
+	margin-right: 0
+}
+
