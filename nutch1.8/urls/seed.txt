@@ -1,1 +1,1 @@
-http://www.hbzgw.gov.cn/
+http://192.168.1.101:8080/web/	nutch.score=1.0	nutch.fetchInterval=10
