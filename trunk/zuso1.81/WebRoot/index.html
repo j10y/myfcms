@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+		<title>组工搜索欢迎您！</title>
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="include/style.css" />
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			function queryfocus() { document.search.q.focus(); }
+		</script>
+	</head>
+	<body id="s_body" style="display: block;" class="s-skin-user " onLoad="queryfocus();">
+
+		<div class="s-skin-container"></div>
+		<p id="u_sp" class="s-weather-border">
+
+			<a href="./help.html" target="_blank">使用帮助</a>
+			<a href="javascript:window.external.addFavorite('http://10.145.73.5/','组工搜索');">加入收藏</a>
+		</p>
+		<div class="clear"></div>
+		<div id="m" style="width: 720px;">
+		<p style="height: 180px"></p>
+			<p id="lg" style="height: 140px">
+				<img src="./img/sylogo.png" width="360" height="100">
+			</p>
+
+			<div id="s_fm">
+				<form name="search" id="form1" action="./search.jsp" method="get">
+					<input type="hidden" name="rows" value="10">
+					<input type="text" name="q" id="kw1" maxlength="100"
+						style="width: 474px;">
+					<span class="btn_wr"><input type="submit" value="搜索一下"
+							id="su1" class="btn"
+							onmousedown="this.className=&#39;btn btn_h&#39;"
+							onmouseout="this.className=&#39;btn&#39;"> </span>
+					<div id="sd_1392965140313" class="s-ps-sug" style="display: none;"></div>
+				</form>
+			</div>
+			<div id="s_lm"></div>
+		</div>
+		<div id="lm" style="display: none;"></div>
+		<p class="s-skin-lm"></p>
+		<div id="s_tips" class="tip" style="height: 220px"></div>
+		<div id="bottom_container" class="bottom bottom_ct1">
+			<div class="bottom-line2" style="color: gray;">
+				中共黄冈市委组织部信息管理科 ©2013
+			</div>
+		</div>
+		<div id="s_tips" class="tip"></div>
+	</body>
+</html>
