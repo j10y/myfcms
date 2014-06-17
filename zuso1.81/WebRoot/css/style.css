@@ -1,0 +1,165 @@
+@CHARSET "UTF-8";
+.menuTd {
+  background-color: #F9F7F4;
+  height: 25px;
+}
+
+.menuTdhover {
+  background-color: #ECE5DC;
+  height: 25px;
+}
+
+.menuEntry {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #000000;
+  text-decoration: none;
+}
+
+.body {
+  background-color: #F9F7F4;
+}
+
+.bodytext {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #000000;
+  text-decoration: none;
+}
+
+.title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 26px;
+  color: #FF9900;
+  text-decoration: none;
+}
+
+.intro {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #FF9900;
+  text-decoration: none;
+}
+
+.orangeTd {
+  background-color: #FF9900
+}
+
+ul {
+  list-style-image: url(../img/reiter/ul.gif)
+}
+
+h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: #000000;
+}
+
+h4 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #000000;
+}
+
+.url {
+  color: #996600;
+}
+
+.highlight {
+  font-weight: bold;
+  color:#ff0000;
+}
+
+.ellipsis {
+  font-weight: bold;
+}
+
+.bg {
+	background-image:
+		url(../img/icons_37d13939.png);
+	background-repeat: no-repeat;
+	_background-image:
+		url(../img/icons_5e61a51c.gif);
+	background-repeat: no-repeat
+}
+
+.s_ipt_wr {
+	width: 536px;
+	height: 30px;
+	display: inline-block;
+	margin-right: 5px;
+	background-position: 0 -96px;
+	border: 1px solid #b6b6b6;
+	border-color: #7b7b7b #b6b6b6 #b6b6b6 #7b7b7b;
+	vertical-align: top
+}
+
+.s_ipt {
+	width: 523px;
+	height: 22px;
+	font: 16px/ 22px arial;
+	margin: 5px 0 0 7px;
+	padding: 0;
+	background: #fff;
+	border: 0;
+	outline: 0;
+	-webkit-appearance: none
+}
+
+.s_btn {
+	width: 95px;
+	height: 32px;
+	padding-top: 2px\9;
+	font-size: 14px;
+	padding: 0;
+	background-color: #ddd;
+	background-position: 0 -48px;
+	border: 0;
+	cursor: pointer
+}
+
+.s_btn_h {
+	background-position: -240px -48px
+}
+
+.s_btn_wr {
+	width: 97px;
+	height: 34px;
+	display: inline-block;
+	background-position: -120px -48px; *
+	position: relative;
+	z-index: 0;
+	vertical-align: top
+}
+#u,#head,#tool,#search,#foot {
+	font-size: 12px
+}
+#foot {
+	height: 20px;
+	line-height: 20px;
+	color: #77c;
+	background: #e6e6e6;
+	text-align: center
+}
+
+#foot span {
+	color: #666
+}
+
+#u_sp {
+	color: #999;
+	padding: 4px 10px 5px 0;
+	text-align: right;
+	font-size: 13px
+}
+
+#u_sp a {
+	color: #00c;
+	text-decoration: underline;
+	margin: 0 5px
+}
+
+#u_sp a.last {
+	margin-right: 0
+}
+
