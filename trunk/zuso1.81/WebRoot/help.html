@@ -1,270 +1,401 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>组工搜索引擎使用帮助</TITLE>
-<META http-equiv=Content-Language content=zh-cn>
-<META http-equiv=Content-Type content="text/html; charset=UTF-8">
-<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-<STYLE type=text/css>TD {
-	FONT-SIZE: 14px; FONT-FAMILY: 宋体;line-height: 150%
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+	<head>
+		<title>组工搜索引擎使用帮助</title>
+		<meta http-equiv=content-language content=zh-cn>
+		<meta http-equiv=content-type content="text/html; charset=utf-8">
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+		<style type=text/css>
+td {
+	font-size: 14px;
+	font-family: 宋体;
+	line-height: 150%
 }
-BR {
-	FONT-SIZE: 14px; FONT-FAMILY: 宋体
-}
-P {
-	FONT-SIZE: 14px; FONT-FAMILY: 宋体
-}
-LI {
-	FONT-SIZE: 14px; FONT-FAMILY: 宋体
-}
-A:link {
-	FONT-SIZE: 12px; COLOR: #000080; TEXT-DECORATION: none
-}
-A:visited {
-	FONT-SIZE: 12px; COLOR: #000080; TEXT-DECORATION: none
-}
-A:active {
-	FONT-SIZE: 12px; TEXT-DECORATION: none
-}
-A:hover {
-	FONT-SIZE: 12px; COLOR: #ff0000; TEXT-DECORATION: underline
-}
-A.a:link {
-	FONT-SIZE: 16px; COLOR: #0000ff; TEXT-DECORATION: none
-}
-A.a:visited {
-	FONT-SIZE: 16px; COLOR: #000080; TEXT-DECORATION: underline
-}
-A.a:active {
-	FONT-SIZE: 16px; TEXT-DECORATION: none
-}
-A.a:hover {
-	FONT-SIZE: 16px; COLOR: #ff0000; TEXT-DECORATION: underline
-}
-</STYLE>
-</HEAD>
-<BODY leftMargin=3 topMargin=0>
-<center>
-<TABLE height=698 cellPadding=0 width=754 border=0>
-  <TBODY>
-    <TR> 
-      <TD bgColor=#ffffff colSpan=3 height=21> <HR color=#c0c0c0 SIZE=1> 
-      </TD>
-    </TR>
-    <TR> 
-      <TD width=55 bgColor=#e0e0cb height=565 rowSpan=7>　</TD>
-      <TD width=18 height=565 rowSpan=7></TD>
-    </TR>
-    <TR> 
-      <TD width=673 height=26> <P align=center><FONT color=#000080 size=5><B>组工搜索引擎使用帮助</B></FONT> 
-        </P>
-      </TD>
-    </TR>
-    <TR> 
-      <TD width=673 height=29></TD>
-    </TR>
-   
-    <TR> 
-      <TD width=673 height=26></TD>
-    </TR>
-    <TR> 
-      <TD width=673 height=14> <P align=center><FONT color=#808080> </FONT></P></TD>
-    </TR>
-    <TR> 
-      <TD width=673 height=5></TD>
-    </TR>
-    <TR> 
-      <TD width=673 height=455> <P style="LINE-HEIGHT: 200%">&nbsp;&nbsp; 
-      组工搜索使用了高性能的“网络蜘蛛”程序(Spider)自动的在大组工网中搜索信息，
-      可定制、高扩展性的调度算法使得搜索器能在极短的时间内收集到最大数量的大组工网信息。
-      组工搜索服务器架设在湖北黄冈，搜索范围涵盖了中组部组织工作网和全国大组工网省区市县大部分站点。
-      组工搜索引擎目前已经拥有30万页以上搜索信息库，并且还在以每周超过5万页的速度不断增长。&nbsp;<BR>
-        <P><A><B>基本搜索</B></A></P>
-        <BLOCKQUOTE> 
-          <P>组工搜索引擎简单方便。<BR>
-            仅需输入查询内容并敲一下回车键（Enter)，即可得到相关资料。<BR>
-            或者输入查询内容后，用鼠标点击“搜索一下”按钮，也可得到相关资料。</P>
-          <P>输入的查询内容可以是一个词语、多个词语、一句话。<BR>
-            例如：可以输入[干部选拔 任用 条例]</P>
-          <P>组工搜索引擎严谨认真，要求“一字不差”。<BR>
-            例如：分别搜索 [十大事件] 和 [十大新闻] ，会得到不同的结果。<BR>
-            因此在搜索时，您可以试用不同的词语。</P>
-        </BLOCKQUOTE>
-        <P><A><B>输入多个词语搜索</B></A></P>
-        <BLOCKQUOTE> 
-          <P>输入多个词语搜索（不同字词之间用一个空格隔开），可以获得更精确的搜索结果。<BR>
-            <BR>
-            例如：想了解“人事任免”相关信息，在搜索框中输入</P>
-        </BLOCKQUOTE>     
-          <FORM action="./search.jsp" method=get  target="_blank" >
-            <BLOCKQUOTE> 
-              <P>
-              <input type="hidden" name="rows" value="10">
-              <INPUT size=40 value="人事 任免" name="q">
-              <INPUT type="submit" value="搜索一下">
-              </P>
-            </BLOCKQUOTE>
-          </FORM>
-        <BLOCKQUOTE>
-          <P>获得的搜索效果会比输入 [人事任免] 得到的结果更好。</P>
-          <P>在组工搜索查询时不需要使用符号"AND"或"+"，组工搜索会在多个以空格隔开的词语之间自动添加"+"。<BR>
-            组工搜索提供符合您全部查询条件的资料，并把最相关的网页排在前列。</P>
-        </BLOCKQUOTE>
-        <P style="LINE-HEIGHT: 200%"><A name=2><SPAN 
-      class=p2><B><BR>
-          </B></SPAN></A><A><B>减除无关资料</B></A> 
-        <BLOCKQUOTE> 
-          <P>有时候，排除含有某些词语的资料有利于缩小查询范围。<BR>
-            组工搜索支持“-”功能，用于有目的地删除某些无关网页，但减号之前必须留一空格。</P>
-          <P>例如：要搜寻关于“干部考核”，但不含“年度”的资料，可使用如下查询：</P>
-        </BLOCKQUOTE>
-        <FORM action="./search.jsp" method=get  target="_blank" >
-            <BLOCKQUOTE> 
-              <P>
-              <input type="hidden" name="rows" value="10">
-              <INPUT size=40 value="干部考核 -年度" name="q">
-              <INPUT type="submit" value="搜索一下">
-              </P>
-            </BLOCKQUOTE>
-          </FORM>
-        <P><A><B>并行搜索</B></A></P>
-        <BLOCKQUOTE> 
-          <P>使用“A|B”来搜索“或者包含词语A，或者包含词语B”的网页。<BR>
-            <BR>
-            例如：您要查询“党建”或“基层”相关资料，无须分两次查询，只要输入 [基层|党建] 搜索即可。 组工搜索会提供跟“|”前后任何字词相关的资料，并把最相关的网页排在前列。</P>
-        </BLOCKQUOTE>
-        <!-- 
-        <P><A><B>相关检索</B></A></P>
-        <BLOCKQUOTE> 
-          <P>如果您无法确定输入什么词语才能找到满意的资料，可以试用组工搜索相关检索。<BR>
-            <BR>
-            您可以先输入一个简单词语搜索，然后，组工搜索引擎会为您提供“其它用户搜索过的相关搜索词语”作参考。您点击其中一个相关搜索词，都能得到那个相关搜索词的搜索结果。<BR>
-          </P>
-        </BLOCKQUOTE>
-         -->        
-        <P><A><B>网页快照</B></A></P>
-        <BLOCKQUOTE> 
-          <P>
-            大家在浏览大组工网网站的时候肯定都遇到过“该页无法显示”（找不到网页的错误信息）。
-            至于网页连接速度缓慢，要十几秒甚至几十秒才能打开更是家常便饭。
-            <br><br>
-            出现这种情况的原因很多，比如：网站服务器暂时中断或堵塞、网站已经更改链接等等。无法登录网站的确是一个令人十分头痛的问题。
-            <br><br>
-            网页快照能很好的解决这个问题。组工搜索引擎已先预览各网站，拍下网页的快照，为用户贮存大量应急网页。
-            网页快照功能在组工搜索的服务器上保存了几乎所有网站的大部分页面，使用在不能链接所需网站时，
-            组工搜索暂存的网页也可救急。而且通过网页快照寻找资料要比常规链接的速度快得多。
-            因为网页快照的服务稳定，下载速度极快，不会再受死链接或网络堵塞的影响。
-            <BR>
-            <BR>
-          </P>
-        </BLOCKQUOTE>
-        <P style="LINE-HEIGHT: 200%"><A name=2><SPAN 
-      class=p2><B>搜索结果页指南</B></SPAN></A> 
-        <P><IMG src="./img/help.png"> 
-        <TABLE class=p1 cellSpacing=10 width="100%" border=0>
-          <TBODY>
-            <TR> 
-              <TD vAlign=top width="5%"><A><FONT 
-          color=#0000ff><B>A.</B></FONT></A></TD>
-              <TD 
-            width="95%"><B>搜索框</B><BR>
-                在这里，您仅需输入查询内容并敲一下回车键（Enter)，即可得到相关资料。<BR>
-                或者，您输入查询内容后，用鼠标点击“搜索一下”按钮，也可得到相关资料。</TD>
-            </TR>
-            <TR> 
-              <TD vAlign=top width="5%"><A><FONT 
-          color=#0000ff><B>B.</B></FONT></A></TD>
-              <TD 
-          width="95%"><B>“搜索一下”按钮</B><BR>
-                您只要点击此按钮，或敲“Enter”（回车键），组工搜索引擎便开始搜索。</TD>
-            </TR>
-            <TR> 
-              <TD vAlign=top width="5%"><A><FONT 
-          color=#0000ff><B>C.</B></FONT></A></TD>
-              <TD width="95%"><B>搜索结果统计</B><BR>
-                这是有关搜索结果数量、当前页面显示数量的统计。</TD>
-            </TR>
-            <TR> 
-              <TD vAlign=top width="5%"><A><FONT 
-          color=#0000ff><B>D.</B></FONT></A></TD>
-              <TD vAlign=top 
-            width="95%"><B>网页标题</B><BR>
-                这是搜索结果中该网页的标题。点击该网页标题可直达该网页。</TD>
-            </TR>
-            <TR> 
-              <TD vAlign=top width="5%"><A><FONT 
-          color=#0000ff><B>E.</B></FONT></A></TD>
-              <TD vAlign=top 
-            width="95%"><B>网页摘要</B><BR>
-                通常是网页开始部分的摘要。其中您输入搜索的词语，都已高亮显示，以便阅读。</TD>
-            </TR>
-            <TR> 
-              <TD vAlign=top width="5%"><A><FONT 
-          color=#0000ff><B>F.</B></FONT></A></TD>
-              <TD vAlign=top 
-            width="95%"><STRONG>网页网址（url）</STRONG><BR>
-                这是搜索结果中该网页的网址（url）。</TD>
-            </TR>       
-            <TR> 
-              <TD vAlign=top width="5%"><A><FONT 
-          color=#0000ff><B>G.</B></FONT></A></TD>
-              <TD vAlign=top 
-            width="95%"><B>网页快照</B><BR>
-                点击每条搜索结果后的“网页快照”，可查看该网页的快照内容。<BR>
-                组工搜索引擎已先预览各网站，拍下网页的快照，为用户贮存大量的应急网页。<BR>
-             </TD>
-            </TR>
-          </TBODY>
-        </TABLE>
-        <P style="LINE-HEIGHT: 200%"><SPAN class=p2><B><A name=4>常见问题</A>解答<A 
-      name=2><BR>
-          </A></B></SPAN><A><B><BR>
-          如何缩小搜索范围?</B></A> 
-        <UL>
-          <P>有时会得到过多的搜索结果。要得到更精确的资料，您可以"在结果中搜索"。您只要在搜索框中输入多个词语，即可缩小搜索范围。<BR>
-            或者，在您想删除的词语前加上减号"-"（切记要在减号前留一个空格位）。<BR>
-          </P>
-        </UL>
-        <P><A><B>为什么我找不到资料？</B></A></P>
-        <UL>
-          <P>根据搜索习惯表明，用户找不到资料的两个最常见原因，一是输入的词语中含有错别字，二是未使用多个词语搜索。<BR>
-            <BR>
-            搜索引擎并不理解网页上的内容，只会找出跟您输入的词语相关的网页。<BR>
-            <BR>
-            所以，输入[拥带]、[以德制国]搜索，是找不到跟“拥戴”、“以德治国”相关资料的；<BR>
-            <BR>
-          </P>
-        </UL>
-        <P><A><B>简体和繁体有无影响?</B></A></P>
-        <UL>
-          <P>只要是标准编码，就没有影响。<BR>
-            <BR>
-            在组工搜索引擎，您输入标准编码的繁体中文或简体中文，都可以同时搜到繁体中文和简体中文网页。并且，搜索结果中的繁体网页摘要信息会自动转成简体中文，方便您阅读。</P>
-        </UL>
-        <P><A><B>英文字母大小写有无影响?</B></A></P>
-        <UL>
-          <P>组工搜索引擎不区分英文字母大小写。所有的字母均当做小写处理。<BR>
-            例如：输入"book"，或"BOOK",或"bOOk"，结果都是一样的。</P>
-          如有其它疑问，可通过中组部组织工作网邮件系统发信给：湖北省黄冈市委组织部hbhg@zhzb.gov。<BR>
-            <BR>
-            欢迎您的批评指正！
-            <BR>
-            </A>
-          <DIV align=center> 
-            <CENTER>
 
-            </CENTER>
-          </DIV>
-        </UL></TD>
-    </TR>
-  </TBODY>
-</TABLE>
-<TABLE height=19 cellPadding=0 width=750 border=0>
-  <TBODY>
-  <TR>
-    <TD height=1>
-      <HR color=#c0c0c0 SIZE=1>
-    </TD></TR></TBODY></TABLE>
-<P align=center><FONT color=#808080>中共黄冈市委组织部信息管理科</FONT></P>
-</center>
-</BODY></HTML>
+br {
+	font-size: 14px;
+	font-family: 宋体
+}
 
-</div>
+p {
+	font-size: 14px;
+	font-family: 宋体
+}
+
+li {
+	font-size: 14px;
+	font-family: 宋体
+}
+
+a:link {
+	font-size: 12px;
+	color: #000080;
+	text-decoration: none
+}
+
+a:visited {
+	font-size: 12px;
+	color: #000080;
+	text-decoration: none
+}
+
+a:active {
+	font-size: 12px;
+	text-decoration: none
+}
+
+a:hover {
+	font-size: 12px;
+	color: #ff0000;
+	text-decoration: underline
+}
+
+a.a:link {
+	font-size: 16px;
+	color: #0000ff;
+	text-decoration: none
+}
+
+a.a:visited {
+	font-size: 16px;
+	color: #000080;
+	text-decoration: underline
+}
+
+a.a:active {
+	font-size: 16px;
+	text-decoration: none
+}
+
+a.a:hover {
+	font-size: 16px;
+	color: #ff0000;
+	text-decoration: underline
+}
+</style>
+	</head>
+	<body leftmargin=3 topmargin=0>
+		<center>
+			<table height=698 cellpadding=0 width=754 border=0>
+				<tbody>
+					<tr>
+						<td bgcolor=#ffffff colspan=3 height=21>
+							<hr color=#c0c0c0 size=1>
+						</td>
+					</tr>
+					<tr>
+						<td width=55 bgcolor=#e0e0cb height=565 rowspan=7>
+						</td>
+						<td width=18 height=565 rowspan=7></td>
+					</tr>
+					<tr>
+						<td width=673 height=26>
+							<p align=center>
+								<font color=#000080 size=5><b>组工搜索引擎使用帮助</b> </font>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td width=673 height=29></td>
+					</tr>
+
+					<tr>
+						<td width=673 height=26></td>
+					</tr>
+					<tr>
+						<td width=673 height=14>
+							<p align=center>
+								<font color=#808080> </font>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td width=673 height=5></td>
+					</tr>
+					<tr>
+						<td width=673 height=455>
+							<p style="line-height: 200%">
+								&nbsp;&nbsp; 组工搜索使用了高性能的“网络蜘蛛”程序(spider)自动的在大组工网中搜索信息，
+								可定制、高扩展性的调度算法使得搜索器能在极短的时间内收集到最大数量的大组工网信息。
+								组工搜索服务器架设在湖北黄冈，搜索范围涵盖了中组部组织工作网和全国大组工网省区市县大部分站点。
+								组工搜索引擎目前已经拥有30万页以上搜索信息库，并且还在以每周超过5万页的速度不断增长。&nbsp;
+								<br>
+							<p>
+								<b>基本搜索</b>
+							</p>
+							<blockquote>
+								<p>
+									组工搜索引擎简单方便。
+									<br>
+									仅需输入查询内容并敲一下回车键（enter)，即可得到相关资料。
+									<br>
+									或者输入查询内容后，用鼠标点击“搜索一下”按钮，也可得到相关资料。
+								</p>
+								<p>
+									输入的查询内容可以是一个词语、多个词语、一句话。
+									<br>
+									例如：可以输入[干部选拔 任用 条例]
+								</p>
+								<p>
+									组工搜索引擎严谨认真，要求“一字不差”。
+									<br>
+									例如：分别搜索 [十大事件] 和 [十大新闻] ，会得到不同的结果。
+									<br>
+									因此在搜索时，您可以试用不同的词语。
+								</p>
+							</blockquote>
+							<p>
+								<b>输入多个词语搜索</b>
+							</p>
+							<blockquote>
+								<p>
+									输入多个词语搜索（不同字词之间用一个空格隔开），可以获得更精确的搜索结果。
+									<br>
+									<br>
+									例如：想了解“人事任免”相关信息，在搜索框中输入
+								</p>
+							</blockquote>
+							<form action="./search.jsp" method=get target="_blank">
+								<blockquote>
+									<p>
+										<input type="hidden" name="rows" value="10">
+										<input size=40 value="人事 任免" name="q">
+										<input type="submit" value="搜索一下">
+									</p>
+								</blockquote>
+							</form>
+							<blockquote>
+								<p>
+									获得的搜索效果会比输入 [人事任免] 得到的结果更好。
+								</p>
+								<p>
+									在组工搜索查询时不需要使用符号"and"或"+"，组工搜索会在多个以空格隔开的词语之间自动添加"+"。
+									<br>
+									组工搜索提供符合您全部查询条件的资料，并把最相关的网页排在前列。
+								</p>
+							</blockquote>
+							<p style="line-height: 200%">
+								<span class=p2><b><br> </b> </span>
+								<b>减除无关资料</b>
+							<blockquote>
+								<p>
+									有时候，排除含有某些词语的资料有利于缩小查询范围。
+									<br>
+									组工搜索支持“-”功能，用于有目的地删除某些无关网页，但减号之前必须留一空格。
+								</p>
+								<p>
+									例如：要搜寻关于“干部考核”，但不含“年度”的资料，可使用如下查询：
+								</p>
+							</blockquote>
+							<form action="./search.jsp" method=get target="_blank">
+								<blockquote>
+									<p>
+										<input type="hidden" name="rows" value="10">
+										<input size=40 value="干部考核 -年度" name="q">
+										<input type="submit" value="搜索一下">
+									</p>
+								</blockquote>
+							</form>
+							<p>
+								<b>并行搜索</b>
+
+							</p>
+							<blockquote>
+								<p>
+									使用“a|b”来搜索“或者包含词语a，或者包含词语b”的网页。
+									<br>
+									<br>
+									例如：您要查询“党建”或“基层”相关资料，无须分两次查询，只要输入 [基层|党建] 搜索即可。
+									组工搜索会提供跟“|”前后任何字词相关的资料，并把最相关的网页排在前列。
+								</p>
+							</blockquote>
+							<!-- 
+        <p><b>相关检索</b></p>
+        <blockquote> 
+          <p>如果您无法确定输入什么词语才能找到满意的资料，可以试用组工搜索相关检索。<br>
+            <br>
+            您可以先输入一个简单词语搜索，然后，组工搜索引擎会为您提供“其它用户搜索过的相关搜索词语”作参考。您点击其中一个相关搜索词，都能得到那个相关搜索词的搜索结果。<br>
+          </p>
+        </blockquote>
+         -->
+							<p>
+								<b>网页快照</b>
+
+							</p>
+							<blockquote>
+								<p>
+									大家在浏览大组工网网站的时候肯定都遇到过“该页无法显示”（找不到网页的错误信息）。
+									至于网页连接速度缓慢，要十几秒甚至几十秒才能打开更是家常便饭。
+									<br>
+									<br>
+									出现这种情况的原因很多，比如：网站服务器暂时中断或堵塞、网站已经更改链接等等。无法登录网站的确是一个令人十分头痛的问题。
+									<br>
+									<br>
+									网页快照能很好的解决这个问题。组工搜索引擎已先预览各网站，拍下网页的快照，为用户贮存大量应急网页。
+									网页快照功能在组工搜索的服务器上保存了几乎所有网站的大部分页面，使用在不能链接所需网站时，
+									组工搜索暂存的网页也可救急。而且通过网页快照寻找资料要比常规链接的速度快得多。
+									因为网页快照的服务稳定，下载速度极快，不会再受死链接或网络堵塞的影响。
+									<br>
+									<br>
+								</p>
+							</blockquote>
+							<p style="line-height: 200%">
+								<span class=p2><b>搜索结果页指南</b> </span>
+							<p>
+								<img src="./img/help.png">
+							<table class=p1 cellspacing=10 width="100%" border=0>
+								<tbody>
+									<tr>
+										<td valign=top width="5%">
+											<font color=#0000ff><b>A.</b> </font>
+										</td>
+										<td width="95%">
+											<b>搜索框</b>
+											<br>
+											在这里，您仅需输入查询内容并敲一下回车键（enter)，即可得到相关资料。
+											<br>
+											或者，您输入查询内容后，用鼠标点击“搜索一下”按钮，也可得到相关资料。
+										</td>
+									</tr>
+									<tr>
+										<td valign=top width="5%">
+											<font color=#0000ff><b>B.</b> </font>
+										</td>
+										<td width="95%">
+											<b>“搜索一下”按钮</b>
+											<br>
+											您只要点击此按钮，或敲“enter”（回车键），组工搜索引擎便开始搜索。
+										</td>
+									</tr>
+									<tr>
+										<td valign=top width="5%">
+											<font color=#0000ff><b>C.</b> </font>
+										</td>
+										<td width="95%">
+											<b>搜索结果统计</b>
+											<br>
+											这是有关搜索结果数量、当前页面显示数量的统计。
+										</td>
+									</tr>
+									<tr>
+										<td valign=top width="5%">
+											<font color=#0000ff><b>D.</b> </font>
+										</td>
+										<td valign=top width="95%">
+											<b>网页标题</b>
+											<br>
+											这是搜索结果中该网页的标题。点击该网页标题可直达该网页。
+										</td>
+									</tr>
+									<tr>
+										<td valign=top width="5%">
+											<font color=#0000ff><b>E.</b> </font>
+										</td>
+										<td valign=top width="95%">
+											<b>网页摘要</b>
+											<br>
+											通常是网页开始部分的摘要。其中您输入搜索的词语，都已高亮显示，以便阅读。
+										</td>
+									</tr>
+									<tr>
+										<td valign=top width="5%">
+											<font color=#0000ff><b>F.</b> </font>
+										</td>
+										<td valign=top width="95%">
+											<strong>网页网址（url）</strong>
+											<br>
+											这是搜索结果中该网页的网址（url）。
+										</td>
+									</tr>
+									<tr>
+										<td valign=top width="5%">
+											<font color=#0000ff><b>G.</b> </font>
+										</td>
+										<td valign=top width="95%">
+											<b>网页快照</b>
+											<br>
+											点击每条搜索结果后的“网页快照”，可查看该网页的快照内容。
+											<br>
+											组工搜索引擎已先预览各网站，拍下网页的快照，为用户贮存大量的应急网页。
+											<br>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<p style="line-height: 200%">
+								<span class=p2><b>常见问题解答<br> </b> </span><b><br>
+									如何缩小搜索范围?</b>
+							<ul>
+								<p>
+									有时会得到过多的搜索结果。要得到更精确的资料，您可以"在结果中搜索"。您只要在搜索框中输入多个词语，即可缩小搜索范围。
+									<br>
+									或者，在您想删除的词语前加上减号"-"（切记要在减号前留一个空格位）。
+									<br>
+								</p>
+							</ul>
+							<p>
+								<b>为什么我找不到资料？</b>
+							</p>
+							<ul>
+								<p>
+									根据搜索习惯表明，用户找不到资料的两个最常见原因，一是输入的词语中含有错别字，二是未使用多个词语搜索。
+									<br>
+									<br>
+									搜索引擎并不理解网页上的内容，只会找出跟您输入的词语相关的网页。
+									<br>
+									<br>
+									所以，输入[拥带]、[以德制国]搜索，是找不到跟“拥戴”、“以德治国”相关资料的；
+									<br>
+									<br>
+								</p>
+							</ul>
+							<p>
+								<b>简体和繁体有无影响?</b>
+							</p>
+							<ul>
+								<p>
+									只要是标准编码，就没有影响。
+									<br>
+									<br>
+									在组工搜索引擎，您输入标准编码的繁体中文或简体中文，都可以同时搜到繁体中文和简体中文网页。并且，搜索结果中的繁体网页摘要信息会自动转成简体中文，方便您阅读。
+								</p>
+							</ul>
+							<p>
+								<b>英文字母大小写有无影响?</b>
+							</p>
+							<ul>
+								<p>
+									组工搜索引擎不区分英文字母大小写。所有的字母均当做小写处理。
+									<br>
+									例如：输入"book"，或"BOOK",或"bOOk"，结果都是一样的。
+								</p>
+								如有其它疑问，可通过中组部组织工作网邮件系统发信给：湖北省黄冈市委组织部hbhg@zhzb.gov。
+								<br>
+								<br>
+								欢迎您的批评指正！
+								<br>
+								<div align=center>
+									<center>
+
+									</center>
+								</div>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table height=19 cellpadding=0 width=750 border=0>
+				<tbody>
+					<tr>
+						<td height=1>
+							<hr color=#c0c0c0 size=1>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<p align=center>
+				<font color=#808080>中共黄冈市委组织部信息管理科</font>
+			</p>
+		</center>
+	</body>
+</html>
