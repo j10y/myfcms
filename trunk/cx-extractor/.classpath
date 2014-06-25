@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_35"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/zuso1.81"/>
+	<classpathentry kind="lib" path="/zuso1.81/WebRoot/WEB-INF/lib/ansj/ansj_seg-1.4-min.jar"/>
+	<classpathentry kind="lib" path="/zuso1.81/WebRoot/WEB-INF/lib/ansj/tree_split-1.4.jar"/>
+	<classpathentry kind="lib" path="/zuso1.81/WebRoot/WEB-INF/lib/commons-lang-2.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
