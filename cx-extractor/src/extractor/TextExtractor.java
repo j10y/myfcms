@@ -28,8 +28,8 @@ public class TextExtractor {
 	private final static String _titlePattern = "<title>(.*?)</title>";
 
 	/** The Constant _titleRegexPattern. */
-	private final static Pattern _titleRegexPattern = Pattern.compile(_titlePattern, Pattern.CANON_EQ | Pattern.DOTALL
-			| Pattern.CASE_INSENSITIVE);
+	private final static Pattern _titleRegexPattern = Pattern.compile(_titlePattern,
+			Pattern.CANON_EQ | Pattern.DOTALL | Pattern.CASE_INSENSITIVE);
 
 	/** The _title. */
 	private String _title = "";
@@ -131,7 +131,7 @@ public class TextExtractor {
 				+ "[a-zA-Z0-9\\.\\,\\?\\'\\\\/\\+&%\\$\\=~_\\-@]*)*$";
 		Pattern p = Pattern.compile(regEx);
 		Matcher matcher = p.matcher(url);
-		System.out.println(matcher.matches());
+		// System.out.println(matcher.matches());
 		return matcher.matches();
 	}
 
@@ -141,13 +141,13 @@ public class TextExtractor {
 	 * @param htmlText
 	 *            the html text
 	 */
-	public void extractHTML(String htmlText) {
+	public boolean extractHTML(String htmlText) {
 		// System.out.println(htmlText);
 		getTitle(htmlText);
 		htmlText = preProcess(htmlText);
 		if (!isContentPage(htmlText)) {
 			_text = "*推测您提供的网页为非主题型网页，目前暂不处理！:-)";
-			return;
+			return false;
 		}
 		// System.out.println(htmlText);
 
@@ -173,7 +173,8 @@ public class TextExtractor {
 
 		// 如果两块只差两个空行，并且两块包含文字均较多，则进行块合并，以弥补单纯抽取最大块的缺点
 		for (int i = 1; i < textList.size(); i++) {
-			if (textBeginList.get(i) == textEndList.get(i - 1) + 1 && textEndList.get(i) > textBeginList.get(i) + _block
+			if (textBeginList.get(i) == textEndList.get(i - 1) + 1
+					&& textEndList.get(i) > textBeginList.get(i) + _block
 					&& textList.get(i).replaceAll("\\s+", "").length() > 40) {
 				if (textEndList.get(i - 1) == textBeginList.get(i - 1) + _block
 						&& textList.get(i - 1).replaceAll("\\s+", "").length() < 40) {
@@ -203,12 +204,17 @@ public class TextExtractor {
 		}
 
 		// 最长块长度小于100，归为非主题型网页
-		if (result.replaceAll("\\s+", "").length() < 100)
+		if (result.replaceAll("\\s+", "").length() < 100) {
 			_text = "*推测您提供的网页为非主题型网页，目前暂不处理！:-)";
-		else
+			return false;
+		} else
 			_text = result;
-
+		String title = _title;
 		extractTitle(_text, textList, j);
+		if(StringUtils.isEmpty(_title)){
+			_title = title;
+		}
+		return true;
 
 	}
 
@@ -222,12 +228,12 @@ public class TextExtractor {
 	 */
 	private boolean isContentPage(String htmlText) {
 		int count = 0;
-		for (int i = 0; i < htmlText.length() && count < 5; i++) {
+		for (int i = 0; i < htmlText.length() && count < 10; i++) {
 			if (htmlText.charAt(i) == '，' || htmlText.charAt(i) == '。')
 				count++;
 		}
 
-		return count >= 5;
+		return count >= 10;
 	}
 
 	/**
@@ -314,9 +320,9 @@ public class TextExtractor {
 		}
 		// 删除上下存在两个空行的文字行
 		for (int i = 0; i + 4 < lines.size(); i++) {
-			if (indexDistribution.get(i) == 0 && indexDistribution.get(i + 1) == 0 && indexDistribution.get(i + 2) > 0
-					&& indexDistribution.get(i + 2) < 10 && indexDistribution.get(i + 3) == 0
-					&& indexDistribution.get(i + 4) == 0) {
+			if (indexDistribution.get(i) == 0 && indexDistribution.get(i + 1) == 0
+					&& indexDistribution.get(i + 2) > 0 && indexDistribution.get(i + 2) < 10
+					&& indexDistribution.get(i + 3) == 0 && indexDistribution.get(i + 4) == 0) {
 				// System.out.println("line:" + lines.get(i+2));
 				lines.set(i + 2, "");
 				indexDistribution.set(i + 2, 0);
@@ -417,7 +423,7 @@ public class TextExtractor {
 		// http://www.ifanr.com/15876
 
 		TextExtractor te = new TextExtractor();
-		te.extractURL("http://news.qq.com/a/20140620/066917.htm");
+		te.extractURL("http://www.hbzgw.gov.cn/");
 		System.out.println("realtitle:" + te.getTitle());
 		System.out.println("content:" + te.getText());
 	}
