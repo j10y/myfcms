@@ -26,7 +26,7 @@ public class DownloadURL {
 	/**
 	 * 该变量保存着寻找charset的正则表达式
 	 */
-	private static Pattern charsetPattern = Pattern.compile("charset\\s*=\\s*([^\"]*)",
+	private static Pattern charsetPattern = Pattern.compile("charset\\s*=[^\"']\\s*([^\"']*)",
 			Pattern.CASE_INSENSITIVE);
 
 	/**
@@ -168,7 +168,7 @@ public class DownloadURL {
 		}
 		String result = null;
 		try {
-			result = new String(temp1, "GB18030");
+			result = new String(temp1, "utf-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 			result = null;
@@ -177,7 +177,7 @@ public class DownloadURL {
 		Matcher m = charsetPattern.matcher(temp2);
 		String charset = null;
 		if (m.find()) {
-			charset = temp2.substring(m.start(1), m.end(1)).toLowerCase();
+			charset = temp2.substring(m.start(1)-1, m.end(1)).toLowerCase();
 			try {
 				result = new String(temp1, charset);
 			} catch (UnsupportedEncodingException e) {
