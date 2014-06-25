@@ -1,0 +1,610 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>湖北组工网</title>
+<link href="../../../images/main.css" rel="stylesheet" type="text/css" />
+<SCRIPT src="../../../images/scoll.js" type=text/javascript></SCRIPT>
+<style type="text/css">
+<!--
+         .list2 ul li p{ display:inline;} 
+-->
+</style>
+<!--//翻页函数-->
+<script>
+function createPageHTML(_nPageCount, _nCurrIndex, _sPageName, _sPageExt){
+	var PageStart;
+	var PageEnd;
+	if(_nPageCount == null || _nPageCount<=1){
+		return;
+	}
+	var nCurrIndex = _nCurrIndex || 0;
+	if(nCurrIndex == 0)
+	{
+		document.write("<font color='gray'>首页</font>&nbsp;");
+		document.write("<font color='gray'>上一页</font>&nbsp;");
+		document.write("<font color='gray'>1</font>&nbsp;");
+	}
+	else
+	{
+		document.write("<a href=\""+_sPageName+"."+_sPageExt+"\">首页</a>&nbsp;");
+		if(nCurrIndex==1)
+		{
+			document.write("<a href=\""+_sPageName+"."+_sPageExt+"\">上一页</a>&nbsp;");
+		}
+		else
+		{
+			document.write("<a href=\""+_sPageName+"_"+(nCurrIndex-1)+"."+_sPageExt+"\">上一页</a>&nbsp;");
+		}
+		if(_nPageCount>9&&nCurrIndex>4)
+		{								
+		}
+		else
+		{
+			document.write("<a href=\""+_sPageName+"."+_sPageExt+"\">1</a>&nbsp;");
+		}
+	}
+	if(_nPageCount>9)
+	{
+		PageStart = nCurrIndex-4;
+		if((nCurrIndex-4)<1)PageStart = 1;
+		if((nCurrIndex+5)>_nPageCount) PageStart = _nPageCount-9;
+		PageEnd = PageStart +9;
+	}
+	else
+	{
+		PageStart = 1;
+		PageEnd = _nPageCount;
+	}
+	for(var i=PageStart; i<PageEnd; i++){
+		if(nCurrIndex == i)
+		document.write("<font color='gray'>"+(i+1) + "</font>&nbsp;");
+		else
+		document.write("<a href=\""+_sPageName+"_" + i + "."+_sPageExt+"\">"+(i+1)+"</a>&nbsp;");
+	}
+	if(nCurrIndex<_nPageCount-1)
+	{
+		document.write("<a href=\""+_sPageName+"_"+(nCurrIndex+1)+"."+_sPageExt+"\">下一页</a>&nbsp;");
+		document.write("<a href=\""+_sPageName+"_"+(_nPageCount-1)+"."+_sPageExt+"\">尾页</a>&nbsp;");
+	}
+	else
+	{
+		document.write("<font color='gray'>下一页</font>&nbsp;");
+		document.write("<font color='gray'>尾页</font>");
+	}
+}
+</script>
+<!--//翻页函数-->
+</head>
+
+<body>
+<!--头部开始-->
+<!-- 集成登录部分JS内容 begin -->
+<script type="text/javascript">
+
+var loginName= "";
+//创建XMLHttpRequest的函数
+function createXMLHttpRequest(){
+	if(window.ActiveXObject){
+		return new ActiveXObject("Microsoft.XMLHTTP");
+	}else if(window.XMLHttpRequest){
+		return new XMLHttpRequest();
+	}
+}
+//声明一个xmlHttpRequest准备接收创建的XMLHttpRequest
+var xmlHttpRequest;
+
+var path = "http://27.17.62.68:8080/wcm";
+
+//ajax请求登录后的回调函数
+function result(){
+    if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200){
+    	//获得服务器响应字符串
+    	var msg = xmlHttpRequest.responseText;
+    	if(msg.indexOf("main.jsp.title") != -1){
+			loginName = document.getElementById("uName").value;
+			document.getElementById("login_wcm").innerHTML="&nbsp;&nbsp;&nbsp;&nbsp;欢迎您！"+loginName;
+			window.open(path);
+		}else{
+			alert("账号或密码有误!");
+			document.getElementById("loginIn").disabled = false;
+		}
+    }
+}
+
+//验证合法输入，ajax请求登录
+function login(){
+	if(document.getElementById("uName") && document.getElementById("uPwd")){
+		if(document.getElementById("uName").value.length > 0 && document.getElementById("uPwd").value.length > 0){
+			//按钮失效，防止重复提交。
+                           document.getElementById("loginIn").disabled = true;
+			//请求验证登录URL
+			var url = path+"/app/login_dowith.jsp?ForceKick=true&UserName="+document.getElementById("uName").value+"&PassWord="+document.getElementById("uPwd").value;
+			//创建XMLHttpRequest
+			xmlHttpRequest = createXMLHttpRequest();
+                           window.open(url);
+			//指定回调的函数
+			xmlHttpRequest.onreadystatechange=result;
+			//初始化XMLHttpRequest组件
+			xmlHttpRequest.open("GET",url,true);
+alert("初始化完毕");
+			//发送XMLHttpRequest
+			xmlHttpRequest.send(null);
+		}else{
+			alert("请输入合法的用户名与密码!");
+		}
+	}
+}
+</script>
+<!-- 集成登录部分JS内容 end -->
+<div style="margin:0 auto; padding:0; width:1002px; height:134px; background-color:#fff;"><object 
+
+classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" 
+
+codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="1002" 
+
+height="132">
+      <param name="movie" value="/images/top_banner.swf" />
+      <param name="quality" value="high" />
+<param name="wmode" value="opaque" />
+      <embed src="/images/top_banner.swf" wmode="transparent" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-
+
+shockwave-flash" width="1002" height="132">  </embed>
+    </object>
+</div>
+<!--导航菜单开始-->
+<table width="1002" border="0" cellpadding="0" cellspacing="0" background="/images/menu_bg.gif">
+  <tr>
+    <td align="left">
+    <div class="menu">
+      <ul>
+         <li><a href='http://www.hbzgw.gov.cn/'>网站首页</a></li>
+        <li><a href='http://www.hbzgw.gov.cn/szxw/'>时政要闻</a></li>
+        <li><a href='http://www.hbzgw.gov.cn/zgyw/'>组工要闻</a></li>
+        <li><a href='http://www.hbzgw.gov.cn/gsgg/'>公示公告</a></li>
+        <li><a href='http://www.hbzgw.gov.cn/gbgz/'>干部工作</a></li>
+        <li><a href='http://www.hbzgw.gov.cn/jcdj/'>基层党建</a></li>
+        <li><a href='http://www.hbzgw.gov.cn/gbjy/'>干部教育</a></li>
+        <li><a href='http://www.hbzgw.gov.cn/rcgz/'>人才工作</a></li>
+        <li><a href='http://www.jcqzw.com/' target="_blank">远程教育</a></li>
+        <li><a href='http://www.hbzgw.gov.cn/zsjs/'>自身建设</a></li>
+        <li style="background:none"><a href='http://www.hbzgw.gov.cn/djyj/'>党建研究
+
+</a></li>
+      </ul>
+    </div></td>
+  </tr>
+</table>
+<!--导航菜单结束-->
+
+<table width="1002" border="0" cellpadding="0" cellspacing="0" background="/images/nav_bg.jpg">
+  <tr>
+    <td height="29" align="left" valign="top">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+<td width="50%" height="28" valign="middle" align="left" id="login_wcm">
+          <!--用户登录开始--><table width="460" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25"></td>
+<td width="57" align="left" style="color:#666">用户名:</td>
+<td width="113" align="left"><input type="text" id="uName" class="input" style="width:100px;" /></td>
+<td width="44" align="left" style="color:#666">密码：</td>
+<td width="106" align="left"><input id="uPwd" type="password" class="input" style="width:100px;" /></td>
+<td width="115" align="left"><input type="image" id="loginIn" onclick="login()" width=43 height=20 value src="/images/btn_login.gif" /></td>
+</tr>
+</table><!--用户登录结束-->         
+
+ </td>
+          <td valign="middle">
+                    <!--搜索开始-->
+          		<script language="JavaScript" type="text/JavaScript">   
+  <!--   
+  function check(form){
+  //检查文本框是否填写   
+  var   SearchValue   =   form.SearchValue.value;   
+  if(SearchValue.length==0){   
+  alert("检索词不能为空！");   
+  form.SearchValue.focus();   
+  return false;  
+  }    
+   return true;
+  }   
+function search()
+{
+   
+}
+  //-->   
+  </script> 
+<form name="frmSearch" action="http://27.17.62.68:8080/poll/search/search.jsp" method="post"  target="_blank" onSubmit="return check(this)">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="43%" align="right"><img src="/images/magnifier-medium.gif" width="16" height="16" /></td>
+<td width="40%" align="center"><input name="SearchValue" type="text" class="input" id="SearchValue" style="width:185px;" /></td>
+              <td width="17%">  <input type="image" src="/images/btn_search.gif" width="43" height="20" value="搜索" onClick="search()" /></td>
+            </tr>
+          </table></form>
+
+          <!--搜索结束-->
+          </td>
+</tr>
+      </table></td>
+  </tr>
+</table>
+<table width="1002" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td height="12"></td>
+</tr>
+</table>
+<!--头部结束-->
+
+<!--主要内容开始-->
+<table width="1002" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<tr>
+<td width="11"></td>
+<td width="696" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" align="left"><table width="696" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="162"><div class="title_left1"><a href="#">
+
+
+<a href="../" target="_blank" class="CurrChnlCls">领导活动</a>
+
+</a></div></td>
+
+
+<td width="528" align="right" background="../../../images/list_titleline.gif">当前位置:<a href="../../../" target="_blank" class="CurrChnlCls">首页</a>-><a href="../../" target="_blank" class="CurrChnlCls">组工要闻</a>-><a href="../" target="_blank" class="CurrChnlCls">领导活动</a>
+
+
+</td>
+<td width="6" align="top"><img src="../../../images/list_titleright.gif" width="6" height="34" /></td>
+</tr>
+</table>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="red_border" style="border-top:none;">
+<tr>
+<td align="left" valign="top" width="735">
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td height="85">
+<div  class="content_text">
+<font size="5">楼阳生强调结合“三万”活动扎实推进基层党组织建设</font></br></div>
+<div class="content_sub">2014年03月11日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;来源： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#8a0000;">【字号 &nbsp;&nbsp;<a href="#" onClick="Zoom.style.fontSize='24px';" >大</a> <a href="#" onClick="Zoom.style.fontSize='16px';" >小</a>】【<a href="javascript:window.print();">打印</a>】【<a href="javascript:window.close();">关闭</a>】</span><SCRIPT LANGUAGE="JavaScript">
+    var s = document.createElement("SCRIPT");
+    s.id="cgi_emotion_list"; 
+    document.getElementsByTagName("HEAD")[0].appendChild(s);
+    s.src="http://27.17.62.68:8080/wcm/search/count_db.jsp?DocumentId=8576";
+function visitCountCallBack(data){
+    //document.getElementsByTagName("HEAD")[0].removeChild(document.getElementById("cgi_emotion_list")); 
+    for(var i in data){
+        var e =document.getElementById(i);
+        if(e) e.innerHTML=data[i];
+    }
+}
+</SCRIPT>  访问量:<span id="visitcount"></span>
+</div></td>
+</tr>
+<tr>
+<td height="10"></td>
+</tr>
+<tr>
+<td class="content_t"> 
+<font id="Zoom">
+	<div class=TRS_Editor><div class="Custom_UnionStyle"><span style="   ">&nbsp; &nbsp; 近日，省委常委、组织部部长楼阳生在听取省委组织部“万名干部进万村惠万民”活动工作汇报后，强调要结合“三万”活动扎实推进农村基层党组织建设。</span>
+<p style="">　　<span style=";
+">楼阳生指出，“三万”活动是转变干部作风、密切联系群众、推进农村基层党组织建设的一个很重要的很有意义的工作载体。全省共选派<span lang="EN-US">10</span>多万名机关干部，组建<span lang="EN-US">8700</span>多个工作组，基本上覆盖了我省所有的村，这也是加强农村基层党组织建设的一支规模宏大的队伍。省委组织部作为“三万”活动领导小组的重要成员单位，既要按省委的要求，带头搞好自己的“三万”活动，又要结合组织部工作职能，利用“三万”活动扎实推进农村党的基层组织建设。</span></p>
+<p style="">　　<span style=";
+">楼阳生强调，要把建设服务型基层党组织、提升党员群众服务中心的功能作为“三万”活动的一项重要任务。这几年由于省委高度重视、全省上下努力，全省所有的街道和村都建起了较为规范的党员群众服务中心，农村基层党组织的阵地建设得到了有力的加强。但硬件建设只是一个方面，根本的标准还要看功能强不强，作用发挥好不好。工作队要引导基层党组织牢固树立“强化功能、以用为本”的理念，以推进农村网格化管理为契机，扎实抓好党员群众服务中心建设。一是要“整合”，要按照“五务合一”的要求，充分利用好各类涉农服务资源，使与群众生产生活密切相关的服务需求都能在党员群众服务中心得到实现。第二是要“下放”，要研究探索把由县市和乡镇审批办理的服务事项和权限尽可能下放到党员群众服务中心，让农民群众办事不出村。第三是要“拓展”，要围绕“衣食住行、医教保业”，丰富服务内容，千方百计为村里的党员群众提供尽可能多的服务项目。鄂州、宜都包括恩施州的巴东县在此方面已取得明显成效，必要时候，可组织去考察学习，充分借鉴先进经验，在这方面要解放思想地抓，加大力气地抓，放开手脚地抓。</span></p>
+<p style="">　　<span style=";
+">楼阳生要求，要切实帮助乡镇党委抓好村级“两委”班子建设，在建立长效机制上下功夫。今年下半年，全省村“两委”将进行换届，“三万”活动要为基层“两委”换届做好工作、打好基础。首先要结合全省第二批教育实践活动，集中整顿软弱涣散农村基层党组织。省委决定从今年<span lang="EN-US">3</span>到<span lang="EN-US">4</span>月，用一个半月的时间集中整顿软弱涣散农村基层党组织。村“两委”要在完成集中整顿和教育实践活动之后，再开始全面进行换届工作。工作队要切实帮助抓好农村带头人队伍建设，进一步打开视野、拓宽渠道，掌握一批后备人选，通过换届，把政治强、接地气、情况熟、有人脉、能长期在基层干的优秀人才选拔为村党组织书记。要指导协助当地党委和组织部门，抓好对村级党组织的调查摸底和分类定级工作，全面掌握驻点村党组织运行情况。对列为整顿对象的基层党组织要逐个进行分析研究，分门别类列出哪些基层党组织需要健全班子、配强书记，哪些基层党组织需要整顿作风、提升能力素质，哪些基层党组织需要规范管理、健全制度，哪些基层党组织需要落实基本保障、建好服务平台，哪些基层党组织需要化解矛盾纠纷、做好群众工作，哪些基层党组织需要理清发展思路、落实发展项目等，切实做到一村一策、一村一法。要真正通过整顿，建立长效机制，选好一个带头人、培养一个好班子、建设一个好支部、建立一个好阵地，完善一个好制度，为驻点村留下一支不走的工作队。同时他还要求，工作队要注意工作方法，要虚心向基层干部群众学习，紧紧依靠当地党委开展工作，积极争取省“三万办”的工作指导，以实际行动树立省委组织部“三万”工作队良好形象。</span></p>
+</div></div>
+</font>
+
+</td>
+</tr>
+<tr>
+<td height="30">
+<div class="pages">
+<div class="pages_text"> <div align="center"><!--//翻页置标-->
+<SCRIPT LANGUAGE="JavaScript">
+    createPageHTML(1, 0, "t20140311_8576", "shtml");
+</SCRIPT>
+</div></div>
+</div>
+</td>
+</tr>
+<tr>
+<td valign="top"><table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="5%" height="25" align="center" style="border-bottom:#ae0000 2px solid;"><img src="../../../images/star_all.gif" width="15" height="15" /></td>
+<td width="11%" align="left" style="font-size:14px; font-weight:bold; color:#e40000;border-bottom:#ae0000 2px solid;">相关信息</td>
+<td width="84%" style="border-bottom:#ff0000 2px solid;">&nbsp;</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><div class="list1">
+<ul>
+
+
+
+
+
+</ul>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td class="content_close" align="right">【<a href="javascript:window.close();">关闭窗口</a>】</td>
+</tr>
+<tr>
+<td height="10"></td>
+</tr>
+</table></td>
+</tr>
+</table></td>
+</tr>
+</table></td>
+<td width="13"></td>
+
+<td valign="top" width="271">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+<td height="4"></td>
+</tr>
+<tr>
+  <td><div class="list_titlebg">栏目导航</div></td>
+</tr>
+      <tr><td height="2"></td></tr>
+      <tr>
+        <td align="center" valign="top" bgcolor="#fff8de" style="padding:6px 0 0 0;">
+        <div class="list_menu">
+        	<ul>
+         
+            	<li><a href="../" target="_self">领导活动</a></li>                                                                               
+           
+            	<li><a href="../../zgdt/" target="_self">组工动态</a></li>                                                                               
+           
+            	<li><a href="../../zyyl/" target="_self">重要言论</a></li>                                                                               
+          
+                                                                  
+            </ul> 
+        </div> 
+      </td>
+      </tr>
+    </table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td height="5"></td>
+</tr>
+<tr>
+<td valign="top">
+<SCRIPT language=JavaScript>
+function topimg(simg)
+{
+var strimg=simg;
+var strimg1="";
+var strimg2="";
+var strimg3="";
+var allstrimg="";
+ if (strimg.length>16)
+ {
+ strimg1=strimg.substring(0, 16);
+ allstrimg=strimg1 + "......";
+ }
+  if (strimg.length<=16)
+ {
+ allstrimg=strimg;
+ }
+return allstrimg;
+}
+var focus_width=271;
+var focus_height=185;
+var text_height=25;
+var links="";
+var pics="";
+var texts="";
+         var imgUrl=new Array();
+         var imgLink=new Array();
+         var imgTz=new Array();
+         var adNum=0;
+         var kk = 1;
+var swf_height = focus_height+text_height;         
+         
+         pics = 'http://www.hbzgw.gov.cn/photonews/201301/W020130205435144421094.jpg';
+         links = 'http://www.hbzgw.gov.cn/photonews/201301/t20130121_8338.shtml';
+         texts = '<center>' + topimg('政协湖北省十一届一次会议在武汉开幕') + '</center>';
+         
+          
+         imgUrl[kk] = '|' + 'http://www.hbzgw.gov.cn/photonews/201301/W020130108326211822278.jpg';
+         imgLink[kk] = '|http://www.hbzgw.gov.cn/photonews/201301/t20130108_8318.shtml';
+   imgTz[kk] = '|<center>' + topimg('李鸿忠在红安调研“三万”活动 参加劳动...') + '</center>';
+         kk++;
+         
+         imgUrl[kk] = '|' + 'http://www.hbzgw.gov.cn/photonews/201301/W020130106355147631386.jpg';
+         imgLink[kk] = '|http://www.hbzgw.gov.cn/photonews/201301/t20130106_8316.shtml';
+   imgTz[kk] = '|<center>' + topimg('习近平谈“中国特色社会主义”:道路就是...') + '</center>';
+         kk++;
+         
+         imgUrl[kk] = '|' + 'http://www.hbzgw.gov.cn/photonews/201211/W020121115467998018967.jpg';
+         imgLink[kk] = '|http://www.hbzgw.gov.cn/photonews/201211/t20121115_8200.shtml';
+   imgTz[kk] = '|<center>' + topimg('十八届一中全会选举习近平为中央委员会...') + '</center>';
+         kk++;
+         
+         imgUrl[kk] = '|' + 'http://www.hbzgw.gov.cn/photonews/201211/W020121115305900152041.jpg';
+         imgLink[kk] = '|http://www.hbzgw.gov.cn/photonews/201211/t20121115_8197.shtml';
+   imgTz[kk] = '|<center>' + topimg('十八大胜利闭幕  湖北代表团高举旗帜、...') + '</center>';
+         kk++;
+
+         
+         
+  for (i=1;i<=4;i++) {
+         pics = pics + imgUrl[i];
+         links =links + imgLink[i];
+          texts = texts + imgTz[i];
+           }
+document.write('<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="'+ focus_width +'" height="'+ swf_height +'">');
+document.write('<param name="allowScriptAccess" value="sameDomain"><param name="movie" value="/images/lunbo.swf"><param name="quality" value="high"><param name="bgcolor" value="#F0EFEF">');
+document.write('<param name="menu" value="false"><param name=wmode value="opaque">');
+document.write('<param name="FlashVars" value="pics='+pics+'&links='+links+'&texts='+texts+'&borderwidth='+focus_width+'&borderheight='+focus_height+'&textheight='+text_height+'">');
+document.write('<embed src="/images/lunbo.swf" wmode="opaque" FlashVars="pics='+pics+'&links='+links+'&texts='+texts+'&borderwidth='+focus_width+'&borderheight='+focus_height+'&textheight='+text_height+'" menu="false" bgcolor="#F0EFEF" quality="high" width="'+ focus_width +'" height="'+ focus_height +'" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />');                document.write('</object>');
+         </SCRIPT>
+</td>
+</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td height="5"></td>
+</tr>
+<tr>
+<td align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><div class="title_news" style="width:271px;">
+<h4><span>
+<a href='http://www.hbzgw.gov.cn/gsgg/'  target="_blank">公示公告</a></span></h4>
+<div class="more"><a href='http://www.hbzgw.gov.cn/gsgg/'  target="_blank">
+&gt;&gt;更多</a></div>
+</div></td>
+</tr>
+<tr>
+<td class="red_border"><div id="demo" style="width:250px;">
+<div id="demo1">
+<ul style="width:260px;">
+		  
+               <li><a href="http://www.hbzgw.gov.cn/gsgg/gsgxzl/201402/t20140221_8520.shtml" target="_blank">中国邮政储蓄银行湖北省分行201...</a></li>        
+		  
+               <li><a href="http://www.hbzgw.gov.cn/gsgg/gsgxzl/201310/t20131031_8417.shtml" target="_blank">湖北省2013年从村干部中定向考...</a></li>        
+		  
+               <li><a href="http://www.hbzgw.gov.cn/gsgg/gsgxzl/201310/t20131031_8416.shtml" target="_blank">湖北省2013年从村干部中定向考...</a></li>        
+		  
+               <li><a href="http://www.hbzgw.gov.cn/gsgg/gsgxzl/201310/t20131031_8415.shtml" target="_blank">湖北省2013年从村干部中定向考...</a></li>        
+		  
+               <li><a href="http://www.hbzgw.gov.cn/gsgg/rqgs/201309/t20130913_8409.shtml" target="_blank">中共湖北省委组织部干部任前公...</a></li>        
+		  
+               <li><a href="http://www.hbzgw.gov.cn/gsgg/rqgs/201309/t20130908_8408.shtml" target="_blank">中共湖北省委组织部干部任前公...</a></li>        
+		  
+               <li><a href="http://www.hbzgw.gov.cn/gsgg/rqgs/201309/t20130906_8407.shtml" target="_blank">中共湖北省委组织部干部任前公...</a></li>        
+		  
+               <li><a href="http://www.hbzgw.gov.cn/gsgg/rqgs/201307/t20130712_8406.shtml" target="_blank">
+　　中共湖北省委组织部干部任...</a></li>        
+		  
+               <li><a href="http://www.hbzgw.gov.cn/gsgg/wjtz/201306/t20130617_8396.shtml" target="_blank">关于集中实施人才工作重心下移...</a></li>        
+		  
+               <li><a href="http://www.hbzgw.gov.cn/gsgg/gsgxzl/201305/t20130529_8390.shtml" target="_blank">湖北省2013年大学生村官选聘工...</a></li>        
+
+</ul>
+</div>
+<div id="demo2"></div>
+<script type="text/javascript">
+                var speed=80;
+                var FGDemo=document.getElementById('demo');
+                var FGDemo1=document.getElementById('demo1');
+                var FGDemo2=document.getElementById('demo2');
+                FGDemo2.innerHTML=FGDemo1.innerHTML
+                function Marquee1(){
+                if(FGDemo2.offsetHeight-FGDemo.scrollTop<=0)
+                FGDemo.scrollTop-=FGDemo1.offsetHeight
+                else{
+                FGDemo.scrollTop++
+                }
+                }
+                var MyMar1=setInterval(Marquee1,speed)
+                FGDemo.onmouseover=function() {clearInterval(MyMar1)}
+                FGDemo.onmouseout=function() {MyMar1=setInterval(Marquee1,speed)}
+                </script>
+</div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td height="3"></td>
+</tr>
+<tr>
+<td align="left" valign="top"><a href='http://www.hbzgw.gov.cn/ztzl/xxthg/' target="_blank"><img src="/images/xx_thg271.gif" alt="学习涂红刚,争做好干部" width="271" height="52" /></a></td>
+</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td height="5"></td>
+</tr>
+<tr>
+<td align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><div class="title_news" style="width:271px;">
+<h4><span><a target="_blank" href='http://www.hbzgw.gov.cn/gzhd/zczx/'>政策咨询</a></span></h4>
+</div></td>
+</tr>
+<tr>
+<td align="center" valign="top" class="red_border"><table width="220" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td height="51" align="center" coslpan="2"><a target="_blank" href='http://www.hbzgw.gov.cn/gzhd/zczx/'><img src="/images/banner_zixun.gif" width="176" height="40" /></a></td>
+</tr>
+</table></td>
+</tr>
+</table></td>
+</tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td height="5"></td>
+</tr>
+<tr>
+<td align="left" valign="top">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><div class="title_news" style="width:271px;">
+<h4><span><a href="#">在线调查</a></span></h4>
+<div class="more"><a href="#">&gt;&gt;更多</a></div>
+</div></td>
+</tr>
+<tr>
+<td align="left" valign="top" class="red_border"><div class="jianghua_list1">
+<ul>
+
+<li><a href="http://27.17.62.68:8080/pub/trspoll/201111/p1010.htm">湖北组工网评价调查</a></li>
+
+</ul>
+</div></td>
+</tr>
+</table>
+</td>
+</tr>
+</table></td>
+<td width="11"></td>
+</tr>
+</table><!--主要内容结束-->
+
+<!--底部开始-->
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+  <tr>
+    <td height="10" bgcolor="#ffffff"></td>
+  </tr>
+</table>
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" background="/web/images/index-21.jpg">
+  <tr>
+<td valign="top">
+	   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bottom_c">
+        <tr>
+          <td height="2" bgcolor="#e00000"></td>
+        </tr>
+        <tr>
+          <td height="30" align="center" bgcolor="#f8f8f8">主办：中共湖北省委组织部&nbsp;&nbsp;          鄂ICP备10018819-3号<br />
+<!--您是第<span style="color:#01359b; font-weight:bold; padding:0 6px;"></span>位来访者！--></td>
+        </tr>
+<tr>
+<td align="center" bgcolor="#f8f8f8">
+<iframe  name="loginframe" frameborder="0" scrolling="no" src="http://27.17.62.68:8080/poll/vistcount/count.jsp"  allowtransparency="true"  marginheight="0" marginwidth="0" width="142" height="12"></iframe>
+</td>
+</tr>
+    </table>
+</td>
+        </tr>
+    </table>
+<!--底部结束-->
+</body>
+</html>
