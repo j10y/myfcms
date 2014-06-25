@@ -26,6 +26,8 @@
          <export name="*"/>
       </library>
       <library name="tagsoup-1.2.1.jar"/>
+      <library name="ansj_seg-1.4-min.jar"/>
+      <library name="tree_split-1.4.jar"/>
    </runtime>
 
    <requires>
