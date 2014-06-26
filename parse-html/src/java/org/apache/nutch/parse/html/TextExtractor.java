@@ -1,5 +1,10 @@
 package org.apache.nutch.parse.html;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -443,9 +448,32 @@ public class TextExtractor {
 		// http://www.ifanr.com/15876
 
 		TextExtractor te = new TextExtractor();
-		te.extractURL("http://www.jshrss.gov.cn/sy/zcfg/201311/t20131127_129440.html");
-		System.out.println("realtitle:" + te.getTitle());
-		System.out.println("content:" + te.getText());
+//		te.extractURL("http://www.jshrss.gov.cn/sy/zcfg/201311/t20131127_129440.html");
+		try {
+			
+			FileReader fr=new FileReader("./html/中共云南省委关于中央巡视组反馈意见整改情况的通报.htm");
+	        //可以换成工程目录下的其他文本文件
+	        BufferedReader br=new BufferedReader(fr);
+	        StringBuffer sb = new StringBuffer();
+	        
+	        while(br.readLine()!=null){
+	            sb.append(br.readLine()+"\n");
+	        }
+	        br.close();
+	        te.extractHTML(sb.toString());
+			
+			System.out.println("realtitle:" + te.getTitle());
+			System.out.println("content:" + te.getText());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
 	}
 
 }
