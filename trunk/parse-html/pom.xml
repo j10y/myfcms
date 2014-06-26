@@ -6,4 +6,13 @@
 	<artifactId>parse-html</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<url>http://maven.apache.org</url>
+
+	<repositories>
+		<repository>
+			<id>mvn-repo</id>
+			<url>http://maven.ansj.org/</url>
+		</repository>
+	</repositories>
+
 </project>

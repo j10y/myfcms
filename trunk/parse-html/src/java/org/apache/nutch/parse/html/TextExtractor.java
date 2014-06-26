@@ -28,8 +28,8 @@ public class TextExtractor {
 	private final static String _titlePattern = "<title>(.*?)</title>";
 
 	/** The Constant _titleRegexPattern. */
-	private final static Pattern _titleRegexPattern = Pattern.compile(_titlePattern,
-			Pattern.CANON_EQ | Pattern.DOTALL | Pattern.CASE_INSENSITIVE);
+	private final static Pattern _titleRegexPattern = Pattern.compile(_titlePattern, Pattern.CANON_EQ | Pattern.DOTALL
+			| Pattern.CASE_INSENSITIVE);
 
 	/** The _title. */
 	private String _title = "";
@@ -54,7 +54,7 @@ public class TextExtractor {
 	 * @param url
 	 *            the url
 	 */
-	 public void extractURL(String url) {
+	public void extractURL(String url) {
 		url = url.trim();
 		if (isLegalURL(url)) {
 			if (isContentURL(url)) {
@@ -67,6 +67,7 @@ public class TextExtractor {
 			_title = "*非法URL:-)";
 		}
 	}
+
 	/**
 	 * Extract url.
 	 * 
@@ -75,7 +76,7 @@ public class TextExtractor {
 	 * @param encoding
 	 *            the encoding
 	 */
-	 public void extractURL(String url, String encoding) {
+	public void extractURL(String url, String encoding) {
 		url = url.trim();
 		if (isLegalURL(url)) {
 			if (isContentURL(url)) {
@@ -88,6 +89,7 @@ public class TextExtractor {
 			_title = "*非法URL:-)";
 		}
 	}
+
 	/**
 	 * Checks if is content url.
 	 * 
@@ -103,7 +105,7 @@ public class TextExtractor {
 				count++;
 		}
 
-//		return count > 2;
+		// return count > 2;
 		return true;
 	}
 
@@ -171,8 +173,7 @@ public class TextExtractor {
 
 		// 如果两块只差两个空行，并且两块包含文字均较多，则进行块合并，以弥补单纯抽取最大块的缺点
 		for (int i = 1; i < textList.size(); i++) {
-			if (textBeginList.get(i) == textEndList.get(i - 1) + 1
-					&& textEndList.get(i) > textBeginList.get(i) + _block
+			if (textBeginList.get(i) == textEndList.get(i - 1) + 1 && textEndList.get(i) > textBeginList.get(i) + _block
 					&& textList.get(i).replaceAll("\\s+", "").length() > 40) {
 				if (textEndList.get(i - 1) == textBeginList.get(i - 1) + _block
 						&& textList.get(i - 1).replaceAll("\\s+", "").length() < 40) {
@@ -228,7 +229,7 @@ public class TextExtractor {
 	private boolean isContentPage(String htmlText) {
 		int count = 0;
 		for (int i = 0; i < htmlText.length() && count < 15; i++) {
-			if (htmlText.charAt(i) == '，' || htmlText.charAt(i) == '。' || htmlText.charAt(i) == ',')
+			if (htmlText.charAt(i) == '，' || htmlText.charAt(i) == '。')
 				count++;
 		}
 
@@ -256,6 +257,7 @@ public class TextExtractor {
 		float maxScore = 0;
 		String title = null;
 
+		int k = 0;
 		for (int i = 0; i < indexof; i++) {
 
 			StringBuffer sb = new StringBuffer();
@@ -279,10 +281,25 @@ public class TextExtractor {
 			if (score > maxScore) {
 				title = sb.toString();
 				maxScore = score;
+				k = i;
 			}
-			// System.out.println("title:" + sb + score);
+			//System.out.println("title:" + sb + score);
 		}
-		this._title = title;
+
+		List<Term> terms = analysis.parse(this._title);
+		float score = 0;
+		for (int j = 0; j < terms.size(); j++) {
+			float count = StringUtils.countMatches(content, terms.get(j).getRealName());
+			score = score + count;
+		}
+		score = score / ((indexof - k + 1) * 10);
+
+		//System.out.println("<title>:" + _title + score);
+		if (score > maxScore) {
+			maxScore = score;
+		} else {
+			this._title = title;
+		}
 	}
 
 	/**
@@ -319,9 +336,9 @@ public class TextExtractor {
 		}
 		// 删除上下存在两个空行的文字行
 		for (int i = 0; i + 4 < lines.size(); i++) {
-			if (indexDistribution.get(i) == 0 && indexDistribution.get(i + 1) == 0
-					&& indexDistribution.get(i + 2) > 0 && indexDistribution.get(i + 2) < 10
-					&& indexDistribution.get(i + 3) == 0 && indexDistribution.get(i + 4) == 0) {
+			if (indexDistribution.get(i) == 0 && indexDistribution.get(i + 1) == 0 && indexDistribution.get(i + 2) > 0
+					&& indexDistribution.get(i + 2) < 10 && indexDistribution.get(i + 3) == 0
+					&& indexDistribution.get(i + 4) == 0) {
 				// System.out.println("line:" + lines.get(i+2));
 				lines.set(i + 2, "");
 				indexDistribution.set(i + 2, 0);
@@ -361,9 +378,9 @@ public class TextExtractor {
 		htmlText = htmlText.replaceAll("(?is)<div.*?>", "\n");
 		// table
 		htmlText = htmlText.replaceAll("(?is)<table.*?>", "\n");
-		//td
+		// td
 		htmlText = htmlText.replaceAll("(?is)<td.*?>", "\n");
-		//a
+		// a
 		htmlText = htmlText.replaceAll("(?is)<a.*?>", "\n\n");
 		// html
 		htmlText = htmlText.replaceAll("(?is)<.*?>", "");
@@ -396,10 +413,10 @@ public class TextExtractor {
 		text = text.replaceAll("&#183;", "·");
 		text = text.replaceAll("&amp;", "&");
 		text = text.replaceAll("&bull;", "·");
-		text = text.replaceAll("&lt;", "<");
-		text = text.replaceAll("&#60;", "<");
-		text = text.replaceAll("&gt;", ">");
-		text = text.replaceAll("&#62;", ">");
+		//text = text.replaceAll("&lt;", "<");
+		//text = text.replaceAll("&#60;", "<");
+		//text = text.replaceAll("&gt;", ">");
+		//text = text.replaceAll("&#62;", ">");
 		text = text.replaceAll("&nbsp;", " ");
 		text = text.replaceAll("&#160;", " ");
 		text = text.replaceAll("&tilde;", "~");
@@ -425,10 +442,10 @@ public class TextExtractor {
 		// http://hi.baidu.com/fandywang_jlu/blog/item/dfe2f0134907142edd5401d7.html
 		// http://www.ifanr.com/15876
 
-		 TextExtractor te = new TextExtractor();
-		 te.extractURL("http://www.hbzgw.gov.cn/");
-		 System.out.println("realtitle:" + te.getTitle());
-		 System.out.println("content:" + te.getText());
+		TextExtractor te = new TextExtractor();
+		te.extractURL("http://www.jshrss.gov.cn/sy/zcfg/201311/t20131127_129440.html");
+		System.out.println("realtitle:" + te.getTitle());
+		System.out.println("content:" + te.getText());
 	}
 
 }
