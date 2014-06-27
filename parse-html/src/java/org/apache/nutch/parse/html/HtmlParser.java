@@ -164,8 +164,9 @@ public class HtmlParser implements Parser {
 		if (!metaTags.getNoIndex()) { // okay to index
 
 			StringBuffer sb = new StringBuffer();
-			TextExtractor te = new TextExtractor();
-			String html = null;
+			Html html = new Html();
+			HtmlExtractor he = new HtmlExtractor();
+			
 			try {
 				String charSet = metadata.get(Metadata.ORIGINAL_CHAR_ENCODING);
 
@@ -173,20 +174,20 @@ public class HtmlParser implements Parser {
 					charSet = "gb2312";
 				}
 
-				html = new String(content.getContent(), charSet);
+				html.setHtmlSource(new String(content.getContent(), charSet));
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
 
-			if (te.extractHTML(html)) {
+			if (he.process(html)) {
 				if (LOG.isTraceEnabled()) {
 					LOG.trace("Getting text...");
 				}
-				text = te.getText();
+				text = html.getContent();
 				if (LOG.isTraceEnabled()) {
 					LOG.trace("Getting title...");
 				}
-				title = te.getTitle();
+				title = html.getTitle();
 			} else {
 				if (LOG.isTraceEnabled()) {
 					LOG.trace("Getting text...");
