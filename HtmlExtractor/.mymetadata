@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="HtmlExtractor"
+  id="myeclipse.1403860859315"
+  context-root="/HtmlExtractor"
+  j2ee-spec="5.0"
+  archive="HtmlExtractor.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
