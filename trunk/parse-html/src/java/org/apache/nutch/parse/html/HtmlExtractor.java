@@ -10,11 +10,14 @@ package org.apache.nutch.parse.html;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.charset.Charset;
+import java.util.List;
 import java.util.regex.Matcher;
+
+import org.ansj.domain.Term;
+import org.ansj.splitWord.analysis.IndexAnalysis;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * @author xiacc
@@ -32,60 +35,180 @@ public class HtmlExtractor {
 	 */
 	public static void main(String[] args) {
 
-		HtmlExtractor extractor = new HtmlExtractor();
-		Html html = new Html();
+		// Html html = new
+		// HtmlExtractor().processFile("./html/中共许昌市委组织部子站.htm");
+
+		Html html = new HtmlExtractor().processURL("http://news.12371.cn/2014/02/22/ARTI1393043944223970.shtml");
+		System.out.println("realtitle:" + html.getTitle());
+		System.out.println("content:" + html.getContent());
+	}
+
+	public Html processURL(String url) {
+		html = new Html();
+		url = url.trim();
+		String htmlText = DownloadURL.downURL(url, "IE8.0");
+		html.setHtmlSource(htmlText);
+		process(html);
+		return html;
+	}
+
+	public Html processFile(String path) {
+		html = new Html();
 
 		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(
-					"./html/荆门市组织工作网.htm"), Charset.forName("utf-8")));
-			StringBuffer sb = new StringBuffer();
 
-			while (br.readLine() != null) {
-				sb.append(br.readLine());
+			InputStreamReader isr = new InputStreamReader(new FileInputStream(path), "utf-8");
+			BufferedReader br = new BufferedReader(isr);
+
+			StringBuffer sb = new StringBuffer();
+			String temp = null;
+			while ((temp = br.readLine()) != null) {
+				sb.append(temp);
 			}
 			br.close();
 
-			// System.out.println(sb.toString());
 			html.setHtmlSource(sb.toString());
-			extractor.process(html);
+			process(html);
 
-			// System.out.println("realtitle:" + html.getTitle());
-			// System.out.println("content:" + html.getContent());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		return html;
+	}
+
+	public boolean process(Html html) {
+		String htmlText = preProcess(html.getHtmlSource());
+
+		html.setHtmlText(htmlText);
+
+		String[] txt = htmlText.split("\n\n");
+
+		String result = new String();
+
+		int indexof = 0;
+		for (int i = 0; i < txt.length; i++) {
+
+			if (StringUtils.isNotBlank(txt[i])) {
+				if (txt[i].length() > result.length()) {
+					result = txt[i];
+					indexof = i;
+				}
+			}
+		}
+
+		if (result.length() < 100) {
+			html.setContent("该网页非主题类型，不支持解析！");
+			return false;
+		} else if (StringUtils.countMatches(result, "，") + StringUtils.countMatches(result, "。") < 15) {
+			html.setContent("该网页非主题类型，不支持解析！");
+			return false;
+		} else {
+			html.setContent(result);
+			extractTitle(html, txt, indexof);
+			return true;
 		}
 
 	}
 
-	public void process(Html html) {
-		// extractTitle(html);
-		html.setHtmlText(preProcess(html.getHtmlSource()));
-		System.out.println(html.getHtmlText());
+	public String extractTitle(Html html, String[] txt, int indexof) {
 
-	}
+		String realTitle = new String();
+		IndexAnalysis analysis = new IndexAnalysis();
 
-	public String extractContent(Html html) {
+		float maxScore = 0;
+		String title = null;
 
-		return null;
-	}
+		int k = 0;
+		for (int i = 0; i < indexof; i++) {
 
-	public String extractTitle(Html html) {
+			StringBuffer sb = new StringBuffer();
+
+			String[] strs = txt[i].replace(" ", "").replace("\\s", "").split("\n");
+			for (String str : strs) {
+				if (StringUtils.isNotBlank(str)) {
+					sb.append(str);
+					break;
+				}
+			}
+			if (sb.length() > 100) {
+				break;
+			}
+
+			List<Term> terms = analysis.parse(sb.toString());
+			float score = 0;
+			for (int j = 0; j < terms.size(); j++) {
+				float count = StringUtils.countMatches(html.getContent(), terms.get(j).getRealName());
+				score = score + count;
+			}
+			score = score / ((indexof - i) * 10 + sb.length());
+
+			if (score > maxScore) {
+				realTitle = sb.toString();
+				maxScore = score;
+				k = i;
+			}
+			System.out.println("title:" + sb.toString() + score);
+
+		}
+
 		Matcher m1 = Html.titleRegexPattern.matcher(html.getHtmlSource());
 
 		if (m1.find()) {
-			html.setTitle(m1.group(1));
-			return m1.group(1);
+			String headTitle = m1.group(1).replaceAll("\\s| |　|	", "");
+
+			List<Term> terms = analysis.parse(headTitle);
+			float score = 0;
+			for (int j = 0; j < terms.size(); j++) {
+				float count = StringUtils.countMatches(html.getContent(), terms.get(j).getRealName());
+				score = score + count;
+			}
+			score = score / ((indexof - k) * 10 + headTitle.length());
+
+			System.out.println("<title>:" + headTitle + score);
+			if (score > maxScore) {
+				maxScore = score;
+				realTitle = headTitle;
+			}
 		}
-		return new String();
+
+		html.setTitle(realTitle);
+		return title;
 	}
 
-	public String preProcess(String htmlText) {
+	private String preProcess(String htmlText) {
 
-		// htmlText = htmlText.replaceAll("\n|\r\n|\n\r", "");
+		htmlText = htmlText.replaceAll("&quot;", "\"");
+		htmlText = htmlText.replaceAll("&ldquo;", "“");
+		htmlText = htmlText.replaceAll("&rdquo;", "”");
+		htmlText = htmlText.replaceAll("&middot;", "·");
+		htmlText = htmlText.replaceAll("&#8231;", "·");
+		htmlText = htmlText.replaceAll("&#8212;", "——");
+		htmlText = htmlText.replaceAll("&#28635;", "濛");
+		htmlText = htmlText.replaceAll("&hellip;", "…");
+		htmlText = htmlText.replaceAll("&#23301;", "嬅");
+		htmlText = htmlText.replaceAll("&#27043;", "榣");
+		htmlText = htmlText.replaceAll("&#8226;", "·");
+		htmlText = htmlText.replaceAll("&#40;", "(");
+		htmlText = htmlText.replaceAll("&#41;", ")");
+		htmlText = htmlText.replaceAll("&#183;", "·");
+		htmlText = htmlText.replaceAll("&amp;", "&");
+		htmlText = htmlText.replaceAll("&bull;", "·");
+		// text = text.replaceAll("&lt;", "<");
+		// text = text.replaceAll("&#60;", "<");
+		// text = text.replaceAll("&gt;", ">");
+		// text = text.replaceAll("&#62;", ">");
+		htmlText = htmlText.replaceAll("&nbsp;", " ");
+		htmlText = htmlText.replaceAll("&#160;", " ");
+		htmlText = htmlText.replaceAll("&tilde;", "~");
+		htmlText = htmlText.replaceAll("&mdash;", "—");
+		htmlText = htmlText.replaceAll("&copy;", "@");
+		htmlText = htmlText.replaceAll("&#169;", "@");
+		htmlText = htmlText.replaceAll("♂", "");
+		htmlText = htmlText.replaceAll("\r\n|\r", "\n");
 
+		htmlText = htmlText.replaceAll("\\s| |　|	", "");
 		// DTD
 		htmlText = htmlText.replaceAll("(?is)<!DOCTYPE.*?>", "");
 		// html comment
@@ -96,12 +219,20 @@ public class HtmlExtractor {
 		htmlText = htmlText.replaceAll("(?is)<style.*?>.*?</style>", "");
 		// div
 		htmlText = htmlText.replaceAll("(?is)<div.*?>", "\n");
+		htmlText = htmlText.replaceAll("(?is)</div.*?>", "\n");
 		// table
 		htmlText = htmlText.replaceAll("(?is)<table.*?>", "\n");
+		htmlText = htmlText.replaceAll("(?is)</table.*?>", "\n");
 		// td
-		htmlText = htmlText.replaceAll("(?is)<td.*?>", "\n");
+		htmlText = htmlText.replaceAll("(?is)<td.*?>", "\n\n");
 		// a
-		htmlText = htmlText.replaceAll("(?is)<a.*?>", "\n\n");
+		htmlText = htmlText.replaceAll("(?is)<li.*?>", "\n\n");
+		// a
+		// htmlText = htmlText.replaceAll("(?is)<p.*?>", "");
+
+		htmlText = htmlText.replaceAll("(?is)<option.*?>", "\n\n");
+		// a
+		htmlText = htmlText.replaceAll("(?is)<a.*?>", "\n");
 		// html
 		htmlText = htmlText.replaceAll("(?is)<.*?>", "");
 
