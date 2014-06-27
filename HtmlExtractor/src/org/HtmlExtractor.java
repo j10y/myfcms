@@ -12,12 +12,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 
-import org.ansj.domain.Term;
-import org.ansj.splitWord.analysis.IndexAnalysis;
 import org.apache.commons.lang.StringUtils;
+import org.apdplat.word.WordSegmenter;
+import org.apdplat.word.segmentation.Word;
 
 /**
  * @author xiacc
@@ -38,9 +39,13 @@ public class HtmlExtractor {
 		// Html html = new
 		// HtmlExtractor().processFile("./html/中共许昌市委组织部子站.htm");
 
-		Html html = new HtmlExtractor().processURL("http://news.12371.cn/2014/02/22/ARTI1393043944223970.shtml");
+		long startTime = new Date().getTime();
+		Html html = new HtmlExtractor()
+				.processURL("http://hbzgw.gov.cn/szxw/201401/t20140121_8497.shtml");
+		long endTime = new Date().getTime();
 		System.out.println("realtitle:" + html.getTitle());
 		System.out.println("content:" + html.getContent());
+		System.out.println("本程序运行 " + (endTime - startTime) + " 毫秒完成。");
 	}
 
 	public Html processURL(String url) {
@@ -115,7 +120,6 @@ public class HtmlExtractor {
 	public String extractTitle(Html html, String[] txt, int indexof) {
 
 		String realTitle = new String();
-		IndexAnalysis analysis = new IndexAnalysis();
 
 		float maxScore = 0;
 		String title = null;
@@ -136,10 +140,10 @@ public class HtmlExtractor {
 				break;
 			}
 
-			List<Term> terms = analysis.parse(sb.toString());
+			List<Word> words = WordSegmenter.seg(sb.toString());
 			float score = 0;
-			for (int j = 0; j < terms.size(); j++) {
-				float count = StringUtils.countMatches(html.getContent(), terms.get(j).getRealName());
+			for (int j = 0; j < words.size(); j++) {
+				float count = StringUtils.countMatches(html.getContent(), words.get(j).getText());
 				score = score + count;
 			}
 			score = score / ((indexof - i) * 10 + sb.length());
@@ -149,7 +153,8 @@ public class HtmlExtractor {
 				maxScore = score;
 				k = i;
 			}
-			System.out.println("title:" + sb.toString() + score);
+			// System.out.println("title:" + sb.toString() + score);
+			// System.out.println(words);
 
 		}
 
@@ -158,15 +163,16 @@ public class HtmlExtractor {
 		if (m1.find()) {
 			String headTitle = m1.group(1).replaceAll("\\s| |　|	", "");
 
-			List<Term> terms = analysis.parse(headTitle);
+			List<Word> words = WordSegmenter.seg(headTitle);
 			float score = 0;
-			for (int j = 0; j < terms.size(); j++) {
-				float count = StringUtils.countMatches(html.getContent(), terms.get(j).getRealName());
+			for (int j = 0; j < words.size(); j++) {
+				float count = StringUtils.countMatches(html.getContent(), words.get(j).getText());
 				score = score + count;
 			}
 			score = score / ((indexof - k) * 10 + headTitle.length());
 
-			System.out.println("<title>:" + headTitle + score);
+			// System.out.println("<title>:" + headTitle + score);
+			// System.out.println(words);
 			if (score > maxScore) {
 				maxScore = score;
 				realTitle = headTitle;
