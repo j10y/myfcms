@@ -51,11 +51,16 @@
 			</center>
 			<br>
 			<p>
-				&nbsp;&nbsp;&nbsp;&nbsp;现有的网页标题提取方法主要是通过直接提取网页源文件中的&lt;title&gt;&lt;/title&gt;标签中的文字作为网页标题。
+				&nbsp;&nbsp;&nbsp;&nbsp;现有的网页标题提取方法主要是通过直接提取网页源文件&lt;title&gt;&lt;/title&gt;标签中的文字作为网页标题。
 				然而，很多网站为了提高网页在搜索引擎中被检索的可能，添加了很多与网页主题无关但是热门的关键词，甚至有的网站的&lt;title&gt;&lt;/title&gt;标签根本不是网页主题，这给网页标题提取带来了很大的困难。
 				<br/>
-				&nbsp;&nbsp;&nbsp;&nbsp;本提取器提供一种网页标题和正文的提取方法，旨在解决现有技术在进行网页标题正文提取时，造成网页搜索的准确率较低的问题。
-				
+				&nbsp;&nbsp;&nbsp;&nbsp;本提取器提供一种网页标题和正文的提取方法，旨在解决现有技术在进行网页标题正文提取时，提取错误或有偏差的问题。
+				<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;不标准的网站范例：
+				<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;http://www.zhengzhou.gov.cn/
+				<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;http://www.huizhou.gov.cn/
 			</p>
 
 			<center>
