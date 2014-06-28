@@ -8,6 +8,10 @@
 package action;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,9 +42,30 @@ public class Report extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String url = req.getParameter("url");
 		String title = req.getParameter("title");
-		logger.error("url:" + url);
-		logger.error("title:" + title);
-		System.out.println("report");
-	}
 
+		try {
+			// 使用从库读数据
+			String URL = "jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_htmlextractor";
+			String sql = "insert into report (url,title) values ('" + url + "','" + title + "');";
+			// 通过SaeUserInfo提供的静态方法获取应用的access_key和secret_key
+			String Username = "524042kxx4";
+			String Password = "hw0hkh5i3mh1wj1hk34j20zmh5k4x454m4xh23h1";
+			String Driver = "com.mysql.jdbc.Driver";
+			Class.forName(Driver).newInstance();
+			Connection con = DriverManager.getConnection(URL, Username, Password);
+			Statement statement = con.createStatement();
+			statement.executeUpdate(sql);
+			statement.close();
+			con.close();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
 }

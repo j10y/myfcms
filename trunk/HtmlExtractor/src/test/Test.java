@@ -7,10 +7,12 @@
  */
 package test;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
-import org.apdplat.word.WordSegmenter;
-import org.apdplat.word.segmentation.Word;
 
 
 /**
@@ -21,7 +23,28 @@ import org.apdplat.word.segmentation.Word;
 public class Test {
 
 	public static void main(String[] args) {
-		List<Word> words = WordSegmenter.seg("杨尚川是APDPlat应用级产品开发平台的作者");
-		System.out.println(words);
+		try {
+			// 使用从库读数据
+			String URL = "jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_htmlextractor";
+			String sql = "insert into report (url,title) values ('123','234');";
+			// 通过SaeUserInfo提供的静态方法获取应用的access_key和secret_key
+			String Username = "yourfei@sina.com";
+			String Password = "xiabiao851";
+			String Driver = "com.mysql.jdbc.Driver";
+			Class.forName(Driver).newInstance();
+			Connection con = DriverManager.getConnection(URL, Username, Password);
+			Statement statement = con.createStatement();
+			statement.executeUpdate(sql);
+			statement.close();
+			con.close();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
